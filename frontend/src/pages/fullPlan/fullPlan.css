@@ -1,0 +1,231 @@
+.masterPlan {
+  /* background-color: blueviolet; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* z-index: 0; */
+  background-color: blueviolet;
+}
+
+.secondaryClarifierP24 {
+  cursor: pointer;
+  position: absolute;
+  top: 275px;
+  left: 455px;
+  height: 150px;
+  width: 150px;
+  opacity: 0;
+  background-color: blue;
+}
+.secondaryClarifierP24:hover {
+  opacity: 0.3;
+}
+
+.name-secondaryClarifierP24 {
+  position: absolute;
+  right: 600px;
+  bottom: 350px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  color: crimson;
+  font-size: 24px;
+  background-color: rgba(225, 243, 243, 0.6);
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.secondaryClarifierP24:hover + .name-secondaryClarifierP24 {
+  opacity: 1;
+}
+
+.secondaryClarifierP25 {
+  cursor: pointer;
+  position: absolute;
+  top: 425px;
+  left: 455px;
+  height: 150px;
+  width: 150px;
+  opacity: 0;
+  background-color: rgb(0, 255, 106);
+}
+.secondaryClarifierP25:hover {
+  opacity: 0.3;
+}
+
+.name-secondaryClarifierP25 {
+  position: absolute;
+  right: 610px;
+  bottom: 200px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  color: crimson;
+  font-size: 25px;
+  background-color: rgba(225, 243, 243, 0.6);
+
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.secondaryClarifierP25:hover + .name-secondaryClarifierP25 {
+  opacity: 1;
+}
+
+.secondaryClarifierP32 {
+  cursor: pointer;
+  position: absolute;
+  top: 425px;
+  left: 290px;
+  height: 150px;
+  width: 150px;
+  opacity: 0;
+  background-color: rgb(0, 225, 255);
+}
+.secondaryClarifierP32:hover {
+  opacity: 0.3;
+}
+
+.name-secondaryClarifierP32 {
+  position: absolute;
+  right: 800px;
+  bottom: 200px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  color: crimson;
+  font-size: 24px;
+  background-color: rgba(225, 243, 243, 0.6);
+
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.secondaryClarifierP32:hover + .name-secondaryClarifierP32 {
+  opacity: 1;
+}
+
+.PrimaryClarifierP7 {
+  cursor: pointer;
+  position: absolute;
+  top: 290px;
+  right: 270px;
+  height: 110px;
+  width: 110px;
+  opacity: 0;
+  background-color: rgb(255, 251, 0);
+}
+.PrimaryClarifierP7:hover {
+  opacity: 0.3;
+}
+
+.name-PrimaryClarifierP7 {
+  position: absolute;
+  right: 130px;
+  bottom: 340px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  color: crimson;
+  font-size: 24px;
+  background-color: rgba(225, 243, 243, 0.6);
+
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.PrimaryClarifierP7:hover + .name-PrimaryClarifierP7 {
+  opacity: 1;
+}
+
+.PrimaryClarifierP8 {
+  cursor: pointer;
+  position: absolute;
+  top: 385px;
+  right: 270px;
+  height: 110px;
+  width: 110px;
+  opacity: 0;
+  background-color: rgb(33, 165, 99);
+}
+.PrimaryClarifierP8:hover {
+  opacity: 0.3;
+}
+
+.name-PrimaryClarifierP8 {
+  position: absolute;
+  right: 130px;
+  bottom: 240px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  color: crimson;
+  font-size: 24px;
+  background-color: rgba(225, 243, 243, 0.6);
+
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.PrimaryClarifierP8:hover + .name-PrimaryClarifierP8 {
+  opacity: 1;
+}
+
+.PrimaryClarifierP9 {
+  cursor: pointer;
+  position: absolute;
+  top: 485px;
+  right: 270px;
+  height: 110px;
+  width: 110px;
+  opacity: 0;
+  background-color: rgb(255, 0, 242);
+}
+.PrimaryClarifierP9:hover {
+  opacity: 0.3;
+}
+
+.name-PrimaryClarifierP9 {
+  position: absolute;
+  right: 130px;
+  bottom: 140px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  color: crimson;
+  font-size: 24px;
+  background-color: rgba(225, 243, 243, 0.6);
+
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.PrimaryClarifierP9:hover + .name-PrimaryClarifierP9 {
+  opacity: 1;
+}
+
+.aerationTank {
+  cursor: pointer;
+  position: absolute;
+  top: 325px;
+  left: 650px;
+  height: 220px;
+  width: 220px;
+  opacity: 0;
+  background-color: rgb(255, 0, 0);
+}
+.aerationTank:hover {
+  opacity: 0.3;
+}
+
+.name-aerationTank {
+  position: absolute;
+  right: 560px;
+  bottom: 310px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  color: crimson;
+  font-size: 24px;
+  background-color: rgba(225, 243, 243, 0.6);
+
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.aerationTank:hover + .name-aerationTank {
+  opacity: 1;
+}

@@ -1,20 +1,19 @@
 import React, { useEffect } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
-import { getAllItns, itnData } from "./state";
-import { useAppDispatch, useAppSelector } from "./state/hooks";
+import FullPlan from "./pages/fullPlan/fullPlan";
+import LocationDetail from "./pages/locationDetail/locationDetail";
+
 function App() {
-  const dispatch = useAppDispatch();
-  const { all, loading } = useAppSelector(itnData);
-
-  useEffect(() => {
-    dispatch(getAllItns());
-  }, [dispatch]);
-
-  console.log("all of the itns", loading);
   return (
     <div className="App">
-      <header className="App-header">Hello Taha</header>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<FullPlan />} />
+          <Route path="/:itp" element={<LocationDetail />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

@@ -1,0 +1,39 @@
+body {
+  background-color: rgba(223, 217, 217, 0.877);
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+  color: rgb(112, 76, 182);
+}
+.cover {
+  margin-top: -40px;
+}
+.locationName {
+  text-align: center;
+}
+
+.itns {
+  float: right;
+  padding: 20px;
+  margin-left: 650px;
+}
+
+.filters {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 35.5px;
+  cursor: pointer;
+  box-shadow: 3px 2px 7px rgb(224, 220, 220);
+}
+
+.filters:hover {
+  color: blue;
+  background-color: rgb(218, 252, 241);
+  transform: translate(2px);
+}
+
+.boxes {
+  margin-top: -80px;
+}
