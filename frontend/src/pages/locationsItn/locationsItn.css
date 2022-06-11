@@ -37,3 +37,7 @@ body {
 .boxes {
   margin-top: -80px;
 }
+
+.linkToItn{
+  cursor: pointer;
+}

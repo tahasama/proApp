@@ -1,0 +1,200 @@
+/* .itnCover{
+    position: absolute;
+} */
+
+.itnCenter {
+  position: absolute;
+  color: green;
+  border: 10px solid black;
+  border-style: double;
+  border-color: rgb(4, 78, 26, 0.4);
+  height: 150px;
+  width: 150px;
+  border-radius: 100%;
+  font-family: "Times New Roman";
+  font-size: 18px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 1;
+}
+
+.approuval {
+  margin-top: 35px;
+  line-height: 0px;
+  transition: all 5s ease-out;
+  font-size: 25px;
+  color: rgb(4, 78, 26);
+}
+
+.approuval:hover ~ .delete,
+.approuval:hover ~ .update,
+.approuval:hover ~ .print,
+.approuval:hover ~ .seeItn,
+.approuval:hover ~ .Uploadimages,
+.approuval:hover ~ .uploadItn {
+  font-size: 20px;
+}
+
+.update {
+  position: absolute;
+  bottom: 29vh;
+  right: 8vw;
+  width: 150px;
+  color: rgb(27, 189, 49);
+  transition: all 1s ease-out;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.update:hover {
+  color: rgb(51, 28, 153);
+  font-size: 20px !important;
+  /* background-color: #0a9928; */
+}
+
+.delete {
+  position: absolute;
+  bottom: 29vh;
+  left: 7vw;
+  width: 150px;
+  color: rgb(231, 53, 29);
+  /* color: rgb(161, 177, 22); */
+  transition: all 1s ease-out;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.delete:hover {
+  color: rgb(51, 28, 153);
+  font-size: 20px;
+}
+
+.print {
+  position: absolute;
+  top: 30vh;
+  right: 7vw;
+  width: 200px;
+  color: rgb(71, 151, 255);
+  transition: all 1s ease-out;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.print:hover {
+  color: rgb(51, 28, 153);
+  font-size: 20px;
+}
+
+.seeItn {
+  position: absolute;
+  top: 30.5vh;
+  left: 8vw;
+  width: 150px;
+  color: rgb(163, 118, 35);
+  transition: all 1s ease-out;
+  padding: 0 1px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.seeItn:hover {
+  color: rgb(51, 28, 153);
+  font-size: 20px;
+}
+
+.uploadItn {
+  position: absolute;
+  top: 9vh;
+  left: 12vw;
+  width: 250px;
+  color: rgb(170, 168, 22);
+  transition: all 1s ease-out;
+  padding: 0 1px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.uploadItn:hover {
+  color: rgb(51, 28, 153);
+  font-size: 20px;
+}
+
+.Uploadimages {
+  position: absolute;
+  top: 8.2vh;
+  right: 13.5vw;
+  width: 150px;
+  color: rgb(131, 40, 167);
+  transition: all 1s ease-out;
+  padding: 0 1px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.Uploadimages:hover {
+  color: rgb(51, 28, 153);
+  font-size: 20px;
+}
+
+.stamp {
+  position: absolute;
+  top: 80px;
+  right: -75px;
+  transform: rotate(12deg);
+  color: #555;
+  font-size: 3rem;
+  font-weight: 700;
+  border: 0.25rem solid #555;
+  display: inline-block;
+  padding: 0.25rem 1rem;
+  text-transform: uppercase;
+  border-radius: 1rem;
+  font-family: "Courier";
+  -webkit-mask-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png");
+  -webkit-mask-size: 944px 604px;
+  mix-blend-mode: multiply;
+}
+
+.is-approved {
+  color: #0a9928;
+  border: 0.5rem solid #0a9928;
+  -webkit-mask-position: 13rem 6rem;
+  transform: rotate(-12deg);
+  border-radius: 0;
+  z-index: 99;
+}
+
+.is-approved-w {
+  color: #0a7099;
+  border: 0.5rem double #0a7099;
+  -webkit-mask-position: 13rem 6rem;
+  transform: rotate(-14deg);
+  border-radius: 0;
+}
+
+.is-nope {
+  color: #d23;
+  border: 0.5rem double #d23;
+  transform: rotate(3deg);
+  -webkit-mask-position: 2rem 3rem;
+  font-size: 2rem;
+}
+
+.inf {
+  width: 260px;
+}
+
+.title1 {
+  letter-spacing: 4px;
+}
+.title2 {
+  letter-spacing: 2px;
+}
+/* .modalP {
+  position: relative;
+  top: 22px;
+  right: 55px;
+} */

@@ -10,7 +10,7 @@ import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import { getItnsByItp, itnData } from "../../state";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import "./locationsItn.css";
 
@@ -30,6 +30,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const LocationsItn = (itp: any) => {
   const dispatch = useAppDispatch();
   const { allitp } = useAppSelector(itnData);
+  const params=useParams()
 
   const [filterBy, setFilterBy] = useState("All");
 
@@ -63,7 +64,6 @@ const LocationsItn = (itp: any) => {
   const handleNumber = (num: any) => {
     return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
   };
-
   return (
     <div className="cover">
       <Box sx={{ flexGrow: 1 }}>
@@ -113,16 +113,18 @@ const LocationsItn = (itp: any) => {
                       <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent>
-                      <Link to={`itn/${itn._id}`}>
-                        QW211101-SNCE-QA-ITN-{handleNumber(itn.num)}
-                        <h6> {itn.routine} </h6>
+                      <div className="linkToItn" onClick={()=>console.log('hhhhhhh')}>
+                        <a href={'/'+params.itp+'/'+itn._id}> QW211101-SNCE-QA-ITN-{handleNumber(itn.num)}
+                        <h6> {itn.routine} </h6> </a>
+                      </div>
+                    
                         <Link
                           to={`../UpdateItn/${itn._id}/${itn.num}`}
                           state={`${itp}`}
                         >
                           Update an itn
                         </Link>
-                      </Link>
+                    
                     </TimelineContent>
                   </TimelineItem>
                 ))}

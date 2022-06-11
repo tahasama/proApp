@@ -25,7 +25,6 @@ router.get("/all/:itp", async (req, res) => {
 
 // create an itn
 router.post("/createItn", async (req, res) => {
-  console.log("Hayyaaa", req.body);
   const newItn = new Itn(req.body);
   try {
     const saveItn = await newItn.save();
@@ -36,7 +35,7 @@ router.post("/createItn", async (req, res) => {
 });
 
 // get itn by id
-router.get("/:id", async (req, res) => {
+router.get("/:itp/:id", async (req, res) => {
   try {
     const itn = await Itn.findById(req.params.id);
     res.status(200).json(itn);
@@ -47,6 +46,7 @@ router.get("/:id", async (req, res) => {
 
 // update an itn
 router.put("/:id", async (req, res) => {
+  console.log("hello");
   try {
     const updateItn = await Itn.findByIdAndUpdate(
       req.params.id,

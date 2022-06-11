@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import FullPlan from "./pages/fullPlan/fullPlan";
+import IndividualItn from "./pages/individualItn/individualItn";
 import LocationDetail from "./pages/locationDetail/locationDetail";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<FullPlan />} />
           <Route path="/:itp" element={<LocationDetail />} />
+          <Route path="/:itp/:itnId" element={<IndividualItn />} />
         </Routes>
       </BrowserRouter>
     </div>
