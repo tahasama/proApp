@@ -7,6 +7,7 @@ const ItnSchema = new mongooses.Schema(
     subLocation: { type: String, required: false },
     routine: { type: String, required: true },
     dateOfInspection: { type: Date, required: true },
+    pdfUrl: { type: String, required: false },
   },
   {
     timestamps: true,

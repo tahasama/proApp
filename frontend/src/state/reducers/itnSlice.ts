@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { storage } from "../../firebase";
 
 const POJECT_URL: any = process.env.REACT_APP_PROJECT_URL;
 console.log("fffffffffffffffffffff", POJECT_URL);
@@ -76,6 +78,25 @@ export const getItn = createAsyncThunk("getItn", async (value: any) => {
   }
 });
 
+export const uploadImage = createAsyncThunk(
+  "uploadImage",
+  async (value: any) => {
+    const storageRef = ref(storage, `${value.itnId}.pdf`);
+    try {
+      await uploadBytesResumable(storageRef, value.pdf);
+      try {
+        const res = await getDownloadURL(storageRef);
+        console.log("broooooooo", res);
+        await axios.put(POJECT_URL + value.itnId, {
+          pdfUrl: res,
+        });
+      } catch (error) {}
+    } catch (error: any) {
+      return error;
+    }
+  }
+);
+
 interface itnsProps {
   itnz: {
     all: {}[];
@@ -84,6 +105,8 @@ interface itnsProps {
     individualItn: any;
     newLocation: string;
     newRoutine: string;
+    pdf: string;
+    itnId: string;
   };
 }
 
@@ -94,6 +117,8 @@ const initialState = {
   individualItn: {},
   newLocation: "",
   newRoutine: "",
+  pdf: "",
+  itnId: "",
 };
 
 export const projectsSlice = createSlice({

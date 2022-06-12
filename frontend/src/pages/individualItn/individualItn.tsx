@@ -15,13 +15,15 @@ import Tooltip from "@mui/material/Tooltip";
 import ModalP from "./modal/modalP";
 
 import "./individualItn.css";
+import UploadItn from "./uploadItn/uploadItn";
+import ModalS from "./uploadItn/modalS/modalS";
 
 const IndividualItn = () => {
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { individualItn } = useAppSelector(itnData);
-  console.log(individualItn);
+  console.log("AAAAAAAAAAAAAAAAAAAA", individualItn.pdfUrl);
   useEffect(() => {
     if (params) {
       dispatch(getItn(params));
@@ -71,12 +73,13 @@ const IndividualItn = () => {
         </i>
         <i className="seeItn">
           <PictureAsPdfRoundedIcon />
-          See signed Itn
+          <a href={individualItn.pdfUrl} target="_blank" rel="noreferrer">
+            See signed Itn
+          </a>
         </i>{" "}
-        <i className="uploadItn">
-          <FileUploadTwoToneIcon />
-          Upload Itn
-        </i>{" "}
+        <div className="uploadItn">
+          <ModalS />
+        </div>
         <i className="Uploadimages">
           <DriveFolderUploadTwoToneIcon />
           Upload Images
