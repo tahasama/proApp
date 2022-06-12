@@ -10,11 +10,12 @@ import { LocalizationProvider, MobileDatePicker } from "@mui/lab";
 import { Stack, TextField } from "@mui/material";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import moment from "moment";
-import { itnData, updateItn } from "../../../state";
-import SelectStuff from "./select/SelectStuff";
+import { createItn, itnData, updateItn } from "../../../state";
+
 import SendIcon from "@mui/icons-material/Send";
-import "./modalP.css";
+import "./modalC.css";
 import { Input } from "@mui/material";
+import SelectStuff from "../../individualItn/modal/select/SelectStuff";
 
 const style = {
   position: "absolute" as "absolute",
@@ -28,15 +29,13 @@ const style = {
   p: 4,
 };
 
-export default function ModalP() {
+export default function ModalC() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useAppDispatch();
   const { individualItn, newLocation, newRoutine } = useAppSelector(itnData);
-  const [value, setValue] = React.useState<Date | null>(
-    individualItn.dateOfInspection
-  );
+  const [value, setValue] = React.useState<Date | null>(new Date());
 
   const inputRef = React.useRef<any>(null);
 
@@ -47,9 +46,9 @@ export default function ModalP() {
 
   return (
     <div>
-      <i onClick={handleOpen} className="update pos">
-        <BorderColorTwoToneIcon style={{ color: "#1BBD31" }} /> Update Itn
-      </i>
+      <button className="createItn" onClick={handleOpen}>
+        Create ITN
+      </button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -58,7 +57,7 @@ export default function ModalP() {
       >
         <Box sx={style}>
           <div>
-            <p>Update the curruent infos ?</p>
+            <p>Please complete the following informations : </p>
 
             <div>
               <SelectStuff />
@@ -85,7 +84,6 @@ export default function ModalP() {
                 color="success"
                 // autoFocus={true}
                 placeholder="add a sublocation"
-                defaultValue={individualItn.subLocation}
                 name="wooow"
                 onChange={() =>
                   console.log("hoooooola", inputRef.current.value)
@@ -96,9 +94,8 @@ export default function ModalP() {
             <div
               onClick={() => (
                 dispatch(
-                  updateItn({
-                    _id: individualItn._id,
-                    num: individualItn.num,
+                  createItn({
+                    num: "2000",
                     itp: newLocation,
                     routine: newRoutine,
                     subLocation: inputRef.current.value,

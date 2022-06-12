@@ -8,6 +8,8 @@ import { useParams } from "react-router-dom";
 import "./locationDetail.css";
 import LocationsItn from "../locationsItn/locationsItn";
 import NavBar from "../Navbar/navbar";
+import { Button } from "@mui/material";
+import ModalC from "./modalC/modalC";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -57,6 +59,8 @@ const LocationDetails = () => {
       </div>
 
       <h2 className="locationName">{itp}: </h2>
+      <ModalC />
+
       <div className="restOfPage">
         <Box
           sx={{
@@ -110,7 +114,7 @@ const LocationDetails = () => {
             />
             <Tab
               label="Non Confority Report"
-              {...a11yProps(2)}
+              {...a11yProps(3)}
               style={{
                 position: "fixed",
                 marginTop: 235,
@@ -121,7 +125,7 @@ const LocationDetails = () => {
             />
             <Tab
               label="Quality Observation Report"
-              {...a11yProps(2)}
+              {...a11yProps(4)}
               style={{
                 position: "fixed",
                 marginTop: 300,
@@ -130,6 +134,22 @@ const LocationDetails = () => {
                 backgroundColor: "#EBEDEF",
               }}
             />
+            {/* <Tab
+              label="Create an Itn"
+              {...a11yProps(5)}
+              style={{
+                position: "fixed",
+                marginTop: 370,
+                marginLeft: 4,
+                boxShadow: "10px 5px 5px grey",
+                borderRadius: 20,
+                width: 300,
+                backgroundColor: "#FF2337",
+                color: "White",
+              }}
+            >
+              <ModalC />
+            </Tab> */}
           </Tabs>
           <TabPanel value={value} index={0}>
             <div style={{ marginLeft: 380 }}>
@@ -144,7 +164,11 @@ const LocationDetails = () => {
           </TabPanel>
           <TabPanel value={value} index={3}>
             <div style={{ marginLeft: 100 }}>4444444444444</div>
+          </TabPanel>{" "}
+          <TabPanel value={value} index={4}>
+            <div style={{ marginLeft: 100 }}>55555555555555</div>
           </TabPanel>
+          {/* <TabPanel value={value} index={5}></TabPanel> */}
         </Box>
       </div>
     </div>

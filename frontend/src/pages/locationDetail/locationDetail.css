@@ -17,3 +17,22 @@
   width: 100%;
   z-index: 2;
 }
+
+.createItn {
+  position: fixed;
+  top: 480px;
+  left: 80px;
+  margin: 27px 0px;
+  font-size: 20px;
+  padding: 15px;
+  border-radius: 20px;
+  border-color: rgb(206, 204, 204);
+  border-style: solid;
+  color: white;
+  background-color: rgb(255, 71, 71);
+  cursor: pointer;
+}
+.createItn:active {
+  background-color: rgb(247, 112, 112);
+  transform: translate(1px, 1px);
+}

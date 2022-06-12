@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { getItn, itnData } from "../../state";
+import { useNavigate, useParams } from "react-router-dom";
+import { deleteItn, getItn, itnData } from "../../state";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import BorderColorTwoToneIcon from "@mui/icons-material/BorderColorTwoTone";
 import DeleteOutlineTwoToneIcon from "@mui/icons-material/DeleteOutlineTwoTone";
@@ -18,7 +18,7 @@ import "./individualItn.css";
 
 const IndividualItn = () => {
   const params = useParams();
-
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { individualItn } = useAppSelector(itnData);
   console.log(individualItn);
@@ -30,6 +30,19 @@ const IndividualItn = () => {
 
   const handleNumber = (num: any) => {
     return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
+  };
+
+  const handleDeleteItn = async () => {
+    const result = window.confirm(
+      "Would you like to remove this ITN permanently ?"
+    );
+    if (result) {
+      dispatch(deleteItn(individualItn._id));
+
+      navigate(`../${individualItn.itp}`);
+    } else {
+      navigate("");
+    }
   };
 
   return (
@@ -48,7 +61,7 @@ const IndividualItn = () => {
         <div className="update">
           <ModalP />
         </div>
-        <i className="delete">
+        <i className="delete" onClick={handleDeleteItn}>
           <DeleteOutlineTwoToneIcon />
           Delete Itn
         </i>

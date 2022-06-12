@@ -33,10 +33,33 @@ export const getItnsByItp: any = createAsyncThunk(
   }
 );
 
+export const createItn = createAsyncThunk("createItn", async (value: any) => {
+  console.log("create reducer", value);
+  try {
+    const res = await axios.post(POJECT_URL + "/createItn", value);
+
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+});
+
 export const updateItn = createAsyncThunk("updateItn", async (value: any) => {
   try {
     const res = await axios.put(POJECT_URL + value._id, value);
 
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+});
+
+export const deleteItn = createAsyncThunk("deleteItn", async (value: any) => {
+  console.log("deleted id", value);
+
+  try {
+    const res = await axios.delete(POJECT_URL + value);
+    console.log("deleted", res.data);
     return res.data;
   } catch (error) {
     return error;
@@ -103,7 +126,13 @@ export const projectsSlice = createSlice({
     builder.addCase(getItn.fulfilled, (state, action) => {
       state.individualItn = action.payload;
     });
+    builder.addCase(createItn.fulfilled, (state, action) => {
+      state = action.payload;
+    });
     builder.addCase(updateItn.fulfilled, (state, action) => {
+      state = action.payload;
+    });
+    builder.addCase(deleteItn.fulfilled, (state, action) => {
       state = action.payload;
     });
   },

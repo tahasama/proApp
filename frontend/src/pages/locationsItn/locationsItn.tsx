@@ -30,7 +30,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const LocationsItn = (itp: any) => {
   const dispatch = useAppDispatch();
   const { allitp } = useAppSelector(itnData);
-  const params=useParams()
+  const params = useParams();
 
   const [filterBy, setFilterBy] = useState("All");
 
@@ -78,14 +78,11 @@ const LocationsItn = (itp: any) => {
                 padding: 10,
               }}
             >
-              Filter By:
+              <p>Filter By:</p>
             </Item>
           </Grid>
           <Grid item xs={5} width={850}>
             <Item style={{ position: "fixed" }}>
-              {/* <h3 style={{ color: "pink", marginBottom: 15, marginTop: 8 }}>
-                Filter By:{" "}
-              </h3> */}
               {routine.map((i: any) => (
                 <div onClick={() => setFilterBy(i)} className="filters">
                   {i}
@@ -113,18 +110,23 @@ const LocationsItn = (itp: any) => {
                       <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent>
-                      <div className="linkToItn" onClick={()=>console.log('hhhhhhh')}>
-                        <a href={'/'+params.itp+'/'+itn._id}> QW211101-SNCE-QA-ITN-{handleNumber(itn.num)}
-                        <h6> {itn.routine} </h6> </a>
+                      <div
+                        className="linkToItn"
+                        onClick={() => console.log("hhhhhhh")}
+                      >
+                        <a href={"/" + params.itp + "/" + itn._id}>
+                          {" "}
+                          QW211101-SNCE-QA-ITN-{handleNumber(itn.num)}
+                          <h6> {itn.routine} </h6>{" "}
+                        </a>
                       </div>
-                    
-                        <Link
-                          to={`../UpdateItn/${itn._id}/${itn.num}`}
-                          state={`${itp}`}
-                        >
-                          Update an itn
-                        </Link>
-                    
+
+                      {/* <Link
+                        to={`../UpdateItn/${itn._id}/${itn.num}`}
+                        state={`${itp}`}
+                      >
+                        Update an itn
+                      </Link> */}
                     </TimelineContent>
                   </TimelineItem>
                 ))}
