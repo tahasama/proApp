@@ -65,7 +65,7 @@ const IndividualItn = () => {
           <DeleteOutlineTwoToneIcon />
           Delete Itn
         </i>
-        <i className="print">
+        <i className="print" onClick={() => navigate("./itnForm")}>
           <LocalPrintshopRoundedIcon />
           Print Itn for signing
         </i>

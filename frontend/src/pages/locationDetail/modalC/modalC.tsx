@@ -10,7 +10,7 @@ import { LocalizationProvider, MobileDatePicker } from "@mui/lab";
 import { Stack, TextField } from "@mui/material";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import moment from "moment";
-import { createItn, itnData, updateItn } from "../../../state";
+import { createItn, getAllItns, itnData, updateItn } from "../../../state";
 
 import SendIcon from "@mui/icons-material/Send";
 import "./modalC.css";
@@ -34,7 +34,8 @@ export default function ModalC() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useAppDispatch();
-  const { individualItn, newLocation, newRoutine } = useAppSelector(itnData);
+  const { individualItn, newLocation, newRoutine, all } =
+    useAppSelector(itnData);
   const [value, setValue] = React.useState<Date | null>(new Date());
 
   const inputRef = React.useRef<any>(null);
@@ -43,6 +44,15 @@ export default function ModalC() {
     setValue(newValue);
   };
   console.log("inputRef .......", inputRef.current?.value);
+
+  useEffect(() => {
+    dispatch(getAllItns());
+  }, []);
+  console.log("wawaowowoo");
+  const itnNumber: any = all.flat().slice(-1)[0];
+  const convertNum: any = parseInt(itnNumber.num);
+  let plainNumber: any = itnNumber === undefined ? 1 : convertNum + 1;
+  console.log("annnnnnd....", plainNumber);
 
   return (
     <div>
@@ -95,7 +105,7 @@ export default function ModalC() {
               onClick={() => (
                 dispatch(
                   createItn({
-                    num: "2000",
+                    num: plainNumber,
                     itp: newLocation,
                     routine: newRoutine,
                     subLocation: inputRef.current.value,

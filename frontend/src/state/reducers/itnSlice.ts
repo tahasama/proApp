@@ -67,6 +67,7 @@ export const deleteItn = createAsyncThunk("deleteItn", async (value: any) => {
 });
 
 export const getItn = createAsyncThunk("getItn", async (value: any) => {
+  console.log("get itn value", value);
   try {
     const res = await axios.get(POJECT_URL + value.itp + "/" + value.itnId);
     return res.data;
