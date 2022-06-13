@@ -17,13 +17,14 @@ import ModalP from "./modal/modalP";
 import "./individualItn.css";
 import UploadItn from "./uploadItn/uploadItn";
 import ModalS from "./uploadItn/modalS/modalS";
+import ModalF from "./uploadImages/modalF/modalF";
 
 const IndividualItn = () => {
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { individualItn } = useAppSelector(itnData);
-  console.log("AAAAAAAAAAAAAAAAAAAA", individualItn.pdfUrl);
+  console.log("AAAAAAAAAAAAAAAAAAAA", individualItn);
   useEffect(() => {
     if (params) {
       dispatch(getItn(params));
@@ -80,14 +81,27 @@ const IndividualItn = () => {
         <div className="uploadItn">
           <ModalS />
         </div>
-        <i className="Uploadimages">
-          <DriveFolderUploadTwoToneIcon />
-          Upload Images
-        </i>
+        <div className="Uploadimages">
+          <ModalF />
+        </div>
         <span className="stamp is-approved">Approved</span>{" "}
         {/* <span className="stamp is-approved-w">Approved </span>
         <span className="stamp is-nope">Declined</span>
-        <span className="stamp inf">for infos</span> */}
+        <span className="stamp inf">for infos</span> */}{" "}
+        <img
+          src={individualItn.image1Url}
+          alt=""
+          height={400}
+          width={420}
+          className="image1"
+        />{" "}
+        <img
+          src={individualItn.image2Url}
+          alt=""
+          height={400}
+          width={420}
+          className="image2"
+        />
       </div>
     </div>
   );

@@ -46,7 +46,7 @@ router.get("/:itp/:id", async (req, res) => {
 
 // update an itn
 router.put("/:id", async (req, res) => {
-  console.log("hello");
+  console.log("hello", req.body);
   try {
     const updateItn = await Itn.findByIdAndUpdate(
       req.params.id,

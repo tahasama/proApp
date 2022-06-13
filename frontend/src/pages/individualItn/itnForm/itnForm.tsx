@@ -5,6 +5,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getItn, itnData } from "../../../state";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
+import { idText } from "typescript";
 
 const ItnForm = () => {
   const params: any = useParams();
@@ -116,7 +117,7 @@ const ItnForm = () => {
       <p className="oneLine">Shop Drawing Ref:</p>
       <div className="oneLine">
         <p className="work">WORK TO BE INSPECTED:</p>
-        <p className="routine">3.7 Curing</p>
+        <p className="routine">{individualItn.routine}</p>
       </div>
       <div className="firstRaw oneLine" style={{ padding: 10 }}>
         <p className="dis1">Setting out surveyed:</p>{" "}

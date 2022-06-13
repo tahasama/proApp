@@ -15,6 +15,9 @@ import SelectStuff from "./select/SelectStuff";
 import SendIcon from "@mui/icons-material/Send";
 import "./modalP.css";
 import { Input } from "@mui/material";
+import DriveFolderUploadTwoToneIcon from "@mui/icons-material/DriveFolderUploadTwoTone";
+
+
 
 const style = {
   position: "absolute" as "absolute",
@@ -47,7 +50,7 @@ export default function ModalP() {
 
   return (
     <div>
-      <i onClick={handleOpen} className="update pos">
+        <i onClick={handleOpen} className="update pos">
         <BorderColorTwoToneIcon style={{ color: "#1BBD31" }} /> Update Itn
       </i>
       <Modal

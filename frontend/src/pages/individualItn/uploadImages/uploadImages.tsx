@@ -1,27 +1,36 @@
-import React, { useRef, useState } from "react";
+import React, { useReducer, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { itnData, uploadPdfFile } from "../../../state";
+import {  itnData, uploadImages } from "../../../state";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 import { AppDispatch } from "../../../state/store";
 
-const UploadItn = ({ handleClose }: any) => {
+const UploadImages = ({ handleClose }: any) => {
   const { individualItn } = useAppSelector(itnData);
   
 
   const dispatch = useAppDispatch();
-  const pdfRef = useRef<any>(null);
+  const imageRef1 = useRef<any>(null);
+  const imageRef2 = useRef<any>(null);
   const [error, setError] = useState(false);
+
+
+
 
   const upload = async (e: any) => {
     e.preventDefault();
-    if (pdfRef.current.files[0] !== undefined) {
-      const imgUrl = URL.createObjectURL(pdfRef.current.files[0]);
-      console.log("MY PDF FILE", pdfRef.current.files[0].name);
+   
+    // if (imageRef.current.files[0] !== undefined || imageRef1.current.files[0] !== undefined) {
+    //   const imgUrl = URL.createObjectURL(imageRef.current.files[0]);
+    console.log("MY IMAGE1", imageRef1.current.files[0]);
+    console.log("MY IMAGE2", imageRef2.current.files[0]);
       const value = {
-        itnId: individualItn._id,
-        pdf: pdfRef.current.files[0],
+        itnId:individualItn._id,
+         itnId1: '1-'+individualItn._id,
+        itnId2: '2-'+individualItn._id,
+         image1: imageRef1.current.files[0],
+        image2: imageRef2.current.files[0],
       };
-      dispatch(uploadPdfFile(value));
+      dispatch(uploadImages(value));
       // dispatch(
       //   updateItn({
           
@@ -40,17 +49,18 @@ const UploadItn = ({ handleClose }: any) => {
 
       //   dispatch(cancelState({ cancelImage: false }));
       handleClose();
-    } else {
-      setError(true);
-      //   dispatch(cancelState({ cancelImage: true }));
-    }
-  };
+//     } else {
+//       setError(true);
+//       //   dispatch(cancelState({ cancelImage: true }));
+//     } 
+   };
   return (
     <div>
       <label htmlFor="file-upload" className="imageUpload">
         Browse Image
       </label>
-      <input id="file-upload" ref={pdfRef} type="file" />
+      <input id="file-upload" ref={imageRef1} type="file" />
+      <input id="file-upload" ref={imageRef2} type="file" />
 
       <button onClick={upload} className="imageUpload upload xx">
         <span className="uploadText">Upload</span>
@@ -68,4 +78,4 @@ const UploadItn = ({ handleClose }: any) => {
   );
 };
 
-export default UploadItn;
+export default UploadImages;

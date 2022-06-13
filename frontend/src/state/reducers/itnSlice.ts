@@ -48,6 +48,7 @@ export const createItn = createAsyncThunk("createItn", async (value: any) => {
 
 export const updateItn = createAsyncThunk("updateItn", async (value: any) => {
   try {
+    // console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',value)
     const res = await axios.put(POJECT_URL + value._id, value);
 
     return res.data;
@@ -78,10 +79,12 @@ export const getItn = createAsyncThunk("getItn", async (value: any) => {
   }
 });
 
-export const uploadImage = createAsyncThunk(
-  "uploadImage",
+export const uploadPdfFile = createAsyncThunk(
+  "uploadPdfFile",
   async (value: any) => {
     const storageRef = ref(storage, `${value.itnId}.pdf`);
+    console.log("uploading......", storageRef);
+
     try {
       await uploadBytesResumable(storageRef, value.pdf);
       try {
@@ -97,6 +100,42 @@ export const uploadImage = createAsyncThunk(
   }
 );
 
+export const uploadImages = createAsyncThunk(
+  "uploadImage",
+  async (value: any) => {
+    console.log("id", value.itnId1, "img2", value.image2);
+    const storageRef = ref(
+      storage,
+      value.image1 ? `${value.itnId1}.jpg` : `${value.itnId2}.jpg`
+    );
+
+    // console.log('uploading......',storageRef)
+
+    try {
+      await uploadBytesResumable(
+        storageRef,
+        value.image1 ? value.image1 : value.image2
+      );
+      try {
+        const res = await getDownloadURL(storageRef);
+        console.log("broooooooo image1", value.image1);
+        console.log("broooooooo image2", value.image2);
+        console.log("brooooooo2", res);
+
+        value.image1 !== undefined
+          ? await axios.put(POJECT_URL + value.itnId, {
+              image1Url: res,
+            })
+          : await axios.put(POJECT_URL + value.itnId, {
+              image2Url: res,
+            });
+        console.log("brooooooo2", res);
+      } catch (error) {}
+    } catch (error: any) {
+      return error;
+    }
+  }
+);
 interface itnsProps {
   itnz: {
     all: {}[];

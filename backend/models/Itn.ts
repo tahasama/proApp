@@ -8,6 +8,8 @@ const ItnSchema = new mongooses.Schema(
     routine: { type: String, required: true },
     dateOfInspection: { type: Date, required: true },
     pdfUrl: { type: String, required: false },
+    image1Url: { type: String, required: false },
+    image2Url: { type: String, required: false },
   },
   {
     timestamps: true,
