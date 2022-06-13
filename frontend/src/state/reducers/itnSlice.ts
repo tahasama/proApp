@@ -36,10 +36,10 @@ export const getItnsByItp: any = createAsyncThunk(
 );
 
 export const createItn = createAsyncThunk("createItn", async (value: any) => {
-  console.log("create reducer", value);
+  console.log("new itn", value);
   try {
-    const res = await axios.post(POJECT_URL + "/createItn", value);
-
+    const res = await axios.post(POJECT_URL + "createItn/", value);
+    console.log("res,data...", res.data);
     return res.data;
   } catch (error) {
     return error;
@@ -144,6 +144,7 @@ interface itnsProps {
     individualItn: any;
     newLocation: string;
     newRoutine: string;
+    newReview: string;
     pdf: string;
     itnId: string;
   };
@@ -156,6 +157,8 @@ const initialState = {
   individualItn: {},
   newLocation: "",
   newRoutine: "",
+  newReview: "",
+
   pdf: "",
   itnId: "",
 };
@@ -170,6 +173,7 @@ export const projectsSlice = createSlice({
     UpdateValuesOfSelect: (state, action) => {
       state.newLocation = action.payload.newLocation;
       state.newRoutine = action.payload.newRoutine;
+      state.newReview = action.payload.newReview;
     },
     // updateProjectInfos: (state, action) => {
     //   Object.assign(state, action.payload);

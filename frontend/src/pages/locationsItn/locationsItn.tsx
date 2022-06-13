@@ -93,43 +93,46 @@ const LocationsItn = (itp: any) => {
           <Grid item xs={6}>
             <Item>
               <Timeline position="alternate">
-                {arr.flat().map((itn: any) => (
-                  <TimelineItem key={itn._id}>
-                    <TimelineOppositeContent color="text.secondary">
-                      {new Date(itn.dateOfInspection).toLocaleDateString(
-                        navigator.language,
-                        {
-                          year: "numeric",
-                          month: "short",
-                          day: "numeric",
-                        }
-                      )}
-                    </TimelineOppositeContent>
-                    <TimelineSeparator>
-                      <TimelineDot />
-                      <TimelineConnector />
-                    </TimelineSeparator>
-                    <TimelineContent>
-                      <div
-                        className="linkToItn"
-                        onClick={() => console.log("hhhhhhh")}
-                      >
-                        <a href={"/" + params.itp + "/" + itn._id}>
-                          {" "}
-                          QW211101-SNCE-QA-ITN-{handleNumber(itn.num)}
-                          <h6> {itn.routine} </h6>{" "}
-                        </a>
-                      </div>
+                {arr
+                  .flat()
+                  .reverse()
+                  .map((itn: any) => (
+                    <TimelineItem key={itn._id}>
+                      <TimelineOppositeContent color="text.secondary">
+                        {new Date(itn.dateOfInspection).toLocaleDateString(
+                          navigator.language,
+                          {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                          }
+                        )}
+                      </TimelineOppositeContent>
+                      <TimelineSeparator>
+                        <TimelineDot />
+                        <TimelineConnector />
+                      </TimelineSeparator>
+                      <TimelineContent>
+                        <div
+                          className="linkToItn"
+                          onClick={() => console.log("hhhhhhh")}
+                        >
+                          <a href={"/" + params.itp + "/" + itn._id}>
+                            {" "}
+                            QW211101-SNCE-QA-ITN-{handleNumber(itn.num)}
+                            <h6> {itn.routine} </h6>{" "}
+                          </a>
+                        </div>
 
-                      {/* <Link
+                        {/* <Link
                         to={`../UpdateItn/${itn._id}/${itn.num}`}
                         state={`${itp}`}
                       >
                         Update an itn
                       </Link> */}
-                    </TimelineContent>
-                  </TimelineItem>
-                ))}
+                      </TimelineContent>
+                    </TimelineItem>
+                  ))}
               </Timeline>
             </Item>
           </Grid>

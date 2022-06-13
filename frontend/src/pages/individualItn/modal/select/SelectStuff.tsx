@@ -16,6 +16,7 @@ export default function SelectStuff(table: any) {
   console.log(".......................", table);
   const [location, setLocation] = useState<any>(individualItn.itp);
   const [routine, setRoutine] = useState<any>(individualItn.routine);
+  const [review, setReview] = useState<any>(individualItn.review);
 
   const locations = [
     "secondaryClarifierP24",
@@ -44,6 +45,8 @@ export default function SelectStuff(table: any) {
     "Concrete Tests",
   ];
 
+  const reviews = ["C1", "C2", "C3", "C4"];
+
   const handleLocationChange = (event: SelectChangeEvent) => {
     console.log("please select location", event.target.value);
     setLocation(event.target.value as string);
@@ -52,9 +55,17 @@ export default function SelectStuff(table: any) {
     console.log("please select routine", event.target.value);
     setRoutine(event.target.value as string);
   };
+  const handleReviewChange = (event: SelectChangeEvent) => {
+    console.log("please select routine", event.target.value);
+    setReview(event.target.value as string);
+  };
 
   dispatch(
-    UpdateValuesOfSelect({ newLocation: location, newRoutine: routine })
+    UpdateValuesOfSelect({
+      newLocation: location,
+      newRoutine: routine,
+      newReview: review,
+    })
   );
   return (
     <Box sx={{ minWidth: 120 }}>
@@ -84,6 +95,23 @@ export default function SelectStuff(table: any) {
           onChange={handleRoutineChange}
         >
           {routines.map((j: any) => (
+            <MenuItem value={j} key={j}>
+              {j}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <FormControl fullWidth style={{ marginTop: 12 }}>
+        <InputLabel id="demo-simple-select-label">Review</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          defaultValue="C4"
+          value={review}
+          label="review"
+          onChange={handleReviewChange}
+        >
+          {reviews.map((j: any) => (
             <MenuItem value={j} key={j}>
               {j}
             </MenuItem>

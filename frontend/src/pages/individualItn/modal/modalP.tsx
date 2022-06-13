@@ -17,8 +17,6 @@ import "./modalP.css";
 import { Input } from "@mui/material";
 import DriveFolderUploadTwoToneIcon from "@mui/icons-material/DriveFolderUploadTwoTone";
 
-
-
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -36,7 +34,8 @@ export default function ModalP() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useAppDispatch();
-  const { individualItn, newLocation, newRoutine } = useAppSelector(itnData);
+  const { individualItn, newLocation, newRoutine, newReview } =
+    useAppSelector(itnData);
   const [value, setValue] = React.useState<Date | null>(
     individualItn.dateOfInspection
   );
@@ -50,7 +49,7 @@ export default function ModalP() {
 
   return (
     <div>
-        <i onClick={handleOpen} className="update pos">
+      <i onClick={handleOpen} className="update pos">
         <BorderColorTwoToneIcon style={{ color: "#1BBD31" }} /> Update Itn
       </i>
       <Modal
@@ -103,6 +102,7 @@ export default function ModalP() {
                     _id: individualItn._id,
                     num: individualItn.num,
                     itp: newLocation,
+                    review: newReview,
                     routine: newRoutine,
                     subLocation: inputRef.current.value,
                     dateOfInspection: value,

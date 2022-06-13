@@ -26,6 +26,7 @@ router.get("/all/:itp", async (req, res) => {
 // create an itn
 router.post("/createItn", async (req, res) => {
   const newItn = new Itn(req.body);
+  console.log("new itn", newItn);
   try {
     const saveItn = await newItn.save();
     res.status(200).json(saveItn);

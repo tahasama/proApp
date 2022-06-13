@@ -10,6 +10,7 @@ const ItnSchema = new mongooses.Schema(
     pdfUrl: { type: String, required: false },
     image1Url: { type: String, required: false },
     image2Url: { type: String, required: false },
+    review: { type: String, required: false },
   },
   {
     timestamps: true,

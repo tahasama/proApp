@@ -58,7 +58,7 @@ const IndividualItn = () => {
         <p className="approuval">
           Reviewed
           <p style={{ fontSize: 30 }}>
-            <b>C1</b>{" "}
+            <b>{individualItn.review}</b>{" "}
           </p>
         </p>{" "}
         <div className="update">
@@ -84,10 +84,19 @@ const IndividualItn = () => {
         <div className="Uploadimages">
           <ModalF />
         </div>
-        <span className="stamp is-approved">Approved</span>{" "}
-        {/* <span className="stamp is-approved-w">Approved </span>
-        <span className="stamp is-nope">Declined</span>
-        <span className="stamp inf">for infos</span> */}{" "}
+        {individualItn.review === "C1" ? (
+          <span className="stamp is-approved">Approved</span>
+        ) : individualItn.review === "C2" ? (
+          <span className="stamp is-approved-w">
+            Approved <h6 style={{ margin: 0 }}>w/ comments</h6>{" "}
+          </span>
+        ) : individualItn.review === "C3" ? (
+          <span className="stamp is-nope" style={{ marginRight: 50 }}>
+            Declined
+          </span>
+        ) : (
+          <span className="stamp inf">for infos</span>
+        )}{" "}
         <img
           src={individualItn.image1Url}
           alt=""

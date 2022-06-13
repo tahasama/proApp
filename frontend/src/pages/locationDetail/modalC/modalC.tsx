@@ -52,9 +52,9 @@ export default function ModalC() {
 
   const itnNumber: any = all.flat().slice(-1)[0];
   console.log("sdfsfdfsdf", itnNumber);
-  const convertNum: any = itnNumber !== undefined ? parseInt(itnNumber) : 0;
+  const convertNum: any = itnNumber !== undefined ? parseInt(itnNumber.num) : 0;
   let plainNumber: any = itnNumber === undefined ? 1 : convertNum + 1;
-  console.log("annnnnnd....", plainNumber);
+  console.log("annnnnnd....convertNum", convertNum, "plainNumber", plainNumber);
 
   return (
     <div>
