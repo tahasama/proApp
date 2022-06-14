@@ -17,6 +17,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import "./navbar.css";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -158,7 +159,7 @@ export default function NavBar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }} className="navBar">
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -170,14 +171,24 @@ export default function NavBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"            
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
-            MUI
-          </Typography>
+          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+            <Button color="inherit" sx={{ marginRight: 4 }}>
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{
+                  display: {
+                    xs: "none",
+                    sm: "block",
+                  },
+                }}
+              >
+                Home
+              </Typography>
+            </Button>
+          </Link>
+
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -188,13 +199,26 @@ export default function NavBar() {
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
-          <Link to='../allitn'>
-          <Button color="inherit" sx={{marginRight:4}}>ITN</Button>
+          <Link
+            to="../allitn"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <Button color="inherit" sx={{ marginRight: 4 }}>
+              ITN
+            </Button>
           </Link>
-          <Button color="inherit" sx={{marginRight:4}}>Concrete</Button>
-          <Button color="inherit" sx={{marginRight:4}}>Reinforcement</Button>
-          <Button color="inherit" sx={{marginRight:4}}>NCR</Button>
-          <Button color="inherit" sx={{marginRight:9}}>QOR</Button>
+          <Button color="inherit" sx={{ marginRight: 4 }}>
+            Concrete
+          </Button>
+          <Button color="inherit" sx={{ marginRight: 4 }}>
+            Reinforcement
+          </Button>
+          <Button color="inherit" sx={{ marginRight: 4 }}>
+            NCR
+          </Button>
+          <Button color="inherit" sx={{ marginRight: 9 }}>
+            QOR
+          </Button>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
               size="large"

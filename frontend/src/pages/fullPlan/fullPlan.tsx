@@ -2,6 +2,7 @@ import plan from "../../images/plan.png";
 import { Link } from "react-router-dom";
 
 import "./fullPlan.css";
+import NavBar from "../Navbar/navbar";
 
 const FullPlan = () => {
   const locations = [
@@ -16,6 +17,10 @@ const FullPlan = () => {
 
   return (
     <div>
+      <div className="navbar">
+        <NavBar />
+      </div>
+
       <div className="masterPlan">
         <img src={plan} alt="" width={1100} />
         {locations.flat().map((i: any) => (
