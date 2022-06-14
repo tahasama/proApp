@@ -1,8 +1,6 @@
-import React, { useReducer, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useReducer, useRef, useState } from "react";
 import {  itnData, uploadImages } from "../../../state";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
-import { AppDispatch } from "../../../state/store";
 
 const UploadImages = ({ handleClose }: any) => {
   const { individualItn } = useAppSelector(itnData);
@@ -18,11 +16,6 @@ const UploadImages = ({ handleClose }: any) => {
 
   const upload = async (e: any) => {
     e.preventDefault();
-   
-    // if (imageRef.current.files[0] !== undefined || imageRef1.current.files[0] !== undefined) {
-    //   const imgUrl = URL.createObjectURL(imageRef.current.files[0]);
-    console.log("MY IMAGE1", imageRef1.current.files[0]);
-    console.log("MY IMAGE2", imageRef2.current.files[0]);
       const value = {
         itnId:individualItn._id,
          itnId1: '1-'+individualItn._id,

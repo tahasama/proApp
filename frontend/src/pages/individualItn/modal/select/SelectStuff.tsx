@@ -13,7 +13,6 @@ import { useDispatch } from "react-redux";
 export default function SelectStuff(table: any) {
   const dispatch = useDispatch();
   const { individualItn } = useAppSelector(itnData);
-  console.log(".......................", table);
   const [location, setLocation] = useState<any>(individualItn.itp);
   const [routine, setRoutine] = useState<any>(individualItn.routine);
   const [review, setReview] = useState<any>(individualItn.review);
@@ -48,15 +47,12 @@ export default function SelectStuff(table: any) {
   const reviews = ["C1", "C2", "C3", "C4"];
 
   const handleLocationChange = (event: SelectChangeEvent) => {
-    console.log("please select location", event.target.value);
     setLocation(event.target.value as string);
   };
   const handleRoutineChange = (event: SelectChangeEvent) => {
-    console.log("please select routine", event.target.value);
     setRoutine(event.target.value as string);
   };
   const handleReviewChange = (event: SelectChangeEvent) => {
-    console.log("please select routine", event.target.value);
     setReview(event.target.value as string);
   };
 

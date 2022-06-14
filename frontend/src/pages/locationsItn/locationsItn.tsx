@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 
 import Timeline from "@mui/lab/Timeline";
 import TimelineItem from "@mui/lab/TimelineItem";
@@ -10,7 +10,7 @@ import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import { getItnsByItp, itnData } from "../../state";
-import { Link, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 
 import "./locationsItn.css";
 
@@ -115,7 +115,6 @@ const LocationsItn = (itp: any) => {
                       <TimelineContent>
                         <div
                           className="linkToItn"
-                          onClick={() => console.log("hhhhhhh")}
                         >
                           <a href={"/" + params.itp + "/" + itn._id}>
                             {" "}
@@ -124,12 +123,7 @@ const LocationsItn = (itp: any) => {
                           </a>
                         </div>
 
-                        {/* <Link
-                        to={`../UpdateItn/${itn._id}/${itn.num}`}
-                        state={`${itp}`}
-                      >
-                        Update an itn
-                      </Link> */}
+             
                       </TimelineContent>
                     </TimelineItem>
                   ))}

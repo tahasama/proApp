@@ -1,8 +1,5 @@
-import React, { useEffect } from "react";
 import plan from "../../images/plan.png";
-import { Link, useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../state/hooks";
-import { getAllItns, itnData } from "../../state";
+import { Link } from "react-router-dom";
 
 import "./fullPlan.css";
 

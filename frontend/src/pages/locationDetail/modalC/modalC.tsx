@@ -2,14 +2,11 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import BorderColorTwoToneIcon from "@mui/icons-material/BorderColorTwoTone";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 import { useEffect, useState } from "react";
 import { LocalizationProvider, MobileDatePicker } from "@mui/lab";
 import { Stack, TextField } from "@mui/material";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
-import moment from "moment";
 import { createItn, getAllItns, itnData, updateItn } from "../../../state";
 
 import SendIcon from "@mui/icons-material/Send";
@@ -34,7 +31,7 @@ export default function ModalC() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useAppDispatch();
-  const { individualItn, newLocation, newRoutine, all } =
+  const { newLocation, newRoutine, all } =
     useAppSelector(itnData);
   const [value, setValue] = React.useState<Date | null>(new Date());
 
@@ -43,18 +40,13 @@ export default function ModalC() {
   const handleChange = (newValue: Date | null) => {
     setValue(newValue);
   };
-  console.log("inputRef .......", inputRef.current?.value);
-
   useEffect(() => {
     dispatch(getAllItns());
   }, []);
-  console.log("wawaowowoo");
 
   const itnNumber: any = all.flat().slice(-1)[0];
-  console.log("sdfsfdfsdf", itnNumber);
   const convertNum: any = itnNumber !== undefined ? parseInt(itnNumber.num) : 0;
   let plainNumber: any = itnNumber === undefined ? 1 : convertNum + 1;
-  console.log("annnnnnd....convertNum", convertNum, "plainNumber", plainNumber);
 
   return (
     <div>
@@ -94,12 +86,9 @@ export default function ModalC() {
                 type="text"
                 inputRef={inputRef}
                 color="success"
-                // autoFocus={true}
                 placeholder="add a sublocation"
                 name="wooow"
-                onChange={() =>
-                  console.log("hoooooola", inputRef.current.value)
-                }
+                
               />
             </div>
 

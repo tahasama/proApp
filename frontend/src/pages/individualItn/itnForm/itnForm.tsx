@@ -11,17 +11,13 @@ const ItnForm = () => {
   const params: any = useParams();
   const dispatch = useAppDispatch();
   const { individualItn } = useAppSelector(itnData);
-  console.log("my data", individualItn);
-  //   const { routine, itp, number, dateOfInspection, subLocation }: any =
-  //     useAppSelector(getItnsData);
 
-  //   const num = state === "create" ? number : params.number;
   const handleNumber = (num: any) => {
     return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
   };
+
   const date = new Date(individualItn.dateOfInspection).toDateString();
-  //   const month = date.slice(0, 4);
-  //   const previousDate = month == "Feb" && date.slice(4, 7);
+
   var previousDate = new Date(individualItn.dateOfInspection);
   previousDate.setDate(previousDate.getDate() - 1);
   const previousDateString: any = previousDate.toDateString();
@@ -43,7 +39,6 @@ const ItnForm = () => {
     <div className="carcass">
       <div className="firstRaw">
         <div className="logo1">
-          {/* <img className="logo1Size" src={logo1} alt="" /> */}
         </div>
         <div className="logo2">
           <br />
@@ -53,7 +48,6 @@ const ItnForm = () => {
         </div>
 
         <div className="logo3">
-          {/* <img className="logo3Size" src={logo3} alt="" /> */}
         </div>
       </div>
       <p
@@ -207,12 +201,10 @@ const ItnForm = () => {
         <p className="dis1" style={{ marginBottom: 0, marginLeft: 690 }}>
           Date:
         </p>
-        {/* <p className="dis5">Time:</p> */}
       </div>
       <div className="firstRaw oneLine">
         <p className="dis1">SNCE Project/Construction Manager: </p>
         <p className="dis1">Date:</p>
-        {/* <p className="dis7">Time:</p> */}
       </div>
       <h5 className="oneLine">
         NB: This ITN after signature remains preliminary and will be subject to
@@ -243,7 +235,6 @@ const ItnForm = () => {
         <p className="dis1" style={{ marginBottom: 0, marginLeft: 440 }}>
           Sign :
         </p>
-        {/* <p className="dis2">Date/Time :</p> */}
       </div>
       <p className="oneLine">Re-Inspection:</p>
       <p className="oneLine">
@@ -255,14 +246,12 @@ const ItnForm = () => {
         <p className="dis1" style={{ marginBottom: 0, marginLeft: 700 }}>
           Date:
         </p>
-        {/* <p className="dis5">Time:</p> */}
       </div>
       <div className="firstRaw oneLine">
         <p className="dis1">SNCE Project/Construction Manager: </p>
         <p className="dis1" style={{ marginBottom: 0, marginLeft: 590 }}>
           Date:
         </p>
-        {/* <p className="dis7">Time:</p> */}
       </div>
       <p
         className="oneLine"

@@ -1,8 +1,6 @@
-import React, { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useRef, useState } from "react";
 import { itnData, uploadPdfFile } from "../../../state";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
-import { AppDispatch } from "../../../state/store";
 
 const UploadItn = ({ handleClose }: any) => {
   const { individualItn } = useAppSelector(itnData);
@@ -15,8 +13,7 @@ const UploadItn = ({ handleClose }: any) => {
   const upload = async (e: any) => {
     e.preventDefault();
     if (pdfRef.current.files[0] !== undefined) {
-      const imgUrl = URL.createObjectURL(pdfRef.current.files[0]);
-      console.log("MY PDF FILE", pdfRef.current.files[0].name);
+      // const imgUrl = URL.createObjectURL(pdfRef.current.files[0]);
       const value = {
         itnId: individualItn._id,
         pdf: pdfRef.current.files[0],

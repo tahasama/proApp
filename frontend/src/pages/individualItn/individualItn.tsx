@@ -1,21 +1,13 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteItn, getItn, itnData } from "../../state";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
-import BorderColorTwoToneIcon from "@mui/icons-material/BorderColorTwoTone";
 import DeleteOutlineTwoToneIcon from "@mui/icons-material/DeleteOutlineTwoTone";
 import LocalPrintshopRoundedIcon from "@mui/icons-material/LocalPrintshopRounded";
 import PictureAsPdfRoundedIcon from "@mui/icons-material/PictureAsPdfRounded";
-import FileUploadTwoToneIcon from "@mui/icons-material/FileUploadTwoTone";
-import DriveFolderUploadTwoToneIcon from "@mui/icons-material/DriveFolderUploadTwoTone";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import ModalP from "./modal/modalP";
 
 import "./individualItn.css";
-import UploadItn from "./uploadItn/uploadItn";
 import ModalS from "./uploadItn/modalS/modalS";
 import ModalF from "./uploadImages/modalF/modalF";
 
@@ -24,7 +16,7 @@ const IndividualItn = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { individualItn } = useAppSelector(itnData);
-  console.log("AAAAAAAAAAAAAAAAAAAA", individualItn);
+
   useEffect(() => {
     if (params) {
       dispatch(getItn(params));

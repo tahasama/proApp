@@ -45,7 +45,6 @@ export default function ModalP() {
   const handleChange = (newValue: Date | null) => {
     setValue(newValue);
   };
-  console.log("inputRef .......", inputRef.current?.value);
 
   return (
     <div>
@@ -89,9 +88,6 @@ export default function ModalP() {
                 placeholder="add a sublocation"
                 defaultValue={individualItn.subLocation}
                 name="wooow"
-                onChange={() =>
-                  console.log("hoooooola", inputRef.current.value)
-                }
               />
             </div>
 

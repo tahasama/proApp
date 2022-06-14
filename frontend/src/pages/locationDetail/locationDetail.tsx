@@ -134,22 +134,6 @@ const LocationDetails = () => {
                 backgroundColor: "#EBEDEF",
               }}
             />
-            {/* <Tab
-              label="Create an Itn"
-              {...a11yProps(5)}
-              style={{
-                position: "fixed",
-                marginTop: 370,
-                marginLeft: 4,
-                boxShadow: "10px 5px 5px grey",
-                borderRadius: 20,
-                width: 300,
-                backgroundColor: "#FF2337",
-                color: "White",
-              }}
-            >
-              <ModalC />
-            </Tab> */}
           </Tabs>
           <TabPanel value={value} index={0}>
             <div style={{ marginLeft: 380 }}>
@@ -168,7 +152,6 @@ const LocationDetails = () => {
           <TabPanel value={value} index={4}>
             <div style={{ marginLeft: 100 }}>55555555555555</div>
           </TabPanel>
-          {/* <TabPanel value={value} index={5}></TabPanel> */}
         </Box>
       </div>
     </div>
