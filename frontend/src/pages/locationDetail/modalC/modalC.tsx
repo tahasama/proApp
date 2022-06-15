@@ -31,8 +31,7 @@ export default function ModalC() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useAppDispatch();
-  const { newLocation, newRoutine, all } =
-    useAppSelector(itnData);
+  const { newLocation, newRoutine, all } = useAppSelector(itnData);
   const [value, setValue] = React.useState<Date | null>(new Date());
 
   const inputRef = React.useRef<any>(null);
@@ -44,9 +43,13 @@ export default function ModalC() {
     dispatch(getAllItns());
   }, []);
 
-  const itnNumber: any = all.flat().slice(-1)[0];
-  const convertNum: any = itnNumber !== undefined ? parseInt(itnNumber.num) : 0;
-  let plainNumber: any = itnNumber === undefined ? 1 : convertNum + 1;
+  const getNumber = () => {
+    const itnNumber: any = all.flat().slice(-1)[0];
+    const convertNum: any =
+      itnNumber !== undefined ? parseInt(itnNumber.num) : 0;
+    let plainNumber: any = itnNumber === undefined ? 1 : convertNum + 1;
+    return plainNumber;
+  };
 
   return (
     <div>
@@ -88,7 +91,6 @@ export default function ModalC() {
                 color="success"
                 placeholder="add a sublocation"
                 name="wooow"
-                
               />
             </div>
 
@@ -96,13 +98,14 @@ export default function ModalC() {
               onClick={() => (
                 dispatch(
                   createItn({
-                    num: plainNumber,
+                    num: getNumber(),
                     itp: newLocation,
                     routine: newRoutine,
                     subLocation: inputRef.current.value,
                     dateOfInspection: value,
                   })
                 ),
+                dispatch(getAllItns()),
                 handleClose()
               )}
             >

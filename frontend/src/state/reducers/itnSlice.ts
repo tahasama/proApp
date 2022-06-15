@@ -154,16 +154,13 @@ export const projectsSlice = createSlice({
       state.newReview = action.payload.newReview;
     },
     removeItns: (state, action) => {
-      console.log("payload", action.payload);
       state.all = state.all
         .flat()
         .filter((itn: any) => itn._id !== action.payload);
-      console.log("state", state.all);
     },
   },
   extraReducers: (builder) => {
     builder.addCase(getAllItns.fulfilled, (state, action) => {
-      console.log("getAllItns");
       state.all.push(action.payload);
       state.all.splice(0, 1);
     });

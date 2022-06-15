@@ -6,6 +6,7 @@ import { deleteItn, removeItns, getAllItns, itnData } from "../../state";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import { Link } from "react-router-dom";
 import "./allItn.css";
+import ModalC from "../locationDetail/modalC/modalC";
 
 const handleNumber = (num: any) => {
   return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
@@ -63,11 +64,15 @@ export default function AllItn() {
 
   const handleDelete = () => {
     // x.map((i: any) => (dispatch(deleteItn(i)), x.pop()));
+    console.log("my arrray x", x);
     for (let index = 0; index < x.length; index++) {
       const element = x[index];
       console.log("element", element[index]);
-      dispatch(deleteItn(element[index]));
-      dispatch(removeItns(element[index]));
+      setTimeout(() => {
+        dispatch(deleteItn(element[index]));
+        dispatch(removeItns(element[index]));
+        x[index].pop();
+      }, 1500);
     }
   };
 
@@ -76,9 +81,12 @@ export default function AllItn() {
     // setData(data);
   }, []);
 
-  console.log("Proooooooooo", newAll);
   return (
     <div style={{ height: 500, width: "100%" }}>
+      <div>
+        <ModalC />
+      </div>
+
       <button onClick={handleDelete}>Delete Selction</button>
       {all.flat().length !== 1 ? (
         <DataGrid
