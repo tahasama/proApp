@@ -7,7 +7,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useAppSelector } from "../../../../state/hooks";
 import { itnData, UpdateValuesOfSelect } from "../../../../state";
 import { AnyAsyncThunk } from "@reduxjs/toolkit/dist/matchers";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 export default function SelectStuff(table: any) {
@@ -34,8 +34,7 @@ export default function SelectStuff(table: any) {
     "Conduites Installation ",
     "Lean Concrete",
     "Mass Concrete",
-    "Reinforcement Steel Installation",
-    "Formwork Installation",
+    "Reinforcement Steel & Formwork Installations",
     "Concrete placing and finishing",
     "Curing",
     "Waterproofing coat ",
@@ -56,13 +55,16 @@ export default function SelectStuff(table: any) {
     setReview(event.target.value as string);
   };
 
-  dispatch(
-    UpdateValuesOfSelect({
-      newLocation: location,
-      newRoutine: routine,
-      newReview: review,
-    })
-  );
+  useEffect(() => {
+    dispatch(
+      UpdateValuesOfSelect({
+        newLocation: location,
+        newRoutine: routine,
+        newReview: review,
+      })
+    );
+  }, [location, routine, review]);
+
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
@@ -70,7 +72,8 @@ export default function SelectStuff(table: any) {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={location}
+          defaultValue="aerationTank"
+          value={location !== undefined && location}
           label="location"
           onChange={handleLocationChange}
         >
@@ -86,13 +89,14 @@ export default function SelectStuff(table: any) {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={routine}
+          defaultValue="Curing"
+          value={routine !== undefined && routine}
           label="routine"
           onChange={handleRoutineChange}
         >
-          {routines.map((j: any) => (
-            <MenuItem value={j} key={j}>
-              {j}
+          {routines.map((k: any) => (
+            <MenuItem value={k} key={k}>
+              {k}
             </MenuItem>
           ))}
         </Select>
@@ -103,13 +107,13 @@ export default function SelectStuff(table: any) {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           defaultValue="C4"
-          value={review}
+          value={review !== undefined && review}
           label="review"
           onChange={handleReviewChange}
         >
-          {reviews.map((j: any) => (
-            <MenuItem value={j} key={j}>
-              {j}
+          {reviews.map((l: any) => (
+            <MenuItem value={l} key={l}>
+              {l}
             </MenuItem>
           ))}
         </Select>

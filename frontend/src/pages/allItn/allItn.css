@@ -5,3 +5,11 @@
 .MuiTablePagination-root {
   padding: 10px !important;
 }
+
+.grid {
+  background-color: rgb(199, 187, 211);
+}
+
+.createItn {
+  background-color: aqua;
+}

@@ -31,7 +31,7 @@ export default function ModalC() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useAppDispatch();
-  const { newLocation, newRoutine, all } = useAppSelector(itnData);
+  const { newLocation, newRoutine, newReview, all } = useAppSelector(itnData);
   const [value, setValue] = React.useState<Date | null>(new Date());
 
   const inputRef = React.useRef<any>(null);
@@ -103,6 +103,7 @@ export default function ModalC() {
                     routine: newRoutine,
                     subLocation: inputRef.current.value,
                     dateOfInspection: value,
+                    review: newReview,
                   })
                 ),
                 dispatch(getAllItns()),

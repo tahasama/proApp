@@ -1,5 +1,10 @@
 import * as React from "react";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridColDef,
+  GridValueGetterParams,
+  renderActionsCell,
+} from "@mui/x-data-grid";
 import "./allItn.css";
 import { useEffect, useState } from "react";
 import { deleteItn, removeItns, getAllItns, itnData } from "../../state";
@@ -16,32 +21,85 @@ const columns: GridColDef[] = [
   {
     field: "num",
     headerName: "Number",
-    width: 250,
+    width: 210,
+    headerAlign: "center",
+    align: "center",
     renderCell: (params: any) => (
       <Link to={`/${params.row.itp}/${params.id}`}>
         QW211101-SNCE-QA-ITN-{handleNumber(params.row.num)}
       </Link>
     ),
   },
-  { field: "itp", headerName: "ITP", width: 150 },
-  { field: "subLocation", headerName: "subLocation", width: 150 },
-  { field: "routine", headerName: "routine", width: 150 },
+  {
+    field: "itp",
+    headerName: "ITP",
+    width: 170,
+    headerAlign: "center",
+    align: "center",
+  },
+  {
+    field: "subLocation",
+    headerName: "subLocation",
+    width: 150,
+    headerAlign: "center",
+    align: "center",
+  },
+  {
+    field: "routine",
+    headerName: "routine",
+    width: 200,
+    headerAlign: "center",
+    align: "center",
+    renderCell: (params: any) => (
+      <p
+        style={{
+          whiteSpace: "pre-wrap",
+          maxHeight: 30,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {params.row.routine}{" "}
+      </p>
+    ),
+  },
   {
     field: "dateOfInspection",
     headerName: "dateOfInspection",
     width: 150,
+    headerAlign: "center",
+    align: "center",
     renderCell: (params: any) => (
-      <p>{`${new Date(params.row.dateOfInspection).toLocaleDateString(
-        navigator.language,
-        {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-        }
-      )}`}</p>
+      <p style={{ margin: 10 }}>{`${new Date(
+        params.row.dateOfInspection
+      ).toLocaleDateString(navigator.language, {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      })}`}</p>
     ),
   },
-  { field: "review", headerName: "review", width: 150 },
+  {
+    field: "review",
+    headerName: "review",
+    width: 70,
+    headerAlign: "center",
+    align: "center",
+  },
+  {
+    field: "Sinsp",
+    headerName: "Snce Inspector",
+    width: 150,
+    headerAlign: "center",
+    align: "center",
+  },
+  {
+    field: "Jinsp",
+    headerName: "Jesa Inspector",
+    width: 150,
+    headerAlign: "center",
+    align: "center",
+  },
 ];
 
 // // for later use
@@ -56,6 +114,8 @@ export default function AllItn() {
   const dispatch = useAppDispatch();
 
   const { all, newAll } = useAppSelector(itnData);
+  console.log("my arrray x", all);
+
   // const [data, setData] = useState(all.flat());
 
   let x: any[] = [];
@@ -64,7 +124,6 @@ export default function AllItn() {
 
   const handleDelete = () => {
     // x.map((i: any) => (dispatch(deleteItn(i)), x.pop()));
-    console.log("my arrray x", x);
     for (let index = 0; index < x.length; index++) {
       const element = x[index];
       console.log("element", element[index]);
@@ -82,28 +141,31 @@ export default function AllItn() {
   }, []);
 
   return (
-    <div style={{ height: 500, width: "100%" }}>
-      <div>
+    <div>
+      <h2 className="title1 ">INSPECTION TEST NOTIFICATIONS</h2>
+
+      <div className="overrideButtonCreate">
         <ModalC />
       </div>
-
-      <button onClick={handleDelete}>Delete Selction</button>
-      {all.flat().length !== 1 ? (
-        <DataGrid
-          getRowId={(row) => row._id}
-          rows={all.flat()}
-          columns={columns}
-          pageSize={10}
-          rowsPerPageOptions={[10]}
-          checkboxSelection
-          rowCount={all.flat().length}
-          onSelectionModelChange={(id: any) => (
-            console.log("selected stuff", id), x.push(id)
-          )}
-        />
-      ) : (
-        <p>Loading</p>
-      )}
+      <div className="grid" style={{ height: 500, width: "100%" }}>
+        <button onClick={handleDelete}>Delete Selction</button>
+        {all.flat().length !== 1 ? (
+          <DataGrid
+            getRowId={(row) => row._id}
+            rows={all.flat().reverse()}
+            columns={columns}
+            pageSize={10}
+            rowsPerPageOptions={[10]}
+            checkboxSelection
+            rowCount={all.flat().length}
+            onSelectionModelChange={(id: any) => (
+              console.log("selected stuff", id), x.push(id)
+            )}
+          />
+        ) : (
+          <p>Loading</p>
+        )}
+      </div>
     </div>
   );
 }

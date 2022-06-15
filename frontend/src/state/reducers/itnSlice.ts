@@ -30,6 +30,7 @@ export const getItnsByItp: any = createAsyncThunk(
 );
 
 export const createItn = createAsyncThunk("createItn", async (value: any) => {
+  console.log("create itn", value);
   try {
     const res = await axios.post(POJECT_URL + "createItn/", value);
     return res.data;
