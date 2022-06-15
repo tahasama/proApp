@@ -1,3 +1,7 @@
-.css-rtrcn9-MuiTablePagination-root:last-child {
+/* .css-rtrcn9-MuiTablePagination-root:last-child {
   padding: 10px;
+} */
+
+.MuiTablePagination-root {
+  padding: 10px !important;
 }

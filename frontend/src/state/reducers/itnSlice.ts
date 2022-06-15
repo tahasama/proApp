@@ -114,6 +114,7 @@ export const uploadImages = createAsyncThunk(
 interface itnsProps {
   itnz: {
     all: {}[];
+    newAll: {}[];
     allitp: {}[];
     loading: boolean;
     individualItn: any;
@@ -122,6 +123,7 @@ interface itnsProps {
     newReview: string;
     pdf: string;
     itnId: string;
+    _id: string;
   };
 }
 
@@ -133,9 +135,10 @@ const initialState = {
   newLocation: "",
   newRoutine: "",
   newReview: "",
-
+  _id: "",
   pdf: "",
   itnId: "",
+  newAll: [{}],
 };
 
 export const projectsSlice = createSlice({
@@ -149,6 +152,13 @@ export const projectsSlice = createSlice({
       state.newLocation = action.payload.newLocation;
       state.newRoutine = action.payload.newRoutine;
       state.newReview = action.payload.newReview;
+    },
+    removeItns: (state, action) => {
+      console.log("payload", action.payload);
+      state.all = state.all
+        .flat()
+        .filter((itn: any) => itn._id !== action.payload);
+      console.log("state", state.all);
     },
   },
   extraReducers: (builder) => {
@@ -182,6 +192,7 @@ export const projectsSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const itnData = (state: itnsProps) => state.itnz;
 
-export const { updateLoading, UpdateValuesOfSelect } = projectsSlice.actions;
+export const { updateLoading, UpdateValuesOfSelect, removeItns } =
+  projectsSlice.actions;
 
 export default projectsSlice.reducer;
