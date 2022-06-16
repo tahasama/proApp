@@ -10,7 +10,7 @@ import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { createItn, getAllItns, itnData, updateItn } from "../../../state";
 
 import SendIcon from "@mui/icons-material/Send";
-// import "./modalC.css";
+import "./modalM.css";
 import { Input } from "@mui/material";
 import SelectStuff from "../../individualItn/modal/select/SelectStuff";
 
@@ -53,9 +53,15 @@ export default function ModalM() {
 
   return (
     <div>
-      <button className="" onClick={handleOpen}>
-        Create ITN hhhhh
-      </button>
+      <Button
+        variant="outlined"
+        color="success"
+        size="large"
+        className="createButtons"
+        onClick={handleOpen}
+      >
+        Create ITN
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}

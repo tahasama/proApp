@@ -2,6 +2,7 @@ import * as React from "react";
 import {
   DataGrid,
   GridColDef,
+  GridFilterItem,
   GridValueGetterParams,
   renderActionsCell,
 } from "@mui/x-data-grid";
@@ -13,6 +14,7 @@ import { Link } from "react-router-dom";
 import "./allItn.css";
 import ModalC from "../locationDetail/modalC/modalC";
 import ModalM from "./modalM/modalM";
+import { Button } from "@mui/material";
 
 const handleNumber = (num: any) => {
   return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
@@ -69,6 +71,7 @@ const columns: GridColDef[] = [
     headerName: "dateOfInspection",
     width: 150,
     headerAlign: "center",
+    type: "date",
     align: "center",
     renderCell: (params: any) => (
       <p style={{ margin: 10 }}>{`${new Date(
@@ -114,9 +117,7 @@ const columns: GridColDef[] = [
 export default function AllItn() {
   const dispatch = useAppDispatch();
 
-  const { all, newAll } = useAppSelector(itnData);
-
-  // const [data, setData] = useState(all.flat());
+  const { all } = useAppSelector(itnData);
 
   const [x, setx] = useState<any>([]);
 
@@ -129,18 +130,26 @@ export default function AllItn() {
 
   useEffect(() => {
     dispatch(getAllItns());
-    // setData(data);
   }, [dispatch]);
 
   return (
     <div>
-      <h2 className="title1 ">INSPECTION TEST NOTIFICATIONS</h2>
+      <h2 className="title1">INSPECTION TEST NOTIFICATIONS</h2>
 
       <div className="overrideButtonCreate">
         <ModalM />
       </div>
+      <Button
+        variant="outlined"
+        color="error"
+        size="large"
+        className="deleteButton"
+        onClick={handleDelete}
+      >
+        Delete selected
+      </Button>
+
       <div className="grid" style={{ height: 500, width: "100%" }}>
-        <button onClick={handleDelete}>Delete Selction</button>
         {all.flat().length !== 1 ? (
           <DataGrid
             getRowId={(row) => row._id}
