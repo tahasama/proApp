@@ -12,6 +12,7 @@ import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import { Link } from "react-router-dom";
 import "./allItn.css";
 import ModalC from "../locationDetail/modalC/modalC";
+import ModalM from "./modalM/modalM";
 
 const handleNumber = (num: any) => {
   return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
@@ -114,38 +115,29 @@ export default function AllItn() {
   const dispatch = useAppDispatch();
 
   const { all, newAll } = useAppSelector(itnData);
-  console.log("my arrray x", all);
 
   // const [data, setData] = useState(all.flat());
 
-  let x: any[] = [];
-
-  console.log("things to eliminate", x.length);
+  const [x, setx] = useState<any>([]);
 
   const handleDelete = () => {
-    // x.map((i: any) => (dispatch(deleteItn(i)), x.pop()));
-    for (let index = 0; index < x.length; index++) {
-      const element = x[index];
-      console.log("element", element[index]);
-      setTimeout(() => {
-        dispatch(deleteItn(element[index]));
-        dispatch(removeItns(element[index]));
-        x[index].pop();
-      }, 1500);
-    }
+    let r = x.slice(-1).flat();
+    r.map((f: any) => {
+      dispatch(deleteItn(f));
+    });
   };
 
   useEffect(() => {
     dispatch(getAllItns());
     // setData(data);
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
       <h2 className="title1 ">INSPECTION TEST NOTIFICATIONS</h2>
 
       <div className="overrideButtonCreate">
-        <ModalC />
+        <ModalM />
       </div>
       <div className="grid" style={{ height: 500, width: "100%" }}>
         <button onClick={handleDelete}>Delete Selction</button>
@@ -159,7 +151,11 @@ export default function AllItn() {
             checkboxSelection
             rowCount={all.flat().length}
             onSelectionModelChange={(id: any) => (
-              console.log("selected stuff", id), x.push(id)
+              console.log("selected stuff", id),
+              // setx([...x, id][0]),
+              // setx([id, ...x]),
+              setx((x: any) => [...x, id]),
+              console.log("new x....", x.length)
             )}
           />
         ) : (
