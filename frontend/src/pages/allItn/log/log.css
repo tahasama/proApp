@@ -12,17 +12,19 @@
 
 .deleteButton {
   position: absolute;
-  top: -30px;
+  top: -10px;
   right: 500px;
 }
 
 .title1 {
   position: absolute;
-  /* top: 40px; */
-
-  margin-left: 380px;
+  top: 100px;
+  margin-left: 340px;
 }
 
-.underNav {
-  margin-top: 50px;
+/* .underNav {
+    margin-top: 40px;
+    } */
+.toUp {
+  margin-top: -50px;
 }

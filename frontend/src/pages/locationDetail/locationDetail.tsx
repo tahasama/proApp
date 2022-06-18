@@ -58,7 +58,7 @@ const LocationDetails = () => {
         <NavBar />
       </div>
 
-      <h2 className="locationName">{itp}: </h2>
+      <h6 className="locationName">{itp}: </h6>
       <ModalC />
 
       <div className="restOfPage">
@@ -80,13 +80,13 @@ const LocationDetails = () => {
             sx={{ borderRight: 1, borderColor: "divider" }}
           >
             <Tab
-              label="Inspection Test Notification"
+              label="ITN"
               {...a11yProps(0)}
               style={{
                 position: "fixed",
                 marginTop: 40,
                 boxShadow: "10px 5px 5px grey",
-                width: 300,
+                width: 150,
                 backgroundColor: "#EBEDEF",
               }}
             />
@@ -97,46 +97,24 @@ const LocationDetails = () => {
                 position: "fixed",
                 marginTop: 105,
                 boxShadow: "10px 5px 5px grey",
-                width: 300,
+                width: 150,
                 backgroundColor: "#EBEDEF",
               }}
             />
             <Tab
-              label="Reinforcement and Formwork"
+              label="RIR"
               {...a11yProps(2)}
               style={{
                 position: "fixed",
                 marginTop: 170,
                 boxShadow: "10px 5px 5px grey",
-                width: 300,
-                backgroundColor: "#EBEDEF",
-              }}
-            />
-            <Tab
-              label="Non Confority Report"
-              {...a11yProps(3)}
-              style={{
-                position: "fixed",
-                marginTop: 235,
-                boxShadow: "10px 5px 5px grey",
-                width: 300,
-                backgroundColor: "#EBEDEF",
-              }}
-            />
-            <Tab
-              label="Quality Observation Report"
-              {...a11yProps(4)}
-              style={{
-                position: "fixed",
-                marginTop: 300,
-                boxShadow: "10px 5px 5px grey",
-                width: 300,
+                width: 150,
                 backgroundColor: "#EBEDEF",
               }}
             />
           </Tabs>
           <TabPanel value={value} index={0}>
-            <div style={{ marginLeft: 380 }}>
+            <div style={{ marginLeft: 200 }}>
               <LocationsItn itp={itp} />
             </div>
           </TabPanel>
@@ -145,12 +123,6 @@ const LocationDetails = () => {
           </TabPanel>
           <TabPanel value={value} index={2}>
             <div style={{ marginLeft: 100 }}>33333333333</div>
-          </TabPanel>
-          <TabPanel value={value} index={3}>
-            <div style={{ marginLeft: 100 }}>4444444444444</div>
-          </TabPanel>{" "}
-          <TabPanel value={value} index={4}>
-            <div style={{ marginLeft: 100 }}>55555555555555</div>
           </TabPanel>
         </Box>
       </div>

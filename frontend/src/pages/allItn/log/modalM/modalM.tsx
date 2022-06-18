@@ -2,17 +2,17 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import { useAppDispatch, useAppSelector } from "../../../state/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../state/hooks";
 import { useEffect, useState } from "react";
 import { LocalizationProvider, MobileDatePicker } from "@mui/lab";
 import { Stack, TextField } from "@mui/material";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
-import { createItn, getAllItns, itnData, updateItn } from "../../../state";
+import { createItn, getAllItns, itnData, updateItn } from "../../../../state";
 
 import SendIcon from "@mui/icons-material/Send";
 import "./modalM.css";
 import { Input } from "@mui/material";
-import SelectStuff from "../../individualItn/modal/select/SelectStuff";
+import SelectStuff from "../../../individualItn/modal/select/SelectStuff";
 
 const style = {
   position: "absolute" as "absolute",

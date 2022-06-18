@@ -19,9 +19,7 @@ export const getItnsByItp: any = createAsyncThunk(
   async (value: any) => {
     try {
       const res = await axios.get(POJECT_URL + "all/" + value.itp);
-      console.log("hello", res.data);
 
-      console.log("All itn by itp", res.data);
       return res.data;
     } catch (error) {
       return error;
@@ -30,7 +28,6 @@ export const getItnsByItp: any = createAsyncThunk(
 );
 
 export const createItn = createAsyncThunk("createItn", async (value: any) => {
-  console.log("create itn", value);
   try {
     const res = await axios.post(POJECT_URL + "createItn/", value);
     return res.data;
@@ -51,7 +48,6 @@ export const updateItn = createAsyncThunk("updateItn", async (value: any) => {
 export const deleteItn = createAsyncThunk("deleteItn", async (value: any) => {
   try {
     const res = await axios.delete(POJECT_URL + value);
-    console.log("deleted", res.data);
     return res.data;
   } catch (error) {
     return error;
@@ -125,6 +121,7 @@ interface itnsProps {
     pdf: string;
     itnId: string;
     _id: string;
+    filter: any;
   };
 }
 
@@ -140,6 +137,7 @@ const initialState = {
   pdf: "",
   itnId: "",
   newAll: [{}],
+  filter: "",
 };
 
 export const projectsSlice = createSlice({
@@ -159,6 +157,9 @@ export const projectsSlice = createSlice({
         .flat()
         .filter((itn: any) => itn._id !== action.payload);
     },
+    filterByRoutine: (state, action) => {
+      state.filter = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getAllItns.fulfilled, (state, action) => {
@@ -167,7 +168,6 @@ export const projectsSlice = createSlice({
     });
 
     builder.addCase(getItnsByItp.fulfilled, (state, action) => {
-      console.log("getItnsByItp");
       state.allitp.push(action.payload);
       state.allitp.splice(0, 1);
     });
@@ -190,7 +190,11 @@ export const projectsSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const itnData = (state: itnsProps) => state.itnz;
 
-export const { updateLoading, UpdateValuesOfSelect, removeItns } =
-  projectsSlice.actions;
+export const {
+  updateLoading,
+  UpdateValuesOfSelect,
+  removeItns,
+  filterByRoutine,
+} = projectsSlice.actions;
 
 export default projectsSlice.reducer;

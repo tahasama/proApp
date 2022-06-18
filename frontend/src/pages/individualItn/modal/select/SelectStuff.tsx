@@ -34,7 +34,7 @@ export default function SelectStuff(table: any) {
     "Conduites Installation ",
     "Lean Concrete",
     "Mass Concrete",
-    "Reinforcement Steel & Formwork Installations",
+    "Reinforcement & Formwork",
     "Concrete placing and finishing",
     "Curing",
     "Waterproofing coat ",
