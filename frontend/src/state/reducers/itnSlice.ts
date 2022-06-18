@@ -19,7 +19,6 @@ export const getItnsByItp: any = createAsyncThunk(
   async (value: any) => {
     try {
       const res = await axios.get(POJECT_URL + "all/" + value.itp);
-
       return res.data;
     } catch (error) {
       return error;

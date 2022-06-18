@@ -209,7 +209,8 @@ const LocationsItn = (itp: any) => {
 
         backgroundColor: "rgba(75, 142, 192, 0.2)",
 
-        tension: 0.1,
+        tension: 0.3,
+        fill: true,
       },
     ],
   };
