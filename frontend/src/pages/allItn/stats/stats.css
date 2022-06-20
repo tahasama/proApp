@@ -1,0 +1,17 @@
+.LineDimension {
+  position: absolute;
+  top: 125px;
+  left: 500px;
+}
+
+.LineDimension2 {
+  position: absolute;
+  top: 460px;
+  left: 500px;
+  width: 1400px;
+}
+
+.DoughnutDimension {
+  position: absolute;
+  top: 190px;
+}

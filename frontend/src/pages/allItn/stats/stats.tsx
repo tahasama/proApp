@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { getAllItns, getItnsByItp, itnData } from "../../../state";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-
+import "./stats.css";
 import {
   CategoryScale,
   LinearScale,
@@ -13,6 +13,8 @@ import {
   Title,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { isAllSelected } from "@testing-library/user-event/dist/types/utils";
+import StatsPerMonth from "./statsPerMonth/statsPerMonth";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -29,17 +31,32 @@ const Stats = () => {
   const dispatch = useAppDispatch();
   const { allitp, all } = useAppSelector(itnData);
   const params = useParams();
+  const labelsName: any = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
   const options = {
     responsive: true,
     plugins: {
       legend: {
-        position: "left" as const,
+        position: "bottom" as const,
       },
       title: {
         display: true,
         text: "Distribution of quality inspections",
         font: { size: 16 },
+        // padding: 80,
       },
     },
   };
@@ -67,17 +84,7 @@ const Stats = () => {
     "secondaryClarifierP32",
   ];
 
-  // const dataaArray: any = [];
-  // const dataa = () => (
-  //   locations.map((i: any) => dispatch(getItnsByItp(i))),
-  //   console.log("dataaa", allitp.flat().length),
-  //   dataaArray.push(allitp.flat().length),
-  //   console.log("please work", dataaArray)
-  // );
-
-  // useEffect(() => {
-  //   dataa();
-  // }, []);
+  //-------------------------------------for doughnut chart start
 
   let u = all.flat().map((i: any) => i.itp);
   let a: any[] = [];
@@ -114,8 +121,6 @@ const Stats = () => {
     }
   });
 
-  console.log("yaaay", dict[6]);
-
   const data = {
     labels: locations1,
     datasets: [
@@ -148,20 +153,120 @@ const Stats = () => {
           "rgba(235, 119, 64, 1)",
         ],
         borderWidth: 1,
-        // maintainAspectRatio: false,
         fill: false,
       },
     ],
   };
+  //-------------------------------------for doughnut chart end
+
+  //-----------------------------------------------------------------for all itn total per month start
+  let u1 = all
+    .flat()
+    .map((x: any) => new Date(x.dateOfInspection).getMonth() + 1);
+
+  const labels1: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  let a1: any[] = [];
+  let b1: any[] = [];
+  let c1: any[] = [];
+  let d1: any[] = [];
+  let e1: any[] = [];
+  let f1: any[] = [];
+  let g1: any[] = [];
+  let h1: any[] = [];
+  let i1: any[] = [];
+  let j1: any[] = [];
+  let k1: any[] = [];
+  let l1: any[] = [];
+  let dict1: any = {};
+
+  u1.forEach((val, index) => {
+    if (val === 1) {
+      a1.push(index);
+      dict1[1] = a1.length;
+    } else if (val === 2) {
+      b1.push(index);
+      dict1[2] = b1.length;
+    } else if (val === 3) {
+      c1.push(index);
+      dict1[3] = c1.length;
+    } else if (val === 4) {
+      d1.push(index);
+      dict1[4] = d1.length;
+    } else if (val === 5) {
+      e1.push(index);
+      dict1[5] = e1.length;
+    } else if (val === 6) {
+      f1.push(index);
+      dict1[6] = f1.length;
+    } else if (val === 7) {
+      g1.push(index);
+      dict1[7] = g1.length;
+    } else if (val === 8) {
+      h1.push(index);
+      dict1[8] = h1.length;
+    } else if (val === 9) {
+      i1.push(index);
+      dict1[9] = i1.length;
+    } else if (val === 10) {
+      j1.push(index);
+      dict1[10] = j1.length;
+    } else if (val === 11) {
+      k1.push(index);
+      dict1[11] = k1.length;
+    } else if (val === 12) {
+      l1.push(index);
+      dict1[12] = l1.length;
+    }
+  });
+  let uu1: any = [];
+  labels1.map((i: any) => {
+    dict1[i] !== undefined ? uu1.push(dict1[i]) : uu1.push(0);
+  });
+
+  const data1: any = {
+    labels: labelsName,
+
+    datasets: [
+      {
+        label: "Total inspections per month",
+        data: uu1,
+        borderColor: "rgb(54, 162, 235)",
+        backgroundColor: "rgba(75, 142, 192, 0.2)",
+        tension: 0.3,
+        fill: true,
+      },
+    ],
+  };
+  //-----------------------------------------------------------------for all itn total per month end
+
+  //-----------------------------------------------------------------for each loacation
+
+  //-----------------------------------------------------------------for each loacation end
+  //-----------------------------------------------------------------
+
   return (
     <div>
-      {" "}
-      <p>Stats</p>{" "}
       <div
         className="DoughnutDimension"
-        style={{ margin: 0, padding: 0, width: "39%" }}
+        style={{ margin: 0, padding: 0, width: "34%" }}
       >
         <Doughnut options={options} data={data} style={{ marginTop: -84 }} />
+      </div>
+      <div
+        className="LineDimension2"
+        style={{ margin: 0, padding: 0, width: "50%" }}
+      >
+        <StatsPerMonth />
+      </div>
+      <div
+        className="LineDimension"
+        style={{ margin: 0, padding: 0, width: "50%" }}
+      >
+        <Line
+          options={options}
+          data={data1}
+          style={{ width: 340, marginTop: -20 }}
+        />
       </div>
     </div>
   );
