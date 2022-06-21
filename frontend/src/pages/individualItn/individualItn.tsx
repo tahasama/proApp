@@ -42,7 +42,7 @@ const IndividualItn = () => {
 
   return (
     <div className="itnCover">
-      <h2 className="title1 ">INSPECTION TEST NOTIFICATION</h2>
+      <h2 className="title3">INSPECTION TEST NOTIFICATION</h2>
       <h3 className="title2">
         QW211101-SNCE-QA-ITN-{handleNumber(individualItn.num)}
       </h3>
@@ -84,7 +84,7 @@ const IndividualItn = () => {
           </span>
         ) : individualItn.review === "C3" ? (
           <span className="stamp is-nope" style={{ marginRight: 50 }}>
-            Declined
+            Rejected
           </span>
         ) : (
           <span className="stamp inf">for infos</span>

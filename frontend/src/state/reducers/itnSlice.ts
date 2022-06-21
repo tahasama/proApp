@@ -73,7 +73,9 @@ export const uploadPdfFile = createAsyncThunk(
         await axios.put(POJECT_URL + value.itnId, {
           pdfUrl: res,
         });
-      } catch (error) {}
+      } catch (error) {
+        return error;
+      }
     } catch (error: any) {
       return error;
     }
@@ -94,6 +96,8 @@ export const uploadImages = createAsyncThunk(
       );
       try {
         const res = await getDownloadURL(storageRef);
+        console.log("slice", res);
+
         value.image1 !== undefined
           ? await axios.put(POJECT_URL + value.itnId, {
               image1Url: res,

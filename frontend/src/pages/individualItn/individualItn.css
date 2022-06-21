@@ -144,7 +144,7 @@
   position: absolute;
   top: 80px;
   right: -65px;
-  transform: rotate(12deg);
+  transform: rotate(-10deg);
   color: #555;
   font-size: 3rem;
   font-weight: 700;
@@ -183,7 +183,7 @@
   transform: rotate(8deg);
   -webkit-mask-position: 2rem 3rem;
   z-index: 99;
-  font-size: 2rem;
+  font-size: 2.2rem;
 }
 
 .inf {

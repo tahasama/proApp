@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import { Button } from "@mui/material";
 import { getAllItns, getItnsByItp, itnData } from "../../../../state";
 import { useAppDispatch, useAppSelector } from "../../../../state/hooks";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
@@ -13,6 +14,9 @@ import {
   Title,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+
+import "./statsPerMonth.css";
+import DrawerO from "./drawer/drawer";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -37,6 +41,11 @@ const StatsPerMonth = () => {
     plugins: {
       legend: {
         position: "top" as const,
+      },
+      title: {
+        display: true,
+        text: "Inspection for every location",
+        font: { size: 18 },
       },
     },
   };
@@ -177,8 +186,8 @@ const StatsPerMonth = () => {
     "Dec",
   ];
   const [q, setQ] = useState<any[]>(locations1);
-  const [valval, setValval] = useState("");
-  //   console.log("MAAAAAAAAAAAAAAAAAA", q);
+  const [filters, setFilters] = useState(false);
+
   const data: any = {
     labels: labelsName,
 
@@ -239,28 +248,45 @@ const StatsPerMonth = () => {
   };
 
   return (
-    <div>
-      <div>
-        <FormGroup>
-          {locations1.map((xgonna: any) => (
-            <FormControlLabel
-              key={xgonna}
-              control={
-                <Checkbox
-                  name={xgonna}
-                  defaultChecked
-                  onChange={(e: any, key: any) => handleCheckBox(e, key)}
+    <div className="statsPerMonth">
+      <div className="statsPerMonthFilterButton">
+        <div>
+          {!filters ? (
+            <Button variant="contained" onClick={() => setFilters(!filters)}>
+              Show Filters
+            </Button>
+          ) : (
+            <Button variant="contained" onClick={() => setFilters(!filters)}>
+              Hide Filters
+            </Button>
+          )}
+        </div>
+        <div className="statsPerMonthFilter">
+          {filters && (
+            <FormGroup>
+              {locations1.map((xgonna: any) => (
+                <FormControlLabel
+                  key={xgonna}
+                  control={
+                    <Checkbox
+                      name={xgonna}
+                      defaultChecked
+                      onChange={(e: any, key: any) => handleCheckBox(e, key)}
+                      style={{ padding: 5, marginLeft: 10 }}
+                    />
+                  }
+                  label={xgonna}
                 />
-              }
-              label={xgonna}
-            />
-          ))}
-        </FormGroup>
+              ))}
+            </FormGroup>
+          )}
+        </div>
       </div>
       <Line
         options={optionsLine}
         data={data}
         style={{ width: 340, marginTop: -20 }}
+        className="statsPerMonthLine"
       />
     </div>
   );
