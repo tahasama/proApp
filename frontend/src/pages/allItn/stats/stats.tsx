@@ -46,7 +46,7 @@ const Stats = () => {
     "Dec",
   ];
 
-  const options = {
+  const optionsPie = {
     responsive: true,
     plugins: {
       legend: {
@@ -59,21 +59,26 @@ const Stats = () => {
         // padding: 80,
       },
     },
+  };const optionsLine = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display:false
+      },
+      title: {
+        display: true,
+        text: "Total Inspections per month",
+        font: { size: 16 },
+        // padding: 80,
+      },
+    },
   };
 
   useEffect(() => {
     dispatch(getAllItns());
   }, []);
 
-  const locations = [
-    { itp: "secondaryClarifierP24" },
-    { itp: "secondaryClarifierP25" },
-    { itp: "secondaryClarifierP32" },
-    { itp: "PrimaryClarifierP7" },
-    { itp: "PrimaryClarifierP8" },
-    { itp: "PrimaryClarifierP9" },
-    { itp: "aerationTank" },
-  ];
+
   const locations1 = [
     "aerationTank",
     "PrimaryClarifierP7",
@@ -248,13 +253,13 @@ const Stats = () => {
     <div>
       <div
         className="DoughnutDimension"
-        style={{ margin: 0, padding: 0, width: "34%" }}
+        style={{ margin: 0, padding: 0, width: "30%" }}
       >
-        <Doughnut options={options} data={data} style={{ marginTop: -84 }} />
+        <Doughnut options={optionsPie} data={data} style={{ marginTop: -84 }} />
       </div>
       <div
         className="LineDimension2"
-        style={{ margin: 0, padding: 0, width: "50%" }}
+        style={{ margin: 0, padding: 0, width: "70%" }}
       >
         <StatsPerMonth />
       </div>
@@ -263,7 +268,7 @@ const Stats = () => {
         style={{ margin: 0, padding: 0, width: "50%" }}
       >
         <Line
-          options={options}
+          options={optionsLine}
           data={data1}
           style={{ width: 340, marginTop: -20 }}
         />
