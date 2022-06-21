@@ -1,6 +1,13 @@
-/* .itnCover{
-    position: absolute;
-} */
+.itnCover {
+  position: absolute;
+  background-color: #e7edf5b2;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+}
 
 .itnCenter {
   position: absolute;
@@ -13,7 +20,7 @@
   border-radius: 100%;
   font-family: "Times New Roman";
   font-size: 18px;
-  top: 0;
+  top: 60px;
   bottom: 0;
   left: 0;
   right: 10px;

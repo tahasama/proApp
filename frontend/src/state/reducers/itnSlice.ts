@@ -94,18 +94,23 @@ export const uploadImages = createAsyncThunk(
         storageRef,
         value.image1 ? value.image1 : value.image2
       );
-      try {
-        const res = await getDownloadURL(storageRef);
-        console.log("slice", res);
 
-        value.image1 !== undefined
-          ? await axios.put(POJECT_URL + value.itnId, {
-              image1Url: res,
-            })
-          : await axios.put(POJECT_URL + value.itnId, {
-              image2Url: res,
-            });
-      } catch (error) {}
+      try {
+        setTimeout(async () => {
+          const res = await getDownloadURL(storageRef);
+          console.log("slice", res);
+
+          value.image1 !== undefined
+            ? await axios.put(POJECT_URL + value.itnId, {
+                image1Url: res,
+              })
+            : await axios.put(POJECT_URL + value.itnId, {
+                image2Url: res,
+              });
+        }, 2000);
+      } catch (error) {
+        console.log("Error......", error);
+      }
     } catch (error: any) {
       return error;
     }

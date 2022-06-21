@@ -10,6 +10,7 @@ import ModalP from "./modal/modalP";
 import "./individualItn.css";
 import ModalS from "./uploadItn/modalS/modalS";
 import ModalF from "./uploadImages/modalF/modalF";
+import NavBar from "../Navbar/navbar";
 
 const IndividualItn = () => {
   const params = useParams();
@@ -22,7 +23,7 @@ const IndividualItn = () => {
       dispatch(getItn(params));
     }
   }, []);
-
+  console.log("some stuff", individualItn);
   const handleNumber = (num: any) => {
     return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
   };
@@ -42,6 +43,7 @@ const IndividualItn = () => {
 
   return (
     <div className="itnCover">
+      <NavBar />
       <h2 className="title3">INSPECTION TEST NOTIFICATION</h2>
       <h3 className="title2">
         QW211101-SNCE-QA-ITN-{handleNumber(individualItn.num)}
@@ -89,20 +91,24 @@ const IndividualItn = () => {
         ) : (
           <span className="stamp inf">for infos</span>
         )}{" "}
-        <img
-          src={individualItn.image1Url}
-          alt=""
-          height={400}
-          width={420}
-          className="image1"
-        />{" "}
-        <img
-          src={individualItn.image2Url}
-          alt=""
-          height={400}
-          width={420}
-          className="image2"
-        />
+        {individualItn.image1Url && (
+          <img
+            src={individualItn.image1Url}
+            alt=""
+            height={400}
+            width={420}
+            className="image1"
+          />
+        )}
+        {individualItn.image2Url && (
+          <img
+            src={individualItn.image2Url}
+            alt=""
+            height={400}
+            width={420}
+            className="image2"
+          />
+        )}
       </div>
     </div>
   );

@@ -16,7 +16,6 @@ import {
 import { Line } from "react-chartjs-2";
 
 import "./statsPerMonth.css";
-import DrawerO from "./drawer/drawer";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
