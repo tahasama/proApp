@@ -1,16 +1,18 @@
 import { useRef, useState } from "react";
 import { itnData, uploadPdfFile } from "../../../state";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const UploadItn = ({ handleClose }: any) => {
   const { individualItn } = useAppSelector(itnData);
-  
 
   const dispatch = useAppDispatch();
   const pdfRef = useRef<any>(null);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const upload = async (e: any) => {
+    setLoading(true);
     e.preventDefault();
     if (pdfRef.current.files[0] !== undefined) {
       // const imgUrl = URL.createObjectURL(pdfRef.current.files[0]);
@@ -21,7 +23,7 @@ const UploadItn = ({ handleClose }: any) => {
       dispatch(uploadPdfFile(value));
       // dispatch(
       //   updateItn({
-          
+
       //   })
       // ),
       // dispatch(
@@ -36,7 +38,10 @@ const UploadItn = ({ handleClose }: any) => {
       //   );
 
       //   dispatch(cancelState({ cancelImage: false }));
-      handleClose();
+      setTimeout(() => {
+        handleClose();
+        setLoading(false);
+      }, 2000);
     } else {
       setError(true);
       //   dispatch(cancelState({ cancelImage: true }));
@@ -50,6 +55,7 @@ const UploadItn = ({ handleClose }: any) => {
       <input id="file-upload" ref={pdfRef} type="file" />
 
       <button onClick={upload} className="imageUpload upload xx">
+        {loading && <CircularProgress color="secondary" />}
         <span className="uploadText">Upload</span>
       </button>
       <button

@@ -57,7 +57,7 @@ const LocationsItn = (itp: any) => {
 
   useEffect(() => {
     dispatch(getItnsByItp(itp));
-  }, []);
+  }, [allitp]);
 
   const routine = [
     "All",
@@ -104,7 +104,7 @@ const LocationsItn = (itp: any) => {
   const optionsPie = {
     // responsive: true,
     responsive: true,
-    maintainAspectRatio:true,
+    maintainAspectRatio: true,
     plugins: {
       legend: {
         position: "top" as const,
@@ -235,7 +235,6 @@ const LocationsItn = (itp: any) => {
                   options={optionsPie}
                   data={data}
                   style={{ padding: 30, marginTop: -30 }}
-            
                 />
               </div>
               <div>

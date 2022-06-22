@@ -22,7 +22,7 @@ const IndividualItn = () => {
     if (params) {
       dispatch(getItn(params));
     }
-  }, []);
+  }, [individualItn]);
   console.log("some stuff", individualItn);
   const handleNumber = (num: any) => {
     return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;

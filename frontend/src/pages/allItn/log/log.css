@@ -1,6 +1,9 @@
 /* .css-rtrcn9-MuiTablePagination-root:last-child {
   padding: 10px;
 } */
+.log {
+  margin-top: 8px;
+}
 
 .MuiTablePagination-root {
   padding: 10px !important;
@@ -8,6 +11,7 @@
 
 .grid {
   background-color: rgb(199, 187, 211);
+  height: 450px;
 }
 
 .deleteButton {

@@ -3,7 +3,13 @@ import { Doughnut, Pie } from "react-chartjs-2";
 import { useParams } from "react-router-dom";
 import { getAllItns, getItnsByItp, itnData } from "../../../state";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  BarElement,
+} from "chart.js";
 import "./stats.css";
 import {
   CategoryScale,
@@ -12,13 +18,15 @@ import {
   LineElement,
   Title,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
 import { isAllSelected } from "@testing-library/user-event/dist/types/utils";
 import StatsPerMonth from "./statsPerMonth/statsPerMonth";
+import StatsPerReview from "./statsPerReview/statsPerReview";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
   CategoryScale,
+  BarElement,
   LinearScale,
   PointElement,
   LineElement,
@@ -59,11 +67,12 @@ const Stats = () => {
         // padding: 80,
       },
     },
-  };const optionsLine = {
+  };
+  const optionsLine = {
     responsive: true,
     plugins: {
       legend: {
-        display:false
+        display: false,
       },
       title: {
         display: true,
@@ -77,7 +86,6 @@ const Stats = () => {
   useEffect(() => {
     dispatch(getAllItns());
   }, []);
-
 
   const locations1 = [
     "aerationTank",
@@ -242,6 +250,7 @@ const Stats = () => {
       },
     ],
   };
+
   //-----------------------------------------------------------------for all itn total per month end
 
   //-----------------------------------------------------------------for each loacation
@@ -251,12 +260,12 @@ const Stats = () => {
 
   return (
     <div>
-      <div
+      {/* <div
         className="DoughnutDimension"
         style={{ margin: 0, padding: 0, width: "30%" }}
       >
         <Doughnut options={optionsPie} data={data} style={{ marginTop: -84 }} />
-      </div>
+      </div> */}
       <div
         className="LineDimension2"
         style={{ margin: 0, padding: 0, width: "70%" }}
@@ -272,6 +281,9 @@ const Stats = () => {
           data={data1}
           style={{ width: 340, marginTop: -20 }}
         />
+      </div>
+      <div className="" style={{ margin: 0, padding: 0, width: "50%" }}>
+        <StatsPerReview all={all} />
       </div>
     </div>
   );

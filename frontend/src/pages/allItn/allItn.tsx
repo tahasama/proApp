@@ -26,7 +26,9 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography component={"div"} variant={"body2"}>
+            {children}
+          </Typography>
         </Box>
       )}
     </div>
@@ -62,7 +64,12 @@ export default function AllItn() {
               // indicatorColor="secondary"
               // textColor="secondary"
               variant="fullWidth"
-              className="taaaab"
+              style={{
+                marginTop: -8,
+                // marginBottom: 8,
+                padding: 0,
+                backgroundColor: "#CCCCFF",
+              }}
             >
               <Tab label="LOG" {...a11yProps(0)} />
               <Tab label="STATS" {...a11yProps(1)} />

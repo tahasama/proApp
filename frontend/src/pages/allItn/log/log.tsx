@@ -125,30 +125,36 @@ const Log = () => {
     dispatch(getAllItns());
   }, [dispatch]);
   return (
-    <div>
-      <h2 className="title1">INSPECTION TEST NOTIFICATIONS</h2>
+    <div className="log">
+      <div>
+        <h2 className="title1">INSPECTION TEST NOTIFICATIONS</h2>
+      </div>
 
       <div className="overrideButtonCreate toUp">
         <ModalM />
       </div>
-      <Button
-        variant="outlined"
-        color="error"
-        size="large"
-        className="deleteButton"
-        onClick={handleDelete}
-      >
-        Delete selected
-      </Button>
 
-      <div className="grid" style={{ height: 400, width: "100%" }}>
+      <div>
+        <Button
+          variant="outlined"
+          color="error"
+          size="large"
+          className="deleteButton"
+          onClick={handleDelete}
+        >
+          Delete selected
+        </Button>
+      </div>
+
+      <div className="grid" style={{ width: "100%" }}>
         {all.flat().length !== 1 ? (
           <DataGrid
             getRowId={(row) => row._id}
             rows={all.flat().reverse()}
             columns={columns}
-            pageSize={100}
-            rowsPerPageOptions={[100]}
+            pageSize={10}
+            scrollbarSize={10}
+            rowsPerPageOptions={[10]}
             checkboxSelection
             rowCount={all.flat().length}
             onSelectionModelChange={(id: any) => (
