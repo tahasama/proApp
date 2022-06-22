@@ -1,4 +1,4 @@
-import { useReducer, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { itnData, uploadImages } from "../../../state";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 import CircularProgress from "@mui/material/CircularProgress";

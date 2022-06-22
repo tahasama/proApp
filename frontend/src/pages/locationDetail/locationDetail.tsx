@@ -8,7 +8,6 @@ import { useParams } from "react-router-dom";
 import "./locationDetail.css";
 import LocationsItn from "../locationsItn/locationsItn";
 import NavBar from "../Navbar/navbar";
-import { Button } from "@mui/material";
 import ModalC from "./modalC/modalC";
 
 interface TabPanelProps {

@@ -3,19 +3,15 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import BorderColorTwoToneIcon from "@mui/icons-material/BorderColorTwoTone";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
-import { useEffect, useState } from "react";
 import { LocalizationProvider, MobileDatePicker } from "@mui/lab";
 import { Stack, TextField } from "@mui/material";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
-import moment from "moment";
 import { itnData, updateItn } from "../../../state";
 import SelectStuff from "./select/SelectStuff";
 import SendIcon from "@mui/icons-material/Send";
 import "./modalP.css";
 import { Input } from "@mui/material";
-import DriveFolderUploadTwoToneIcon from "@mui/icons-material/DriveFolderUploadTwoTone";
 
 const style = {
   position: "absolute" as "absolute",
@@ -60,11 +56,9 @@ export default function ModalP() {
         <Box sx={style}>
           <div>
             <p>Update the curruent infos ?</p>
-
             <div>
               <SelectStuff />
             </div>
-
             <div style={{ marginTop: 12 }}>
               <LocalizationProvider dateAdapter={AdapterMoment}>
                 <Stack spacing={3}>
@@ -78,19 +72,16 @@ export default function ModalP() {
                 </Stack>
               </LocalizationProvider>
             </div>
-
             <div style={{ marginTop: 12 }}>
               <Input
                 type="text"
                 inputRef={inputRef}
                 color="success"
-                // autoFocus={true}
                 placeholder="add a sublocation"
                 defaultValue={individualItn.subLocation}
                 name="wooow"
               />
             </div>
-
             <div
               onClick={() => (
                 dispatch(

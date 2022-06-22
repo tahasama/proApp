@@ -98,7 +98,6 @@ export const uploadImages = createAsyncThunk(
       try {
         setTimeout(async () => {
           const res = await getDownloadURL(storageRef);
-          console.log("slice", res);
 
           value.image1 !== undefined
             ? await axios.put(POJECT_URL + value.itnId, {
@@ -108,9 +107,7 @@ export const uploadImages = createAsyncThunk(
                 image2Url: res,
               });
         }, 2000);
-      } catch (error) {
-        console.log("Error......", error);
-      }
+      } catch (error) {}
     } catch (error: any) {
       return error;
     }

@@ -1,7 +1,3 @@
-import React, { useEffect } from "react";
-import { Doughnut, Pie } from "react-chartjs-2";
-import { useParams } from "react-router-dom";
-
 import {
   Chart as ChartJS,
   ArcElement,
@@ -16,8 +12,7 @@ import {
   LineElement,
   Title,
 } from "chart.js";
-import { Line, Bar } from "react-chartjs-2";
-import { isAllSelected } from "@testing-library/user-event/dist/types/utils";
+import { Bar } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -36,11 +31,11 @@ const StatsPerReview = (all: any) => {
     maintainAspectRatio: true,
     plugins: {
       legend: {
-        position: "top" as const,
+        position: "left" as const,
       },
       title: {
         display: true,
-        text: "Inspection for every location",
+        text: "Inspection reviews per month",
         font: { size: 18 },
       },
     },

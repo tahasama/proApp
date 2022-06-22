@@ -16,7 +16,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<FullPlan />} />
-          <Route path="/StatsPerMonth" element={<StatsPerMonth />} />
           <Route path="/allitn" element={<AllItn />} />
           <Route path="/:itp" element={<LocationDetail />} />
           <Route path="/:itp/:itnId" element={<IndividualItn />} />

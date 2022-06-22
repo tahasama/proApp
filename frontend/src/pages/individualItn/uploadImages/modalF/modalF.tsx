@@ -1,8 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import { useAppDispatch, useAppSelector } from "../../../../state/hooks";
-import { itnData } from "../../../../state";
 import FileUploadTwoToneIcon from "@mui/icons-material/FileUploadTwoTone";
 import UploadImages from "../uploadImages";
 
@@ -22,9 +20,6 @@ export default function ModalF() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { individualItn} = useAppSelector(itnData);
-
-  const inputRef = React.useRef<any>(null);
 
   return (
     <div>
@@ -41,7 +36,6 @@ export default function ModalF() {
         <Box sx={style}>
           <div>
             <p>Update the curruent image ?</p>
-
             <UploadImages handleClose={handleClose} />
           </div>
         </Box>

@@ -2,8 +2,6 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 
-import { useAppSelector } from "../../../../state/hooks";
-import { itnData } from "../../../../state";
 import UploadItn from "../uploadItn";
 import FileUploadTwoToneIcon from "@mui/icons-material/FileUploadTwoTone";
 
@@ -23,10 +21,6 @@ export default function ModalS() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { individualItn} = useAppSelector(itnData);
-
-
-  const inputRef = React.useRef<any>(null);
 
   return (
     <div>

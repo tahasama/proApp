@@ -1,11 +1,10 @@
 import "./itnForm.css";
 // import logo1 from "../pdf/logo.png";
 // import logo3 from "../pdf/snce.png";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getItn, itnData } from "../../../state";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
-import { idText } from "typescript";
 
 const ItnForm = () => {
   const params: any = useParams();
@@ -35,11 +34,9 @@ const ItnForm = () => {
   }, []);
 
   return (
-    // <div>sdfsdf</div>
     <div className="carcass">
       <div className="firstRaw">
-        <div className="logo1">
-        </div>
+        <div className="logo1"></div>
         <div className="logo2">
           <br />
           <p>PROJECT :</p>
@@ -47,8 +44,7 @@ const ItnForm = () => {
           <p>QW211201-WWPT SAFI</p>
         </div>
 
-        <div className="logo3">
-        </div>
+        <div className="logo3"></div>
       </div>
       <p
         className="oneLine resp"

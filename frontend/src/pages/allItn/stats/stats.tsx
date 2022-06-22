@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
-import { Doughnut, Pie } from "react-chartjs-2";
-import { useParams } from "react-router-dom";
-import { getAllItns, getItnsByItp, itnData } from "../../../state";
+import { useEffect } from "react";
+import { Doughnut } from "react-chartjs-2";
+import { getAllItns, itnData } from "../../../state";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 import {
   Chart as ChartJS,
@@ -18,9 +17,7 @@ import {
   LineElement,
   Title,
 } from "chart.js";
-import { Line, Bar } from "react-chartjs-2";
-import { isAllSelected } from "@testing-library/user-event/dist/types/utils";
-import StatsPerMonth from "./statsPerMonth/statsPerMonth";
+import { Line } from "react-chartjs-2";
 import StatsPerReview from "./statsPerReview/statsPerReview";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -37,8 +34,7 @@ ChartJS.register(
 
 const Stats = () => {
   const dispatch = useAppDispatch();
-  const { allitp, all } = useAppSelector(itnData);
-  const params = useParams();
+  const { all } = useAppSelector(itnData);
   const labelsName: any = [
     "Jan",
     "Feb",
@@ -55,7 +51,6 @@ const Stats = () => {
   ];
 
   const optionsPie = {
-    responsive: true,
     plugins: {
       legend: {
         position: "bottom" as const,
@@ -64,7 +59,6 @@ const Stats = () => {
         display: true,
         text: "Distribution of quality inspections",
         font: { size: 16 },
-        // padding: 80,
       },
     },
   };
@@ -251,30 +245,18 @@ const Stats = () => {
     ],
   };
 
-  //-----------------------------------------------------------------for all itn total per month end
-
-  //-----------------------------------------------------------------for each loacation
-
-  //-----------------------------------------------------------------for each loacation end
-  //-----------------------------------------------------------------
-
   return (
     <div>
-      {/* <div
+      <div
         className="DoughnutDimension"
         style={{ margin: 0, padding: 0, width: "30%" }}
       >
         <Doughnut options={optionsPie} data={data} style={{ marginTop: -84 }} />
-      </div> */}
-      <div
-        className="LineDimension2"
-        style={{ margin: 0, padding: 0, width: "70%" }}
-      >
-        <StatsPerMonth />
       </div>
+
       <div
         className="LineDimension"
-        style={{ margin: 0, padding: 0, width: "50%" }}
+        style={{ margin: 0, padding: 0, width: "38%" }}
       >
         <Line
           options={optionsLine}
@@ -282,7 +264,10 @@ const Stats = () => {
           style={{ width: 340, marginTop: -20 }}
         />
       </div>
-      <div className="" style={{ margin: 0, padding: 0, width: "50%" }}>
+      <div
+        className="BarDimension"
+        style={{ margin: 0, padding: 0, width: "38%" }}
+      >
         <StatsPerReview all={all} />
       </div>
     </div>

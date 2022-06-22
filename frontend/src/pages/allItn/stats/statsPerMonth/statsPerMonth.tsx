@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { Button } from "@mui/material";
-import { getAllItns, getItnsByItp, itnData } from "../../../../state";
+import { getAllItns, itnData } from "../../../../state";
 import { useAppDispatch, useAppSelector } from "../../../../state/hooks";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import {
@@ -30,7 +30,7 @@ ChartJS.register(
 
 const StatsPerMonth = () => {
   const dispatch = useAppDispatch();
-  const { allitp, all } = useAppSelector(itnData);
+  const { all } = useAppSelector(itnData);
   useEffect(() => {
     dispatch(getAllItns());
   }, [all]);
@@ -185,7 +185,7 @@ const StatsPerMonth = () => {
     "Dec",
   ];
   const [q, setQ] = useState<any[]>(locations1);
-  const [filters, setFilters] = useState(false);
+  const [filters, setFilters] = useState(true);
 
   const data: any = {
     labels: labelsName,
@@ -243,20 +243,19 @@ const StatsPerMonth = () => {
   const handleCheckBox = (e: any, key: any) => {
     let w = e.target.name;
     key ? setQ([...q, w]) : setQ(q.filter((t: any) => t !== w));
-    console.log("the array...", q);
   };
 
   return (
     <div className="statsPerMonth">
       <div className="statsPerMonthFilterButton">
         <div>
-          {!filters ? (
+          {filters ? (
             <Button variant="contained" onClick={() => setFilters(!filters)}>
-              Show Filters
+              Hide Filters
             </Button>
           ) : (
             <Button variant="contained" onClick={() => setFilters(!filters)}>
-              Hide Filters
+              Show Filters
             </Button>
           )}
         </div>

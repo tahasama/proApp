@@ -1,21 +1,15 @@
-import {
-  DataGrid,
-  GridColDef,
-  GridFilterItem,
-  GridValueGetterParams,
-  renderActionsCell,
-} from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import "./log.css";
-// import { useEffect, useState } from "react";
-// import { deleteItn, removeItns, getAllItns, itnData } from "../../state";
 
 import { Link } from "react-router-dom";
 
 import { Button } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { deleteItn, getAllItns, itnData } from "../../../state";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 import ModalM from "./modalM/modalM";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 const handleNumber = (num: any) => {
   return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
@@ -29,7 +23,7 @@ const columns: GridColDef[] = [
     headerAlign: "center",
     align: "center",
     renderCell: (params: any) => (
-      <Link to={`/${params.row.itp}/${params.id}`}>
+      <Link style={{ color: "blue" }} to={`/${params.row.itp}/${params.id}`}>
         QW211101-SNCE-QA-ITN-{handleNumber(params.row.num)}
       </Link>
     ),
@@ -72,7 +66,6 @@ const columns: GridColDef[] = [
     headerName: "dateOfInspection",
     width: 130,
     headerAlign: "center",
-    // type: "date",
     align: "center",
     renderCell: (params: any) => (
       <p style={{ margin: 10 }}>
@@ -156,17 +149,18 @@ const Log = () => {
             scrollbarSize={10}
             rowsPerPageOptions={[10]}
             checkboxSelection
-            rowCount={all.flat().length}
-            onSelectionModelChange={(id: any) => (
-              console.log("selected stuff", id),
-              // setx([...x, id][0]),
-              // setx([id, ...x]),
-              setx((x: any) => [...x, id]),
-              console.log("new x....", x.length)
-            )}
+            rowCount={x.length}
+            onSelectionModelChange={(id: any) => setx((x: any) => [...x, id])}
           />
         ) : (
-          <p>Loading</p>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <CircularProgress style={{ marginTop: 200 }} size={120} />
+          </Box>
         )}
       </div>
     </div>

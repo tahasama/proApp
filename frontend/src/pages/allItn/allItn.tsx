@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import NavBar from "../Navbar/navbar";
 import Log from "./log/log";
 import Stats from "./stats/stats";
+import StatsPerMonth from "./stats/statsPerMonth/statsPerMonth";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -61,18 +62,16 @@ export default function AllItn() {
               value={value}
               onChange={handleChange}
               aria-label="basic tabs example"
-              // indicatorColor="secondary"
-              // textColor="secondary"
               variant="fullWidth"
               style={{
                 marginTop: -8,
-                // marginBottom: 8,
                 padding: 0,
                 backgroundColor: "#CCCCFF",
               }}
             >
               <Tab label="LOG" {...a11yProps(0)} />
               <Tab label="STATS" {...a11yProps(1)} />
+              <Tab label="DETAILED CHART" {...a11yProps(2)} />
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
@@ -80,6 +79,14 @@ export default function AllItn() {
           </TabPanel>
           <TabPanel value={value} index={1}>
             <Stats />
+          </TabPanel>{" "}
+          <TabPanel value={value} index={2}>
+            <div
+              className="LineDimension2"
+              style={{ margin: 0, padding: 0, width: "70%" }}
+            >
+              <StatsPerMonth />
+            </div>
           </TabPanel>
         </Box>
       </div>

@@ -11,6 +11,8 @@ import "./individualItn.css";
 import ModalS from "./uploadItn/modalS/modalS";
 import ModalF from "./uploadImages/modalF/modalF";
 import NavBar from "../Navbar/navbar";
+import snce from "../../images/snce.png";
+import jesa from "../../images/jesa.png";
 
 const IndividualItn = () => {
   const params = useParams();
@@ -44,6 +46,8 @@ const IndividualItn = () => {
   return (
     <div className="itnCover">
       <NavBar />
+      <img src={snce} alt="" className="logo1" />
+      <img src={jesa} alt="" className="logo2" />
       <h2 className="title3">INSPECTION TEST NOTIFICATION</h2>
       <h3 className="title2">
         QW211101-SNCE-QA-ITN-{handleNumber(individualItn.num)}

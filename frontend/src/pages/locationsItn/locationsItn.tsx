@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Timeline from "@mui/lab/Timeline";
 import TimelineItem from "@mui/lab/TimelineItem";
@@ -10,7 +10,7 @@ import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import { getItnsByItp, itnData } from "../../state";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import "./locationsItn.css";
 
@@ -84,9 +84,7 @@ const LocationsItn = (itp: any) => {
   const handleNumber = (num: any) => {
     return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
   };
-  // const labels = ["January", "February", "March", "April", "May", "June"];
   let itpName = itp.itp;
-  // const itnByLoc = (allitp.flat().length / all.flat().length) * 100;
   const data = {
     labels: [itpName, "Other ITN"],
     datasets: [
@@ -95,14 +93,12 @@ const LocationsItn = (itp: any) => {
         backgroundColor: ["rgba(54, 162, 235, 0.3)", "rgba(255, 99, 132, 0.3)"],
         borderColor: ["rgba(54, 162, 235, 1)", "rgba(255, 99, 132, 1)"],
         borderWidth: 1,
-        // maintainAspectRatio: false,
         fill: true,
       },
     ],
   };
 
   const optionsPie = {
-    // responsive: true,
     responsive: true,
     maintainAspectRatio: true,
     plugins: {
@@ -112,7 +108,6 @@ const LocationsItn = (itp: any) => {
     },
   };
   const optionsLine = {
-    // responsive: true,
     responsive: true,
     plugins: {
       legend: {
@@ -203,11 +198,8 @@ const LocationsItn = (itp: any) => {
     datasets: [
       {
         label: "ITN per month",
-
-        // data: [2, 3, 1, 4, 2, 3, 4, 2, 1, 5, 6],
         data: uu,
         borderColor: "rgb(54, 162, 235)",
-
         backgroundColor: "rgba(75, 142, 192, 0.2)",
 
         tension: 0.3,
@@ -263,7 +255,7 @@ const LocationsItn = (itp: any) => {
               style={{
                 position: "absolute",
                 marginLeft: 619,
-                marginTop: -25,
+                marginTop: -26,
                 width: 310,
                 paddingLeft: 4,
                 paddingRight: 4,
