@@ -3,7 +3,7 @@ import axios from "axios";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../firebase";
 
-const POJECT_URL: any = process.env.REACT_APP_PROJECT_URL;
+const POJECT_URL: any = process.env.REACT_APP_PROJECT_URL_ITN;
 
 export const getAllItns: any = createAsyncThunk("getAllItns", async () => {
   try {
@@ -28,7 +28,7 @@ export const getItnsByItp: any = createAsyncThunk(
 
 export const createItn = createAsyncThunk("createItn", async (value: any) => {
   try {
-    const res = await axios.post(POJECT_URL + "createItn/", value);
+    const res = await axios.post(POJECT_URL + "create/", value);
     return res.data;
   } catch (error) {
     return error;
@@ -87,7 +87,9 @@ export const uploadImages = createAsyncThunk(
   async (value: any) => {
     const storageRef = ref(
       storage,
-      value.image1 ? `${value.itnId1}.jpg` : `${value.itnId2}.jpg`
+      value.image1
+        ? `itn/aizenFolder/${value.itnId1}.jpg`
+        : `${value.itnId2}.jpg`
     );
     try {
       await uploadBytesResumable(
@@ -106,6 +108,7 @@ export const uploadImages = createAsyncThunk(
             : await axios.put(POJECT_URL + value.itnId, {
                 image2Url: res,
               });
+          return res;
         }, 2000);
       } catch (error) {}
     } catch (error: any) {
@@ -189,6 +192,9 @@ export const projectsSlice = createSlice({
     builder.addCase(deleteItn.fulfilled, (state, action) => {
       state = action.payload;
     });
+    // builder.addCase(uploadImages.fulfilled, (state, action) => {
+    //   state = action.payload;
+    // });
   },
 });
 

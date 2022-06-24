@@ -177,7 +177,7 @@ const StatsPerReview = (all: any) => {
       <Bar
         options={optionsLine}
         data={data}
-        style={{ width: 340, marginTop: -20 }}
+        style={{ marginTop: -20 }}
         className="statsPerMonthLine"
       />
     </div>

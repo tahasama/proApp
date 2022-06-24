@@ -1,3 +1,5 @@
+import { Schema } from "mongoose";
+
 const mongooses = require("mongoose");
 
 const ItnSchema = new mongooses.Schema(
@@ -11,6 +13,7 @@ const ItnSchema = new mongooses.Schema(
     image1Url: { type: String, required: false },
     image2Url: { type: String, required: false },
     review: { type: String, required: false },
+    relatedConcrete: { type: Schema.Types.ObjectId, ref: "Concrete" },
   },
   {
     timestamps: true,

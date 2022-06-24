@@ -72,7 +72,6 @@ const Stats = () => {
         display: true,
         text: "Total Inspections per month",
         font: { size: 16 },
-        // padding: 80,
       },
     },
   };
@@ -266,7 +265,7 @@ const Stats = () => {
       </div>
       <div
         className="BarDimension"
-        style={{ margin: 0, padding: 0, width: "38%" }}
+        style={{ margin: 0, padding: 0, width: "39.8%" }}
       >
         <StatsPerReview all={all} />
       </div>

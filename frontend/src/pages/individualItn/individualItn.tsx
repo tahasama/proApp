@@ -13,6 +13,7 @@ import ModalF from "./uploadImages/modalF/modalF";
 import NavBar from "../Navbar/navbar";
 import snce from "../../images/snce.png";
 import jesa from "../../images/jesa.png";
+import background from "../../images/background.jpg";
 
 const IndividualItn = () => {
   const params = useParams();
@@ -25,7 +26,7 @@ const IndividualItn = () => {
       dispatch(getItn(params));
     }
   }, [individualItn]);
-  console.log("some stuff", individualItn);
+  // console.log("some stuff", individualItn);
   const handleNumber = (num: any) => {
     return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
   };
@@ -44,7 +45,10 @@ const IndividualItn = () => {
   };
 
   return (
-    <div className="itnCover">
+    <div
+      className="itnCover"
+      // style={{ backgroundImage: "url(" + background + ")" }}
+    >
       <NavBar />
       <img src={snce} alt="" className="logo1" />
       <img src={jesa} alt="" className="logo2" />
@@ -52,6 +56,12 @@ const IndividualItn = () => {
       <h3 className="title2">
         QW211101-SNCE-QA-ITN-{handleNumber(individualItn.num)}
       </h3>
+      <p>
+        <a href={individualItn.image2Url}>{individualItn.image2Url}</a>
+      </p>
+      <p>
+        <a href={individualItn.image1Url}>{individualItn.image1Url}</a>
+      </p>
       <div className="itnCenter">
         <p className="approuval">
           Reviewed
@@ -107,7 +117,7 @@ const IndividualItn = () => {
         {individualItn.image2Url && (
           <img
             src={individualItn.image2Url}
-            alt=""
+            alt="backround"
             height={400}
             width={420}
             className="image2"
