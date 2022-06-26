@@ -1,3 +1,29 @@
 .ag-header-cell-label {
   justify-content: center;
 }
+
+.ag-theme-alpine {
+  background-color: rgb(148, 166, 189);
+  color: white;
+}
+
+.log1 {
+  margin-top: -7px;
+  padding: 0;
+}
+
+.title4 {
+  letter-spacing: 5px;
+  margin: 0;
+  padding: 0;
+}
+
+.toUp1 {
+  margin-top: -70px;
+}
+
+.total {
+  font-size: 15.5px !important;
+  margin: 10px 0px 5px 0px !important;
+  padding: 0px 50px !important;
+}

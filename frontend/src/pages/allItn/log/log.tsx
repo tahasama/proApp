@@ -1,122 +1,151 @@
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import "./log.css";
-
-import { Link } from "react-router-dom";
-
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
-import { deleteItn, getAllItns, itnData } from "../../../state";
-import { useAppDispatch, useAppSelector } from "../../../state/hooks";
-import ModalM from "./modalM/modalM";
+// import ModalM from "./modalM/modalM";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import {
+  concreteData,
+  deleteConcrete,
+  getAllConcretes,
+  updateWw,
+} from "../../../state/reducers/concreteSlice";
+import { useMemo, useRef } from "react";
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-community/dist/styles/ag-grid.css";
+import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+import { useAppDispatch, useAppSelector } from "../../../state/hooks";
+import "./log.css";
+import { Link } from "react-router-dom";
+import { deleteItn, getAllItns, itnData } from "../../../state";
+import ModalM from "./modalM/modalM";
 
 const handleNumber = (num: any) => {
   return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
 };
-
-const columns: GridColDef[] = [
-  {
-    field: "num",
-    headerName: "Number",
-    width: 210,
-    headerAlign: "center",
-    align: "center",
-    renderCell: (params: any) => (
-      <Link style={{ color: "blue" }} to={`/${params.row.itp}/${params.id}`}>
-        QW211101-SNCE-QA-ITN-{handleNumber(params.row.num)}
-      </Link>
-    ),
-  },
-  {
-    field: "itp",
-    headerName: "ITP",
-    width: 170,
-    headerAlign: "center",
-    align: "center",
-  },
-  {
-    field: "subLocation",
-    headerName: "subLocation",
-    width: 120,
-    headerAlign: "center",
-    align: "center",
-  },
-  {
-    field: "routine",
-    headerName: "routine",
-    width: 200,
-    headerAlign: "center",
-    align: "center",
-    renderCell: (params: any) => (
-      <p
-        style={{
-          whiteSpace: "pre-wrap",
-          maxHeight: 30,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {params.row.routine}{" "}
-      </p>
-    ),
-  },
-  {
-    field: "dateOfInspection",
-    headerName: "dateOfInspection",
-    width: 130,
-    headerAlign: "center",
-    align: "center",
-    renderCell: (params: any) => (
-      <p style={{ margin: 10 }}>
-        {params.row.dateOfInspection
-          .slice(0, 10)
-          .split("-")
-          .reverse()
-          .join("-")}
-      </p>
-    ),
-  },
-  {
-    field: "review",
-    headerName: "review",
-    width: 70,
-    headerAlign: "center",
-    align: "center",
-  },
-  {
-    field: "Sinsp",
-    headerName: "Snce Inspector",
-    width: 120,
-    headerAlign: "center",
-    align: "center",
-  },
-  {
-    field: "Jinsp",
-    headerName: "Jesa Inspector",
-    width: 120,
-    headerAlign: "center",
-    align: "center",
-  },
-];
 
 const Log = () => {
   const dispatch = useAppDispatch();
 
   const { all } = useAppSelector(itnData);
 
-  const [x, setx] = useState<any>([]);
+  const [num, setNum] = useState<any>();
+
+  const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
+  const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
+  const [selected, setSelected] = useState();
 
   const handleDelete = () => {
-    let r = x.slice(-1).flat();
-    r.map((f: any) => {
-      dispatch(deleteItn(f));
-    });
+    dispatch(deleteItn(selected));
+    setTimeout(() => {
+      dispatch(getAllConcretes());
+    }, 250);
   };
 
   useEffect(() => {
     dispatch(getAllItns());
   }, []);
+
+  const [columnDefs, setColumnDefs] = useState([
+    {
+      field: "num",
+      checkboxSelection: true,
+      headerName: "Number",
+      headerClass: "ag-header-cell-center-text",
+
+      filter: "agMultiColumnFilter",
+      filterParams: {
+        filters: [
+          {
+            filter: "agTextColumnFilter",
+            filterParams: {
+              defaultOption: "startsWith",
+            },
+          },
+          {
+            filter: "agSetColumnFilter",
+          },
+        ],
+      },
+      valueGetter: (params: any) => {
+        return params.data !== undefined && params.data;
+      },
+      cellRenderer: (params: any) => {
+        console.log("her is an itn number", params.value.num);
+
+        return params.value.num !== undefined ? (
+          <Link
+            style={{ color: "blue" }}
+            to={`/${params.value.itp}/${params.value._id}`}
+          >
+            <> QW211101-SNCE-QA-ITN-{handleNumber(params.value.num)}</>
+          </Link>
+        ) : (
+          <p></p>
+        );
+      },
+    },
+    {
+      field: "itp",
+      headerName: "Location",
+      filter: "agTextColumnFilter",
+    },
+    {
+      field: "subLocation",
+      headerName: "Sub-Location",
+      filter: "agTextColumnFilter",
+    },
+    {
+      field: "routine",
+      headerName: "Routine",
+      filter: "agTextColumnFilter",
+    },
+    {
+      field: "dateOfInspection",
+      headerName: "Date",
+      filter: "agMultiColumnFilter",
+      filterParams: {
+        filters: [
+          {
+            filter: "agNumberColumnFilter",
+          },
+          {
+            filter: "agSetColumnFilter",
+          },
+        ],
+      },
+      cellRenderer: (params: any) => {
+        return (
+          params.value !== undefined &&
+          params.value.slice(2, 10).split("-").reverse().join("-")
+        );
+      },
+    },
+    {
+      field: "review",
+      headerName: "Review",
+    },
+    // {
+    //   field: "relatedItn",
+    //   headerName: "Related ITN",
+    // },
+  ]);
+  const defaultColDef = useMemo(() => {
+    return {
+      flex: 1,
+      minWidth: 200,
+      resizable: true,
+      menuTabs: ["filterMenuTab"],
+    };
+  }, []);
+  const sideBar = useMemo(() => {
+    return {
+      toolPanels: ["filters"],
+    };
+  }, []);
+  const gridRef = useRef<any>();
+  const [filter, setFilter] = useState("");
+  const [filter1, setFilter1] = useState("");
+  const [filter2, setFilter2] = useState("");
   return (
     <div className="log">
       <div>
@@ -140,18 +169,27 @@ const Log = () => {
       </div>
 
       <div className="grid" style={{ width: "100%" }}>
-        {all.flat().length !== 1 ? (
-          <DataGrid
-            getRowId={(row) => row._id}
-            rows={all.flat().reverse()}
-            columns={columns}
-            pageSize={10}
-            scrollbarSize={10}
-            rowsPerPageOptions={[10]}
-            checkboxSelection
-            rowCount={x.length}
-            onSelectionModelChange={(id: any) => setx((x: any) => [...x, id])}
-          />
+        {all.flat().length !== 0 ? (
+          <>
+            <div style={containerStyle}>
+              <div style={gridStyle} className="ag-theme-alpine">
+                <AgGridReact
+                  rowData={all.flat().reverse()}
+                  columnDefs={columnDefs}
+                  groupIncludeFooter={true}
+                  groupIncludeTotalFooter={true}
+                  defaultColDef={defaultColDef}
+                  animateRows={true}
+                  ref={gridRef}
+                  // onFilterChanged={handleFilterChange}
+                  onSelectionChanged={(v: any) =>
+                    setSelected(v.api.getSelectedRows()[0]._id)
+                  }
+                ></AgGridReact>
+              </div>
+            </div>{" "}
+            :
+          </>
         ) : (
           <Box
             sx={{

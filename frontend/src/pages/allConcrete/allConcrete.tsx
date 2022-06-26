@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import NavBar from "../Navbar/navbar";
 import Log from "./log/log";
+import Stats from "./stats/stats";
 // import Log from "./log/log";
 // import Stats from "./stats/stats";
 // import StatsPerMonth from "./stats/statsPerMonth/statsPerMonth";
@@ -79,7 +80,7 @@ export default function AllItn() {
             <Log />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            {/* <Stats /> */}stats
+            <Stats />
           </TabPanel>{" "}
           <TabPanel value={value} index={2}>
             <div

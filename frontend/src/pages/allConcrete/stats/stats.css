@@ -1,0 +1,26 @@
+/* .LineDimension2 {
+  position: absolute;
+  top: 120px;
+
+  left: 30px;
+} */
+
+.LineDimension {
+  position: absolute;
+  /* top: 140px; */
+  top: 385px;
+  left: 102px;
+}
+
+.BarDimension {
+  position: absolute;
+  /* top: 140px; */
+  top: 120px;
+  left: -20px;
+}
+
+.DoughnutDimension {
+  position: absolute;
+  top: 200px;
+  left: 770px;
+}

@@ -34,12 +34,12 @@ const Log = () => {
     dispatch(deleteConcrete(selected));
     setTimeout(() => {
       dispatch(getAllConcretes());
-    }, 50);
+    }, 250);
   };
   useEffect(() => {
     dispatch(getAllConcretes());
   }, []);
-  console.log("aaaaaalllllllll", all);
+
   const [columnDefs, setColumnDefs] = useState([
     {
       field: "type",
@@ -49,50 +49,28 @@ const Log = () => {
 
       filter: "agColumnFilter",
       filterParams: {
-        filters: [
-          {
-            filter: "agTextColumnFilter",
-            filterParams: {
-              defaultOption: "startsWith",
-            },
-          },
-          {
-            filter: "agSetColumnFilter",
-          },
-        ],
+        defaultOption: "startsWith",
+        suppressAndOrCondition: true,
       },
     },
     {
       field: "itp",
       headerName: "Location",
-      filter: "agColumnFilter",
+      filter: "agTextColumnFilter",
+
       filterParams: {
-        filters: [
-          {
-            filter: "agTextColumnFilter",
-            filterParams: {
-              defaultOption: "startsWith",
-            },
-          },
-          {
-            filter: "agSetColumnFilter",
-          },
-        ],
+        defaultOption: "startsWith",
+        suppressAndOrCondition: true,
       },
     },
+
     {
       field: "dateOfUsage",
       headerName: "Date",
       filter: "agColumnFilter",
       filterParams: {
-        filters: [
-          {
-            filter: "agNumberColumnFilter",
-          },
-          {
-            filter: "agSetColumnFilter",
-          },
-        ],
+        defaultOption: "startsWith",
+        suppressAndOrCondition: true,
       },
       cellRenderer: (params: any) => {
         return (
@@ -143,7 +121,7 @@ const Log = () => {
 
   useEffect(() => {
     getTotal();
-  }, [filter, filter1, filter2]);
+  }, [filter, filter1, filter2, all]);
 
   useEffect(() => {
     const vv = ww
@@ -230,8 +208,11 @@ const Log = () => {
   };
 
   return (
-    <div className="log">
-      <div className="overrideButtonCreate toUp">
+    <div className="log1">
+      <div>
+        <h2 className="title4">Concrete Data Records</h2>
+      </div>
+      <div className="overrideButtonCreate toUp1">
         <ModalR />
       </div>
       <div>
@@ -245,7 +226,7 @@ const Log = () => {
           Delete selected
         </Button>
       </div>
-      <div className="grid" style={{ width: "100%" }}>
+      <div className="grid" style={{ width: "100%", height: 388 }}>
         {all.flat().length !== 0 ? (
           <>
             <div style={containerStyle}>
@@ -265,12 +246,11 @@ const Log = () => {
                 ></AgGridReact>
               </div>
             </div>{" "}
-            <Button variant="contained">
-              {totalconcrete !== 0 ? (
-                <p>{totalconcrete}</p>
-              ) : (
-                <p>{initialTotal}</p>
-              )}
+            <Button variant="contained" className="total">
+              <p>
+                TOTAL = {totalconcrete}
+                <i style={{ textTransform: "lowercase" }}>m³</i>
+              </p>
             </Button>
             :
           </>
