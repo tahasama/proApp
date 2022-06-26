@@ -29,8 +29,6 @@ export const getConcretesByItp: any = createAsyncThunk(
 export const getConcrete = createAsyncThunk(
   "getConcrete",
   async (value: any) => {
-    console.log("slice...", POJECT_URL + value.itp + "/" + value.concreteId);
-
     try {
       const res = await axios.get(
         POJECT_URL + value.itp + "/" + value.concreteId
@@ -79,6 +77,8 @@ interface concretesProps {
     allitp: {}[];
     loading: boolean;
     individualConcrete: any;
+    ww: any[];
+    X: string;
   };
 }
 
@@ -87,6 +87,8 @@ const initialState = {
   allitp: [{}],
   loading: true,
   individualConcrete: {},
+  ww: [],
+  X: "hey",
 };
 
 export const projectsSlice = createSlice({
@@ -95,26 +97,33 @@ export const projectsSlice = createSlice({
   reducers: {
     updateLoading: (state, action) => {
       state.loading = action.payload;
-      // },
-      // UpdateValuesOfSelect: (state, action) => {
-      //   state.newLocation = action.payload.newLocation;
-      //   state.newRoutine = action.payload.newRoutine;
-      //   state.newReview = action.payload.newReview;
-      // },
-      // removeItns: (state, action) => {
-      //   state.all = state.all
-      //     .flat()
-      //     .filter((itn: any) => itn._id !== action.payload);
-      // },
-      // filterByRoutine: (state, action) => {
-      //   state.filter = action.payload;
     },
+    updateWw: (state, action) => {
+      console.log("SLIIICCE....", action.payload);
+      state.ww = action.payload;
+    },
+    updateX: (state, action) => {
+      console.log("SLIIICCE....XXX", action);
+      state.X = action.payload;
+    },
+    // },
+    // UpdateValuesOfSelect: (state, action) => {
+    //   state.newLocation = action.payload.newLocation;
+    //   state.newRoutine = action.payload.newRoutine;
+    //   state.newReview = action.payload.newReview;
+    // },
+    // removeItns: (state, action) => {
+    //   state.all = state.all
+    //     .flat()
+    //     .filter((itn: any) => itn._id !== action.payload);
+    // },
+    // filterByRoutine: (state, action) => {
+    //   state.filter = action.payload;
   },
   extraReducers: (builder) => {
     builder.addCase(getAllConcretes.fulfilled, (state, action) => {
       state.all.push(action.payload);
       state.all.splice(0, 1);
-      console.log("slice.....", state.all);
     });
 
     builder.addCase(getConcretesByItp.fulfilled, (state, action) => {
@@ -140,7 +149,8 @@ export const projectsSlice = createSlice({
 export const concreteData = (state: concretesProps) => state.concretez;
 
 export const {
-  //   updateLoading,
+  updateWw,
+  updateX,
   //   UpdateValuesOfSelect,
   //   removeItns,
   //   filterByRoutine,
