@@ -53,15 +53,6 @@ export const createConcrete = createAsyncThunk(
   }
 );
 
-// export const updateItn = createAsyncThunk("updateItn", async (value: any) => {
-//   try {
-//     const res = await axios.put(POJECT_URL + value._id, value);
-//     return res.data;
-//   } catch (error) {
-//     return error;
-//   }
-// });
-
 export const deleteConcrete = createAsyncThunk(
   "deleteConcrete",
 
@@ -85,6 +76,9 @@ interface concretesProps {
     individualConcrete: any;
     ww: any[];
     X: string;
+    newLocation: string;
+    newType: string;
+    newRelated: string;
   };
 }
 
@@ -93,6 +87,9 @@ const initialState = {
   allitp: [{}],
   loading: true,
   individualConcrete: {},
+  newLocation: "",
+  newType: "",
+  newRelated: "",
   ww: [],
   X: "hahaha",
 };
@@ -106,6 +103,11 @@ export const projectsSlice = createSlice({
     },
     updateWw: (state, action) => {
       state.ww = action.payload;
+    },
+    UpdateValuesOfSelect: (state, action) => {
+      state.newLocation = action.payload.newLocation;
+      state.newType = action.payload.newType;
+      state.newRelated = action.payload.newRelated;
     },
 
     // },
@@ -150,6 +152,8 @@ export const concreteData = (state: concretesProps) => state.concretez;
 
 export const {
   updateWw,
+  UpdateValuesOfSelect,
+
   //   UpdateValuesOfSelect,
   //   removeItns,
   //   filterByRoutine,

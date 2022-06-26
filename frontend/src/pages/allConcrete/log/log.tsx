@@ -16,6 +16,7 @@ import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 import "./log.css";
 import { Link } from "react-router-dom";
+import ModalR from "../modal/modalR";
 
 const handleNumber = (num: any) => {
   return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
@@ -31,13 +32,13 @@ const Log = () => {
 
   const handleDelete = () => {
     dispatch(deleteConcrete(selected));
-    // setTimeout(() => {
-    //   dispatch(getAllConcretes());
-    // }, 1000);
+    setTimeout(() => {
+      dispatch(getAllConcretes());
+    }, 50);
   };
   useEffect(() => {
     dispatch(getAllConcretes());
-  }, [selected]);
+  }, []);
   console.log("aaaaaalllllllll", all);
   const [columnDefs, setColumnDefs] = useState([
     {
@@ -230,6 +231,9 @@ const Log = () => {
 
   return (
     <div className="log">
+      <div className="overrideButtonCreate toUp">
+        <ModalR />
+      </div>
       <div>
         <Button
           variant="outlined"

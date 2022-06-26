@@ -7,8 +7,8 @@ const ConcreteSchema = new mongooses.Schema(
     itp: { type: String, required: true },
     subLocation: { type: String, required: false },
     dateOfUsage: { type: Date, required: true },
-    quantity: { type: Number, required: false },
-    relatedItn: { type: Schema.Types.ObjectId, ref: "Itn" },
+    quantity: { type: Number, required: true },
+    relatedItn: { type: Schema.Types.ObjectId, ref: "Itn", required: false },
   },
   {
     timestamps: true,
