@@ -62,14 +62,20 @@ export const createConcrete = createAsyncThunk(
 //   }
 // });
 
-// export const deleteItn = createAsyncThunk("deleteItn", async (value: any) => {
-//   try {
-//     const res = await axios.delete(POJECT_URL + value);
-//     return res.data;
-//   } catch (error) {
-//     return error;
-//   }
-// });
+export const deleteConcrete = createAsyncThunk(
+  "deleteConcrete",
+
+  async (value: any) => {
+    try {
+      const res = await axios.delete(POJECT_URL + value);
+      console.log("Slice delete", res.data);
+
+      return res.data;
+    } catch (error) {
+      return error;
+    }
+  }
+);
 
 interface concretesProps {
   concretez: {
@@ -88,7 +94,7 @@ const initialState = {
   loading: true,
   individualConcrete: {},
   ww: [],
-  X: "hey",
+  X: "hahaha",
 };
 
 export const projectsSlice = createSlice({
@@ -99,13 +105,9 @@ export const projectsSlice = createSlice({
       state.loading = action.payload;
     },
     updateWw: (state, action) => {
-      console.log("SLIIICCE....", action.payload);
       state.ww = action.payload;
     },
-    updateX: (state, action) => {
-      console.log("SLIIICCE....XXX", action);
-      state.X = action.payload;
-    },
+
     // },
     // UpdateValuesOfSelect: (state, action) => {
     //   state.newLocation = action.payload.newLocation;
@@ -136,12 +138,10 @@ export const projectsSlice = createSlice({
     builder.addCase(getConcrete.fulfilled, (state, action) => {
       state.individualConcrete = action.payload;
     });
-    // builder.addCase(updateItn.fulfilled, (state, action) => {
-    //   state = action.payload;
-    // });
-    // builder.addCase(deleteItn.fulfilled, (state, action) => {
-    //   state = action.payload;
-    // });
+    builder.addCase(deleteConcrete.fulfilled, (state, action) => {
+      state = action.payload;
+      state.X = "Concrete has been deleted...";
+    });
   },
 });
 
@@ -150,7 +150,6 @@ export const concreteData = (state: concretesProps) => state.concretez;
 
 export const {
   updateWw,
-  updateX,
   //   UpdateValuesOfSelect,
   //   removeItns,
   //   filterByRoutine,

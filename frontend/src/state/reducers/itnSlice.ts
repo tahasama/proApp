@@ -119,7 +119,6 @@ export const uploadImages = createAsyncThunk(
 interface itnsProps {
   itnz: {
     all: {}[];
-    newAll: {}[];
     allitp: {}[];
     loading: boolean;
     individualItn: any;
@@ -144,7 +143,6 @@ const initialState = {
   _id: "",
   pdf: "",
   itnId: "",
-  newAll: [{}],
   filter: "",
 };
 
@@ -160,11 +158,11 @@ export const projectsSlice = createSlice({
       state.newRoutine = action.payload.newRoutine;
       state.newReview = action.payload.newReview;
     },
-    removeItns: (state, action) => {
-      state.all = state.all
-        .flat()
-        .filter((itn: any) => itn._id !== action.payload);
-    },
+    // removeItns: (state, action) => {
+    //   state.all = state.all
+    //     .flat()
+    //     .filter((itn: any) => itn._id !== action.payload);
+    // },
     filterByRoutine: (state, action) => {
       state.filter = action.payload;
     },
@@ -204,7 +202,7 @@ export const itnData = (state: itnsProps) => state.itnz;
 export const {
   updateLoading,
   UpdateValuesOfSelect,
-  removeItns,
+  // removeItns,
   filterByRoutine,
 } = projectsSlice.actions;
 

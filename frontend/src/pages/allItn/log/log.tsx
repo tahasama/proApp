@@ -116,7 +116,7 @@ const Log = () => {
 
   useEffect(() => {
     dispatch(getAllItns());
-  }, [dispatch]);
+  }, []);
   return (
     <div className="log">
       <div>

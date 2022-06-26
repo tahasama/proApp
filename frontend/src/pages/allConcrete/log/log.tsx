@@ -1,8 +1,3 @@
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
-// import "./log.css";
-
-import { Link } from "react-router-dom";
-
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 // import ModalM from "./modalM/modalM";
@@ -10,47 +5,48 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import {
   concreteData,
+  deleteConcrete,
   getAllConcretes,
   updateWw,
-  updateX,
 } from "../../../state/reducers/concreteSlice";
-import React, { useCallback, useMemo, useRef } from "react";
-import { render } from "react-dom";
+import { useMemo, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
+import "./log.css";
+import { Link } from "react-router-dom";
 
 const handleNumber = (num: any) => {
   return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
 };
 
-const getDate = (value: any) => {
-  var dateParts = value.split("/");
-  return new Date(
-    Number(dateParts[2]),
-    Number(dateParts[1]) - 1,
-    Number(dateParts[0])
-  );
-};
-
 const Log = () => {
   const dispatch = useAppDispatch();
 
-  const { all, ww, X } = useAppSelector(concreteData);
+  const { all, ww } = useAppSelector(concreteData);
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
+  const [selected, setSelected] = useState();
 
+  const handleDelete = () => {
+    dispatch(deleteConcrete(selected));
+    // setTimeout(() => {
+    //   dispatch(getAllConcretes());
+    // }, 1000);
+  };
   useEffect(() => {
     dispatch(getAllConcretes());
-  }, [dispatch]);
-
+  }, [selected]);
+  console.log("aaaaaalllllllll", all);
   const [columnDefs, setColumnDefs] = useState([
     {
       field: "type",
-      headerName: "YOHOHOHO my type",
+      checkboxSelection: true,
+      headerName: "Type",
+      headerClass: "ag-header-cell-center-text",
 
-      filter: "agMultiColumnFilter",
+      filter: "agColumnFilter",
       filterParams: {
         filters: [
           {
@@ -67,11 +63,15 @@ const Log = () => {
     },
     {
       field: "itp",
-      filter: "agMultiColumnFilter",
+      headerName: "Location",
+      filter: "agColumnFilter",
       filterParams: {
         filters: [
           {
-            filter: "agNumberColumnFilter",
+            filter: "agTextColumnFilter",
+            filterParams: {
+              defaultOption: "startsWith",
+            },
           },
           {
             filter: "agSetColumnFilter",
@@ -81,7 +81,8 @@ const Log = () => {
     },
     {
       field: "dateOfUsage",
-      filter: "agMultiColumnFilter",
+      headerName: "Date",
+      filter: "agColumnFilter",
       filterParams: {
         filters: [
           {
@@ -101,6 +102,23 @@ const Log = () => {
     },
     {
       field: "quantity",
+      headerName: "Quantity (m³)",
+    },
+    {
+      field: "relatedItn",
+      headerName: "Related ITN",
+      cellRenderer: (params: any) => {
+        return (
+          params.value !== undefined && (
+            <Link
+              style={{ color: "blue" }}
+              to={`/${params.value.itp}/${params.value._id}`}
+            >
+              QW211101-SNCE-QA-ITN- {handleNumber(params.value.num)}
+            </Link>
+          )
+        );
+      },
     },
   ]);
   const defaultColDef = useMemo(() => {
@@ -124,7 +142,6 @@ const Log = () => {
 
   useEffect(() => {
     getTotal();
-    console.log("filter changed");
   }, [filter, filter1, filter2]);
 
   useEffect(() => {
@@ -134,8 +151,6 @@ const Log = () => {
       .reduce((a: any, b: any) => a + b, 0);
     setTotalconcrete(vv);
   }, [ww]);
-
-  console.log("filter", filter, "filter1", filter1, "filter2", filter2);
 
   const handleFilterChange = () => {
     gridRef.current.api.getFilterModel().type
@@ -147,15 +162,6 @@ const Log = () => {
     gridRef.current.api.getFilterModel().dateOfUsage
       ? setFilter2(gridRef.current.api.getFilterModel().dateOfUsage.filter)
       : setFilter2("");
-    // setFilter(
-    //   gridRef.current.api.getFilterInstance("type").appliedModel.filter
-    // );
-    // setFilter1(
-    //   gridRef.current.api.getFilterInstance("itp").appliedModel.filter
-    // );
-    // setFilter2(
-    //   gridRef.current.api.getFilterInstance("dateOfUsage").appliedModel.filter
-    // );
   };
   const [totalconcrete, setTotalconcrete] = useState();
 
@@ -164,10 +170,9 @@ const Log = () => {
     .map((ds: any) => ds.quantity)
     .map((v) => (v === undefined ? 0 : v))
     .reduce((a, b) => a + b);
-  // const [ww, setWw] = useState<any>([]);
+
   const getTotal = () => {
     const rr = all.flat();
-
     const ss: any = rr.filter((filt: any) => filt.type === filter);
     const tt = rr.filter(
       (filt: any) => filt.itp !== null && filt.itp === filter1
@@ -178,7 +183,6 @@ const Log = () => {
           filter2
         : console.log("it is undefined")
     );
-    console.log("uu", uu);
     const xx: any = rr
       .filter((filt: any) => filt.type === filter)
       .filter((filt: any) => filt.itp === filter1);
@@ -205,54 +209,6 @@ const Log = () => {
           filter2
       );
 
-    // const uu = rr.filter(
-    //   (filt: any) =>
-    //     filt.dateOfUsage.slice(5, 7).split("-").reverse().join("-") === filter2
-    // );
-
-    // .filter((filt: any) => (filter !== "" ? filt.type === filter : ""))
-    // .filter((filt: any) => console.log("hello", filt))
-
-    //     (filter1 !== "" ? filt.itp === filter1 : "") ||
-    //     (filter2 !== ""
-    //       ? filt.dateOfUsage.slice(5, 7).split("-").reverse().join("-") ===
-    //         filter2
-    //       : "")
-    // )
-    // const ww = ss.length === 0 ? tt : tt.length !== 0 ? xx : ss;
-    //   uu ||
-    //   (ss && tt);
-    //   (ss && uu) ||
-    //   (tt && uu) ||
-    //   (ss && uu && tt);
-    // console.log("zz", zz);
-
-    // const bb = ss.length === 0 && tt.length === 0 && uu.length === 0 ? "" : uu;
-    // const cc = ss.length === 0 && tt.length === 0 && uu.length !== 0 ? uu : "";
-    // const dd = ss.length === 0 && tt.length !== 0 && uu.length === 0 ? tt : zz;
-    // const ee = ss.length === 0 && tt.length !== 0 && uu.length !== 0 ? zz : tt;
-    // const ff = ss.length !== 0 && tt.length === 0 && uu.length === 0 ? ss : yy;
-    // const gg = ss.length !== 0 && tt.length === 0 && uu.length !== 0 ? yy : ss;
-    // const hh = ss.length !== 0 && tt.length !== 0 && uu.length === 0 ? xx : aa;
-    // const ii = ss.length !== 0 && tt.length !== 0 && uu.length !== 0 ? aa : xx;
-
-    // console.log("ii", ii);
-
-    // const jj = bb.length !== 0 ? bb : cc;
-    // const kk = dd.length !== 0 ? dd : ee;
-    // const ll = ff.length !== 0 ? ff : gg;
-    // const mm = hh.length !== 0 ? hh : ii;
-
-    // console.log("kk", kk);
-
-    // const nn = jj.length !== 0 ? jj : mm;
-    // const oo = ll.length !== 0 ? ll : kk;
-    // const ww = nn.length !== 0 ? nn : oo;
-
-    // filter !== "" && setWw(ss);
-    // filter !== "" && filter1 !== "" && setWw(xx);
-    // filter !== "" && filter1 !== "" && filter2 !== "" && setWw(aa);
-
     if (filter !== "" && filter1 === "" && filter2 === "") {
       dispatch(updateWw(ss));
     } else if (filter1 !== "" && filter === "" && filter2 === "") {
@@ -270,13 +226,23 @@ const Log = () => {
     } else {
       dispatch(updateWw(rr));
     }
-
-    console.log("WWWWWWWWWWWWWWWW", ww);
   };
+
   return (
     <div className="log">
+      <div>
+        <Button
+          variant="outlined"
+          color="error"
+          size="large"
+          className="deleteButton"
+          onClick={handleDelete}
+        >
+          Delete selected
+        </Button>
+      </div>
       <div className="grid" style={{ width: "100%" }}>
-        {all.flat().length !== 1 ? (
+        {all.flat().length !== 0 ? (
           <>
             <div style={containerStyle}>
               <div style={gridStyle} className="ag-theme-alpine">
@@ -289,6 +255,9 @@ const Log = () => {
                   animateRows={true}
                   ref={gridRef}
                   onFilterChanged={handleFilterChange}
+                  onSelectionChanged={(v: any) =>
+                    setSelected(v.api.getSelectedRows()[0]._id)
+                  }
                 ></AgGridReact>
               </div>
             </div>{" "}

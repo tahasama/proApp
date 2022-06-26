@@ -66,20 +66,20 @@ routerC.get("/:itp/:id", async (req, res) => {
 //   }
 // });
 
-// // delete an itn
-// router.delete("/:id", async (req, res) => {
-//   try {
-//     const itn = await Itn.findById(req.params.id);
-//     try {
-//       await itn.delete();
-//       res.status(200).json("Itn has been deleted...");
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+// delete an Concrete
+routerC.delete("/:id", async (req, res) => {
+  try {
+    const concrete = await Concrete.findById(req.params.id);
+    try {
+      await concrete.delete();
+      res.status(200);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // //get itn by search
 // router.get("/search/q=:value", async (req, res) => {
