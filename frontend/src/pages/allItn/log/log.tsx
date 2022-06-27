@@ -18,6 +18,7 @@ import "./log.css";
 import { Link } from "react-router-dom";
 import { deleteItn, getAllItns, itnData } from "../../../state";
 import ModalM from "./modalM/modalM";
+import { viVN } from "@mui/x-data-grid";
 
 const handleNumber = (num: any) => {
   return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
@@ -26,7 +27,7 @@ const handleNumber = (num: any) => {
 const Log = () => {
   const dispatch = useAppDispatch();
 
-  const { all } = useAppSelector(itnData);
+  const { all, ww } = useAppSelector(itnData);
 
   const [num, setNum] = useState<any>();
 
@@ -52,26 +53,10 @@ const Log = () => {
       headerName: "Number",
       headerClass: "ag-header-cell-center-text",
 
-      filter: "agMultiColumnFilter",
-      filterParams: {
-        filters: [
-          {
-            filter: "agTextColumnFilter",
-            filterParams: {
-              defaultOption: "startsWith",
-            },
-          },
-          {
-            filter: "agSetColumnFilter",
-          },
-        ],
-      },
       valueGetter: (params: any) => {
         return params.data !== undefined && params.data;
       },
       cellRenderer: (params: any) => {
-        console.log("her is an itn number", params.value.num);
-
         return params.value.num !== undefined ? (
           <Link
             style={{ color: "blue" }}
@@ -87,12 +72,13 @@ const Log = () => {
     {
       field: "itp",
       headerName: "Location",
+      // filter: "agTextColumnFilter",
       filter: "agTextColumnFilter",
     },
     {
       field: "subLocation",
       headerName: "Sub-Location",
-      filter: "agTextColumnFilter",
+      // filter: "agTextColumnFilter",
     },
     {
       field: "routine",
@@ -146,6 +132,89 @@ const Log = () => {
   const [filter, setFilter] = useState("");
   const [filter1, setFilter1] = useState("");
   const [filter2, setFilter2] = useState("");
+
+  //============================================================
+  useEffect(() => {
+    getTotal();
+  }, [filter, filter1, filter2, all]);
+  // console.log("jjjjjjjjjjj", filter, "ggggg", filter1, "tttttttt", filter2);
+
+  // useEffect(() => {
+  //   const vv: number = ww.length;
+  //   // setRowsNumber(vv);
+  // }, [ww]);
+
+  const handleFilterChange = () => {
+    gridRef.current.api.getFilterModel().routine
+      ? setFilter(gridRef.current.api.getFilterModel().routine.filter)
+      : setFilter("");
+    gridRef.current.api.getFilterModel().itp
+      ? setFilter1(gridRef.current.api.getFilterModel().itp.filter)
+      : setFilter1("");
+    gridRef.current.api.getFilterModel().dateOfInspection
+      ? setFilter2(gridRef.current.api.getFilterModel().dateOfInspection.filter)
+      : setFilter2("");
+  };
+
+  const getTotal = () => {
+    const rr = all.flat();
+    const ss: any = rr.filter((filt: any) => filt.routine === filter);
+    const tt = rr.filter(
+      (filt: any) => filt.itp !== null && filt.itp === filter1
+    );
+    const uu = rr.filter((filt: any) =>
+      filt.dateOfInspection !== undefined
+        ? filt.dateOfInspection.slice(5, 7).split("-").reverse().join("-") ===
+          filter2
+        : console.log("it is undefined")
+    );
+    const xx: any = rr
+      .filter((filt: any) => filt.type === filter)
+      .filter((filt: any) => filt.itp === filter1);
+    const yy = rr
+      .filter((filt: any) => filt.type === filter)
+      .filter(
+        (filt: any) =>
+          filt.dateOfInspection.slice(5, 7).split("-").reverse().join("-") ===
+          filter2
+      );
+    const zz = rr
+      .filter((filt: any) => filt.itp === filter1)
+      .filter(
+        (filt: any) =>
+          filt.dateOfInspection.slice(5, 7).split("-").reverse().join("-") ===
+          filter2
+      );
+    const aa: any = rr
+      .filter((filt: any) => filt.type === filter)
+      .filter((filt: any) => filt.itp === filter1)
+      .filter(
+        (filt: any) =>
+          filt.dateOfInspection.slice(5, 7).split("-").reverse().join("-") ===
+          filter2
+      );
+
+    if (filter !== "" && filter1 === "" && filter2 === "") {
+      dispatch(updateWw(ss));
+    } else if (filter1 !== "" && filter === "" && filter2 === "") {
+      dispatch(updateWw(tt));
+    } else if (filter2 !== "" && filter === "" && filter1 === "") {
+      dispatch(updateWw(uu));
+    } else if (filter !== "" && filter1 !== "" && filter2 === "") {
+      dispatch(updateWw(xx));
+    } else if (filter !== "" && filter1 === "" && filter2 !== "") {
+      dispatch(updateWw(yy));
+    } else if (filter1 !== "" && filter2 !== "" && filter === "") {
+      dispatch(updateWw(zz));
+    } else if (filter1 !== "" && filter2 !== "" && filter !== "") {
+      dispatch(updateWw(aa));
+    } else {
+      dispatch(updateWw(rr));
+    }
+  };
+
+  //============================================================
+
   return (
     <div className="log">
       <div>
@@ -168,7 +237,7 @@ const Log = () => {
         </Button>
       </div>
 
-      <div className="grid" style={{ width: "100%" }}>
+      <div className="grid" style={{ width: "100%", height: 388 }}>
         {all.flat().length !== 0 ? (
           <>
             <div style={containerStyle}>
@@ -181,14 +250,22 @@ const Log = () => {
                   defaultColDef={defaultColDef}
                   animateRows={true}
                   ref={gridRef}
+                  enableCellTextSelection={true}
                   // onFilterChanged={handleFilterChange}
                   onSelectionChanged={(v: any) =>
                     setSelected(v.api.getSelectedRows()[0]._id)
                   }
+                  onFilterChanged={handleFilterChange}
                 ></AgGridReact>
               </div>
             </div>{" "}
-            :
+            <Button variant="contained" className="total">
+              <p>
+                <i style={{ textTransform: "lowercase" }}>
+                  count : {ww.length} row
+                </i>
+              </p>
+            </Button>
           </>
         ) : (
           <Box

@@ -45,7 +45,7 @@ const Log = () => {
       field: "type",
       checkboxSelection: true,
       headerName: "Type",
-      headerClass: "ag-header-cell-center-text",
+      // headerClass: "ag-header-cell-center-text",
 
       filter: "agColumnFilter",
       filterParams: {
@@ -67,8 +67,9 @@ const Log = () => {
     {
       field: "dateOfUsage",
       headerName: "Date",
-      filter: "agColumnFilter",
+      filter: "agMultiColumnFilter",
       filterParams: {
+        filter: "agMultiColumnFilter",
         defaultOption: "startsWith",
         suppressAndOrCondition: true,
       },
@@ -239,6 +240,7 @@ const Log = () => {
                   defaultColDef={defaultColDef}
                   animateRows={true}
                   ref={gridRef}
+                  enableCellTextSelection={true}
                   onFilterChanged={handleFilterChange}
                   onSelectionChanged={(v: any) =>
                     setSelected(v.api.getSelectedRows()[0]._id)

@@ -129,6 +129,7 @@ interface itnsProps {
     itnId: string;
     _id: string;
     filter: any;
+    ww: any[];
   };
 }
 
@@ -144,6 +145,7 @@ const initialState = {
   pdf: "",
   itnId: "",
   filter: "",
+  ww: [],
 };
 
 export const projectsSlice = createSlice({
@@ -165,6 +167,9 @@ export const projectsSlice = createSlice({
     // },
     filterByRoutine: (state, action) => {
       state.filter = action.payload;
+    },
+    updateWw: (state, action) => {
+      state.ww = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -200,6 +205,7 @@ export const projectsSlice = createSlice({
 export const itnData = (state: itnsProps) => state.itnz;
 
 export const {
+  updateWw,
   updateLoading,
   UpdateValuesOfSelect,
   // removeItns,
