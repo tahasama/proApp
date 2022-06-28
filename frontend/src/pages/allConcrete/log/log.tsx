@@ -70,7 +70,6 @@ const Log = () => {
       filter: "agMultiColumnFilter",
       filterParams: {
         filter: "agMultiColumnFilter",
-        defaultOption: "startsWith",
         suppressAndOrCondition: true,
       },
       cellRenderer: (params: any) => {
@@ -149,7 +148,7 @@ const Log = () => {
     .flat()
     .map((ds: any) => ds.quantity)
     .map((v) => (v === undefined ? 0 : v))
-    .reduce((a, b) => a + b);
+    .reduce((a, b) => a + b, 0);
 
   const getTotal = () => {
     const rr = all.flat();
@@ -228,7 +227,7 @@ const Log = () => {
         </Button>
       </div>
       <div className="grid" style={{ width: "100%", height: 388 }}>
-        {all.flat().length !== 0 ? (
+        {all.flat().length >= 0 ? (
           <>
             <div style={containerStyle}>
               <div style={gridStyle} className="ag-theme-alpine">
@@ -254,7 +253,6 @@ const Log = () => {
                 <i style={{ textTransform: "lowercase" }}>m³</i>
               </p>
             </Button>
-            :
           </>
         ) : (
           <Box

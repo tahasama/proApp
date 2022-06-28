@@ -19,7 +19,10 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import StatsPerReview from "./statsPerReview/statsPerReview";
-import { concreteData } from "../../../state/reducers/concreteSlice";
+import {
+  concreteData,
+  getAllConcretes,
+} from "../../../state/reducers/concreteSlice";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -58,7 +61,7 @@ const Stats = () => {
       },
       title: {
         display: true,
-        text: "Distribution of quality inspections",
+        text: "Distribution of Concrete (All types) in m³",
         font: { size: 16 },
       },
     },
@@ -71,14 +74,14 @@ const Stats = () => {
       },
       title: {
         display: true,
-        text: "Total Inspections per month",
+        text: "Total Concrete Pored per month in m³",
         font: { size: 16 },
       },
     },
   };
 
   useEffect(() => {
-    dispatch(getAllItns());
+    dispatch(getAllConcretes());
   }, []);
 
   const locations1 = [
@@ -103,44 +106,45 @@ const Stats = () => {
   let g: any[] = [];
   let dict: any = {};
 
+  const dew = (value: any) =>
+    all
+      .flat()
+      .filter((y: any) => y.itp === value)
+      .map((x: any) => x.quantity)
+      .reduce((a, b): any => a + b, 0);
+
   u.forEach((val, index) => {
     if (val === "aerationTank") {
-      a.push(index);
+      a.push(dew(val));
+
       dict[1] = a;
     } else if (val === "PrimaryClarifierP7") {
-      b.push(index);
+      b.push(dew(val));
+
       dict[2] = b;
     } else if (val === "PrimaryClarifierP8") {
-      c.push(index);
+      c.push(dew(val));
+
       dict[3] = c;
     } else if (val === "PrimaryClarifierP9") {
-      d.push(index);
+      d.push(dew(val));
       dict[4] = d;
     } else if (val === "secondaryClarifierP24") {
-      e.push(index);
+      e.push(dew(val));
       dict[5] = e;
     } else if (val === "secondaryClarifierP25") {
-      f.push(index);
+      f.push(dew(val));
       dict[6] = f;
     } else if (val === "secondaryClarifierP32") {
-      g.push(index);
+      g.push(dew(val));
       dict[7] = g;
     }
   });
-
   const data = {
     labels: locations1,
     datasets: [
       {
-        data: [
-          a.length,
-          b.length,
-          c.length,
-          d.length,
-          e.length,
-          f.length,
-          g.length,
-        ],
+        data: [a[0], b[0], c[0], d[0], e[0], f[0], g[0]],
         backgroundColor: [
           "rgba(255, 99, 132, 0.3)",
           "rgba(54, 162, 235, 0.3)",
@@ -164,12 +168,11 @@ const Stats = () => {
       },
     ],
   };
+
   //-------------------------------------for doughnut chart end
 
   //-----------------------------------------------------------------for all itn total per month start
-  let u1 = all
-    .flat()
-    .map((x: any) => new Date(x.dateOfInspection).getMonth() + 1);
+  let u1 = all.flat().map((x: any) => new Date(x.dateOfUsage).getMonth() + 1);
 
   const labels1: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   let a1: any[] = [];
@@ -185,44 +188,52 @@ const Stats = () => {
   let k1: any[] = [];
   let l1: any[] = [];
   let dict1: any = {};
+  // const dew1 = (value: any) => all;
+  const dew1 = (value: any) =>
+    all
+      .flat()
+      // .filter((y: any) => y.dateOfUsage?.slice(6, 7) === value)
+      .filter((y: any) => y.dateOfUsage.slice(6, 7) === JSON.stringify(value))
+      .map((x: any) => x.quantity)
+      .reduce((a, b): any => a + b, 0);
 
   u1.forEach((val, index) => {
     if (val === 1) {
-      a1.push(index);
-      dict1[1] = a1.length;
+      a1.push(dew1(val));
+      dict1[1] = a1[0];
     } else if (val === 2) {
-      b1.push(index);
-      dict1[2] = b1.length;
+      b1.push(dew1(val));
+      dict1[2] = b1[0];
     } else if (val === 3) {
-      c1.push(index);
-      dict1[3] = c1.length;
+      c1.push(dew1(val));
+      dict1[3] = c1[0];
     } else if (val === 4) {
-      d1.push(index);
-      dict1[4] = d1.length;
+      d1.push(dew1(val));
+      dict1[4] = d1[0];
     } else if (val === 5) {
-      e1.push(index);
-      dict1[5] = e1.length;
+      e1.push(dew1(val));
+      dict1[5] = e1[0];
     } else if (val === 6) {
-      f1.push(index);
-      dict1[6] = f1.length;
+      f1.push(dew1(val));
+      dict1[6] = f1[0];
     } else if (val === 7) {
-      g1.push(index);
-      dict1[7] = g1.length;
+      g1.push(dew1(val));
+      dict1[7] = g1[0];
     } else if (val === 8) {
-      h1.push(index);
-      dict1[8] = h1.length;
+      h1.push(dew1(val));
+      dict1[8] = h1[0];
     } else if (val === 9) {
-      i1.push(index);
-      dict1[9] = i1.length;
+      i1.push(dew1(val));
+      dict1[9] = i1[0];
     } else if (val === 10) {
-      j1.push(index);
-      dict1[10] = j1.length;
+      j1.push(dew1(val));
+      dict1[10] = j1[0];
     } else if (val === 11) {
-      k1.push(index);
-      dict1[11] = k1.length;
+      k1.push(dew1(val));
+      dict1[11] = k1[0];
     } else if (val === 12) {
-      l1.push(index);
-      dict1[12] = l1.length;
+      l1.push(dew1(val));
+      dict1[12] = l1[0];
     }
   });
   let uu1: any = [];
