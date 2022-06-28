@@ -62,70 +62,40 @@ const StatsPerReview = (all: any) => {
     let j: any[] = [];
     let k: any[] = [];
     let l: any[] = [];
-    all.all
-      .flat()
-      .filter((loca: any) => loca.review === v)
-      .map((x: any) => new Date(x.dateOfInspection).getMonth() + 1)
-      .forEach((val: any, index: any) => {
-        if (val === 1) {
-          a.push(index);
-          dict[1] = a.length;
-        } else if (val === 2) {
-          b.push(index);
-          dict[2] = b.length;
-        } else if (val === 3) {
-          c.push(index);
-          dict[3] = c.length;
-        } else if (val === 4) {
-          d.push(index);
-          dict[4] = d.length;
-        } else if (val === 5) {
-          e.push(index);
-          dict[5] = e.length;
-        } else if (val === 6) {
-          f.push(index);
-          dict[6] = f.length;
-        } else if (val === 7) {
-          g.push(index);
-          dict[7] = g.length;
-        } else if (val === 8) {
-          h.push(index);
-          dict[8] = h.length;
-        } else if (val === 9) {
-          i.push(index);
-          dict[9] = i.length;
-        } else if (val === 10) {
-          j.push(index);
-          dict[10] = j.length;
-        } else if (val === 11) {
-          k.push(index);
-          dict[11] = k.length;
-        } else if (val === 12) {
-          l.push(index);
-          dict[12] = l.length;
-        }
-      });
+    const uuu = labels.map(
+      (l: any) =>
+        all.all
+          .flat()
+          .filter((f: any) => f.review === v)
+          .filter(
+            (d: any) => d.dateOfInspection.slice(6, 7) === JSON.stringify(l)
+          ).length
+      // .map((q: any) => q.review)
+      // .reduce((a: any, b: any) => a + b, 0)
+    );
+    v === "C1" && uu.push(uuu);
+    v === "C2" && uu1.push(uuu);
+    v === "C3" && uu2.push(uuu);
   };
   //==============================================================================the function end
   //==============================================================================location start
 
-  dict = {};
   lm("C1");
-
-  labels.map((i: any) => {
-    dict[i] !== undefined ? uu.push(dict[i]) : uu.push(0);
-  });
-  dict = {};
   lm("C2");
-
-  labels.map((i: any) => {
-    dict[i] !== undefined ? uu1.push(dict[i]) : uu1.push(0);
-  });
-  dict = {};
   lm("C3");
-  labels.map((i: any) => {
-    dict[i] !== undefined ? uu2.push(dict[i]) : uu2.push(0);
-  });
+
+  // dict = {};
+  // labels.map((i: any) => {
+  //   dict[i] !== undefined ? uu.push(dict[i]) : uu.push(0);
+  // });
+  // dict = {};
+  // labels.map((i: any) => {
+  //   dict[i] !== undefined ? uu1.push(dict[i]) : uu1.push(0);
+  // });
+  // dict = {};
+  // labels.map((i: any) => {
+  //   dict[i] !== undefined ? uu2.push(dict[i]) : uu2.push(0);
+  // });
 
   const labelsName: any = [
     "Jan",
@@ -148,21 +118,21 @@ const StatsPerReview = (all: any) => {
     datasets: [
       {
         label: "C1",
-        data: uu,
+        data: uu.flat(),
         borderColor: "#85c600",
         backgroundColor: "#85c600",
         tension: 0.3,
       },
       {
         label: "C2",
-        data: uu1,
+        data: uu1.flat(),
         borderColor: "#256fff",
         backgroundColor: "#256fff",
         tension: 0.3,
       },
       {
         label: "C3",
-        data: uu2,
+        data: uu2.flat(),
 
         borderColor: "#ff0044",
         backgroundColor: "#ff0044",

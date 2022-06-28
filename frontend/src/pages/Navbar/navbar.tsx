@@ -215,9 +215,14 @@ export default function NavBar() {
               CONCRETE
             </Button>
           </Link>
-          <Button color="inherit" sx={{ marginRight: 4 }}>
-            Reinforcement
-          </Button>
+          <Link
+            to="../allreinforcement"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <Button color="inherit" sx={{ marginRight: 4 }}>
+              Reinforcement
+            </Button>
+          </Link>
           <Button color="inherit" sx={{ marginRight: 4 }}>
             NCR
           </Button>

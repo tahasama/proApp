@@ -8,6 +8,8 @@ import Log from "./log/log";
 import Stats from "./stats/stats";
 // import Log from "./log/log";
 // import Stats from "./stats/stats";
+// import Log from "./log/log";
+// import Stats from "./stats/stats";
 // import StatsPerMonth from "./stats/statsPerMonth/statsPerMonth";
 
 interface TabPanelProps {
@@ -45,7 +47,7 @@ function a11yProps(index: number) {
   };
 }
 
-export default function AllItn() {
+const AllReinforcement = () => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -85,4 +87,6 @@ export default function AllItn() {
       </div>
     </div>
   );
-}
+};
+
+export default AllReinforcement;

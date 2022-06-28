@@ -32,3 +32,10 @@
 .toUp {
   margin-top: -50px;
 }
+
+.total1 {
+  margin-top: 7px !important;
+  font-size: 15.5px !important;
+  /* margin: 10px 0px 5px 0px !important; */
+  padding: 0px 50px !important;
+}

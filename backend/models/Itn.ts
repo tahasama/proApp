@@ -14,6 +14,7 @@ const ItnSchema = new mongooses.Schema(
     image2Url: { type: String, required: false },
     review: { type: String, required: false },
     relatedConcrete: { type: Schema.Types.ObjectId, ref: "Concrete" },
+    relatedReinforcement: { type: Schema.Types.ObjectId, ref: "Concrete" },
   },
   {
     timestamps: true,

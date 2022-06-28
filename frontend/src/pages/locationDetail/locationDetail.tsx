@@ -9,6 +9,8 @@ import "./locationDetail.css";
 import LocationsItn from "../locationsItn/locationsItn";
 import NavBar from "../Navbar/navbar";
 import ModalC from "./modalC/modalC";
+import ConcreteOfLocation from "./ConcreteOfLocation/concreteOfLocation";
+import ReinforcementOfLocation from "./ReinforcementOfLocation/ReinforcementOfLocation";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -118,10 +120,14 @@ const LocationDetails = () => {
             </div>
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <div style={{ marginLeft: 200 }}>2222222222222</div>
+            <div style={{ marginLeft: 200 }}>
+              <ConcreteOfLocation />
+            </div>
           </TabPanel>
           <TabPanel value={value} index={2}>
-            <div style={{ marginLeft: 100 }}>33333333333</div>
+            <div style={{ marginLeft: 100 }}>
+              <ReinforcementOfLocation />
+            </div>
           </TabPanel>
         </Box>
       </div>

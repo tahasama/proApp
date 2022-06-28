@@ -9,7 +9,7 @@ import {
   Legend,
   BarElement,
 } from "chart.js";
-import "./stats.css";
+// import "./stats.css";
 import {
   CategoryScale,
   LinearScale,
@@ -18,11 +18,15 @@ import {
   Title,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import StatsPerReview from "./statsPerReview/statsPerReview";
+// import StatsPerReview from "./statsPerReview/statsPerReview";
 import {
   concreteData,
   getAllConcretes,
 } from "../../../state/reducers/concreteSlice";
+import {
+  getAllReinforcements,
+  ReinforcementData,
+} from "../../../state/reducers/reinforcementSlice";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -38,7 +42,7 @@ ChartJS.register(
 
 const Stats = () => {
   const dispatch = useAppDispatch();
-  const { all } = useAppSelector(concreteData);
+  const { all } = useAppSelector(ReinforcementData);
   const labelsName: any = [
     "Jan",
     "Feb",
@@ -81,7 +85,7 @@ const Stats = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllConcretes());
+    dispatch(getAllReinforcements());
   }, []);
 
   const locations1 = [
@@ -260,26 +264,24 @@ const Stats = () => {
     <div>
       <div
         className="DoughnutDimension"
-        style={{ margin: 0, padding: 0, width: "30%" }}
+        style={{ margin: 0, padding: 0, width: "33%" }}
       >
-        <Doughnut options={optionsPie} data={data} style={{ marginTop: -84 }} />
+        <Doughnut
+          options={optionsPie}
+          data={data}
+          style={{ marginTop: -54, marginLeft: 60 }}
+        />
       </div>
 
       <div
         className="LineDimension"
-        style={{ margin: 0, padding: 0, width: "38%" }}
+        style={{ margin: 0, padding: 0, width: "48%" }}
       >
         <Line
           options={optionsLine}
           data={data1}
-          style={{ width: 340, marginTop: -20 }}
+          style={{ width: 340, marginTop: -240, marginLeft: -60 }}
         />
-      </div>
-      <div
-        className="BarDimension"
-        style={{ margin: 0, padding: 0, width: "39.8%" }}
-      >
-        <StatsPerReview all={all} />
       </div>
     </div>
   );
