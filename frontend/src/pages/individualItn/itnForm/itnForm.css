@@ -5,48 +5,57 @@
   align-items: center;
   color: black;
   font-weight: 600;
-  font-family: " Calibri";
+  font-family: "Calibri";
   font-size: larger;
+  margin: px;
+}
+.xx1 {
+  position: relative;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+}
+.xx2 {
+  position: relative;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  padding: 2px;
+  border: 1px solid black;
+  border-bottom: 0px;
+  border-top: 0px;
+  margin-top: -20px;
+}
+.xx3 {
+  position: relative;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+}
+.client {
+  position: absolute;
+  top: -60px;
+  margin: 15px;
+  width: 100%;
+  padding: 5px 0;
+  text-align: center;
+}
+.contractor2 {
+  position: absolute;
+  top: -54px;
+  border: none;
+  width: 100%;
+  margin: 15px;
+  padding: 5px 0;
+  text-align: center;
 }
 .firstRaw {
   display: flex;
   flex-direction: row;
+  text-align: left;
+  border: 1px solid black;
 }
 
-.logo1 {
-  border: 1px solid black;
-  flex: 1;
-  padding: 1px;
-  margin: 1px;
-}
-.logo1Size {
-  margin-top: 50px;
-  margin-left: 80px;
-  height: auto;
-  width: 55%;
-}
-.logo2 {
-  border: 1px solid black;
-  flex: 1;
-  padding: 1px;
-  margin: 1px;
-  text-align: center;
-  font-size: large;
-  font-weight: 700;
-  word-spacing: 5px;
-}
-.logo3 {
-  border: 1px solid black;
-  flex: 1;
-  padding: 1px;
-  margin: 1px;
-}
-.logo3Size {
-  margin-top: 30px;
-  margin-left: 120px;
-  height: auto;
-  width: 30%;
-}
 .owner {
   border: 1px solid black;
   /* flex: 4; */
@@ -115,6 +124,7 @@
   flex: 1;
   padding: 1px;
   margin: 1px;
+  text-align: left;
 }
 .dis1 {
   margin: 0;
@@ -308,4 +318,7 @@
 @page {
   size: auto;
   margin: 0;
+}
+.lil {
+  padding: 4.8px 0px;
 }

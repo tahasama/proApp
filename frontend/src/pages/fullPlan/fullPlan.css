@@ -10,8 +10,8 @@
 .secondaryClarifierP24 {
   cursor: pointer;
   position: absolute;
-  top: 286px;
-  left: 478px;
+  top: 330px;
+  left: 538px;
   opacity: 0;
   height: 118px;
   width: 118px;
@@ -45,8 +45,8 @@
 .secondaryClarifierP25 {
   cursor: pointer;
   position: absolute;
-  top: 446px;
-  left: 478px;
+  top: 510px;
+  left: 538px;
   height: 118px;
   width: 118px;
   opacity: 0;
@@ -81,8 +81,8 @@
 .secondaryClarifierP32 {
   cursor: pointer;
   position: absolute;
-  top: 446px;
-  left: 304px;
+  top: 510px;
+  left: 340px;
   height: 118px;
   width: 118px;
   opacity: 0;
@@ -116,8 +116,8 @@
 .PrimaryClarifierP7 {
   cursor: pointer;
   position: absolute;
-  top: 314px;
-  right: 294px;
+  top: 357px;
+  right: 326px;
   opacity: 0;
   height: 72px;
   width: 72px;
@@ -152,8 +152,8 @@
 .PrimaryClarifierP8 {
   cursor: pointer;
   position: absolute;
-  top: 402px;
-  right: 294px;
+  top: 457px;
+  right: 326px;
   opacity: 0;
   height: 72px;
   width: 72px;
@@ -188,8 +188,8 @@
 .PrimaryClarifierP9 {
   cursor: pointer;
   position: absolute;
-  top: 492px;
-  right: 294px;
+  top: 559px;
+  right: 326px;
   height: 72px;
   width: 72px;
   opacity: 0;
@@ -223,8 +223,8 @@
 .aerationTank {
   cursor: pointer;
   position: absolute;
-  top: 330px;
-  left: 660px;
+  top: 390px;
+  left: 740px;
   height: 220px;
   width: 220px;
   opacity: 0;
