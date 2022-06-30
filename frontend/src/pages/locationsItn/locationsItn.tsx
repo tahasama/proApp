@@ -295,7 +295,13 @@ const LocationsItn = (itp: any) => {
                           >
                             QW211101-SNCE-QA-ITN-{handleNumber(itn.num)}
                           </h5>
-                          <h6 className="tulipeDimensions"> {itn.routine} </h6>{" "}
+                          <h6
+                            className="tulipeDimensions"
+                            style={{ whiteSpace: "pre-line", width: "150px" }}
+                          >
+                            {" "}
+                            {itn.routine}{" "}
+                          </h6>{" "}
                         </a>
                       </TimelineContent>
                     </TimelineItem>

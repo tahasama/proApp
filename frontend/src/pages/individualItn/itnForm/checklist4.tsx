@@ -2,7 +2,47 @@ import snce from "../../../images/snce.png";
 import jesa from "../../../images/jesa.png";
 import "./checklist.css";
 import { textAlign } from "@mui/system";
-const Checklist4 = () => {
+import { itnData } from "../../../state";
+import { useAppSelector } from "../../../state/hooks";
+const Checklist4 = (dateItn: any) => {
+  const { individualItn } = useAppSelector(itnData);
+  const handleNumber = (num: any) => {
+    return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
+  };
+  const ItpStuff = {
+    ItpNum:
+      individualItn.itp === "aerationTank"
+        ? "003"
+        : individualItn.itp === "PrimaryClarifierP7"
+        ? "001"
+        : individualItn.itp === "PrimaryClarifierP8"
+        ? "001"
+        : individualItn.itp === "PrimaryClarifierP9"
+        ? "001"
+        : individualItn.itp === "secondaryClarifierP24"
+        ? "002"
+        : individualItn.itp === "secondaryClarifierP25"
+        ? "002"
+        : individualItn.itp === "secondaryClarifierP32"
+        ? "002"
+        : "000",
+    DrawingNum:
+      individualItn.itp === "aerationTank"
+        ? "02-CI-DGA-00015"
+        : individualItn.itp === "PrimaryClarifierP7"
+        ? "01-CI-DGA-00001"
+        : individualItn.itp === "PrimaryClarifierP8"
+        ? "01-CI-DGA-00001"
+        : individualItn.itp === "PrimaryClarifierP9"
+        ? "01-CI-DGA-00001"
+        : individualItn.itp === "secondaryClarifierP24"
+        ? "02-CI-DGA-00001"
+        : individualItn.itp === "secondaryClarifierP25"
+        ? "02-CI-DGA-00001"
+        : individualItn.itp === "secondaryClarifierP32"
+        ? "02-CI-DGA-00001"
+        : "000",
+  };
   return (
     <div className="checkCover" style={{ fontSize: 21 }}>
       <div className="ProjName">PROJECT AND LOCATION: SAFI WWTP-MOROCCO </div>
@@ -25,21 +65,28 @@ const Checklist4 = () => {
         </div>{" "}
       </div>
       <div style={{ display: "flex" }}>
-        <p className="border2">ITP no. </p>
+        <p className="border2">ITP no. : 2265011_01CG-G120-{ItpStuff.ItpNum}</p>
         <p className="border2">Installation Checklist No : ICL-C-004</p>
-        <p className="border2">ITN No. : </p>
+        <p className="border2">
+          ITN No. : QW211101-SNCE-QA-ITN-
+          {handleNumber(individualItn.num)}
+        </p>
       </div>
       <div className="ProjName">Check List for Concrete Work</div>
       <div style={{ display: "flex", textAlign: "left" }}>
         <p className="border3">Document no. : </p>
-        <p className="border3">Area/Building/Floor :</p>
+        <p className="border3">
+          Area/Building/Floor : {individualItn.itp} {individualItn.subLocation}
+        </p>
       </div>
       <div style={{ display: "flex", textAlign: "left" }}>
-        <p className="border4">Drawing / Specification no. : </p>
-        <p className="border4">Inspection Date :</p>
+        <p className="border4">
+          Drawing / Specification no. : QW211101-{ItpStuff.DrawingNum}
+        </p>
+        <p className="border4">Inspection Date : {dateItn.dateITN}</p>
       </div>
       <div className="space"></div>
-      <div className="bigTable">
+      <div className="bigTable" style={{ height: 50 }}>
         <div className="col1">ITEM</div>
         <div className="col2">ACTIVITY</div>
         <div className="col3">YES</div>
@@ -47,7 +94,7 @@ const Checklist4 = () => {
         <div className="col5">N/A</div>
         <div className="col6">Remarks</div>
       </div>{" "}
-      <div className="bigTable">
+      <div className="bigTable" style={{ height: 50 }}>
         <div className="col1">1</div>
         <div className="col2">
           Whether concrete mix design is approved and available at site?
@@ -57,7 +104,7 @@ const Checklist4 = () => {
         <div className="col5"></div>
         <div className="col6"></div>
       </div>{" "}
-      <div className="bigTable">
+      <div className="bigTable" style={{ height: 60 }}>
         <div className="col1">2</div>
         <div className="col2">
           "Whether the ready mix concrete delivered at site complies with the
@@ -69,7 +116,7 @@ const Checklist4 = () => {
         <div className="col5"></div>
         <div className="col6"></div>
       </div>{" "}
-      <div className="bigTable">
+      <div className="bigTable" style={{ height: 60 }}>
         <div className="col1">3</div>
         <div className="col2">
           Whether temperature of the ready mix concrete delivered at site is
@@ -80,7 +127,7 @@ const Checklist4 = () => {
         <div className="col5"></div>
         <div className="col6"></div>
       </div>{" "}
-      <div className="bigTable">
+      <div className="bigTable" style={{ height: 50 }}>
         <div className="col1">4</div>
         <div className="col2">
           "Whether required numbers of cube moulds of approved quality are
@@ -91,7 +138,7 @@ const Checklist4 = () => {
         <div className="col5"></div>
         <div className="col6"></div>
       </div>{" "}
-      <div className="bigTable">
+      <div className="bigTable" style={{ height: 50 }}>
         <div className="col1">5</div>
         <div className="col2">
           Whether needle vibrators of required size are available?
@@ -101,7 +148,7 @@ const Checklist4 = () => {
         <div className="col5"></div>
         <div className="col6"></div>
       </div>{" "}
-      <div className="bigTable">
+      <div className="bigTable" style={{ height: 50 }}>
         <div className="col1">6</div>
         <div className="col2">
           "Whether required manpower has been arranged for the concreting
@@ -112,7 +159,7 @@ const Checklist4 = () => {
         <div className="col5"></div>
         <div className="col6"></div>
       </div>
-      <div className="bigTable">
+      <div className="bigTable" style={{ height: 70 }}>
         <div className="col1">7</div>
         <div className="col2">
           "Whether facilities (such as tarpaulin/ plastic sheets, etc.) are
@@ -123,7 +170,7 @@ const Checklist4 = () => {
         <div className="col5"></div>
         <div className="col6"></div>
       </div>{" "}
-      <div className="bigTable">
+      <div className="bigTable" style={{ height: 50 }}>
         <div className="col1">8</div>
         <div className="col2">
           Whether the method of pouring concrete is as specified?
@@ -133,7 +180,7 @@ const Checklist4 = () => {
         <div className="col5"></div>
         <div className="col6"></div>
       </div>{" "}
-      <div className="bigTable">
+      <div className="bigTable" style={{ height: 50 }}>
         <div className="col1">9</div>
         <div className="col2">
           Whether the slump test result confirms with Code
@@ -143,7 +190,7 @@ const Checklist4 = () => {
         <div className="col5"></div>
         <div className="col6"></div>
       </div>{" "}
-      <div className="bigTable">
+      <div className="bigTable" style={{ height: 50 }}>
         <div className="col1">10</div>
         <div className="col2">Whether the concrete placed is homogenous? "</div>
         <div className="col3"></div>
@@ -151,7 +198,7 @@ const Checklist4 = () => {
         <div className="col5"></div>
         <div className="col6"></div>
       </div>{" "}
-      <div className="bigTable">
+      <div className="bigTable" style={{ height: 50 }}>
         <div className="col1">11</div>
         <div className="col2">
           Whether the concrete is placed, compacted and finished within the
@@ -162,7 +209,7 @@ const Checklist4 = () => {
         <div className="col5"></div>
         <div className="col6"></div>
       </div>{" "}
-      <div className="bigTable">
+      <div className="bigTable" style={{ height: 50 }}>
         <div className="col1">12</div>
         <div className="col2">
           "Whether sufficient numbers of cubes have been cast and proper
@@ -173,7 +220,7 @@ const Checklist4 = () => {
         <div className="col5"></div>
         <div className="col6"></div>
       </div>{" "}
-      <div className="bigTable">
+      <div className="bigTable" style={{ height: 50 }}>
         <div className="col1">13</div>
         <div className="col2">
           Whether adequate facilities and water are available for curing of

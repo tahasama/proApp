@@ -11,11 +11,11 @@ import IndividualItn from "./pages/individualItn/individualItn";
 import ItnForm from "./pages/individualItn/itnForm/itnForm";
 
 import LocationDetail from "./pages/locationDetail/locationDetail";
-import Checklist from "./pages/individualItn/itnForm/checklist6";
-import Checklist5 from "./pages/individualItn/itnForm/checklist5";
-import Checklist4 from "./pages/individualItn/itnForm/checklist4";
-import Checklist3 from "./pages/individualItn/itnForm/checklist3";
-import Checklist2 from "./pages/individualItn/itnForm/checklist2";
+// import Checklist from "./pages/individualItn/itnForm/checklist6";
+// import Checklist5 from "./pages/individualItn/itnForm/checklist5";
+// import Checklist4 from "./pages/individualItn/itnForm/checklist4";
+// import Checklist3 from "./pages/individualItn/itnForm/checklist3";
+// import Checklist2 from "./pages/individualItn/itnForm/checklist2";
 
 function App() {
   return (
@@ -23,7 +23,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<FullPlan />} />
-          <Route path="/checklist" element={<Checklist2 />} />
           <Route path="/allitn" element={<AllItn />} />
           <Route path="/allconcrete" element={<AllConcrete />} />
           <Route path="/allreinforcement" element={<AllReinforcement />} />

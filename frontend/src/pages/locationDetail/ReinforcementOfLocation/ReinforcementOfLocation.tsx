@@ -80,7 +80,7 @@ const ReinforcementOfLocation = () => {
   let itpName = itp;
 
   const data = {
-    labels: [itpName, "Other ITN"],
+    labels: [itpName + "(%)", "Other Locations (%)"],
     datasets: [
       {
         data: [
@@ -202,7 +202,7 @@ const ReinforcementOfLocation = () => {
 
     datasets: [
       {
-        label: "ITN per month",
+        label: "Reinforcement used per month",
         data: uu1,
         borderColor: "rgb(54, 162, 235)",
         backgroundColor: "rgba(75, 142, 192, 0.2)",
@@ -222,7 +222,7 @@ const ReinforcementOfLocation = () => {
             marginTop: 50,
             marginLeft: 340,
             padding: 15,
-
+            cursor: "auto",
             width: 500,
           }}
         >
@@ -234,7 +234,7 @@ const ReinforcementOfLocation = () => {
             .reduce((a, b): any => a + b, 0)}
           &nbsp; Kg
         </Button>
-        <div className="DoughnutDimension" style={{ padding: 0, width: "30%" }}>
+        <div className="DoughnutDimension" style={{ padding: 0, width: "31%" }}>
           <Pie
             options={optionsPie}
             data={data}

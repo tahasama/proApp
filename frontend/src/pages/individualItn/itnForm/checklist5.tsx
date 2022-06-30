@@ -2,7 +2,48 @@ import snce from "../../../images/snce.png";
 import jesa from "../../../images/jesa.png";
 import "./checklist.css";
 import { textAlign } from "@mui/system";
-const Checklist5 = () => {
+import { itnData } from "../../../state";
+import { useAppSelector } from "../../../state/hooks";
+const Checklist5 = (dateItn: any) => {
+  const { individualItn } = useAppSelector(itnData);
+  console.log("3333333333", dateItn);
+  const handleNumber = (num: any) => {
+    return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
+  };
+  const ItpStuff = {
+    ItpNum:
+      individualItn.itp === "aerationTank"
+        ? "003"
+        : individualItn.itp === "PrimaryClarifierP7"
+        ? "001"
+        : individualItn.itp === "PrimaryClarifierP8"
+        ? "001"
+        : individualItn.itp === "PrimaryClarifierP9"
+        ? "001"
+        : individualItn.itp === "secondaryClarifierP24"
+        ? "002"
+        : individualItn.itp === "secondaryClarifierP25"
+        ? "002"
+        : individualItn.itp === "secondaryClarifierP32"
+        ? "002"
+        : "000",
+    DrawingNum:
+      individualItn.itp === "aerationTank"
+        ? "02-CI-DGA-00015"
+        : individualItn.itp === "PrimaryClarifierP7"
+        ? "01-CI-DGA-00001"
+        : individualItn.itp === "PrimaryClarifierP8"
+        ? "01-CI-DGA-00001"
+        : individualItn.itp === "PrimaryClarifierP9"
+        ? "01-CI-DGA-00001"
+        : individualItn.itp === "secondaryClarifierP24"
+        ? "02-CI-DGA-00001"
+        : individualItn.itp === "secondaryClarifierP25"
+        ? "02-CI-DGA-00001"
+        : individualItn.itp === "secondaryClarifierP32"
+        ? "02-CI-DGA-00001"
+        : "000",
+  };
   return (
     <div className="checkCover">
       <div className="ProjName">PROJECT AND LOCATION: SAFI WWTP-MOROCCO </div>
@@ -25,20 +66,25 @@ const Checklist5 = () => {
         </div>{" "}
       </div>
       <div style={{ display: "flex" }}>
-        <p className="border2">ITP no. </p>
+        <p className="border2">ITP no. Q2265011_01CG-G120-{ItpStuff.ItpNum}</p>
         <p className="border2">Installation Checklist No : ICL-C-005</p>
-        <p className="border2">ITN No. : </p>
+        <p className="border2">
+          ITN No. : QW211101-SNCE-QA-ITN-
+          {handleNumber(individualItn.num)}
+        </p>
       </div>
       <div className="ProjName">
         Check List for Final Check after Concrete setting
       </div>
       <div style={{ display: "flex", textAlign: "left" }}>
         <p className="border3">Document no. : </p>
-        <p className="border3">Area/Building/Floor :</p>
+        <p className="border3">
+          Area/Building/Floor : {individualItn.itp} {individualItn.subLocation}
+        </p>
       </div>
       <div style={{ display: "flex", textAlign: "left" }}>
         <p className="border4">Drawing / Specification no. : </p>
-        <p className="border4">Inspection Date :</p>
+        <p className="border4">Inspection Date : {dateItn.dateITN}</p>
       </div>
       <div className="space"></div>
       <div className="bigTable">

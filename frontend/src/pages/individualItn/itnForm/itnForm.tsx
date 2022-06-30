@@ -1,7 +1,7 @@
 import "./itnForm.css";
 import snce from "../../../images/snce.png";
 import jesa from "../../../images/jesa.png";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getItn, itnData } from "../../../state";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
@@ -11,6 +11,7 @@ import Checklist2 from "./checklist2";
 import Checklist3 from "./checklist3";
 import Checklist5 from "./checklist5";
 import Checklist4 from "./checklist4";
+import Button from "@mui/material/Button";
 
 const ItnForm = () => {
   const params: any = useParams();
@@ -21,11 +22,17 @@ const ItnForm = () => {
     return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
   };
 
-  const date = new Date(individualItn.dateOfInspection).toDateString();
+  const dateITN: any = new Date(
+    individualItn.dateOfInspection
+  ).toLocaleDateString(navigator.language, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 
   var previousDate = new Date(individualItn.dateOfInspection);
   previousDate.setDate(previousDate.getDate() - 1);
-  const previousDateString: any = previousDate.toDateString();
+  // const previousDateString: any = previousDate.toDateString();
 
   const fff = new Date(previousDate).toLocaleDateString(navigator.language, {
     year: "numeric",
@@ -41,6 +48,23 @@ const ItnForm = () => {
   console.log("GGGGGG", individualItn.routine);
   return (
     <div className="carcass">
+      <Link
+        to={`../${individualItn.itp}/${individualItn._id}`}
+        style={{
+          position: "absolute",
+          top: 50,
+          right: 100,
+          backgroundColor: "yellowgreen",
+          padding: 38,
+          cursor: "pointer",
+          zIndex: 99,
+          borderRadius: 10,
+          textDecoration: "none",
+        }}
+        className="linkGoBack"
+      >
+        Go Back
+      </Link>
       <div className="firstRaw">
         <div style={{ display: "flex" }}>
           <div style={{ flex: 1, width: 400, display: "flex" }} className="xx1">
@@ -67,7 +91,7 @@ const ItnForm = () => {
             className="xx2"
           >
             <br />
-            <p style={{ flex: 1 }}> PROJECT :</p>
+            <p style={{ flex: 1 }}> PROJECT:</p>
             <p style={{ flex: 1 }}> SAFI STEP PROJECT CIVIL WORKS </p>
             <p style={{ flex: 1 }}>QW211201-WWPT SAFI</p>
           </div>
@@ -105,17 +129,7 @@ const ItnForm = () => {
       </div>
       <div className="firstRaw lil">
         <p className="dateOf0"> </p>
-        <p className="dateOf">
-          Date of Inspection:{" "}
-          {new Date(individualItn.dateOfInspection).toLocaleDateString(
-            navigator.language,
-            {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            }
-          )}
-        </p>
+        <p className="dateOf">Date of Inspection: {dateITN}</p>
       </div>
       <div className="firstRaw lil">
         <p className="loc" style={{ padding: 11 }}>
@@ -317,18 +331,23 @@ const ItnForm = () => {
           Date:
         </p>
       </div>
-      {individualItn.routine === "Backfilling" && <Checklist6 />}
+      {individualItn.routine === "Backfilling" && (
+        <Checklist6 dateITN={dateITN} individualItnValue={individualItn} />
+      )}
       {(individualItn.routine === "Concrete Tests" ||
-        individualItn.routine === "Curing") && <Checklist5 />}
+        individualItn.routine === "Curing") && <Checklist5 dateITN={dateITN} />}
       {individualItn.routine === "Concrete placing and finishing" && (
-        <Checklist4 />
+        <Checklist4 dateITN={dateITN} individualItnValue={individualItn} />
       )}
       {(individualItn.routine === "Lean Concrete" ||
-        individualItn.routine === "Mass Concrete") && <Checklist2 />}
-      {(individualItn.routine === "Reinforcement Steel Installation" ||
-        individualItn.routine === "Formwork Installation") && <Checklist3 />}
+        individualItn.routine === "Mass Concrete") && (
+        <Checklist2 dateITN={dateITN} individualItnValue={individualItn} />
+      )}
+      {individualItn.routine === "Reinforcement & Formwork" && (
+        <Checklist3 dateITN={dateITN} individualItnValue={individualItn} />
+      )}
       {individualItn.routine === "Excavation until foundation Bottom" && (
-        <Checklist5 />
+        <Checklist5 dateITN={dateITN} individualItnValue={individualItn} />
       )}
     </div>
   );

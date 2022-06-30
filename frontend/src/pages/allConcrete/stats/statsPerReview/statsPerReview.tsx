@@ -36,8 +36,8 @@ const StatsPerReview = (all: any) => {
       },
       title: {
         display: true,
-        text: "Concrete Types per month",
-        font: { size: 18 },
+        text: "Concrete Poured by types per month (m³)",
+        font: { size: 16 },
       },
     },
   };

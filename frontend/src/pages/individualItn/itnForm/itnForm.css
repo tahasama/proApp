@@ -310,6 +310,13 @@
   height: 50px;
 }
 
+.linkGoBack {
+  opacity: 0;
+}
+body:hover .linkGoBack {
+  opacity: 1;
+}
+
 @media print {
   body {
     -webkit-print-color-adjust: exact;

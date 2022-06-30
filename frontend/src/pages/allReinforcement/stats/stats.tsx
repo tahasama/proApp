@@ -65,7 +65,7 @@ const Stats = () => {
       },
       title: {
         display: true,
-        text: "Distribution of Concrete (m³) (all types)",
+        text: "Distribution of Reinforcement usage (Kg)",
         font: { size: 16 },
       },
     },
@@ -78,7 +78,7 @@ const Stats = () => {
       },
       title: {
         display: true,
-        text: "Total Concrete Poured per month (m³)",
+        text: "Total Reinforcement used per month (Kg)",
         font: { size: 16 },
       },
     },

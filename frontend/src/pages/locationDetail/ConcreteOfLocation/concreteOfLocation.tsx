@@ -59,7 +59,7 @@ const ConcreteOfLocation = () => {
       },
       title: {
         display: true,
-        text: "Concrete Types per month",
+        text: "Concrete poured by types per month",
         font: { size: 18 },
       },
     },
