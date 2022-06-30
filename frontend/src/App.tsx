@@ -11,6 +11,8 @@ import IndividualItn from "./pages/individualItn/individualItn";
 import ItnForm from "./pages/individualItn/itnForm/itnForm";
 
 import LocationDetail from "./pages/locationDetail/locationDetail";
+import AllNcr from "./pages/allNcr/allNcr";
+import AllQor from "./pages/allQor/allQor";
 // import Checklist from "./pages/individualItn/itnForm/checklist6";
 // import Checklist5 from "./pages/individualItn/itnForm/checklist5";
 // import Checklist4 from "./pages/individualItn/itnForm/checklist4";
@@ -26,6 +28,8 @@ function App() {
           <Route path="/allitn" element={<AllItn />} />
           <Route path="/allconcrete" element={<AllConcrete />} />
           <Route path="/allreinforcement" element={<AllReinforcement />} />
+          <Route path="/allNcr" element={<AllNcr />} />
+          <Route path="/allQor" element={<AllQor />} />
           <Route path="/:itp" element={<LocationDetail />} />
           <Route path="/:itp/:itnId" element={<IndividualItn />} />
           <Route path="/:itp/:itnId/itnForm" element={<ItnForm />} />

@@ -188,7 +188,6 @@ export default function NavBar() {
               </Typography>
             </Button>
           </Link>
-
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -222,13 +221,23 @@ export default function NavBar() {
             <Button color="inherit" sx={{ marginRight: 4 }}>
               Reinforcement
             </Button>
+          </Link>{" "}
+          <Link
+            to="../allNcr"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <Button color="inherit" sx={{ marginRight: 4 }}>
+              NCR
+            </Button>
+          </Link>{" "}
+          <Link
+            to="../allQor"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <Button color="inherit" sx={{ marginRight: 9 }}>
+              QOR
+            </Button>
           </Link>
-          <Button color="inherit" sx={{ marginRight: 4 }}>
-            NCR
-          </Button>
-          <Button color="inherit" sx={{ marginRight: 9 }}>
-            QOR
-          </Button>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
               size="large"
