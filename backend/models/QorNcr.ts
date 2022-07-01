@@ -11,6 +11,8 @@ const QorNcrSchema = new mongooses.Schema(
     status: { type: String, required: true },
     ncr: { type: String, required: false },
     ncrRes: { type: String, required: false },
+    image1Url: { type: String, required: false },
+    image2Url: { type: String, required: false },
   },
   {
     timestamps: true,

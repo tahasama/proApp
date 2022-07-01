@@ -27,7 +27,6 @@ routerQ.post("/create", async (req, res) => {
 // get itn by id
 routerQ.get("/:id", async (req, res) => {
   try {
-    console.log("44", req.params);
     const qorNcr = await QorNcr.findById(req.params.id);
     res.status(200).json(qorNcr);
   } catch (err) {
@@ -45,6 +44,8 @@ routerQ.put("/:id", async (req, res) => {
       },
       { new: true }
     );
+    console.log("000999", updateQorNcr);
+
     res.status(200).json(updateQorNcr);
   } catch (err) {
     res.status(500).json(err);

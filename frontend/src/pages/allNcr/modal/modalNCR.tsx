@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { LocalizationProvider, MobileDatePicker } from "@mui/lab";
 import { Stack, TextField } from "@mui/material";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
@@ -19,7 +19,9 @@ import {
   getQorNcr,
   QorNcrData,
   updateQorNcr,
+  uploadImages,
 } from "../../../state/reducers/qorNcrSlice";
+import UploadNcr from "./uploadNcr";
 
 const style = {
   position: "absolute" as "absolute",
@@ -35,6 +37,8 @@ const style = {
 
 export default function ModalM(selected: any) {
   const [open, setOpen] = React.useState(false);
+  const imageRef1 = useRef<any>(null);
+  const imageRef2 = useRef<any>(null);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useAppDispatch();
@@ -54,6 +58,44 @@ export default function ModalM(selected: any) {
   // const handleUpload = () => {
   //   dispatch(deleteQorNcr(selected));
   // };
+  const upload = async (e: any) => {
+    e.preventDefault();
+    // setLoading(true);
+    const value = {
+      qorncrId: individualQorNcr._id,
+      qorncrId1: "1-" + individualQorNcr._id,
+      qorncrId2: "2-" + individualQorNcr._id,
+      image1: imageRef1.current.files[0],
+      image2: imageRef2.current.files[0],
+    };
+    dispatch(uploadImages(value));
+    // dispatch(
+    //   updateqorncr({
+
+    //   })
+    // ),
+    // dispatch(
+    //   newUserImage({
+    //     userimage: imgUrl,
+    //   })
+    // );
+    //   dispatch(
+    //     newImage({
+    //       image: imgUrl,
+    //     })
+    //   );
+
+    //   dispatch(cancelState({ cancelImage: false }));
+    // setTimeout(() => {
+    //   handleClose();
+    //   // setLoading(false);
+    // }, 2000);
+
+    //     } else {
+    //       setError(true);
+    //       //   dispatch(cancelState({ cancelImage: true }));
+    //     }
+  };
   return (
     <div>
       <Button
@@ -128,6 +170,27 @@ export default function ModalM(selected: any) {
                   />
                 </Stack>
               </LocalizationProvider>
+              <div>
+                <label htmlFor="file-upload" className="imageUpload">
+                  Browse Image
+                </label>
+                <input id="file-upload" ref={imageRef1} type="file" />
+                <input id="file-upload" ref={imageRef2} type="file" />
+
+                <button onClick={upload} className="imageUpload upload xx">
+                  {/* {loading && <CircularProgress color="secondary" />} */}
+                  <span className="uploadText">Upload</span>
+                </button>
+                <button
+                  className="imageUpload upload xy"
+                  // onClick={() => dispatch(cancelState({ cancelImage: false }))}
+                >
+                  <span className="uploadText"> Cancel</span>
+                </button>
+                {/* {error && (
+        <p className="errorMessage">please add an image before uploading!</p>
+      )} */}
+              </div>
             </div>
             <div
               onClick={() => (
@@ -141,6 +204,8 @@ export default function ModalM(selected: any) {
                         dateOfResponse: value2,
                         description: inputRefDescription.current.value,
                         status: newStatus,
+                        image1Url: imageRef1.current.files[0],
+                        image2Url: imageRef2.current.files[0],
                       })
                     )
                   : dispatch(

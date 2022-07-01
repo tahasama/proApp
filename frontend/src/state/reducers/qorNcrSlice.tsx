@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { storage } from "../../firebase";
 
 const PROJECT_URL: any = process.env.REACT_APP_PROJECT_URL_NCRQOR;
 
@@ -19,9 +21,7 @@ export const getAllQorNcrs: any = createAsyncThunk(
 export const getQorNcr = createAsyncThunk("getQorNcr", async (value: any) => {
   try {
     console.log("00000d", value);
-    const res = await axios.get(
-      "http://localhost:5000/api/qorncr/" + value
-    );
+    const res = await axios.get("http://localhost:5000/api/qorncr/" + value);
     console.log("888888888888", res.data);
 
     return res.data;
@@ -68,6 +68,39 @@ export const updateQorNcr = createAsyncThunk(
       const res = await axios.put(PROJECT_URL + value._id, value);
       return res.data;
     } catch (error) {
+      return error;
+    }
+  }
+);
+export const uploadImages = createAsyncThunk(
+  "uploadImage",
+  async (value: any) => {
+    console.log("uploaaaaaaaaaaaaaaaaad", value);
+    const storageRef = ref(
+      storage,
+      value.image1 ? `${value.qorncrId}.jpg` : `${value.qorncrId}.jpg`
+    );
+    try {
+      await uploadBytesResumable(
+        storageRef,
+        value.image1 ? value.image1 : value.image2
+      );
+
+      try {
+        setTimeout(async () => {
+          const res = await getDownloadURL(storageRef);
+
+          value.image1 !== undefined
+            ? await axios.put(PROJECT_URL + value.qorncrId, {
+                image1Url: res,
+              })
+            : await axios.put(PROJECT_URL + value.qorncrId, {
+                image2Url: res,
+              });
+          return res;
+        }, 2000);
+      } catch (error) {}
+    } catch (error: any) {
       return error;
     }
   }
