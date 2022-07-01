@@ -78,7 +78,7 @@ export const uploadImages = createAsyncThunk(
     console.log("uploaaaaaaaaaaaaaaaaad", value);
     const storageRef = ref(
       storage,
-      value.image1 ? `${value.qorncrId}.jpg` : `${value.qorncrId}.jpg`
+      value.image1 ? `${value.qorncrId1}.pdf` : `${value.qorncrId2}.pdf`
     );
     try {
       await uploadBytesResumable(
@@ -113,8 +113,8 @@ interface QorNcrsProps {
     loading: boolean;
     individualQorNcr: any;
     ww: any[];
-    X: string;
     newStatus: string;
+    selectedBox: string;
   };
 }
 
@@ -125,7 +125,7 @@ const initialState = {
   individualQorNcr: {},
   newStatus: "",
   ww: [],
-  X: "hahaha",
+  selectedBox: "",
 };
 
 export const projectsSlice = createSlice({
@@ -140,6 +140,10 @@ export const projectsSlice = createSlice({
     },
     UpdateValuesOfSelect: (state, action) => {
       state.newStatus = action.payload.newStatus;
+    },
+    UpdateSelectedBox: (state, action) => {
+      console.log("sliiiiice", action.payload);
+      state.selectedBox = action.payload;
     },
 
     // },
@@ -169,7 +173,6 @@ export const projectsSlice = createSlice({
     });
     builder.addCase(deleteQorNcr.fulfilled, (state, action) => {
       state = action.payload;
-      state.X = "Reinforcement has been deleted...";
     });
     builder.addCase(updateQorNcr.fulfilled, (state, action) => {
       state = action.payload;
@@ -183,7 +186,7 @@ export const QorNcrData = (state: QorNcrsProps) => state.qorNcrz;
 export const {
   updateWw,
   UpdateValuesOfSelect,
-
+  UpdateSelectedBox,
   //   UpdateValuesOfSelect,
   //   removeItns,
   //   filterByRoutine,

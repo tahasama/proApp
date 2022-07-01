@@ -7,6 +7,7 @@ import {
   getAllQorNcrs,
   getQorNcr,
   QorNcrData,
+  UpdateSelectedBox,
   updateWw,
 } from "../../state/reducers/qorNcrSlice";
 import NavBar from "../Navbar/navbar";
@@ -15,13 +16,12 @@ import ModalNCR from "./modal/modalNCR";
 const AllNcr = () => {
   const dispatch = useAppDispatch();
 
-  const { all, ww, individualQorNcr } = useAppSelector(QorNcrData);
+  const { all, ww, individualQorNcr, selectedBox } = useAppSelector(QorNcrData);
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
-  const [selected, setSelected] = useState("");
-
+  console.log("00000000000000444444444444", selectedBox);
   const handleDelete = () => {
-    dispatch(deleteQorNcr(selected));
+    dispatch(deleteQorNcr(selectedBox));
     setTimeout(() => {
       dispatch(getAllQorNcrs());
     }, 250);
@@ -130,8 +130,8 @@ const AllNcr = () => {
   }, [ww]);
 
   useEffect(() => {
-    dispatch(getQorNcr(selected));
-  }, [selected]);
+    dispatch(getQorNcr(selectedBox));
+  }, [selectedBox]);
   console.log("12345", individualQorNcr);
   const handleFilterChange = () => {
     gridRef.current.api.getFilterModel().itp
@@ -179,14 +179,14 @@ const AllNcr = () => {
       dispatch(updateWw(rr));
     }
   };
-  console.log("selected.........", selected);
+  console.log("selected.........", selectedBox);
   return (
     <div className="">
       <div>
         <h2 className="">Concrete Data Records</h2>
       </div>
       <div className="">
-        <ModalNCR selected={selected} />
+        <ModalNCR />
       </div>
       <div>
         <button className="" onClick={handleDelete}>
@@ -213,8 +213,10 @@ const AllNcr = () => {
                   onFilterChanged={handleFilterChange}
                   onSelectionChanged={(v: any) =>
                     v.api.getSelectedRows().length === 0
-                      ? setSelected("")
-                      : setSelected(v.api.getSelectedRows()[0]._id)
+                      ? dispatch(UpdateSelectedBox(""))
+                      : dispatch(
+                          UpdateSelectedBox(v.api.getSelectedRows()[0]._id)
+                        )
                   }
                 ></AgGridReact>
               </div>
