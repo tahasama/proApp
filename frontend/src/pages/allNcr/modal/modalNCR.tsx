@@ -18,6 +18,7 @@ import {
   getAllQorNcrs,
   getQorNcr,
   QorNcrData,
+  updateQorNcr,
 } from "../../../state/reducers/qorNcrSlice";
 
 const style = {
@@ -32,7 +33,7 @@ const style = {
   p: 4,
 };
 
-export default function ModalM() {
+export default function ModalM(selected: any) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -53,7 +54,6 @@ export default function ModalM() {
   // const handleUpload = () => {
   //   dispatch(deleteQorNcr(selected));
   // };
-
   return (
     <div>
       <Button
@@ -63,16 +63,11 @@ export default function ModalM() {
         className="createButtons"
         onClick={handleOpen}
       >
-        <span>Add a value</span>
-      </Button>{" "}
-      <Button
-        variant="outlined"
-        color="success"
-        size="large"
-        className="createButtons"
-        onClick={handleOpen}
-      >
-        <span>update selected</span>
+        {selected.selected === "" ? (
+          <span>Add a value</span>
+        ) : (
+          <span>update selected</span>
+        )}
       </Button>
       <Modal
         open={open}
@@ -84,7 +79,7 @@ export default function ModalM() {
           <div>
             <p>Please complete the following informations : </p>
             <div>
-              <SelectStuffNCR />
+              <SelectStuffNCR individualQorNcr={individualQorNcr} />
             </div>
             <div style={{ marginTop: 12 }}>
               <Input
@@ -104,6 +99,7 @@ export default function ModalM() {
                 multiline
                 rows={3}
                 fullWidth={true}
+                defaultValue={individualQorNcr.description}
                 inputRef={inputRefDescription}
               />
             </div>
@@ -135,16 +131,28 @@ export default function ModalM() {
             </div>
             <div
               onClick={() => (
-                dispatch(
-                  createQorNcr({
-                    typeR: "NCR",
-                    numR: inputRefNum.current.value,
-                    dateRaised: value,
-                    dateOfResponse: value2,
-                    description: inputRefDescription.current.value,
-                    status: newStatus,
-                  })
-                ),
+                selected.selected !== ""
+                  ? dispatch(
+                      updateQorNcr({
+                        _id: individualQorNcr._id,
+                        typeR: "NCR",
+                        numR: inputRefNum.current.value,
+                        dateRaised: value,
+                        dateOfResponse: value2,
+                        description: inputRefDescription.current.value,
+                        status: newStatus,
+                      })
+                    )
+                  : dispatch(
+                      createQorNcr({
+                        typeR: "NCR",
+                        numR: inputRefNum.current.value,
+                        dateRaised: value,
+                        dateOfResponse: value2,
+                        description: inputRefDescription.current.value,
+                        status: newStatus,
+                      })
+                    ),
                 setTimeout(() => {
                   dispatch(getAllQorNcrs());
                 }, 1000),

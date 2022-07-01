@@ -15,7 +15,7 @@ import {
   UpdateValuesOfSelect,
 } from "../../../../state/reducers/qorNcrSlice";
 
-export default function SelectStuff(table: any) {
+export default function SelectStuff(individualQorNcr: any) {
   const dispatch = useDispatch();
   const { all } = useAppSelector(QorNcrData);
   const [status, setStatus] = useState<any>();
@@ -46,8 +46,7 @@ export default function SelectStuff(table: any) {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          defaultValue="aerationTank"
-          // value={status !== undefined && status}
+          defaultValue={individualQorNcr.individualQorNcr.status}
           label="status"
           onChange={handleStatusChange}
         >

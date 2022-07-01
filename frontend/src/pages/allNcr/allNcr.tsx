@@ -179,14 +179,14 @@ const AllNcr = () => {
       dispatch(updateWw(rr));
     }
   };
-
+  console.log("selected.........", selected);
   return (
     <div className="">
       <div>
         <h2 className="">Concrete Data Records</h2>
       </div>
       <div className="">
-        <ModalNCR />
+        <ModalNCR selected={selected} />
       </div>
       <div>
         <button className="" onClick={handleDelete}>
@@ -212,7 +212,9 @@ const AllNcr = () => {
                   enableCellTextSelection={true}
                   onFilterChanged={handleFilterChange}
                   onSelectionChanged={(v: any) =>
-                    setSelected(v.api.getSelectedRows()[0]._id)
+                    v.api.getSelectedRows().length === 0
+                      ? setSelected("")
+                      : setSelected(v.api.getSelectedRows()[0]._id)
                   }
                 ></AgGridReact>
               </div>
