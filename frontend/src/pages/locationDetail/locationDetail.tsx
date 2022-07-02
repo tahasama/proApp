@@ -103,7 +103,7 @@ const LocationDetails = () => {
               }}
             />
             <Tab
-              label="RIR"
+              label="Reinforcement"
               {...a11yProps(2)}
               style={{
                 position: "fixed",

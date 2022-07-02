@@ -216,7 +216,7 @@ const Log = () => {
             <Button variant="contained" className="total">
               <p>
                 TOTAL = {totalconcrete}
-                <i style={{ textTransform: "lowercase" }}>m³</i>
+                <i style={{ textTransform: "lowercase" }}>Kg</i>
               </p>
             </Button>
           </>

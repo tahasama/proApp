@@ -16,8 +16,9 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./navbar.css";
+import { useRef } from "react";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -60,12 +61,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function NavBar() {
+  const searchRef = useRef<any>(null);
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const handleSearch = async (e: any) => {
+    e.preventDefault();
+    console.log("adadfads222222", searchRef.current);
+    if (searchRef.current.value !== "") {
+      navigate("/" + searchRef.current?.value);
+    }
+  };
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -189,13 +200,12 @@ export default function NavBar() {
             </Button>
           </Link>
           <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
+            <form onSubmit={handleSearch}>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <input placeholder="Search…" ref={searchRef} className="Winput" />
+            </form>
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Link

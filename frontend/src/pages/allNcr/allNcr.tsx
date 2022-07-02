@@ -131,7 +131,7 @@ const AllNcr = () => {
   }, [selectedBox]);
 
   return (
-    <div className="" style={{ marginTop: 30 }}>
+    <div className="" style={{ marginTop: 10 }}>
       <div>
         <h2 className="title4" style={{ position: "relative", top: 64 }}>
           NCR Data Records

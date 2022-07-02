@@ -75,24 +75,21 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//get itn by search
-router.get("/search/q=:value", async (req, res) => {
-  try {
-    const { value } = req.params;
+// //get itn by search
+// router.get("/search/:itp", async (req, res) => {
+//   // try {
+//   console.log("eteerttrertertertert", req);
+//   //   const { value } = req.params;
+//   //   const project = await Itn.find({
+//   //     itp: { $regex: itp, $options: "i" },
+//   //   });
+//   //   const itn = await Itn.find({});
 
-    const itn = await Itn.find({
-      $or: [
-        { num: { $regex: value, $options: "i" } },
-        { itp: { $regex: value, $options: "i" } },
-        { routine: { $regex: value, $options: "i" } },
-        { subLocation: { $regex: value, $options: "i" } },
-      ],
-    });
-
-    res.status(200).json(itn);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//   //   res.status(200).json(itn);
+//   // } catch (err) {
+//   //   res.status(500).json(err);
+//   //
+//   //  }
+// });
 
 module.exports = router;
