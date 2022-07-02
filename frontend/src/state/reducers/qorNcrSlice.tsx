@@ -72,31 +72,47 @@ export const updateQorNcr = createAsyncThunk(
     }
   }
 );
-export const uploadImages = createAsyncThunk(
-  "uploadImage",
+export const uploadImages1 = createAsyncThunk(
+  "uploadImage1",
   async (value: any) => {
-    console.log("uploaaaaaaaaaaaaaaaaad", value);
-    const storageRef = ref(
-      storage,
-      value.image1 ? `${value.qorncrId1}.pdf` : `${value.qorncrId2}.pdf`
-    );
+    console.log("UYUYUYUYU8888", value);
+    const storageRef = ref(storage, `${value.qorncrId1}.pdf`);
     try {
-      await uploadBytesResumable(
-        storageRef,
-        value.image1 ? value.image1 : value.image2
-      );
+      await uploadBytesResumable(storageRef, value.image1);
 
       try {
         setTimeout(async () => {
           const res = await getDownloadURL(storageRef);
 
-          value.image1 !== undefined
-            ? await axios.put(PROJECT_URL + value.qorncrId, {
-                image1Url: res,
-              })
-            : await axios.put(PROJECT_URL + value.qorncrId, {
-                image2Url: res,
-              });
+          value.image1 !== undefined &&
+            (await axios.put(PROJECT_URL + value.qorncrId, {
+              image1Url: res,
+            }));
+
+          return res;
+        }, 2000);
+      } catch (error) {}
+    } catch (error: any) {
+      return error;
+    }
+  }
+);
+export const uploadImages2 = createAsyncThunk(
+  "uploadImage",
+  async (value: any) => {
+    const storageRef = ref(storage, `${value.qorncrId2}.pdf`);
+    try {
+      value.image2 !== undefined &&
+        (await uploadBytesResumable(storageRef, value.image2));
+
+      try {
+        setTimeout(async () => {
+          const res = await getDownloadURL(storageRef);
+
+          value.image2 !== undefined &&
+            (await axios.put(PROJECT_URL + value.qorncrId, {
+              image2Url: res,
+            }));
           return res;
         }, 2000);
       } catch (error) {}

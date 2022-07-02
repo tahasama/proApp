@@ -8,11 +8,11 @@ import { Stack, TextField } from "@mui/material";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 
 import SendIcon from "@mui/icons-material/Send";
-import "./modalNCR.css";
+// import "./modalNCR.css";
 import { Input } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 
-import SelectStuffNCR from "./selectStuffNCR/selectStuffNCR";
+import SelectStuffQOR from "./selectStuffQOR/selectStuffQOR";
 import {
   createQorNcr,
   getAllQorNcrs,
@@ -128,7 +128,7 @@ export default function ModalM() {
         onClick={handleOpen}
       >
         {selectedBox === "" ? (
-          <span>Add an NCR</span>
+          <span>Add an QOR</span>
         ) : (
           <span>Update selected</span>
         )}
@@ -152,7 +152,7 @@ export default function ModalM() {
               Please complete the following informations :{" "}
             </p>
             <div>
-              <SelectStuffNCR individualQorNcr={individualQorNcr} />
+              <SelectStuffQOR individualQorNcr={individualQorNcr} />
             </div>
             <div style={{ marginTop: 12 }}>
               <Input
@@ -209,7 +209,7 @@ export default function ModalM() {
                     htmlFor="report"
                     style={{ color: "black", fontWeight: 500 }}
                   >
-                    Upload NCR &nbsp;&nbsp;
+                    Upload QOR &nbsp;&nbsp;
                   </label>
                   <input
                     id="file-upload"
@@ -247,7 +247,7 @@ export default function ModalM() {
                   ? dispatch(
                       updateQorNcr({
                         _id: individualQorNcr._id,
-                        typeR: "NCR",
+                        typeR: "QOR",
                         numR: inputRefNum.current.value,
                         dateRaised: value,
                         dateOfResponse: value2,
@@ -259,7 +259,7 @@ export default function ModalM() {
                     )
                   : dispatch(
                       createQorNcr({
-                        typeR: "NCR",
+                        typeR: "QOR",
                         numR: inputRefNum.current.value,
                         dateRaised: value,
                         dateOfResponse: value2,
