@@ -17,7 +17,7 @@ const UploadItn = ({ handleClose }: any) => {
     if (pdfRef.current.files[0] !== undefined) {
       // const imgUrl = URL.createObjectURL(pdfRef.current.files[0]);
       const value = {
-        itnId: individualItn._id,
+        itnValues: individualItn,
         pdf: pdfRef.current.files[0],
       };
       dispatch(uploadPdfFile(value));

@@ -1,32 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import {
+  getDownloadURL,
+  getMetadata,
+  getStorage,
+  listAll,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
 import firebase, { storage } from "../../firebase";
+import JSZip from "jszip";
+import * as FileSaver from "file-saver";
+import { useState } from "react";
 
 const POJECT_URL: any = process.env.REACT_APP_PROJECT_URL_ITN;
-
-export const getAllFiles: any = createAsyncThunk("getAllItns", async () => {
-  const Storage = require("@google-cloud/storage");
-  const storage = new Storage({
-    projectId: "PROJECT_ID",
-    keyFilename: "D:\\keyFileName.json",
-  });
-  const bucket = storage.bucket("project.appspot.com"); //gs://project.appspot.com
-  bucket
-    .getFiles()
-    .then((results: any) => {
-      const files = results[0];
-      console.log("Total files:", files.length);
-      files.forEach((file: any) => {
-        file
-          .download({ destination: `D:\\${file}` })
-          .catch((error: any) => console.log("Error: ", error));
-      });
-    })
-    .catch((err: any) => {
-      console.error("ERROR:", err);
-    });
-});
 
 export const getAllItns: any = createAsyncThunk("getAllItns", async () => {
   try {
@@ -84,11 +71,20 @@ export const getItn = createAsyncThunk("getItn", async (value: any) => {
     return error;
   }
 });
-
+const handleNumber = (num: any) => {
+  return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
+};
 export const uploadPdfFile = createAsyncThunk(
   "uploadPdfFile",
   async (value: any) => {
-    const storageRef = ref(storage, `${value.itnId}.pdf`);
+    console.log("MMMMUUUUU", value);
+
+    const storageRef = ref(
+      storage,
+      `itn/${value.itnValues.itp}/${
+        value.itnValues.routine
+      }/QW211101-SNCE-QA-ITN-${handleNumber(value.itnValues.num)}.pdf`
+    );
     try {
       await uploadBytesResumable(storageRef, value.pdf);
       try {

@@ -9,8 +9,22 @@ import {
 import NavBar from "../Navbar/navbar";
 import "./login.css";
 import { provider } from "../../firebase";
+import firebase, { storage } from "../../firebase";
+import JSZip from "jszip";
+import * as FileSaver from "file-saver";
+import { useState } from "react";
+import {
+  getDownloadURL,
+  getMetadata,
+  getStorage,
+  listAll,
+  ref,
+} from "firebase/storage";
+import folder from "material-ui/svg-icons/file/folder";
 
 const Login = () => {
+  const [promises, setpromises] = useState<any>();
+
   const emailRef = useRef<any>(null);
   const passwordRef = useRef<any>(null);
   const dispatch = useAppDispatch();
@@ -52,11 +66,60 @@ const Login = () => {
   const LoginGoogle = () => {
     dispatch(loginUser({ email: "", password: "", provider: provider }));
   };
+  // ==============================================================
+  const locations = [
+    "secondaryClarifierP24",
+    "secondaryClarifierP25",
+    "secondaryClarifierP32",
+    "PrimaryClarifierP7",
+    "PrimaryClarifierP8",
+    "PrimaryClarifierP9",
+    "aerationTank",
+  ];
+  const routine = [
+    "Setting Out",
+    "Excavation until foundation Bottom",
+    "Conduites Installation ",
+    "Lean Concrete",
+    "Mass Concrete",
+    "Reinforcement & Formwork",
+    "Concrete placing and finishing",
+    "Curing",
+    "Waterproofing coat",
+    "Backfilling",
+    "Treatement protection layer",
+    "Concrete Tests",
+  ];
+  const DownloadFolders = async (): Promise<any> => {
+    locations.map((loca: any) => {
+      routine.map(async (rot: any) => {
+        const jszip = new JSZip();
+        const storage = getStorage();
+        const folder = await listAll(ref(storage, `/itn/${loca}/${rot}`));
+
+        folder.items.map(async (item: any) => {
+          const file = await getMetadata(item);
+          const fileRef = ref(storage, item.fullPath);
+          const fileBlob = await getDownloadURL(fileRef).then(async (url) => {
+            const response = await fetch(url);
+            return await response.blob();
+          });
+          jszip.file(file.name, fileBlob);
+
+          const blob: any =
+            folder.items.length !== 0 &&
+            (await jszip.generateAsync({ type: "blob" }));
+          FileSaver.saveAs(blob, `${loca}/${rot}.zip`);
+        });
+      });
+    });
+  };
   return (
     <div>
       <NavBar />
       <div className="registerContainer">
         {/* <a href="gs://proapp-25ad0.appspot.com/">WoW</a> */}
+        <button onClick={DownloadFolders}>OOOOOOOO</button>
         <form className="logingForm" onSubmit={handleSubmit}>
           <div className="labelInputLogin">
             <label htmlFor="email" className="formlabel">
