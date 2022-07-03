@@ -1,0 +1,14 @@
+const mongooses = require("mongoose");
+
+const UserSchema = new mongooses.Schema(
+  {
+    uid: { type: String, required: true },
+    email: { type: String, required: true },
+    displayName: { type: String, required: false },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+module.exports = mongooses.model("User", UserSchema);
