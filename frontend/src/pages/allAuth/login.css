@@ -1,0 +1,54 @@
+.logingForm {
+  width: 36vw;
+  /* height: 70vh; */
+  height: 380px;
+  padding: 5px;
+  border-radius: 20px;
+  background-color: rgba(96, 48, 150, 0.35);
+  box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.3);
+}
+
+.labelInputLogin {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 10px 10px 10px;
+}
+
+.loginButtons {
+  margin: 1.7vh 0 15px 12px;
+}
+.loginButton {
+  padding: 9px;
+  border-radius: 8px;
+  border: none;
+  text-decoration: none;
+  background-color: #445a63;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  width: 30.7vw;
+  margin: 2vh 0 1.3vh 0;
+}
+.loginButton:active {
+  opacity: 0.7;
+}
+.reset {
+  margin-left: 12px;
+}
+
+.google {
+  background-color: #165e7a;
+}
+
+.loginQuestion {
+  margin-right: 3vw;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.linktoForgot {
+  margin-right: 10vw;
+  text-align: center;
+  margin: 0 3vw 13px 0;
+  padding: 0;
+}

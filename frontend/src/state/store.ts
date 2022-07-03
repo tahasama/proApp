@@ -3,6 +3,7 @@ import itnReducer from "./reducers/itnSlice";
 import concreteReducer from "./reducers/concreteSlice";
 import reinforcementReducer from "./reducers/reinforcementSlice";
 import qorNcrReducer from "./reducers/qorNcrSlice";
+import authReducer from "./reducers/authSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,7 +11,12 @@ export const store = configureStore({
     concretez: concreteReducer,
     reinforcementz: reinforcementReducer,
     qorNcrz: qorNcrReducer,
+    authUser: authReducer,
   },
+  // middleware: (getDefaultMiddleware) =>
+  //   getDefaultMiddleware({
+  //     serializableCheck: false,
+  //   }),
 });
 
 export type AppDispatch = typeof store.dispatch;

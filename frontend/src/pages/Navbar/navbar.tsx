@@ -19,6 +19,8 @@ import { Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import { useRef } from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -291,6 +293,25 @@ export default function NavBar() {
               <MoreIcon />
             </IconButton>
           </Box>
+          <button
+            className="userlink signUp"
+            onClick={() => navigate("/register")}
+          >
+            Sign
+          </button>
+          <button className="userlink logIn" onClick={() => navigate("/login")}>
+            LogIn
+          </button>
+          <button
+            className="barbar"
+            onClick={() => {
+              signOut(auth);
+              console.log("logged out");
+              // navigate("/");
+            }}
+          >
+            Logout
+          </button>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
