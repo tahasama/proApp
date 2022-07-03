@@ -19,6 +19,7 @@ import { auth } from "./firebase";
 import { saveUser } from "./state/reducers/authSlice";
 import Login from "./pages/allAuth/login";
 import Register from "./pages/allAuth/register";
+import ResetPassword from "./pages/allAuth/resetPassword";
 
 // import Checklist from "./pages/individualItn/itnForm/checklist6";
 // import Checklist5 from "./pages/individualItn/itnForm/checklist5";
@@ -44,6 +45,7 @@ function App() {
           <Route path="/" element={<FullPlan />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/allitn" element={<AllItn />} />
           <Route path="/allconcrete" element={<AllConcrete />} />
           <Route path="/allreinforcement" element={<AllReinforcement />} />

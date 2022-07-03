@@ -1,9 +1,32 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { storage } from "../../firebase";
+import firebase, { storage } from "../../firebase";
 
 const POJECT_URL: any = process.env.REACT_APP_PROJECT_URL_ITN;
+
+// export const getAllFiles: any = createAsyncThunk("getAllItns", async () => {
+//   const Storage = require("@google-cloud/storage");
+//   const storage = new Storage({
+//     projectId: "PROJECT_ID",
+//     keyFilename: "D:\\keyFileName.json",
+//   });
+//   const bucket = storage.bucket("project.appspot.com"); //gs://project.appspot.com
+//   bucket
+//     .getFiles()
+//     .then((results: any) => {
+//       const files = results[0];
+//       console.log("Total files:", files.length);
+//       files.forEach((file: any) => {
+//         file
+//           .download({ destination: `D:\\${file}` })
+//           .catch((error: any) => console.log("Error: ", error));
+//       });
+//     })
+//     .catch((err: any) => {
+//       console.error("ERROR:", err);
+//     });
+// });
 
 export const getAllItns: any = createAsyncThunk("getAllItns", async () => {
   try {

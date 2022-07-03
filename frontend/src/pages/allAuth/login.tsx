@@ -1,30 +1,21 @@
-import React, { useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { provider } from "../../firebase";
-import { useAppSelector } from "../../state/hooks";
+import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import {
   getAuthData,
   loginUser,
   updateError,
 } from "../../state/reducers/authSlice";
 import NavBar from "../Navbar/navbar";
-// import SideBar from "../components/sideBar";
-// import TopBar from "../components/topBar";
-// import { provider } from "../firebase";
-// import { fetchAllProject } from "../state";
-// import { useAppSelector } from "../state/hooks";
-// import { getAuthData, loginUser } from "../state/reducers/authSlice";
-// import { updateError } from "../state/reducers/userSlice";
 import "./login.css";
+import { provider } from "../../firebase";
 
 const Login = () => {
   const emailRef = useRef<any>(null);
   const passwordRef = useRef<any>(null);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { email, err } = useAppSelector(getAuthData);
-  const { uid } = useAppSelector(getAuthData);
+  const { err } = useAppSelector(getAuthData);
 
   if (err.code === "auth/user-not-found") {
     dispatch(updateError("wrong email, please try again"));
@@ -47,31 +38,25 @@ const Login = () => {
     e.preventDefault();
     try {
       dispatch(updateError(""));
-      // dispatch(
-      //   loginUser({
-      //     email: emailRef.current.value,
-      //     password: passwordRef.current.value,
-      //   })
-      // );
+      dispatch(
+        loginUser({
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        })
+      );
     } catch (err) {
       dispatch(updateError("failed to login, please try again"));
     }
   };
 
-  // const LoginGoogle = () => {
-  //   dispatch(
-  //     loginUser({
-  //       email: "",
-  //       password: "",
-  //       provider: provider,
-  //     })
-  //   );
-  // };
+  const LoginGoogle = () => {
+    dispatch(loginUser({ email: "", password: "", provider: provider }));
+  };
   return (
     <div>
       <NavBar />
       <div className="registerContainer">
-        <p></p>
+        {/* <a href="gs://proapp-25ad0.appspot.com/">WoW</a> */}
         <form className="logingForm" onSubmit={handleSubmit}>
           <div className="labelInputLogin">
             <label htmlFor="email" className="formlabel">
@@ -102,7 +87,7 @@ const Login = () => {
             <button
               type="button"
               className="loginButton google"
-              // onClick={LoginGoogle}
+              onClick={LoginGoogle}
             >
               Login with Google
             </button>

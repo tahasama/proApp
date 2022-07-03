@@ -29,30 +29,30 @@ const Register: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const authvalues = useAppSelector(getAuthData);
+  const { uid, err } = useAppSelector(getAuthData);
 
-  console.log("vvvvvvvvvvvvvvvvv", authvalues);
+  console.log("vvvvvvvvvvvvvvvvv", uid);
 
-  // if (err.code === "auth/weak-password") {
-  //   dispatch(updateError("Password should be at least 6 characters"));
-  // } else if (err.code === "auth/email-already-in-use") {
-  //   dispatch(updateError("Email already taken, please add a different one"));
-  // } else if (err.code === "auth/invalid-email") {
-  //   dispatch(updateError("Please provide a valid email"));
-  // } else if (err.code === "auth/internal-error") {
-  //   dispatch(updateError("Please provide a valid passwords"));
-  // } else if (
-  //   err.code === "storage/object-not-found" ||
-  //   err.code === "auth/popup-closed-by-user"
-  // ) {
-  //   dispatch(updateError(""));
-  // }
-  // useEffect(() => {
-  //   if (email) {
-  //     navigate("/");
-  //   }
-  //   dispatch(updateError(""));
-  // }, [email, dispatch, navigate]);
+  if (err.code === "auth/weak-password") {
+    dispatch(updateError("Password should be at least 6 characters"));
+  } else if (err.code === "auth/email-already-in-use") {
+    dispatch(updateError("Email already taken, please add a different one"));
+  } else if (err.code === "auth/invalid-email") {
+    dispatch(updateError("Please provide a valid email"));
+  } else if (err.code === "auth/internal-error") {
+    dispatch(updateError("Please provide a valid passwords"));
+  } else if (
+    err.code === "storage/object-not-found" ||
+    err.code === "auth/popup-closed-by-user"
+  ) {
+    dispatch(updateError(""));
+  }
+  useEffect(() => {
+    if (uid) {
+      navigate("/");
+    }
+    dispatch(updateError(""));
+  }, [uid, dispatch, navigate]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -63,12 +63,12 @@ const Register: React.FC = () => {
       try {
         dispatch(updateError(""));
         setLoading(true);
-        // dispatch(
-        //   registerUser({
-        //     email: emailRef.current.value,
-        //     password: passwordRef.current.value,
-        //   })
-        // );
+        dispatch(
+          registerUser({
+            email: emailRef.current.value,
+            password: passwordRef.current.value,
+          })
+        );
 
         setLoading(false);
       } catch (err) {
@@ -139,7 +139,7 @@ const Register: React.FC = () => {
             </Link>
           </p>
         </form>
-        {/* {err && <p className="errorMessage">{err.message}</p>} */}
+        {err && <p className="errorMessage">{err.message}</p>}
       </div>
     </div>
   );
