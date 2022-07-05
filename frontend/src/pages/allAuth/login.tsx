@@ -91,28 +91,41 @@ const Login = () => {
     "Concrete Tests",
   ];
   const DownloadFolders = async (): Promise<any> => {
-    locations.map((loca: any) => {
-      routine.map(async (rot: any) => {
-        const jszip = new JSZip();
-        const storage = getStorage();
-        const folder = await listAll(ref(storage, `/itn/${loca}/${rot}`));
+    const jszip = new JSZip();
+    const xxx: any = jszip.folder("All");
+    const proms2 = locations
+      .map(async (loca: any) => {
+        const ccc: any = xxx.folder(`${loca}`);
+        const proms1 = routine
+          .map(async (rot: any) => {
+            const jszip = new JSZip();
+            const storage = getStorage();
+            const folder = await listAll(ref(storage, `/itn/${loca}/${rot}`));
+            const promises = folder.items
+              .map(async (item) => {
+                const file = await getMetadata(item);
+                const fileRef = ref(storage, item.fullPath);
+                const fileBlob = await getDownloadURL(fileRef).then(
+                  async (url) => {
+                    const response = await fetch(url);
+                    return await response.blob();
+                  }
+                );
 
-        folder.items.map(async (item: any) => {
-          const file = await getMetadata(item);
-          const fileRef = ref(storage, item.fullPath);
-          const fileBlob = await getDownloadURL(fileRef).then(async (url) => {
-            const response = await fetch(url);
-            return await response.blob();
-          });
-          jszip.file(file.name, fileBlob);
+                ccc.file(rot + "/" + file.name, fileBlob);
+              })
+              .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
 
-          const blob: any =
-            folder.items.length !== 0 &&
-            (await jszip.generateAsync({ type: "blob" }));
-          FileSaver.saveAs(blob, `${loca}/${rot}.zip`);
-        });
-      });
-    });
+            await promises;
+            const blob = await ccc.generateAsync({ type: "blob" });
+          })
+          .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
+        await proms1;
+      })
+      .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
+    await proms2;
+    const blob = await xxx.generateAsync({ type: "blob" });
+    FileSaver.saveAs(blob, `All.zip`);
   };
   return (
     <div>
