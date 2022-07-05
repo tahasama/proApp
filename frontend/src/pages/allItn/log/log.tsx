@@ -19,6 +19,16 @@ import { Link } from "react-router-dom";
 import { deleteItn, getAllItns, itnData } from "../../../state";
 import ModalM from "./modalM/modalM";
 import { viVN } from "@mui/x-data-grid";
+import JSZip from "jszip";
+import {
+  getDownloadURL,
+  getMetadata,
+  getStorage,
+  listAll,
+  ref,
+} from "firebase/storage";
+import * as FileSaver from "file-saver";
+import DownloadIcon from "@mui/icons-material/Download";
 
 const handleNumber = (num: any) => {
   return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
@@ -217,6 +227,67 @@ const Log = () => {
   };
 
   //============================================================
+  const locations = [
+    "secondaryClarifierP24",
+    "secondaryClarifierP25",
+    "secondaryClarifierP32",
+    "PrimaryClarifierP7",
+    "PrimaryClarifierP8",
+    "PrimaryClarifierP9",
+    "aerationTank",
+  ];
+  const routine = [
+    "Setting Out",
+    "Excavation until foundation Bottom",
+    "Conduites Installation ",
+    "Lean Concrete",
+    "Mass Concrete",
+    "Reinforcement & Formwork",
+    "Concrete placing and finishing",
+    "Curing",
+    "Waterproofing coat",
+    "Backfilling",
+    "Treatement protection layer",
+    "Concrete Tests",
+  ];
+  const DownloadFolders = async (): Promise<any> => {
+    const jszip = new JSZip();
+    const xxx: any = jszip.folder("All");
+    const proms2 = locations
+      .map(async (loca: any) => {
+        const ccc: any = xxx.folder(`${loca}`);
+        const proms1 = routine
+          .map(async (rot: any) => {
+            const jszip = new JSZip();
+            const storage = getStorage();
+            const folder = await listAll(ref(storage, `/itn/${loca}/${rot}`));
+            const promises = folder.items
+              .map(async (item) => {
+                const file = await getMetadata(item);
+                const fileRef = ref(storage, item.fullPath);
+                const fileBlob = await getDownloadURL(fileRef).then(
+                  async (url) => {
+                    const response = await fetch(url);
+                    return await response.blob();
+                  }
+                );
+
+                ccc.file(rot + "/" + file.name, fileBlob);
+              })
+              .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
+
+            await promises;
+            const blob = await ccc.generateAsync({ type: "blob" });
+          })
+          .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
+        await proms1;
+      })
+      .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
+    await proms2;
+    const blob = await xxx.generateAsync({ type: "blob" });
+    FileSaver.saveAs(blob, `QC.zip`);
+  };
+  //============================================================
 
   return (
     <div className="log">
@@ -262,11 +333,19 @@ const Log = () => {
                 ></AgGridReact>
               </div>
             </div>{" "}
-            <Button variant="contained" className="total1">
-              <p>
-                <i>Total = {ww.length} ITN</i>
-              </p>
+            <Button variant="contained" className="total1" color="secondary">
+              Total = {ww.length} ITN
             </Button>
+            <div>
+              <Button
+                variant="contained"
+                className="donwload"
+                onClick={DownloadFolders}
+              >
+                Download ITN &nbsp;
+                <DownloadIcon />
+              </Button>
+            </div>
           </>
         ) : (
           <Box

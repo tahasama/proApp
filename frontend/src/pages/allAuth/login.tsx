@@ -67,72 +67,11 @@ const Login = () => {
     dispatch(loginUser({ email: "", password: "", provider: provider }));
   };
   // ==============================================================
-  const locations = [
-    "secondaryClarifierP24",
-    "secondaryClarifierP25",
-    "secondaryClarifierP32",
-    "PrimaryClarifierP7",
-    "PrimaryClarifierP8",
-    "PrimaryClarifierP9",
-    "aerationTank",
-  ];
-  const routine = [
-    "Setting Out",
-    "Excavation until foundation Bottom",
-    "Conduites Installation ",
-    "Lean Concrete",
-    "Mass Concrete",
-    "Reinforcement & Formwork",
-    "Concrete placing and finishing",
-    "Curing",
-    "Waterproofing coat",
-    "Backfilling",
-    "Treatement protection layer",
-    "Concrete Tests",
-  ];
-  const DownloadFolders = async (): Promise<any> => {
-    const jszip = new JSZip();
-    const xxx: any = jszip.folder("All");
-    const proms2 = locations
-      .map(async (loca: any) => {
-        const ccc: any = xxx.folder(`${loca}`);
-        const proms1 = routine
-          .map(async (rot: any) => {
-            const jszip = new JSZip();
-            const storage = getStorage();
-            const folder = await listAll(ref(storage, `/itn/${loca}/${rot}`));
-            const promises = folder.items
-              .map(async (item) => {
-                const file = await getMetadata(item);
-                const fileRef = ref(storage, item.fullPath);
-                const fileBlob = await getDownloadURL(fileRef).then(
-                  async (url) => {
-                    const response = await fetch(url);
-                    return await response.blob();
-                  }
-                );
 
-                ccc.file(rot + "/" + file.name, fileBlob);
-              })
-              .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
-
-            await promises;
-            const blob = await ccc.generateAsync({ type: "blob" });
-          })
-          .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
-        await proms1;
-      })
-      .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
-    await proms2;
-    const blob = await xxx.generateAsync({ type: "blob" });
-    FileSaver.saveAs(blob, `All.zip`);
-  };
   return (
     <div>
       <NavBar />
       <div className="registerContainer">
-        {/* <a href="gs://proapp-25ad0.appspot.com/">WoW</a> */}
-        <button onClick={DownloadFolders}>OOOOOOOO</button>
         <form className="logingForm" onSubmit={handleSubmit}>
           <div className="labelInputLogin">
             <label htmlFor="email" className="formlabel">
