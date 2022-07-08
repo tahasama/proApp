@@ -49,7 +49,11 @@ const ResetPassword = () => {
           style={{ height: 270, marginTop: 40 }}
         >
           <div className="labelInputLogin">
-            <label htmlFor="email" className="formlabel">
+            <label
+              htmlFor="email"
+              className="formlabel"
+              style={{ fontWeight: 500, fontSize: 18 }}
+            >
               Email
             </label>
             <input
@@ -63,12 +67,15 @@ const ResetPassword = () => {
           <button type="submit" className="loginButton reset">
             Reset
           </button>
-          <p className="linktoForgot">
-            <Link to="/reset-password" className="linkto">
+          <p className="linktoForgot" style={{ fontWeight: 500, fontSize: 18 }}>
+            <Link to="/login" className="linkto">
               Login
             </Link>
           </p>
-          <p className="loginQuestion">
+          <p
+            className="loginQuestion"
+            style={{ fontWeight: 500, fontSize: 18 }}
+          >
             Don't have an account?{" "}
             <Link to="/register" className="linkto">
               SignUp

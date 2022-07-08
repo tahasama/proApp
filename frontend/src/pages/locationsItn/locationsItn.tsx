@@ -252,6 +252,7 @@ const LocationsItn = (itp: any) => {
           </Grid>
           <Grid item xs={6}>
             <Item
+              className="example"
               style={{
                 position: "absolute",
                 marginLeft: 619,
@@ -259,6 +260,7 @@ const LocationsItn = (itp: any) => {
                 width: 310,
                 paddingLeft: 4,
                 paddingRight: 4,
+                maxHeight: 468,
               }}
             >
               <Timeline position="alternate">
@@ -295,13 +297,7 @@ const LocationsItn = (itp: any) => {
                           >
                             QW211101-SNCE-QA-ITN-{handleNumber(itn.num)}
                           </h5>
-                          <h6
-                            className="tulipeDimensions"
-                            style={{ whiteSpace: "pre-line", width: "150px" }}
-                          >
-                            {" "}
-                            {itn.routine}{" "}
-                          </h6>{" "}
+                          <h6 className="tulipeDimensions"> {itn.routine} </h6>{" "}
                         </a>
                       </TimelineContent>
                     </TimelineItem>

@@ -259,18 +259,28 @@ const StatsPerMonth = () => {
             </Button>
           )}
         </div>
-        <div className="statsPerMonthFilter">
+        <div
+          className="statsPerMonthFilter"
+          style={{
+            backgroundColor: "rgb(210,215,230,0.6)",
+            color: "#000033",
+          }}
+        >
           {filters && (
             <FormGroup>
               {locations1.map((xgonna: any) => (
                 <FormControlLabel
+                  className="hayya"
                   key={xgonna}
                   control={
                     <Checkbox
                       name={xgonna}
                       defaultChecked
                       onChange={(e: any, key: any) => handleCheckBox(e, key)}
-                      style={{ padding: 5, marginLeft: 10 }}
+                      style={{
+                        padding: 5,
+                        marginLeft: 10,
+                      }}
                     />
                   }
                   label={xgonna}
@@ -283,7 +293,12 @@ const StatsPerMonth = () => {
       <Line
         options={optionsLine}
         data={data}
-        style={{ width: 340, marginTop: -20 }}
+        style={{
+          width: 340,
+          marginTop: -20,
+          backgroundColor: "rgb(210,215,230,0.6)",
+          // opacity: 0.4,
+        }}
         className="statsPerMonthLine"
       />
     </div>

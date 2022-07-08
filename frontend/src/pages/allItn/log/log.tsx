@@ -42,7 +42,13 @@ const Log = () => {
   const [num, setNum] = useState<any>();
 
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
-  const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
+  const gridStyle = useMemo(
+    () => ({
+      height: "100%",
+      width: "100%",
+    }),
+    []
+  );
   const [selected, setSelected] = useState();
 
   const handleDelete = () => {
@@ -182,10 +188,10 @@ const Log = () => {
         : console.log("it is undefined")
     );
     const xx: any = rr
-      .filter((filt: any) => filt.type === filter)
+      .filter((filt: any) => filt.routine === filter)
       .filter((filt: any) => filt.itp === filter1);
     const yy = rr
-      .filter((filt: any) => filt.type === filter)
+      .filter((filt: any) => filt.routine === filter)
       .filter(
         (filt: any) =>
           filt.dateOfInspection.slice(5, 7).split("-").reverse().join("-") ===
@@ -199,7 +205,7 @@ const Log = () => {
           filter2
       );
     const aa: any = rr
-      .filter((filt: any) => filt.type === filter)
+      .filter((filt: any) => filt.routine === filter)
       .filter((filt: any) => filt.itp === filter1)
       .filter(
         (filt: any) =>

@@ -20,6 +20,8 @@ import { saveUser } from "./state/reducers/authSlice";
 import Login from "./pages/allAuth/login";
 import Register from "./pages/allAuth/register";
 import ResetPassword from "./pages/allAuth/resetPassword";
+import Home from "./pages/home";
+import Authorize from "./pages/allAuth/authorize";
 
 // import Checklist from "./pages/individualItn/itnForm/checklist6";
 // import Checklist5 from "./pages/individualItn/itnForm/checklist5";
@@ -42,7 +44,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<FullPlan />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/authorized/:id/:email" element={<Authorize />} />
+          <Route path="/fullPlan" element={<FullPlan />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/reset-password" element={<ResetPassword />} />

@@ -1,19 +1,53 @@
+.registerContainer1 {
+  position: relative;
+  top: 0px;
+  left: 200px;
+}
+.errorMessageLogin {
+  position: relative;
+  /* margin-bottom: 150px; */
+  top: -60px;
+  left: 170px;
+  font-weight: 500;
+  font-size: 18px;
+  color: rgb(255, 38, 0);
+}
 .logingForm {
-  width: 36vw;
+  width: 500px;
   /* height: 70vh; */
-  height: 380px;
+  height: 420px;
   padding: 5px;
   border-radius: 20px;
   background-color: rgba(96, 48, 150, 0.35);
   box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.3);
+  margin-left: 380px;
+  margin-top: 120px;
+}
+
+input[type="email"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 1px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .labelInputLogin {
   display: flex;
   flex-direction: column;
-  margin: 15px 10px 10px 10px;
+  margin: 10px 10px 0px 50px;
+  width: 410px;
+  /* height: 10px; */
+  font-weight: 700;
+  font-size: 18px;
 }
-
+.formlabel {
+  color: #edeedc;
+}
 .loginButtons {
   margin: 1.7vh 0 15px 12px;
 }
@@ -44,11 +78,12 @@
   margin-right: 3vw;
   margin-top: 8px;
   text-align: center;
+  color: #dcebee;
 }
 
-.linktoForgot {
+/* .linktoForgot {
   margin-right: 10vw;
   text-align: center;
   margin: 0 3vw 13px 0;
   padding: 0;
-}
+} */

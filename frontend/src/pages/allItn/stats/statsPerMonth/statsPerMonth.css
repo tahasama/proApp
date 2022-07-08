@@ -10,8 +10,14 @@
 .statsPerMonthFilter {
   margin-top: 20px;
   width: 250px;
-  max-height: 350px;
+  height: 300px;
   overflow-y: scroll;
+  z-index: 99;
+}
+.hayya:hover {
+  background-color: rgba(143, 171, 228, 0.4);
+  /* opacity: 0.9; */
+  z-index: 1;
 }
 
 /* ::-webkit-scrollbar {

@@ -18,11 +18,12 @@ interface valueProps {
   useremail?: string;
   username?: string;
   userimage?: string;
+  status?: string;
 }
 
 export const registerUser = createAsyncThunk(
   "registerUser",
-  async ({ email, password }: valueProps) => {
+  async ({ email, password, status }: valueProps) => {
     console.log("USER_URL", USER_URL);
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -30,6 +31,7 @@ export const registerUser = createAsyncThunk(
         email: res.user.email,
         uid: res.user.uid,
         displayNmae: res.user.displayName,
+        status,
       };
       await axios.post(USER_URL, object);
 
@@ -42,16 +44,20 @@ export const registerUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
   "loginUser",
-  async ({ email, password, provider }: valueProps) => {
+  async ({ email, password, provider, status }: valueProps) => {
     if (provider) {
       try {
         const res = await signInWithPopup(auth, provider);
         try {
+          console.log("it is there", res);
           const reso = await axios.post(USER_URL, {
             email: res.user.email,
             uid: res.user.uid,
             displayName: res.user.displayName,
+            status: "unauthorized",
           });
+          console.log("it is there noooow");
+
           return reso;
         } catch (error) {}
         return res.user;
@@ -87,6 +93,33 @@ export const resetPasswordo: any = createAsyncThunk(
   }
 );
 
+export const getUser = createAsyncThunk(
+  "getUser",
+  async (uid: string | undefined) => {
+    try {
+      console.log("get user", uid);
+      const res = await axios.get(USER_URL + uid);
+      console.log("yuyuyuyu", res.data[0]);
+      return res.data[0];
+    } catch (error: any) {
+      return error;
+    }
+  }
+);
+export const updateUserStatus = createAsyncThunk(
+  "updateUserStatus",
+  async ({ status, _id, email }: any) => {
+    console.log("MAAAAAAAAAAAAANNNN", status, "anddddd", _id);
+    try {
+      const res = await axios.put(USER_URL + _id + "/" + email, {
+        status,
+      });
+      console.log("werwrwfwrwerwe", res);
+      return res;
+    } catch (error) {}
+  }
+);
+
 export interface userProps {
   authUser: {
     uid: string;
@@ -96,6 +129,8 @@ export interface userProps {
     err: { code: string; message: string };
     user: any;
     displayName: any;
+    status: string;
+    newstatus: string;
   };
 }
 
@@ -107,6 +142,8 @@ export const userInitialState = {
   err: { code: "", message: "" },
   user: "",
   displayName: "",
+  status: "",
+  newstatus: "",
 };
 
 export const authSlice = createSlice({
@@ -125,6 +162,10 @@ export const authSlice = createSlice({
     resetUser: (state, action) => {
       Object.assign(state, action.payload);
     },
+    updateStatus: (state, action) => {
+      console.log("aaaaaight", action.payload);
+      state.newstatus = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(registerUser.fulfilled, (state, action: any) => {
@@ -140,9 +181,21 @@ export const authSlice = createSlice({
       state.err.code = action.payload.code;
       state.err.message = action.payload.message;
     });
+    builder.addCase(getUser.fulfilled, (state, action: any) => {
+      // console.log("this user pfrofile...", action.payload.status);
+      state.status = action.payload?.status;
+
+      // state.user = action.payload.uid;
+      // Object.assign(state, action.payload);
+    });
+    builder.addCase(updateUserStatus.fulfilled, (state, action: any) => {
+      console.log("noooooooo", action.payload);
+      state.status = action.payload.status;
+    });
   },
 });
 
 export const getAuthData = (state: userProps) => state.authUser;
-export const { updateError, saveUser, resetUser } = authSlice.actions;
+export const { updateError, saveUser, resetUser, updateStatus } =
+  authSlice.actions;
 export default authSlice.reducer;

@@ -21,6 +21,8 @@ import "./navbar.css";
 import { useRef } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
+import { useAppSelector } from "../../state/hooks";
+import { getAuthData } from "../../state/reducers/authSlice";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -64,6 +66,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function NavBar() {
   const searchRef = useRef<any>(null);
+  const { user } = useAppSelector(getAuthData);
+
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -293,25 +297,18 @@ export default function NavBar() {
               <MoreIcon />
             </IconButton>
           </Box>
-          <button
-            className="userlink signUp"
-            onClick={() => navigate("/register")}
-          >
-            Sign
-          </button>
-          <button className="userlink logIn" onClick={() => navigate("/login")}>
-            LogIn
-          </button>
-          <button
-            className="barbar"
-            onClick={() => {
-              signOut(auth);
-              console.log("logged out");
-              // navigate("/");
-            }}
-          >
-            Logout
-          </button>
+          {user && (
+            <button
+              className="barbar"
+              onClick={() => {
+                signOut(auth);
+                console.log("logged out");
+                navigate("/");
+              }}
+            >
+              Logout
+            </button>
+          )}
         </Toolbar>
       </AppBar>
       {renderMobileMenu}

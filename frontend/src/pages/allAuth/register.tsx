@@ -8,6 +8,7 @@ import {
   loginUser,
   registerUser,
   updateError,
+  updateStatus,
 } from "../../state/reducers/authSlice";
 import Navbar from "../Navbar/navbar";
 // import SideBar from "../components/sideBar";
@@ -20,7 +21,7 @@ import Navbar from "../Navbar/navbar";
 //   registerUser,
 // } from "../state/reducers/authSlice";
 // import { updateError } from "../state/reducers/userSlice";
-// import "./register.css";
+import "./register.css";
 
 const Register: React.FC = () => {
   const emailRef = useRef<any>(null);
@@ -37,6 +38,12 @@ const Register: React.FC = () => {
     dispatch(updateError("Password should be at least 6 characters"));
   } else if (err.code === "auth/email-already-in-use") {
     dispatch(updateError("Email already taken, please add a different one"));
+  } else if (err.code === "auth/network-request-failed") {
+    dispatch(
+      updateError(
+        "Please make sure, you have internet connection, and try again"
+      )
+    );
   } else if (err.code === "auth/invalid-email") {
     dispatch(updateError("Please provide a valid email"));
   } else if (err.code === "auth/internal-error") {
@@ -49,7 +56,9 @@ const Register: React.FC = () => {
   }
   useEffect(() => {
     if (uid) {
-      navigate("/");
+      setTimeout(() => {
+        navigate("/");
+      }, 15000);
     }
     dispatch(updateError(""));
   }, [uid, dispatch, navigate]);
@@ -67,26 +76,35 @@ const Register: React.FC = () => {
           registerUser({
             email: emailRef.current.value,
             password: passwordRef.current.value,
+            status: "unauthorized",
           })
         );
 
         setLoading(false);
+        dispatch(updateStatus("unauthorized"));
       } catch (err) {
         dispatch(updateError("failed to create account, please try again"));
       }
     }
   };
 
-  const LoginGoogle = () => {
+  const LoginGoogle = (e: any) => {
+    e.preventDefault();
+
     dispatch(loginUser({ email: "", password: "", provider: provider }));
+    dispatch(updateStatus("unauthorized"));
   };
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="registerContainer">
         <form className="registerForm" onSubmit={handleSubmit}>
           <div className="labelInput">
-            <label htmlFor="email" className="formlabel">
+            <label
+              htmlFor="email"
+              className="formlabel"
+              style={{ fontWeight: 500, fontSize: 18 }}
+            >
               Email
             </label>
             <input
@@ -97,7 +115,11 @@ const Register: React.FC = () => {
             />
           </div>
           <div className="labelInput">
-            <label htmlFor="password" className="formlabel">
+            <label
+              htmlFor="password"
+              className="formlabel"
+              style={{ fontWeight: 500, fontSize: 18 }}
+            >
               Password
             </label>
             <input
@@ -108,7 +130,11 @@ const Register: React.FC = () => {
             />
           </div>
           <div className="labelInput">
-            <label htmlFor="passwordConfirmation" className="formlabel">
+            <label
+              htmlFor="passwordConfirmation"
+              className="formlabel"
+              style={{ fontWeight: 500, fontSize: 18 }}
+            >
               Password Confirmation
             </label>
             <input
@@ -132,14 +158,14 @@ const Register: React.FC = () => {
             </button>
           </div>
 
-          <p className="question">
+          <p className="question" style={{ fontWeight: 500, fontSize: 18 }}>
             Already have an account?{" "}
-            <Link to="/login" className="linkto">
+            <Link to="/" className="linkto">
               Login
             </Link>
           </p>
         </form>
-        {err && <p className="errorMessage">{err.message}</p>}
+        {err && <p className="errorMessageRegister">{err.message}</p>}
       </div>
     </div>
   );
