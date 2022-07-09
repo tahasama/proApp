@@ -303,7 +303,7 @@ export default function NavBar() {
               onClick={() => {
                 signOut(auth);
                 console.log("logged out");
-                navigate("/");
+                navigate("/register");
               }}
             >
               Logout

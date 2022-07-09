@@ -16,12 +16,13 @@ import AllQor from "./pages/allQor/allQor";
 import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
-import { saveUser } from "./state/reducers/authSlice";
+import { getAuthData, getUser, saveUser } from "./state/reducers/authSlice";
 import Login from "./pages/allAuth/login";
 import Register from "./pages/allAuth/register";
 import ResetPassword from "./pages/allAuth/resetPassword";
 import Home from "./pages/home";
 import Authorize from "./pages/allAuth/authorize";
+import { useAppDispatch, useAppSelector } from "./state/hooks";
 
 // import Checklist from "./pages/individualItn/itnForm/checklist6";
 // import Checklist5 from "./pages/individualItn/itnForm/checklist5";
@@ -30,7 +31,9 @@ import Authorize from "./pages/allAuth/authorize";
 // import Checklist2 from "./pages/individualItn/itnForm/checklist2";
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const { user, status, uid, newstatus, email } = useAppSelector(getAuthData);
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -40,24 +43,34 @@ function App() {
       }
     });
   }, [dispatch]);
+  useEffect(() => {
+    dispatch(getUser(uid));
+  }, [uid]);
+
+  console.log("THIS IS THE ORIGIN", status, "of the user", uid);
+
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/authorized/:id/:email" element={<Authorize />} />
-          <Route path="/fullPlan" element={<FullPlan />} />
-          <Route path="/login" element={<Login />} />
+          {/* <Route path="/login" element={<Login />} /> */}
           <Route path="/register" element={<Register />} />
           <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/allitn" element={<AllItn />} />
-          <Route path="/allconcrete" element={<AllConcrete />} />
-          <Route path="/allreinforcement" element={<AllReinforcement />} />
-          <Route path="/allNcr" element={<AllNcr />} />
-          <Route path="/allQor" element={<AllQor />} />
-          <Route path="/:itp" element={<LocationDetail />} />
-          <Route path="/:itp/:itnId" element={<IndividualItn />} />
-          <Route path="/:itp/:itnId/itnForm" element={<ItnForm />} />
+          {status !== "unauthorized" && status !== undefined && (
+            <>
+              <Route path="/fullPlan" element={<FullPlan />} />
+              <Route path="/allitn" element={<AllItn />} />
+              <Route path="/allconcrete" element={<AllConcrete />} />
+              <Route path="/allreinforcement" element={<AllReinforcement />} />
+              <Route path="/allNcr" element={<AllNcr />} />
+              <Route path="/allQor" element={<AllQor />} />
+              <Route path="/:itp" element={<LocationDetail />} />
+              <Route path="/:itp/:itnId" element={<IndividualItn />} />
+              <Route path="/:itp/:itnId/itnForm" element={<ItnForm />} />
+            </>
+          )}
         </Routes>
       </BrowserRouter>
     </div>

@@ -77,18 +77,22 @@ const Login = () => {
       );
     } catch (err) {
       dispatch(updateError("failed to login, please try again"));
-      dispatch(updateStatus("unauthorized"));
+      // dispatch(updateStatus("unauthorized"));
+      navigate("/fullPlan");
     }
   };
 
   const LoginGoogle = (e: any) => {
-    e.preventDefault();
-
     dispatch(loginUser({ email: "", password: "", provider: provider }));
-    setTimeout(() => {
-      dispatch(updateStatus("unauthorized"));
-    }, 5000);
+
+    // setTimeout(() => {
+    //   dispatch(updateStatus("unauthorized"));
+    // }, 5000);
   };
+
+  useEffect(() => {
+    status === "authorized" ? navigate("/fullPlan") : navigate("/");
+  }, [status]);
 
   // useEffect(() => {
   //   if (firstRenderRef.current === false) {
@@ -102,107 +106,113 @@ const Login = () => {
   //   }
   // }, [status, newstatus, auth]);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     // After 3 seconds set the show value to false
-  //     setAlerto(false);
-  //   }, 5000);
-  //   return setAlerto(true);
-  // }, [status]);
+  useEffect(() => {
+    setTimeout(() => {
+      // After 3 seconds set the show value to false
+      // setAlerto(false);
+      status !== "authorized" && status !== undefined && setAlerto(false);
+    }, 7000);
+    return setAlerto(true);
+  }, [status]);
 
-  // const authorization = (
-  //   <Alert
-  //     severity="success"
-  //     style={{ alignItems: "center", justifyContent: "center" }}
-  //   >
-  //     <AlertTitle>Your inscription will be examined</AlertTitle>
-  //     if you are an authorized member youwill receive an email very shortly ,
-  //     ginving you access to the app, Thank you for your patience
-  //   </Alert>
-  // );
+  const authorization = (
+    <Alert
+      severity="success"
+      style={{ alignItems: "center", justifyContent: "center" }}
+    >
+      <AlertTitle>Your inscription will be examined</AlertTitle>
+      youl receive a confirmation email of subscription very shortly, if you are
+      an authorized member you will receive another email ginving you access to
+      the app, Thank you for your patience.
+    </Alert>
+  );
 
   // ==============================================================
 
   return (
     <div>
-      {!user ||
+      {/* {!user ||
       (user && status === "unauthorized") ||
-      newstatus === "unauthorized" ? (
-        <div className="">
-          {/* <NavBar /> */}
-          <div className="registerContainer" style={{ marginRight: 400 }}>
-            <form className="logingForm" onSubmit={handleSubmit}>
-              <div className="labelInputLogin">
-                <label htmlFor="email" className="formlabel">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  className="formInput"
-                  ref={emailRef}
-                />{" "}
-              </div>
-              <div className="labelInputLogin">
-                <label htmlFor="password" className="formlabel">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  className="formInput"
-                  ref={passwordRef}
-                />{" "}
-              </div>
-              <div className="loginButtons">
-                <button type="submit" className="loginButton">
-                  Login
-                </button>
-                <button
-                  type="button"
-                  className="loginButton google"
-                  onClick={LoginGoogle}
-                >
-                  Login with Google
-                </button>
-              </div>
-
-              {status !== "unauthorized" && (
-                <p className="linktoForgot">
-                  <Link
-                    to="/reset-password"
-                    className="linkto"
-                    style={{
-                      color: "#dcebee",
-                      fontWeight: 700,
-                      fontSize: 18,
-                    }}
-                  >
-                    Forgot password ?
-                  </Link>
-                </p>
-              )}
-              <p
-                className="loginQuestion"
-                style={{
-                  color: "#caf042",
-                  fontWeight: 700,
-                  fontSize: 18,
-                  marginTop: 5,
-                }}
+      newstatus === "unauthorized" ? ( */}
+      {alerto &&
+        status !== "authorized" &&
+        status !== undefined &&
+        authorization}
+      <div className="">
+        {/* <NavBar /> */}
+        <div className="registerContainer" style={{ marginRight: 400 }}>
+          <form className="logingForm" onSubmit={handleSubmit}>
+            <div className="labelInputLogin">
+              <label htmlFor="email" className="formlabel">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                className="formInput"
+                ref={emailRef}
+              />{" "}
+            </div>
+            <div className="labelInputLogin">
+              <label htmlFor="password" className="formlabel">
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                className="formInput"
+                ref={passwordRef}
+              />{" "}
+            </div>
+            <div className="loginButtons">
+              <button type="submit" className="loginButton">
+                Login
+              </button>
+              <button
+                type="button"
+                className="loginButton google"
+                onClick={LoginGoogle}
               >
-                Don't have an account ?{" "}
-                <Link to="/register" className="linkto">
-                  SignUp
+                Login with Google
+              </button>
+            </div>
+
+            {status !== "unauthorized" && (
+              <p className="linktoForgot">
+                <Link
+                  to="/reset-password"
+                  className="linkto"
+                  style={{
+                    color: "#dcebee",
+                    fontWeight: 700,
+                    fontSize: 18,
+                  }}
+                >
+                  Forgot password ?
                 </Link>
               </p>
-            </form>{" "}
-            {err && <p className="errorMessageLogin">{err.message}</p>}
-          </div>
+            )}
+            <p
+              className="loginQuestion"
+              style={{
+                color: "#caf042",
+                fontWeight: 700,
+                fontSize: 18,
+                marginTop: 5,
+              }}
+            >
+              Don't have an account ?{" "}
+              <Link to="/register" className="linkto">
+                SignUp
+              </Link>
+            </p>
+          </form>{" "}
+          {err && <p className="errorMessageLogin">{err.message}</p>}
         </div>
-      ) : (
+      </div>
+      {/* ) : (
         <FullPlan />
-      )}
+      )} */}
     </div>
   );
 };
