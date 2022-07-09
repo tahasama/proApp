@@ -5,12 +5,13 @@ import FullPlan from "./fullPlan/fullPlan";
 import NavBar from "./Navbar/navbar";
 import { signOut } from "firebase/auth";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { auth } from "../firebase";
 
 const Home = () => {
   const { user, newstatus, status, uid } = useAppSelector(getAuthData);
   const dispatch = useAppDispatch();
+  const [pass, setpass] = useState(false);
 
   console.log(
     "logggg",
@@ -25,6 +26,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getUser(uid));
+    setpass(true);
   }, [uid]);
 
   return (

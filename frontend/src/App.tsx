@@ -44,7 +44,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login />} />
           <Route path="/authorized/:id/:email" element={<Authorize />} />
           <Route path="/fullPlan" element={<FullPlan />} />
           <Route path="/login" element={<Login />} />

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import {
   getAuthData,
+  getUser,
   loginUser,
   updateError,
   updateStatus,
@@ -26,6 +27,7 @@ import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Stack from "@mui/material/Stack";
 import { signOut } from "firebase/auth";
+import FullPlan from "../fullPlan/fullPlan";
 
 const Login = () => {
   const [promises, setpromises] = useState<any>();
@@ -35,10 +37,16 @@ const Login = () => {
   const navigate = useNavigate();
   const { err } = useAppSelector(getAuthData);
   const [alerto, setAlerto] = useState(true);
-  const { user, status, uid, newstatus } = useAppSelector(getAuthData);
+  const firstRenderRef = useRef(false);
+  const { user, status, uid, newstatus, email } = useAppSelector(getAuthData);
   console.log("statussss in login page", status);
   console.log("NEWstatussss in login page", newstatus);
   console.log("UID in login page", uid);
+  console.log("EMAIL in login page", email);
+
+  useEffect(() => {
+    dispatch(getUser(uid));
+  }, []);
 
   if (err.code === "auth/user-not-found") {
     dispatch(updateError("wrong email, please try again"));
@@ -77,19 +85,22 @@ const Login = () => {
     e.preventDefault();
 
     dispatch(loginUser({ email: "", password: "", provider: provider }));
-    dispatch(updateStatus("unauthorized"));
+    setTimeout(() => {
+      dispatch(updateStatus("unauthorized"));
+    }, 5000);
   };
 
-  useEffect(() => {
-    console.log("her ya go", status, "also", alerto);
-    setAlerto(true);
-
-    (status === "unauthorized" || newstatus === "unauthorized" || uid) &&
-      setTimeout(() => {
-        signOut(auth);
-        setAlerto(false);
-      }, 3000);
-  }, [status, newstatus, setAlerto]);
+  // useEffect(() => {
+  //   if (firstRenderRef.current === false) {
+  //     (status === "unauthorized" || newstatus === "unauthorized") &&
+  //       setTimeout(() => {
+  //         signOut(auth);
+  //       }, 5000);
+  //     return () => {
+  //       firstRenderRef.current = true;
+  //     };
+  //   }
+  // }, [status, newstatus, auth]);
 
   // useEffect(() => {
   //   setTimeout(() => {
@@ -99,103 +110,99 @@ const Login = () => {
   //   return setAlerto(true);
   // }, [status]);
 
-  const authorization = (
-    <Alert
-      severity="success"
-      style={{ alignItems: "center", justifyContent: "center" }}
-    >
-      <AlertTitle>Your inscription was a success</AlertTitle>
-      if you are an authorized member youwill receive an email very shortly ,
-      ginving you access to the app, Thank you for your patience
-    </Alert>
-  );
+  // const authorization = (
+  //   <Alert
+  //     severity="success"
+  //     style={{ alignItems: "center", justifyContent: "center" }}
+  //   >
+  //     <AlertTitle>Your inscription will be examined</AlertTitle>
+  //     if you are an authorized member youwill receive an email very shortly ,
+  //     ginving you access to the app, Thank you for your patience
+  //   </Alert>
+  // );
 
   // ==============================================================
 
   return (
     <div>
-      <div className="">
-        {/* <NavBar /> */}
-        <>
-          {alerto &&
-          (newstatus === "unauthorized" ||
-            (uid && status === "unauthorized") ||
-            uid) ? (
-            authorization
-          ) : (
-            <p></p>
-          )}
-        </>
-        <div className="registerContainer" style={{ marginRight: 400 }}>
-          <form className="logingForm" onSubmit={handleSubmit}>
-            <div className="labelInputLogin">
-              <label htmlFor="email" className="formlabel">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                className="formInput"
-                ref={emailRef}
-              />{" "}
-            </div>
-            <div className="labelInputLogin">
-              <label htmlFor="password" className="formlabel">
-                Password
-              </label>
-              <input
-                type="password"
-                name="password"
-                className="formInput"
-                ref={passwordRef}
-              />{" "}
-            </div>
-            <div className="loginButtons">
-              <button type="submit" className="loginButton">
-                Login
-              </button>
-              <button
-                type="button"
-                className="loginButton google"
-                onClick={LoginGoogle}
-              >
-                Login with Google
-              </button>
-            </div>
-
-            {status !== "unauthorized" && (
-              <p className="linktoForgot">
-                <Link
-                  to="/reset-password"
-                  className="linkto"
-                  style={{
-                    color: "#dcebee",
-                    fontWeight: 700,
-                    fontSize: 18,
-                  }}
+      {!user ||
+      (user && status === "unauthorized") ||
+      newstatus === "unauthorized" ? (
+        <div className="">
+          {/* <NavBar /> */}
+          <div className="registerContainer" style={{ marginRight: 400 }}>
+            <form className="logingForm" onSubmit={handleSubmit}>
+              <div className="labelInputLogin">
+                <label htmlFor="email" className="formlabel">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  className="formInput"
+                  ref={emailRef}
+                />{" "}
+              </div>
+              <div className="labelInputLogin">
+                <label htmlFor="password" className="formlabel">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  className="formInput"
+                  ref={passwordRef}
+                />{" "}
+              </div>
+              <div className="loginButtons">
+                <button type="submit" className="loginButton">
+                  Login
+                </button>
+                <button
+                  type="button"
+                  className="loginButton google"
+                  onClick={LoginGoogle}
                 >
-                  Forgot password ?
+                  Login with Google
+                </button>
+              </div>
+
+              {status !== "unauthorized" && (
+                <p className="linktoForgot">
+                  <Link
+                    to="/reset-password"
+                    className="linkto"
+                    style={{
+                      color: "#dcebee",
+                      fontWeight: 700,
+                      fontSize: 18,
+                    }}
+                  >
+                    Forgot password ?
+                  </Link>
+                </p>
+              )}
+              <p
+                className="loginQuestion"
+                style={{
+                  color: "#caf042",
+                  fontWeight: 700,
+                  fontSize: 18,
+                  marginTop: 5,
+                }}
+              >
+                Don't have an account ?{" "}
+                <Link to="/register" className="linkto">
+                  SignUp
                 </Link>
               </p>
-            )}
-            <p
-              className="loginQuestion"
-              style={{
-                color: "#caf042",
-                fontWeight: 700,
-                fontSize: 18,
-                marginTop: 5,
-              }}
-            >
-              Don't have an account ?{" "}
-              <Link to="/register" className="linkto">
-                SignUp
-              </Link>
-            </p>
-          </form>{" "}
-          {err && <p className="errorMessageLogin">{err.message}</p>}
+            </form>{" "}
+            {err && <p className="errorMessageLogin">{err.message}</p>}
+          </div>
         </div>
-      </div>
+      ) : (
+        <FullPlan />
+      )}
     </div>
   );
 };

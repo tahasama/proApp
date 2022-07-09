@@ -24,7 +24,6 @@ interface valueProps {
 export const registerUser = createAsyncThunk(
   "registerUser",
   async ({ email, password, status }: valueProps) => {
-    console.log("USER_URL", USER_URL);
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
       const object = {
@@ -49,14 +48,12 @@ export const loginUser = createAsyncThunk(
       try {
         const res = await signInWithPopup(auth, provider);
         try {
-          console.log("it is there", res);
           const reso = await axios.post(USER_URL, {
             email: res.user.email,
             uid: res.user.uid,
             displayName: res.user.displayName,
             status: "unauthorized",
           });
-          console.log("it is there noooow");
 
           return reso;
         } catch (error) {}
@@ -66,11 +63,7 @@ export const loginUser = createAsyncThunk(
       }
     } else {
       try {
-        console.log("nnnnnnnnnnnnnnnnnnn");
-
         const res = await signInWithEmailAndPassword(auth, email, password);
-        console.log("fffffffffffffff", res);
-
         return res.user;
       } catch (error: any) {
         return error;
@@ -82,11 +75,8 @@ export const loginUser = createAsyncThunk(
 export const resetPasswordo: any = createAsyncThunk(
   "resetPasswordo",
   async (email: string) => {
-    console.log("USER_URL", USER_URL);
     try {
-      console.log("email", email);
       const res = await sendPasswordResetEmail(auth, email);
-      console.log("res", res);
     } catch (error: any) {
       return error;
     }
@@ -97,9 +87,7 @@ export const getUser = createAsyncThunk(
   "getUser",
   async (uid: string | undefined) => {
     try {
-      console.log("get user", uid);
       const res = await axios.get(USER_URL + uid);
-      console.log("yuyuyuyu", res.data[0]);
       return res.data[0];
     } catch (error: any) {
       return error;
@@ -109,12 +97,10 @@ export const getUser = createAsyncThunk(
 export const updateUserStatus = createAsyncThunk(
   "updateUserStatus",
   async ({ status, _id, email }: any) => {
-    console.log("MAAAAAAAAAAAAANNNN", status, "anddddd", _id);
     try {
       const res = await axios.put(USER_URL + _id + "/" + email, {
         status,
       });
-      console.log("werwrwfwrwerwe", res);
       return res;
     } catch (error) {}
   }
@@ -163,7 +149,6 @@ export const authSlice = createSlice({
       Object.assign(state, action.payload);
     },
     updateStatus: (state, action) => {
-      console.log("aaaaaight", action.payload);
       state.newstatus = action.payload;
     },
   },
@@ -182,14 +167,12 @@ export const authSlice = createSlice({
       state.err.message = action.payload.message;
     });
     builder.addCase(getUser.fulfilled, (state, action: any) => {
-      // console.log("this user pfrofile...", action.payload.status);
       state.status = action.payload?.status;
 
       // state.user = action.payload.uid;
       // Object.assign(state, action.payload);
     });
     builder.addCase(updateUserStatus.fulfilled, (state, action: any) => {
-      console.log("noooooooo", action.payload);
       state.status = action.payload.status;
     });
   },

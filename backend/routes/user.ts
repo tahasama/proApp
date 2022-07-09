@@ -28,9 +28,17 @@ routerU.post("/", async (req, res) => {
   var mailOptions = {
     from: "taha.maatof@gmail.com",
     to: "taha.maatof@gmail.com",
-    subject: "request authirization to browse the app",
+    subject: "request authorization to browse the app",
     text: `a new user with the email: ${req.body.email}, request an access to the app.
     click on this link to authorize this user's access http://localhost:3000/authorized/${newUser._id}/${req.body.email}`,
+  };
+  var mailOptions2 = {
+    from: "taha.maatof@gmail.com",
+    to: `${req.body.email}`,
+    subject: "request authirization to browse the app",
+    text: `Your inscription will be examined
+    if you are an authorized member you will receive an email very shortly ,
+    ginving you access to the app, Thank you for your patience`,
   };
   const UserExists = User.findOne(
     { uid: req.body.uid },
@@ -49,6 +57,15 @@ routerU.post("/", async (req, res) => {
                 console.log("Email sent: " + info.response);
               }
             });
+            console.log("yes it did");
+            transporter.sendMail(mailOptions2, function (error, info) {
+              if (error) {
+                console.log(error);
+              } else {
+                console.log("Email2 sent: " + info.response);
+              }
+            });
+
             res.status(200).json(saveUser);
           } catch (err) {
             res.status(500).json(err);
@@ -117,7 +134,7 @@ routerU.put("/:id/:email", async (req, res) => {
       if (error) {
         console.log(error);
       } else {
-        console.log("Email sent: " + info.response);
+        console.log("Email sent3: " + info.response);
       }
     }),
       res.status(200).json(updateUser);
