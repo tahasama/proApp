@@ -91,7 +91,9 @@ const Login = () => {
   };
 
   useEffect(() => {
-    status === "authorized" ? navigate("/fullPlan") : navigate("/");
+    status === "authorized" || status === "manager"
+      ? navigate("/fullPlan")
+      : navigate("/");
   }, [status]);
 
   // useEffect(() => {
@@ -137,6 +139,7 @@ const Login = () => {
       {alerto &&
         status !== "authorized" &&
         status !== undefined &&
+        status !== "manager" &&
         authorization}
       <div className="">
         {/* <NavBar /> */}

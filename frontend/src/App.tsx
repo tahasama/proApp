@@ -58,7 +58,8 @@ function App() {
           {/* <Route path="/login" element={<Login />} /> */}
           <Route path="/register" element={<Register />} />
           <Route path="/reset-password" element={<ResetPassword />} />
-          {status !== "unauthorized" && status !== undefined && (
+          {(status === "manager" ||
+            (status !== "unauthorized" && status !== undefined)) && (
             <>
               <Route path="/fullPlan" element={<FullPlan />} />
               <Route path="/allitn" element={<AllItn />} />

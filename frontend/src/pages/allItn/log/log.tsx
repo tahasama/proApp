@@ -29,6 +29,7 @@ import {
 } from "firebase/storage";
 import * as FileSaver from "file-saver";
 import DownloadIcon from "@mui/icons-material/Download";
+import { getAuthData } from "../../../state/reducers/authSlice";
 
 const handleNumber = (num: any) => {
   return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
@@ -38,6 +39,7 @@ const Log = () => {
   const dispatch = useAppDispatch();
 
   const { all, ww } = useAppSelector(itnData);
+  const { user, status, uid, newstatus, email } = useAppSelector(getAuthData);
 
   const [num, setNum] = useState<any>();
 
@@ -294,28 +296,32 @@ const Log = () => {
     FileSaver.saveAs(blob, `QC.zip`);
   };
   //============================================================
-
+  console.log("status is:", status);
   return (
     <div className="log">
-      <div>
+      <div style={{ marginBottom: status === "authorized" ? 30 : 0 }}>
         <h2 className="title1">INSPECTION TEST NOTIFICATIONS</h2>
       </div>
 
-      <div className="overrideButtonCreate toUp">
-        <ModalM />
-      </div>
-
-      <div>
-        <Button
-          variant="outlined"
-          color="error"
-          size="large"
-          className="deleteButton"
-          onClick={handleDelete}
-        >
-          Delete selected
-        </Button>
-      </div>
+      {status === "manager" && (
+        <div>
+          {" "}
+          <div className="overrideButtonCreate toUp">
+            <ModalM />
+          </div>
+          <div>
+            <Button
+              variant="outlined"
+              color="error"
+              size="large"
+              className="deleteButton"
+              onClick={handleDelete}
+            >
+              Delete selected
+            </Button>
+          </div>
+        </div>
+      )}
 
       <div className="grid" style={{ width: "100%", height: 380 }}>
         {all.flat().length !== 0 ? (
