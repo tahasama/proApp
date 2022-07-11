@@ -241,7 +241,12 @@ const ConcreteOfLocation = () => {
         <Bar
           options={optionsLine}
           data={data}
-          style={{ height: 350, marginTop: 50, marginLeft: 120 }}
+          style={{
+            height: 350,
+            marginTop: 50,
+            marginLeft: 200,
+            backgroundColor: "rgb(230,230,230,0.9)",
+          }}
           className="statsPerMonthLine"
         />
       </div>

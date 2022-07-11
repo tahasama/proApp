@@ -234,11 +234,16 @@ const ReinforcementOfLocation = () => {
             .reduce((a, b): any => a + b, 0)}
           &nbsp; Kg
         </Button>
-        <div className="DoughnutDimension" style={{ padding: 0, width: "31%" }}>
+        <div className="DoughnutDimension" style={{ padding: 0, width: "32%" }}>
           <Pie
             options={optionsPie}
             data={data}
-            style={{ marginTop: 4, marginLeft: 100 }}
+            style={{
+              marginTop: 4,
+              marginLeft: 100,
+
+              backgroundColor: "rgb(230,230,230,0.9)",
+            }}
           />
         </div>
 
@@ -249,7 +254,12 @@ const ReinforcementOfLocation = () => {
           <Line
             options={optionsLine}
             data={data2}
-            style={{ width: 340, marginTop: -175, marginLeft: 120 }}
+            style={{
+              width: 340,
+              marginTop: -175,
+              marginLeft: 120,
+              backgroundColor: "rgb(230,230,230,0.9)",
+            }}
           />
         </div>
       </div>

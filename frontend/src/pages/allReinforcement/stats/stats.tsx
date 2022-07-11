@@ -250,7 +250,7 @@ const Stats = () => {
 
     datasets: [
       {
-        label: "Total inspections per month",
+        label: "Total reinforcement used per month",
         data: uu1,
         borderColor: "rgb(54, 162, 235)",
         backgroundColor: "rgba(75, 142, 192, 0.2)",
@@ -269,7 +269,11 @@ const Stats = () => {
         <Doughnut
           options={optionsPie}
           data={data}
-          style={{ marginTop: -54, marginLeft: 60 }}
+          style={{
+            marginTop: -54,
+            marginLeft: 60,
+            backgroundColor: "rgb(210,215,230,0.9)",
+          }}
         />
       </div>
 
@@ -280,7 +284,13 @@ const Stats = () => {
         <Line
           options={optionsLine}
           data={data1}
-          style={{ width: 340, marginTop: -240, marginLeft: -60 }}
+          style={{
+            width: 340,
+            height: "100%",
+            marginTop: -240,
+            marginLeft: -60,
+            backgroundColor: "rgb(210,215,230,0.9)",
+          }}
         />
       </div>
     </div>

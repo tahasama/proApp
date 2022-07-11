@@ -3,12 +3,7 @@ import { useEffect, useState } from "react";
 // import ModalM from "./modalM/modalM";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-import {
-  concreteData,
-  deleteConcrete,
-  getAllConcretes,
-  updateWw,
-} from "../../../state/reducers/concreteSlice";
+
 import { useMemo, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
@@ -20,8 +15,10 @@ import {
   deleteReinforcement,
   getAllReinforcements,
   ReinforcementData,
+  updateWw,
 } from "../../../state/reducers/reinforcementSlice";
 import ModalN from "../modal/modalN";
+import { getAuthData } from "../../../state/reducers/authSlice";
 
 const handleNumber = (num: any) => {
   return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
@@ -29,6 +26,7 @@ const handleNumber = (num: any) => {
 
 const Log = () => {
   const dispatch = useAppDispatch();
+  const { user, status, uid, newstatus, email } = useAppSelector(getAuthData);
 
   const { all, ww } = useAppSelector(ReinforcementData);
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
@@ -97,6 +95,8 @@ const Log = () => {
   ]);
   const defaultColDef = useMemo(() => {
     return {
+      sortable: true,
+
       flex: 1,
       minWidth: 200,
       resizable: true,
@@ -123,7 +123,7 @@ const Log = () => {
       .map((ds: any) => ds.quantity)
       .map((v: any) => (v === undefined ? 0 : v))
       .reduce((a: any, b: any) => a + b, 0);
-    setTotalconcrete(vv);
+    setTotalreinforcement(vv);
   }, [ww]);
 
   const handleFilterChange = () => {
@@ -134,7 +134,7 @@ const Log = () => {
       ? setFilter2(gridRef.current.api.getFilterModel().dateOfUsage.filter)
       : setFilter2("");
   };
-  const [totalconcrete, setTotalconcrete] = useState();
+  const [totalreinforcement, setTotalreinforcement] = useState();
 
   const initialTotal = all
     .flat()
@@ -176,23 +176,35 @@ const Log = () => {
   return (
     <div className="log1">
       <div>
-        <h2 className="title4">Concrete Data Records</h2>
+        <h2 className="title4">Reinforcement Data Records</h2>
       </div>
-      <div className="overrideButtonCreate toUp1">
-        <ModalN />
-      </div>
-      <div>
-        <Button
-          variant="outlined"
-          color="error"
-          size="large"
-          className="deleteButton"
-          onClick={handleDelete}
-        >
-          Delete selected
-        </Button>
-      </div>
-      <div className="grid" style={{ width: "100%", height: 388 }}>
+      {status === "manager" && (
+        <>
+          <div className="overrideButtonCreate toUp1">
+            <ModalN />
+          </div>
+          <div>
+            <Button
+              variant="outlined"
+              color="error"
+              size="large"
+              className="deleteButton"
+              onClick={handleDelete}
+            >
+              Delete selected
+            </Button>
+          </div>
+        </>
+      )}
+
+      <div
+        className="grid"
+        style={{
+          width: "100%",
+          height: 388,
+          marginTop: status === "authorized" ? 14 : 0,
+        }}
+      >
         {all.flat().length >= 0 ? (
           <>
             <div style={containerStyle}>
@@ -210,13 +222,14 @@ const Log = () => {
                   onSelectionChanged={(v: any) =>
                     setSelected(v.api.getSelectedRows()[0]._id)
                   }
+                  rowStyle={{ background: "rgb(0,255,128,0.15)" }}
                 ></AgGridReact>
               </div>
             </div>{" "}
             <Button variant="contained" className="total">
               <p>
-                TOTAL = {totalconcrete}
-                <i style={{ textTransform: "lowercase" }}>Kg</i>
+                TOTAL = {totalreinforcement}
+                <i style={{ textTransform: "lowercase" }}>&nbsp;Kg</i>
               </p>
             </Button>
           </>

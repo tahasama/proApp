@@ -15,9 +15,11 @@ import {
 import NavBar from "../Navbar/navbar";
 import ModalQOR from "./modal/modalQOR";
 import Button from "@mui/material/Button";
+import { getAuthData } from "../../state/reducers/authSlice";
 
 const AllQor = () => {
   const dispatch = useAppDispatch();
+  const { user, status, uid, newstatus, email } = useAppSelector(getAuthData);
 
   const { all, ww, individualQorNcr, selectedBox } = useAppSelector(QorNcrData);
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
@@ -112,6 +114,7 @@ const AllQor = () => {
   ]);
   const defaultColDef = useMemo(() => {
     return {
+      sortable: true,
       flex: 1,
       minWidth: 200,
       resizable: true,
@@ -130,62 +133,117 @@ const AllQor = () => {
     dispatch(getQorNcr(selectedBox));
   }, [selectedBox]);
 
+  const [filter, setFilter] = useState("");
+  const [nn, setnn] = useState<any[]>();
+  useEffect(() => {
+    getTotal();
+  }, [filter, all]);
+
+  const getTotal = () => {
+    const rr = all.flat().filter((t: any) => t.typeR === "QOR");
+    const ss: any = rr.filter((filt: any) => filt.status === filter);
+    if (filter !== "") {
+      setnn(ss);
+    } else setnn(rr);
+  };
+  const handleFilterChange = () => {
+    gridRef.current.api.getFilterModel().status
+      ? setFilter(gridRef.current.api.getFilterModel().status.filter)
+      : setFilter("");
+  };
   return (
-    <div className="" style={{ marginTop: 30 }}>
-      <div>
-        <h2 className="title4" style={{ position: "relative", top: 64 }}>
-          QOR Data Records
-        </h2>
+    <>
+      <div className="navbar">
+        <NavBar />
       </div>
-      <div className="">
-        <ModalQOR />
-      </div>
-      <div>
-        <Button
-          className="deleteButton"
-          color="error"
-          variant="outlined"
-          size="large"
-          onClick={handleDelete}
-        >
-          Delete selected
-        </Button>
-      </div>
-      <div className="grid" style={{ width: "98%", height: 420, margin: 10 }}>
-        {all.flat().length >= 0 ? (
+      <div className="" style={{ marginTop: status === "authorized" ? 15 : 0 }}>
+        <div>
+          <h2 className="title4" style={{ position: "relative", top: 64 }}>
+            QOR Data Records
+          </h2>
+        </div>
+        {status === "manager" && (
           <>
-            <div style={containerStyle}>
-              <div style={gridStyle} className="ag-theme-alpine">
-                <AgGridReact
-                  rowData={all
-                    .flat()
-                    .filter((x: any) => x.typeR === "QOR")
-                    .reverse()}
-                  columnDefs={columnDefs}
-                  groupIncludeFooter={true}
-                  groupIncludeTotalFooter={true}
-                  defaultColDef={defaultColDef}
-                  animateRows={true}
-                  ref={gridRef}
-                  enableCellTextSelection={true}
-                  onSelectionChanged={(v: any) =>
-                    v.api.getSelectedRows().length === 0
-                      ? dispatch(UpdateSelectedBox(""))
-                      : dispatch(
-                          UpdateSelectedBox(v.api.getSelectedRows()[0]._id)
-                        )
-                  }
-                ></AgGridReact>
-              </div>
-            </div>{" "}
+            <div className="">
+              <ModalQOR />
+            </div>
+            <div>
+              <Button
+                className="deleteButton"
+                color="error"
+                variant="outlined"
+                size="large"
+                onClick={handleDelete}
+              >
+                Delete selected
+              </Button>
+            </div>
           </>
-        ) : (
-          <div>
-            <CircularProgress style={{ marginTop: 200 }} size={120} />
-          </div>
         )}
+
+        <div
+          className="grid"
+          style={{
+            width: "98%",
+            height: 420,
+            margin: 10,
+            marginTop: status === "authorized" ? 90 : 0,
+          }}
+        >
+          {all.flat().length >= 0 ? (
+            <>
+              <div style={containerStyle}>
+                <div style={gridStyle} className="ag-theme-alpine">
+                  <AgGridReact
+                    rowData={all
+                      .flat()
+                      .filter((x: any) => x.typeR === "QOR")
+                      .reverse()}
+                    columnDefs={columnDefs}
+                    groupIncludeFooter={true}
+                    groupIncludeTotalFooter={true}
+                    defaultColDef={defaultColDef}
+                    animateRows={true}
+                    ref={gridRef}
+                    onFilterChanged={handleFilterChange}
+                    enableCellTextSelection={true}
+                    onSelectionChanged={(v: any) =>
+                      v.api.getSelectedRows().length === 0
+                        ? dispatch(UpdateSelectedBox(""))
+                        : dispatch(
+                            UpdateSelectedBox(v.api.getSelectedRows()[0]._id)
+                          )
+                    }
+                    // rowStyle={{ background: "black" }}
+
+                    getRowStyle={(params) => {
+                      if (params.data?.status === "Closed") {
+                        return { background: "rgb(0,255,0,0.15)" };
+                      } else if (params.data?.status === "Open") {
+                        return { background: "rgb(255,0,0,0.15)" };
+                      } else if (params.data?.status === "Pending") {
+                        return { background: "rgb(0,0,255,0.15)" };
+                      } else return { background: "white" };
+                    }}
+                  ></AgGridReact>
+                </div>
+                <Button
+                  variant="contained"
+                  className="total1"
+                  color="secondary"
+                >
+                  Total = {nn !== undefined && nn.length} QOR
+                </Button>
+              </div>{" "}
+            </>
+          ) : (
+            <div>
+              <CircularProgress style={{ marginTop: 200 }} size={120} />
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

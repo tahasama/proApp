@@ -27,6 +27,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 import FileUploadTwoToneIcon from "@mui/icons-material/FileUploadTwoTone";
 import NavBar from "../../Navbar/navbar";
+import { getAuthData } from "../../../state/reducers/authSlice";
 
 const style = {
   position: "absolute" as "absolute",
@@ -47,6 +48,7 @@ export default function ModalM() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useAppDispatch();
+
   const { newStatus, individualQorNcr, all, ww, selectedBox } =
     useAppSelector(QorNcrData);
   const [value, setValue] = React.useState<Date | null>(new Date());
@@ -117,9 +119,6 @@ export default function ModalM() {
   return (
     <div>
       {" "}
-      <div className="navbar">
-        <NavBar />
-      </div>
       <Button
         variant="outlined"
         color="success"

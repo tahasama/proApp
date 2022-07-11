@@ -83,7 +83,7 @@ export default function AllItn() {
           <TabPanel value={value} index={2}>
             <div
               className="LineDimension2"
-              style={{ margin: 0, padding: 0, width: "70%" }}
+              style={{ margin: 0, padding: 0, width: "70%", marginTop: 20 }}
             >
               <StatsPerMonth />
             </div>

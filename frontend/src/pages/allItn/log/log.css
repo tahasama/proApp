@@ -49,3 +49,14 @@
   /* left: 550px; */
   float: right;
 }
+div.ag-row-hover:not(.ag-row-group) div {
+  background: rgba(252, 218, 124, 0.2);
+  text-shadow:
+  /* White glow */ 0 0 7px rgb(246, 255, 194), 0 0 10px #fff,
+    0 0 21px #fff;
+  /* color: white; */
+}
+
+/* div.ag-row-hover .ag-cell-inline-editing div {
+  color: black;
+} */

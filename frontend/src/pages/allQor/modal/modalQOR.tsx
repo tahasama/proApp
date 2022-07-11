@@ -117,9 +117,6 @@ export default function ModalM() {
   return (
     <div>
       {" "}
-      <div className="navbar">
-        <NavBar />
-      </div>
       <Button
         variant="outlined"
         color="success"

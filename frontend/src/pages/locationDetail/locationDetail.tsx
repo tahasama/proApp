@@ -11,6 +11,8 @@ import NavBar from "../Navbar/navbar";
 import ModalC from "./modalC/modalC";
 import ConcreteOfLocation from "./ConcreteOfLocation/concreteOfLocation";
 import ReinforcementOfLocation from "./ReinforcementOfLocation/ReinforcementOfLocation";
+import { useAppSelector } from "../../state/hooks";
+import { getAuthData } from "../../state/reducers/authSlice";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -46,6 +48,8 @@ function a11yProps(index: number) {
 }
 
 const LocationDetails = () => {
+  const { user, status, uid, newstatus, email } = useAppSelector(getAuthData);
+
   const [value, setValue] = React.useState(0);
   const { itp } = useParams();
 
@@ -60,7 +64,7 @@ const LocationDetails = () => {
       </div>
 
       <h6 className="locationName">{itp}: </h6>
-      <ModalC />
+      {status === "manager" && <ModalC />}
 
       <div className="restOfPage">
         <Box

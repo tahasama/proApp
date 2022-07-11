@@ -17,6 +17,7 @@ import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 import "./log.css";
 import { Link } from "react-router-dom";
 import ModalR from "../modal/modalR";
+import { getAuthData } from "../../../state/reducers/authSlice";
 
 const handleNumber = (num: any) => {
   return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
@@ -24,6 +25,7 @@ const handleNumber = (num: any) => {
 
 const Log = () => {
   const dispatch = useAppDispatch();
+  const { user, status, uid, newstatus, email } = useAppSelector(getAuthData);
 
   const { all, ww } = useAppSelector(concreteData);
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
@@ -102,6 +104,8 @@ const Log = () => {
   ]);
   const defaultColDef = useMemo(() => {
     return {
+      sortable: true,
+
       flex: 1,
       minWidth: 200,
       resizable: true,
@@ -212,21 +216,33 @@ const Log = () => {
       <div>
         <h2 className="title4">Concrete Data Records</h2>
       </div>
-      <div className="overrideButtonCreate toUp1">
-        <ModalR />
-      </div>
-      <div>
-        <Button
-          variant="outlined"
-          color="error"
-          size="large"
-          className="deleteButton"
-          onClick={handleDelete}
-        >
-          Delete selected
-        </Button>
-      </div>
-      <div className="grid" style={{ width: "100%", height: 388 }}>
+      {status === "manager" && (
+        <>
+          {" "}
+          <div className="overrideButtonCreate toUp1">
+            <ModalR />
+          </div>
+          <div>
+            <Button
+              variant="outlined"
+              color="error"
+              size="large"
+              className="deleteButton"
+              onClick={handleDelete}
+            >
+              Delete selected
+            </Button>
+          </div>
+        </>
+      )}
+      <div
+        className="grid"
+        style={{
+          width: "100%",
+          height: 388,
+          marginTop: status === "authorized" ? 14 : 0,
+        }}
+      >
         {all.flat().length >= 0 ? (
           <>
             <div style={containerStyle}>

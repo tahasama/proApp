@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 // import ModalM from "./modalM/modalM";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
@@ -130,6 +130,17 @@ const Log = () => {
       field: "review",
       headerName: "Review",
       minWidth: 70,
+      filter: "agMultiColumnFilter",
+      filterParams: {
+        filters: [
+          {
+            filter: "agNumberColumnFilter",
+          },
+          {
+            filter: "agSetColumnFilter",
+          },
+        ],
+      },
     },
     // {
     //   field: "relatedItn",
@@ -138,6 +149,7 @@ const Log = () => {
   ]);
   const defaultColDef = useMemo(() => {
     return {
+      sortable: true,
       flex: 1,
       minWidth: 200,
       resizable: true,
@@ -297,6 +309,7 @@ const Log = () => {
   };
   //============================================================
   console.log("status is:", status);
+
   return (
     <div className="log">
       <div style={{ marginBottom: status === "authorized" ? 30 : 0 }}>
@@ -342,6 +355,15 @@ const Log = () => {
                     setSelected(v.api.getSelectedRows()[0]._id)
                   }
                   onFilterChanged={handleFilterChange}
+                  getRowStyle={(params) => {
+                    if (params.data?.review === "C1") {
+                      return { background: "rgb(0,0,128,0.15)" };
+                    } else if (params.data?.review === "C2") {
+                      return { background: "rgb(0,255,0,0.15)" };
+                    } else if (params.data?.review === "C3") {
+                      return { background: "rgb(255,0,0,0.15)" };
+                    } else return { background: "white" };
+                  }}
                 ></AgGridReact>
               </div>
             </div>{" "}

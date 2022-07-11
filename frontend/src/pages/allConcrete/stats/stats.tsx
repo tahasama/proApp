@@ -246,7 +246,7 @@ const Stats = () => {
 
     datasets: [
       {
-        label: "Total inspections per month",
+        label: "Total concrete poured this month",
         data: uu1,
         borderColor: "rgb(54, 162, 235)",
         backgroundColor: "rgba(75, 142, 192, 0.2)",
@@ -260,24 +260,44 @@ const Stats = () => {
     <div>
       <div
         className="DoughnutDimension"
-        style={{ margin: 0, padding: 0, width: "30%" }}
+        style={{ margin: 0, padding: 0, width: "31%" }}
       >
-        <Doughnut options={optionsPie} data={data} style={{ marginTop: -84 }} />
+        <Doughnut
+          options={optionsPie}
+          data={data}
+          style={{ marginTop: -84, backgroundColor: "rgb(210,215,230,0.9)" }}
+        />
       </div>
 
       <div
         className="LineDimension"
-        style={{ margin: 0, padding: 0, width: "38%" }}
+        style={{
+          margin: 0,
+          padding: 0,
+          width: "38%",
+        }}
       >
         <Line
           options={optionsLine}
           data={data1}
-          style={{ width: 340, marginTop: -20 }}
+          style={{
+            width: 520,
+
+            marginTop: -22,
+
+            backgroundColor: "rgb(210,215,230,0.8)",
+          }}
         />
       </div>
       <div
         className="BarDimension"
-        style={{ margin: 0, padding: 0, width: "39.8%" }}
+        style={{
+          marginTop: 3,
+
+          padding: 0,
+          width: 520,
+          marginLeft: 91,
+        }}
       >
         <StatsPerReview all={all} />
       </div>
