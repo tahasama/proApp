@@ -165,11 +165,12 @@ const Log = () => {
   const [filter, setFilter] = useState("");
   const [filter1, setFilter1] = useState("");
   const [filter2, setFilter2] = useState("");
+  const [filter3, setFilter3] = useState("");
 
   //============================================================
   useEffect(() => {
     getTotal();
-  }, [filter, filter1, filter2, all]);
+  }, [filter, filter1, filter2, filter3, all]);
   // console.log("jjjjjjjjjjj", filter, "ggggg", filter1, "tttttttt", filter2);
 
   // useEffect(() => {
@@ -187,6 +188,9 @@ const Log = () => {
     gridRef.current.api.getFilterModel().dateOfInspection
       ? setFilter2(gridRef.current.api.getFilterModel().dateOfInspection.filter)
       : setFilter2("");
+    gridRef.current.api.getFilterModel().review
+      ? setFilter3(gridRef.current.api.getFilterModel().review.filter)
+      : setFilter3("");
   };
 
   const getTotal = () => {
@@ -201,6 +205,8 @@ const Log = () => {
           filter2
         : console.log("it is undefined")
     );
+    const kk: any = rr.filter((filt: any) => filt.review === filter3);
+
     const xx: any = rr
       .filter((filt: any) => filt.routine === filter)
       .filter((filt: any) => filt.itp === filter1);
@@ -211,6 +217,10 @@ const Log = () => {
           filt.dateOfInspection.slice(5, 7).split("-").reverse().join("-") ===
           filter2
       );
+    const oo: any = rr
+      .filter((filt: any) => filt.routine === filter)
+      .filter((filt: any) => filt.review === filter3);
+
     const zz = rr
       .filter((filt: any) => filt.itp === filter1)
       .filter(
@@ -218,6 +228,19 @@ const Log = () => {
           filt.dateOfInspection.slice(5, 7).split("-").reverse().join("-") ===
           filter2
       );
+
+    const ll: any = rr
+      .filter((filt: any) => filt.itp === filter1)
+      .filter((filt: any) => filt.review === filter3);
+
+    const mm = rr
+      .filter((filt: any) => filt.review === filter3)
+      .filter(
+        (filt: any) =>
+          filt.dateOfInspection.slice(5, 7).split("-").reverse().join("-") ===
+          filter2
+      );
+
     const aa: any = rr
       .filter((filt: any) => filt.routine === filter)
       .filter((filt: any) => filt.itp === filter1)
@@ -227,20 +250,131 @@ const Log = () => {
           filter2
       );
 
-    if (filter !== "" && filter1 === "" && filter2 === "") {
+    const pp: any = rr
+      .filter((filt: any) => filt.routine === filter)
+      .filter((filt: any) => filt.itp === filter1)
+      .filter((filt: any) => filt.review === filter3);
+
+    const qq: any = rr
+      .filter((filt: any) => filt.routine === filter)
+      .filter(
+        (filt: any) =>
+          filt.dateOfInspection.slice(5, 7).split("-").reverse().join("-") ===
+          filter2
+      )
+      .filter((filt: any) => filt.review === filter3);
+
+    const jj: any = rr
+      .filter((filt: any) => filt.itp === filter1)
+      .filter(
+        (filt: any) =>
+          filt.dateOfInspection.slice(5, 7).split("-").reverse().join("-") ===
+          filter2
+      )
+      .filter((filt: any) => filt.review === filter3);
+    const ii: any = rr
+      .filter((filt: any) => filt.routine === filter)
+      .filter((filt: any) => filt.itp === filter1)
+      .filter(
+        (filt: any) =>
+          filt.dateOfInspection.slice(5, 7).split("-").reverse().join("-") ===
+          filter2
+      )
+      .filter((filt: any) => filt.review === filter3);
+
+    if (filter !== "" && filter1 === "" && filter2 === "" && filter3 === "") {
       dispatch(updateWw(ss));
-    } else if (filter1 !== "" && filter === "" && filter2 === "") {
+    } else if (
+      filter1 !== "" &&
+      filter === "" &&
+      filter2 === "" &&
+      filter3 === ""
+    ) {
       dispatch(updateWw(tt));
-    } else if (filter2 !== "" && filter === "" && filter1 === "") {
+    } else if (
+      filter1 == "" &&
+      filter === "" &&
+      filter2 === "" &&
+      filter3 !== ""
+    ) {
+      dispatch(updateWw(kk));
+    } else if (
+      filter1 !== "" &&
+      filter === "" &&
+      filter2 === "" &&
+      filter3 !== ""
+    ) {
+      dispatch(updateWw(ll));
+    } else if (
+      filter2 !== "" &&
+      filter === "" &&
+      filter1 === "" &&
+      filter3 === ""
+    ) {
       dispatch(updateWw(uu));
-    } else if (filter !== "" && filter1 !== "" && filter2 === "") {
+    } else if (
+      filter2 !== "" &&
+      filter === "" &&
+      filter1 === "" &&
+      filter3 !== ""
+    ) {
+      dispatch(updateWw(mm));
+    } else if (
+      filter !== "" &&
+      filter1 !== "" &&
+      filter2 === "" &&
+      filter3 === ""
+    ) {
       dispatch(updateWw(xx));
-    } else if (filter !== "" && filter1 === "" && filter2 !== "") {
+    } else if (
+      filter !== "" &&
+      filter1 !== "" &&
+      filter2 === "" &&
+      filter3 !== ""
+    ) {
+      dispatch(updateWw(pp));
+    } else if (
+      filter !== "" &&
+      filter1 === "" &&
+      filter2 !== "" &&
+      filter3 === ""
+    ) {
       dispatch(updateWw(yy));
-    } else if (filter1 !== "" && filter2 !== "" && filter === "") {
+    } else if (
+      filter !== "" &&
+      filter1 === "" &&
+      filter2 !== "" &&
+      filter3 !== ""
+    ) {
+      dispatch(updateWw(qq));
+    } else if (
+      filter1 !== "" &&
+      filter2 !== "" &&
+      filter === "" &&
+      filter3 === ""
+    ) {
       dispatch(updateWw(zz));
-    } else if (filter1 !== "" && filter2 !== "" && filter !== "") {
+    } else if (
+      filter1 !== "" &&
+      filter2 !== "" &&
+      filter === "" &&
+      filter3 !== ""
+    ) {
+      dispatch(updateWw(jj));
+    } else if (
+      filter1 !== "" &&
+      filter2 !== "" &&
+      filter !== "" &&
+      filter3 === ""
+    ) {
       dispatch(updateWw(aa));
+    } else if (
+      filter1 !== "" &&
+      filter2 !== "" &&
+      filter !== "" &&
+      filter3 !== ""
+    ) {
+      dispatch(updateWw(ii));
     } else {
       dispatch(updateWw(rr));
     }

@@ -141,22 +141,41 @@ const AllQor = () => {
   }, [selectedBox]);
 
   const [filter, setFilter] = useState("");
-  const [nn, setnn] = useState<any[]>();
+  const [filter1, setFilter1] = useState("");
+  // const [nn, setnn] = useState<any[]>();
   useEffect(() => {
     getTotal();
-  }, [filter, all]);
+  }, [filter, filter1, all]);
 
   const getTotal = () => {
     const rr = all.flat().filter((t: any) => t.typeR === "QOR");
     const ss: any = rr.filter((filt: any) => filt.status === filter);
-    if (filter !== "") {
-      setnn(ss);
-    } else setnn(rr);
+    const tt: any = rr.filter(
+      (filt: any) =>
+        filt.dateRaised.slice(5, 7).split("-").reverse().join("-") === filter1
+    );
+    const ii: any = rr
+      .filter((filt: any) => filt.status === filter)
+      .filter(
+        (filt: any) =>
+          filt.dateRaised.slice(5, 7).split("-").reverse().join("-") === filter1
+      );
+    if (filter !== "" && filter1 === "") {
+      dispatch(updateWw(ss));
+    } else if (filter1 !== "" && filter === "") {
+      dispatch(updateWw(tt));
+    } else if (filter1 !== "" && filter !== "") {
+      dispatch(updateWw(ii));
+    } else dispatch(updateWw(rr));
   };
+
   const handleFilterChange = () => {
     gridRef.current.api.getFilterModel().status
       ? setFilter(gridRef.current.api.getFilterModel().status.filter)
       : setFilter("");
+    gridRef.current.api.getFilterModel().dateRaised
+      ? setFilter1(gridRef.current.api.getFilterModel().dateRaised.filter)
+      : setFilter1("");
   };
   return (
     <>
@@ -239,7 +258,7 @@ const AllQor = () => {
                   className="total1"
                   color="secondary"
                 >
-                  Total = {nn !== undefined && nn.length} QOR
+                  Total = {ww !== undefined && ww.length} QOR
                 </Button>
               </div>{" "}
             </>

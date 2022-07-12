@@ -270,6 +270,7 @@ export default function ModalM() {
                     ),
                 setTimeout(() => {
                   dispatch(getAllQorNcrs());
+                  dispatch(UpdateSelectedBox(""));
                 }, 1000),
                 handleClose()
               )}
