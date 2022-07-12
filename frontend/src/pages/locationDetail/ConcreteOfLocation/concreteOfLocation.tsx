@@ -66,7 +66,7 @@ const ConcreteOfLocation = () => {
   };
 
   const labels: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  const types: any = ["B15", "B20", "B40"];
+  const types: any = ["B15", "B20", "B25", "B35", "B40"];
 
   let dict: any = {};
   let dict1: any = {};
@@ -74,6 +74,8 @@ const ConcreteOfLocation = () => {
   let uu: any = [];
   let uu1: any = [];
   let uu2: any = [];
+  let uu3: any = [];
+  let uu4: any = [];
 
   //===============================================================================the function start
 
@@ -101,13 +103,17 @@ const ConcreteOfLocation = () => {
         .reduce((a: any, b: any) => a + b, 0)
     );
     v === "B40" && uu.push(uuu);
-    v === "B20" && uu1.push(uuu);
-    v === "B15" && uu2.push(uuu);
+    v === "B35" && uu1.push(uuu);
+    v === "B25" && uu2.push(uuu);
+    v === "B20" && uu3.push(uuu);
+    v === "B15" && uu4.push(uuu);
   };
   //==============================================================================the function end
   //==============================================================================location start
 
   lm("B40");
+  lm("B35");
+  lm("B25");
   lm("B20");
   lm("B15");
   // labels.map((i: any) => {
@@ -138,25 +144,41 @@ const ConcreteOfLocation = () => {
 
     datasets: [
       {
-        label: "B40",
-        data: uu.flat(),
+        label: "B15",
+        data: uu4.flat(),
         borderColor: "#85c600",
         backgroundColor: "#85c600",
         tension: 0.3,
       },
       {
         label: "B20",
-        data: uu1.flat(),
+        data: uu3.flat(),
         borderColor: "#256fff",
         backgroundColor: "#256fff",
         tension: 0.3,
       },
       {
-        label: "B15",
+        label: "B25",
         data: uu2.flat(),
 
         borderColor: "#ff0044",
         backgroundColor: "#ff0044",
+        tension: 0.3,
+      },
+      {
+        label: "B35",
+        data: uu1.flat(),
+
+        borderColor: "#c27ba0",
+        backgroundColor: "#c27ba0",
+        tension: 0.3,
+      },
+      {
+        label: "B40",
+        data: uu.flat(),
+
+        borderColor: "#00ff00",
+        backgroundColor: "#00ff00",
         tension: 0.3,
       },
     ],
@@ -166,10 +188,12 @@ const ConcreteOfLocation = () => {
     name: string,
     B15: number,
     B20: number,
+    B25: number,
+    B35: number,
     B40: number,
     Tot: number
   ) {
-    return { name, B15, B20, B40, Tot };
+    return { name, B15, B20, B40, B25, B35, Tot };
   }
 
   const totalB = (v: string) =>
@@ -192,6 +216,8 @@ const ConcreteOfLocation = () => {
       "Total",
       totalB("B15"),
       totalB("B20"),
+      totalB("B25"),
+      totalB("B35"),
       totalB("B40"),
 
       all
@@ -215,6 +241,8 @@ const ConcreteOfLocation = () => {
               <TableCell>{itp}</TableCell>
               <TableCell align="right">B15&nbsp;(m³)</TableCell>
               <TableCell align="right">B20&nbsp;(m³)</TableCell>
+              <TableCell align="right">B25&nbsp;(m³)</TableCell>
+              <TableCell align="right">B35&nbsp;(m³)</TableCell>
               <TableCell align="right">B40&nbsp;(m³)</TableCell>
               <TableCell align="right">Total&nbsp;(m³)</TableCell>
             </TableRow>
@@ -230,6 +258,8 @@ const ConcreteOfLocation = () => {
                 </TableCell>
                 <TableCell align="right">{row.B15}</TableCell>
                 <TableCell align="right">{row.B20}</TableCell>
+                <TableCell align="right">{row.B25}</TableCell>
+                <TableCell align="right">{row.B35}</TableCell>
                 <TableCell align="right">{row.B40}</TableCell>
                 <TableCell align="right">{row.Tot}</TableCell>
               </TableRow>

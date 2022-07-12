@@ -14,6 +14,7 @@ import NavBar from "../Navbar/navbar";
 import snce from "../../images/snce.png";
 import jesa from "../../images/jesa.png";
 import background from "../../images/background.jpg";
+import Button from "@mui/material/Button";
 
 const IndividualItn = () => {
   const params = useParams();
@@ -49,19 +50,16 @@ const IndividualItn = () => {
       className="itnCover"
       // style={{ backgroundImage: "url(" + background + ")" }}
     >
-      <NavBar />
+      <div className="navbar">
+        <NavBar />
+      </div>
       <img src={snce} alt="" className="logo1" />
       <img src={jesa} alt="" className="logo2" />
       <h2 className="title3">INSPECTION TEST NOTIFICATION</h2>
       <h3 className="title2">
         QW211101-SNCE-QA-ITN-{handleNumber(individualItn.num)}
       </h3>
-      <p>
-        <a href={individualItn.image2Url}>{individualItn.image2Url}</a>
-      </p>
-      <p>
-        <a href={individualItn.image1Url}>{individualItn.image1Url}</a>
-      </p>
+
       <div className="itnCenter">
         <p className="approuval">
           Reviewed
@@ -72,20 +70,34 @@ const IndividualItn = () => {
         <div className="update">
           <ModalP />
         </div>
-        <i className="delete" onClick={handleDeleteItn}>
-          <DeleteOutlineTwoToneIcon />
-          Delete Itn
-        </i>
-        <i className="print" onClick={() => navigate("./itnForm")}>
-          <LocalPrintshopRoundedIcon />
-          Print Itn for signing
-        </i>
-        <i className="seeItn">
-          <PictureAsPdfRoundedIcon />
-          <a href={individualItn.pdfUrl} target="_blank" rel="noreferrer">
-            See signed Itn
-          </a>
-        </i>{" "}
+        <Button
+          variant="contained"
+          color="error"
+          className="delete"
+          startIcon={<DeleteOutlineTwoToneIcon />}
+        >
+          <i onClick={handleDeleteItn}>Delete Itn</i>
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          className="print"
+          startIcon={<LocalPrintshopRoundedIcon />}
+        >
+          <i>Print Initial Itn </i>
+        </Button>
+        <Button
+          variant="contained"
+          color="warning"
+          className="seeItn"
+          startIcon={<PictureAsPdfRoundedIcon />}
+        >
+          <i className="">
+            <a href={individualItn.pdfUrl} target="_blank" rel="noreferrer">
+              See signed Itn
+            </a>
+          </i>{" "}
+        </Button>
         <div className="uploadItn">
           <ModalS />
         </div>
@@ -95,7 +107,7 @@ const IndividualItn = () => {
         {individualItn.review === "C1" ? (
           <span className="stamp is-approved">Approved</span>
         ) : individualItn.review === "C2" ? (
-          <span className="stamp is-approved-w">
+          <span className="stamp is-approved-w" style={{ marginRight: 15 }}>
             Approved <h6 style={{ margin: 0 }}>w/ comments</h6>{" "}
           </span>
         ) : individualItn.review === "C3" ? (

@@ -4,6 +4,7 @@ import Modal from "@mui/material/Modal";
 
 import UploadItn from "../uploadItn";
 import FileUploadTwoToneIcon from "@mui/icons-material/FileUploadTwoTone";
+import Button from "@mui/material/Button";
 
 const style = {
   position: "absolute" as "absolute",
@@ -24,10 +25,15 @@ export default function ModalS() {
 
   return (
     <div>
-      <i onClick={handleOpen} className="">
-        <FileUploadTwoToneIcon />
-        Upload Itn
-      </i>
+      <Button
+        onClick={handleOpen}
+        variant="contained"
+        color="info"
+        className=""
+        startIcon={<FileUploadTwoToneIcon />}
+      >
+        <i className="">Upload Final Itn</i>
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}

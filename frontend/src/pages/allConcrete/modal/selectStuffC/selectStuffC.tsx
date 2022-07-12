@@ -26,7 +26,7 @@ export default function SelectStuff(table: any) {
     "aerationTank",
   ];
 
-  const types = ["B15", "B20", "B35", "B40"];
+  const types = ["B15", "B20", "B25", "B35", "B40"];
   const handleNumber = (num: any) => {
     return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
   };

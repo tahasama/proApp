@@ -1,8 +1,8 @@
 .itnCover {
   position: absolute;
-  background-color: #e7edf5b2;
+  background-color: rgb(207, 207, 226, 0.7);
   height: 100%;
-  width: 99.5%;
+  width: 100%;
   margin: 0;
   padding: 0;
   top: 0;
@@ -43,108 +43,58 @@
 .approuval:hover ~ .seeItn,
 .approuval:hover ~ .Uploadimages,
 .approuval:hover ~ .uploadItn {
-  font-size: 20px;
+  font-size: 14px;
 }
 
 .update {
   position: absolute;
-  bottom: 30vh;
-  right: 7.5vw;
+  top: 70px;
+  right: 165px;
   width: 150px;
-  color: rgb(27, 189, 49);
-  transition: all 1s ease-out;
   cursor: pointer;
-  text-decoration: underline;
-}
-
-.update:hover {
-  color: rgb(51, 28, 153);
-  font-size: 20px !important;
-  /* background-color: #0a9928; */
 }
 
 .delete {
   position: absolute;
-  bottom: 29vh;
-  left: 5 0.5vw;
+  bottom: 50px;
+  left: 170px;
   width: 150px;
-  color: rgb(231, 53, 29);
-  /* color: rgb(161, 177, 22); */
-  transition: all 1s ease-out;
   cursor: pointer;
-  text-decoration: underline;
-}
-
-.delete:hover {
-  color: rgb(51, 28, 153);
-  font-size: 20px;
 }
 
 .print {
   position: absolute;
-  top: 34vh;
-  right: 7vw;
+  top: 57px;
+  right: 160px;
   width: 200px;
-  color: rgb(71, 151, 255);
-  transition: all 1s ease-out;
   cursor: pointer;
-  text-decoration: underline;
-}
-
-.print:hover {
-  color: rgb(51, 28, 153);
-  font-size: 20px;
 }
 
 .seeItn {
   position: absolute;
-  top: 34.5vh;
-  left: 7vw;
-  width: 150px;
-  color: rgb(163, 118, 35);
-  transition: all 1s ease-out;
+  top: 23px;
+  left: 120px;
+  width: 200px;
   padding: 0 1px;
   cursor: pointer;
-  text-decoration: underline;
-}
-
-.seeItn:hover {
-  color: rgb(51, 28, 153);
-  font-size: 20px;
 }
 
 .uploadItn {
   position: absolute;
-  top: 3.3vh;
-  left: 6.5vw;
+  bottom: 188px;
+  left: 55px;
   width: 250px;
-  color: rgb(170, 168, 22);
-  transition: all 1s ease-out;
   padding: 0 1px;
   cursor: pointer;
-  text-decoration: underline;
-}
-
-.uploadItn:hover {
-  color: rgb(51, 28, 153);
-  font-size: 20px;
 }
 
 .Uploadimages {
   position: absolute;
-  top: 3vh;
-  right: 12.5vw;
-  width: 150px;
-  color: rgb(131, 40, 167);
-  transition: all 1s ease-out;
+  bottom: 188px;
+  right: 100px;
+  width: 170px;
   padding: 0 1px;
   cursor: pointer;
-  text-decoration: underline;
-}
-
-.Uploadimages:hover {
-  color: rgb(51, 28, 153);
-  font-size: 20px;
 }
 
 .stamp {
@@ -182,6 +132,7 @@
   transform: rotate(-12deg);
   z-index: 99;
   border-radius: 0;
+  font-size: 40px;
 }
 
 .is-nope {

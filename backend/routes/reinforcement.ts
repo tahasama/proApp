@@ -4,7 +4,7 @@ const routerR = require("express").Router();
 // get all Concrete
 routerR.get("/all", async (req, res) => {
   try {
-    const reinforcements = await Reinforcement.find({}).populate("relatedItn");
+    const reinforcements = await Reinforcement.find({});
 
     res.status(200).json(reinforcements);
   } catch (err) {
@@ -40,33 +40,31 @@ routerR.post("/create", async (req, res) => {
 });
 
 // get concrete by id
-routerR.get("/:itp/:id", async (req, res) => {
+routerR.get("/:id", async (req, res) => {
   try {
-    const reinforcement = await Reinforcement.findById(req.params.id).populate(
-      "relatedItn"
-    );
+    const reinforcement = await Reinforcement.findById(req.params.id);
 
-    res.status(200).json(Reinforcement);
+    res.status(200).json(reinforcement);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 // // update an itn
-// router.put("/:id", async (req, res) => {
-//   try {
-//     const updateItn = await Itn.findByIdAndUpdate(
-//       req.params.id,
-//       {
-//         $set: req.body,
-//       },
-//       { new: true }
-//     );
-//     res.status(200).json(updateItn);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+routerR.put("/:id", async (req, res) => {
+  try {
+    const updateReinforcement = await Reinforcement.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.status(200).json(updateReinforcement);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // delete an Concrete
 routerR.delete("/:id", async (req, res) => {

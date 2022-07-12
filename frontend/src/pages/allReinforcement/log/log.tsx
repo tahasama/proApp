@@ -14,7 +14,9 @@ import { Link } from "react-router-dom";
 import {
   deleteReinforcement,
   getAllReinforcements,
+  getReinforcement,
   ReinforcementData,
+  UpdateSelectedBox,
   updateWw,
 } from "../../../state/reducers/reinforcementSlice";
 import ModalN from "../modal/modalN";
@@ -27,28 +29,69 @@ const handleNumber = (num: any) => {
 const Log = () => {
   const dispatch = useAppDispatch();
   const { user, status, uid, newstatus, email } = useAppSelector(getAuthData);
-
+  const { newLocation, newType, individualReinforcement, selectedBox } =
+    useAppSelector(ReinforcementData);
   const { all, ww } = useAppSelector(ReinforcementData);
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
   const [selected, setSelected] = useState();
 
   const handleDelete = () => {
-    dispatch(deleteReinforcement(selected));
+    dispatch(deleteReinforcement(selectedBox));
     setTimeout(() => {
       dispatch(getAllReinforcements());
     }, 250);
   };
+
   useEffect(() => {
     dispatch(getAllReinforcements());
   }, []);
   console.log("ZZZRRRRRRRRRPPPPPPP", all);
+  console.log("individualReinforcement..........", individualReinforcement);
+  useEffect(() => {
+    dispatch(getReinforcement(selectedBox));
+  }, [selectedBox]);
+  const handleNumber = (num: any) => {
+    return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
+  };
   const [columnDefs, setColumnDefs] = useState([
+    {
+      field: "numY",
+      headerName: "Number",
+      checkboxSelection: true,
+      minWidth: 270,
+      cellRenderer: (params: any) => {
+        return params.value !== undefined && params.value !== ""
+          ? `QW221101-SNCE-QA-RIR-${handleNumber(params.value)}`
+          : "QW221101-SNCE-QA-RIR-0000";
+      },
+    },
     {
       field: "itp",
       headerName: "Location",
-      checkboxSelection: true,
 
+      filter: "agTextColumnFilter",
+
+      filterParams: {
+        defaultOption: "startsWith",
+        suppressAndOrCondition: true,
+      },
+    },
+    {
+      field: "type",
+      headerName: "Type",
+
+      filter: "agTextColumnFilter",
+
+      filterParams: {
+        defaultOption: "startsWith",
+        suppressAndOrCondition: true,
+      },
+    },
+    {
+      field: "review",
+      headerName: "Review",
+      minWidth: 80,
       filter: "agTextColumnFilter",
 
       filterParams: {
@@ -75,21 +118,15 @@ const Log = () => {
     {
       field: "quantity",
       headerName: "Quantity (Kg)",
+      minWidth: 125,
     },
     {
-      field: "relatedItn",
-      headerName: "Related ITN",
+      field: "relatedDocs",
+      headerName: "Related Documents (RIR)",
       cellRenderer: (params: any) => {
-        return (
-          params.value !== undefined && (
-            <Link
-              style={{ color: "blue" }}
-              to={`/${params.value.itp}/${params.value._id}`}
-            >
-              QW211101-SNCE-QA-ITN- {handleNumber(params.value.num)}
-            </Link>
-          )
-        );
+        const link3 = params.value;
+
+        return link3 && <a href={link3}>See Docs</a>;
       },
     },
   ]);
@@ -113,7 +150,7 @@ const Log = () => {
   const [filter, setFilter] = useState("");
   const [filter1, setFilter1] = useState("");
   const [filter2, setFilter2] = useState("");
-
+  console.log("qqqqqqqqqqqqqqq", all);
   useEffect(() => {
     getTotal();
   }, [filter, filter1, filter2, all]);
@@ -220,9 +257,22 @@ const Log = () => {
                   enableCellTextSelection={true}
                   onFilterChanged={handleFilterChange}
                   onSelectionChanged={(v: any) =>
-                    setSelected(v.api.getSelectedRows()[0]._id)
+                    v.api.getSelectedRows().length === 0
+                      ? dispatch(UpdateSelectedBox(""))
+                      : dispatch(
+                          UpdateSelectedBox(v.api.getSelectedRows()[0]._id)
+                        )
                   }
-                  rowStyle={{ background: "rgb(0,255,128,0.15)" }}
+                  getRowStyle={(params) => {
+                    if (params.data?.review === "C1") {
+                      console.log("werfwerwerwerwer", params.data.review);
+                      return { background: "rgb(0,255,0,0.15)" };
+                    } else if (params.data?.review === "C2") {
+                      return { background: "rgb(0,0,255,0.15)" };
+                    } else if (params.data?.review === "C3") {
+                      return { background: "rgb(255,0,0,0.15)" };
+                    } else return { background: "white" };
+                  }}
                 ></AgGridReact>
               </div>
             </div>{" "}

@@ -257,7 +257,7 @@ const LocationsItn = (itp: any) => {
                 position: "absolute",
                 marginLeft: 619,
                 marginTop: -26,
-                width: 310,
+                width: 430,
                 paddingLeft: 4,
                 paddingRight: 4,
                 maxHeight: 468,

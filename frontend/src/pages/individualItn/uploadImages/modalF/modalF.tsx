@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import FileUploadTwoToneIcon from "@mui/icons-material/FileUploadTwoTone";
 import UploadImages from "../uploadImages";
+import Button from "@mui/material/Button";
 
 const style = {
   position: "absolute" as "absolute",
@@ -23,10 +24,15 @@ export default function ModalF() {
 
   return (
     <div>
-      <i onClick={handleOpen} className="">
-        <FileUploadTwoToneIcon />
-        Upload Images
-      </i>
+      <Button
+        onClick={handleOpen}
+        variant="contained"
+        color="secondary"
+        className=""
+        startIcon={<FileUploadTwoToneIcon />}
+      >
+        <i className="">Upload Images</i>
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}

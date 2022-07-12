@@ -88,15 +88,7 @@ const Stats = () => {
     dispatch(getAllReinforcements());
   }, []);
 
-  const locations1 = [
-    "aerationTank",
-    "PrimaryClarifierP7",
-    "PrimaryClarifierP8",
-    "PrimaryClarifierP9",
-    "secondaryClarifierP24",
-    "secondaryClarifierP25",
-    "secondaryClarifierP32",
-  ];
+  const locations1 = ["aerationTank", "PrimaryClarifier", "secondaryClarifier"];
 
   //-------------------------------------for doughnut chart start
 
@@ -122,27 +114,28 @@ const Stats = () => {
       a.push(dew(val));
 
       dict[1] = a;
-    } else if (val === "PrimaryClarifierP7") {
+    } else if (val === "PrimaryClarifier") {
       b.push(dew(val));
 
       dict[2] = b;
-    } else if (val === "PrimaryClarifierP8") {
+    } else if (val === "secondaryClarifier") {
       c.push(dew(val));
 
       dict[3] = c;
-    } else if (val === "PrimaryClarifierP9") {
-      d.push(dew(val));
-      dict[4] = d;
-    } else if (val === "secondaryClarifierP24") {
-      e.push(dew(val));
-      dict[5] = e;
-    } else if (val === "secondaryClarifierP25") {
-      f.push(dew(val));
-      dict[6] = f;
-    } else if (val === "secondaryClarifierP32") {
-      g.push(dew(val));
-      dict[7] = g;
     }
+    // else if (val === "PrimaryClarifierP9") {
+    //   d.push(dew(val));
+    //   dict[4] = d;
+    // } else if (val === "secondaryClarifierP24") {
+    //   e.push(dew(val));
+    //   dict[5] = e;
+    // } else if (val === "secondaryClarifierP25") {
+    //   f.push(dew(val));
+    //   dict[6] = f;
+    // } else if (val === "secondaryClarifierP32") {
+    //   g.push(dew(val));
+    //   dict[7] = g;
+    // }
   });
   const data = {
     labels: locations1,

@@ -23,6 +23,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useAppSelector } from "../../state/hooks";
 import { getAuthData } from "../../state/reducers/authSlice";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -79,8 +80,20 @@ export default function NavBar() {
   const handleSearch = async (e: any) => {
     e.preventDefault();
     console.log("adadfads222222", searchRef.current);
-    if (searchRef.current.value !== "") {
-      navigate("/" + searchRef.current?.value);
+    if (searchRef.current.value === "at") {
+      navigate("/aerationTank");
+    } else if (searchRef.current.value === "p7") {
+      navigate("/PrimaryClarifierP7");
+    } else if (searchRef.current.value === "p8") {
+      navigate("/PrimaryClarifierP8");
+    } else if (searchRef.current.value === "p9") {
+      navigate("/PrimaryClarifierP9");
+    } else if (searchRef.current.value === "p24") {
+      navigate("/secondaryClarifierP24");
+    } else if (searchRef.current.value === "p25") {
+      navigate("/secondaryClarifierP25");
+    } else if (searchRef.current.value === "p32") {
+      navigate("/secondaryClarifierP32");
     }
   };
 
@@ -254,37 +267,6 @@ export default function NavBar() {
               QOR
             </Button>
           </Link>
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -298,7 +280,10 @@ export default function NavBar() {
             </IconButton>
           </Box>
           {user && (
-            <button
+            <Button
+              variant="contained"
+              color="secondary"
+              startIcon={<LogoutIcon />}
               className="barbar"
               onClick={() => {
                 signOut(auth);
@@ -307,7 +292,7 @@ export default function NavBar() {
               }}
             >
               Logout
-            </button>
+            </Button>
           )}
         </Toolbar>
       </AppBar>

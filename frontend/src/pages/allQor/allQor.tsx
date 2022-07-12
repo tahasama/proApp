@@ -34,11 +34,18 @@ const AllQor = () => {
   useEffect(() => {
     dispatch(getAllQorNcrs());
   }, []);
+  const handleNumber = (num: any) => {
+    return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
+  };
   const [columnDefs, setColumnDefs] = useState([
     {
       field: "numR",
       headerName: "number",
       checkboxSelection: true,
+      minWidth: 270,
+      cellRenderer: (params: any) => {
+        return `QW221101-SNCE-QA-QOR-${handleNumber(params.value)}`;
+      },
     },
     {
       field: "description",

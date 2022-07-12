@@ -77,16 +77,57 @@ const ReinforcementOfLocation = () => {
   const handleNumber = (num: any) => {
     return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
   };
-  let itpName = itp;
-
+  let itpName =
+    itp === "secondaryClarifierP24" ||
+    itp === "secondaryClarifierP25" ||
+    itp === "secondaryClarifierP32"
+      ? "Secondary Clarifiers"
+      : itp === "PrimaryClarifierP7" ||
+        itp === "PrimaryClarifierP8" ||
+        itp === "PrimaryClarifierP9"
+      ? "Primary Clarifiers"
+      : itp;
+  const morFilterated = all
+    .flat()
+    .filter((i: any) => {
+      return itp === "secondaryClarifierP24" ||
+        itp === "secondaryClarifierP25" ||
+        itp === "secondaryClarifierP32"
+        ? i.itp === "secondaryClarifier"
+        : itp === "PrimaryClarifierP7" ||
+          itp === "PrimaryClarifierP8" ||
+          itp === "PrimaryClarifierP9"
+        ? i.itp === "PrimaryClarifier"
+        : itp === i.itp;
+    })
+    .map((xxv: any) => xxv.quantity)
+    .reduce((nn: any, mm: any) => nn + mm, 0);
+  // console.log(
+  //   all
+  //     .flat()
+  //     .map((xxv: any) => xxv.quantity)
+  //     .reduce((nn: any, mm: any) => nn + mm, 0)
+  // );
   const data = {
     labels: [itpName + "(%)", "Other Locations (%)"],
     datasets: [
       {
         data: [
-          (allitp.flat().length * 100) / all.flat().length,
-          ((all.flat().length - allitp.flat().length) * 100) /
-            all.flat().length,
+          (morFilterated * 100) /
+            all
+              .flat()
+              .map((xxv: any) => xxv.quantity)
+              .reduce((nn: any, mm: any) => nn + mm, 0),
+          ((all
+            .flat()
+            .map((xxv: any) => xxv.quantity)
+            .reduce((nn: any, mm: any) => nn + mm, 0) -
+            morFilterated) *
+            100) /
+            all
+              .flat()
+              .map((xxv: any) => xxv.quantity)
+              .reduce((nn: any, mm: any) => nn + mm, 0),
         ],
         backgroundColor: ["rgba(54, 162, 235, 0.3)", "rgba(255, 99, 132, 0.3)"],
         borderColor: ["rgba(54, 162, 235, 1)", "rgba(255, 99, 132, 1)"],
@@ -148,7 +189,17 @@ const ReinforcementOfLocation = () => {
   const dew1 = (value: any) =>
     all
       .flat()
-      .filter((i: any) => i.itp === itp)
+      .filter((i: any) => {
+        return itp === "secondaryClarifierP24" ||
+          itp === "secondaryClarifierP25" ||
+          itp === "secondaryClarifierP32"
+          ? i.itp === "secondaryClarifier"
+          : itp === "PrimaryClarifierP7" ||
+            itp === "PrimaryClarifierP8" ||
+            itp === "PrimaryClarifierP9"
+          ? i.itp === "PrimaryClarifier"
+          : itp === i.itp;
+      })
       .filter((y: any) => y.dateOfUsage.slice(6, 7) === JSON.stringify(value))
       .map((x: any) => x.quantity)
       .reduce((a, b): any => a + b, 0);
@@ -229,7 +280,17 @@ const ReinforcementOfLocation = () => {
           Total = &nbsp;
           {all
             .flat()
-            .filter((i: any) => i.itp === itp)
+            .filter((i: any) => {
+              return itp === "secondaryClarifierP24" ||
+                itp === "secondaryClarifierP25" ||
+                itp === "secondaryClarifierP32"
+                ? i.itp === "secondaryClarifier"
+                : itp === "PrimaryClarifierP7" ||
+                  itp === "PrimaryClarifierP8" ||
+                  itp === "PrimaryClarifierP9"
+                ? i.itp === "PrimaryClarifier"
+                : itp === i.itp;
+            })
             .map((x: any) => x.quantity)
             .reduce((a, b): any => a + b, 0)}
           &nbsp; Kg

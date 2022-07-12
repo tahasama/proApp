@@ -15,47 +15,45 @@ import {
 } from "../../../../state/reducers/reinforcementSlice";
 import { getAllItns, itnData } from "../../../../state";
 
-export default function SelectStuff(table: any) {
+export default function SelectStuff({ individualReinforcement }: any) {
   const dispatch = useDispatch();
   const { all } = useAppSelector(itnData);
   const [location, setLocation] = useState<any>();
   const [type, setType] = useState<any>();
-  const [related, setRelated] = useState<any>();
+  const [review, setReview] = useState<any>();
 
-  const locations = [
-    "secondaryClarifierP24",
-    "secondaryClarifierP25",
-    "secondaryClarifierP32",
-    "PrimaryClarifierP7",
-    "PrimaryClarifierP8",
-    "PrimaryClarifierP9",
-    "aerationTank",
-  ];
-
-  const types = ["B15", "B20", "B35", "B40"];
+  const locations = ["secondaryClarifier", "PrimaryClarifier", "aerationTank"];
+  const types = ["Reinforcement", "Conduites"];
+  const reviews = ["C1", "C2", "C3"];
   const handleNumber = (num: any) => {
     return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
   };
+
+  console.log("maaadjkljiedfgv", individualReinforcement);
   const handleLocationChange = (event: SelectChangeEvent) => {
     setLocation(event.target.value as string);
   };
 
-  const handleRelatedChange = (event: SelectChangeEvent) => {
-    setRelated(event.target.value as string);
+  const handleTypeChange = (event: SelectChangeEvent) => {
+    setType(event.target.value as string);
+  };
+  const handleReviewChange = (event: SelectChangeEvent) => {
+    setReview(event.target.value as string);
   };
 
   useEffect(() => {
-    dispatch(getAllItns());
+    dispatch(getAllReinforcements());
   }, []);
 
   useEffect(() => {
     dispatch(
       UpdateValuesOfSelect({
         newLocation: location,
-        newRelated: related,
+        newType: type,
+        newReview: review,
       })
     );
-  }, [location, type, related]);
+  }, [location, type, review]);
   console.log("itnsssssss", all);
   return (
     <Box sx={{ minWidth: 120 }}>
@@ -64,7 +62,6 @@ export default function SelectStuff(table: any) {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          defaultValue="aerationTank"
           value={location !== undefined && location}
           label="location"
           onChange={handleLocationChange}
@@ -76,18 +73,36 @@ export default function SelectStuff(table: any) {
           ))}
         </Select>
       </FormControl>
-      <FormControl fullWidth style={{ marginTop: 12 }}>
-        <InputLabel id="demo-simple-select-label">Related Itn</InputLabel>
+      <FormControl fullWidth sx={{ marginTop: 2 }}>
+        <InputLabel id="demo-simple-select-label">Type</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={related !== undefined && related}
-          label="relatedItn"
-          onChange={handleRelatedChange}
+          defaultValue="Reinforcement"
+          value={type !== undefined && type}
+          label="Type"
+          onChange={handleTypeChange}
         >
-          {all.flat().map((w: any) => (
-            <MenuItem value={w._id} key={w._id}>
-              QW211101-SNCE-QA-ITN- {handleNumber(w.num)}
+          {types.map((d: any) => (
+            <MenuItem value={d} key={d}>
+              {d}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <FormControl fullWidth sx={{ marginTop: 2 }}>
+        <InputLabel id="demo-simple-select-label">Review</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          defaultValue="C1"
+          value={review !== undefined && review}
+          label="Review"
+          onChange={handleReviewChange}
+        >
+          {reviews.map((l: any) => (
+            <MenuItem value={l} key={l}>
+              {l}
             </MenuItem>
           ))}
         </Select>
