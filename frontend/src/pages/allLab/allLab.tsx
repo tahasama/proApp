@@ -1,0 +1,135 @@
+import React from "react";
+import "./allLab.css";
+import FolderIcon from "@mui/icons-material/Folder";
+import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import NavBar from "../Navbar/navbar";
+import { useNavigate } from "react-router-dom";
+import DownloadIcon from "@mui/icons-material/Download";
+import JSZip from "jszip";
+import {
+  getDownloadURL,
+  getMetadata,
+  getStorage,
+  listAll,
+  ref,
+} from "firebase/storage";
+import * as FileSaver from "file-saver";
+
+// const Item = styled(Paper)(({ theme }) => ({
+//   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+//   ...theme.typography.body2,
+//   padding: theme.spacing(1),
+//   textAlign: "center",
+//   color: theme.palette.text.secondary,
+// }));
+
+const AllLab = () => {
+  const navigate = useNavigate();
+  const workbooks = [
+    "Compaction Tests",
+    "Compression Strength 7 days",
+    "Compression Strength 28 days",
+    "Concrete Formulation Report",
+    "Convenience Report",
+    "Geotechnical Study ",
+    "Excavation Bottom Foundation Check",
+    "Preliminairy Report",
+    "Material Identification",
+  ];
+  const locations = [
+    "secondaryClarifierP24",
+    "secondaryClarifierP25",
+    "secondaryClarifierP32",
+    "PrimaryClarifierP7",
+    "PrimaryClarifierP8",
+    "PrimaryClarifierP9",
+    "aerationTank",
+    "GAT01",
+    "GAT02",
+    "GAT03",
+    "GAT04",
+    "Stock",
+  ];
+
+  const DownloadFolders = async (): Promise<any> => {
+    const jszip = new JSZip();
+    const xxx: any = jszip.folder("All");
+    const proms2 = workbooks
+      .map(async (wor: any) => {
+        const ccc: any = xxx.folder(`${wor}`);
+        const proms1 = locations
+          .map(async (loca: any) => {
+            const jszip = new JSZip();
+            const storage = getStorage();
+            const folder = await listAll(
+              ref(storage, `/Workbooks/${wor}/${loca}`)
+            );
+            const promises = folder.items
+              .map(async (item) => {
+                const file = await getMetadata(item);
+                const fileRef = ref(storage, item.fullPath);
+                const fileBlob = await getDownloadURL(fileRef).then(
+                  async (url) => {
+                    const response = await fetch(url);
+                    return await response.blob();
+                  }
+                );
+
+                ccc.file(loca + "/" + file.name, fileBlob);
+              })
+              .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
+
+            await promises;
+            const blob = await ccc.generateAsync({ type: "blob" });
+          })
+          .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
+        await proms1;
+      })
+      .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
+    await proms2;
+    const blob = await xxx.generateAsync({ type: "blob" });
+    FileSaver.saveAs(blob, `WorkBooks.zip`);
+  };
+
+  return (
+    <div className="fullCover">
+      <div className="navbar">
+        <NavBar />
+      </div>
+      <div style={{ position: "relative", top: 90 }}>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+        >
+          {workbooks.map((w: any, index) => (
+            <Grid item xs={2} sm={4} md={4} key={index}>
+              <Button
+                style={{
+                  color: "Background",
+                  backgroundColor: "rgba(9, 15, 47, 0.6)",
+                  margin: 25,
+                }}
+                variant="outlined"
+                onClick={() => navigate(`/allLab/${w}`)}
+              >
+                <FolderIcon
+                  style={{ color: "rgb(248, 215, 117)", fontSize: 64 }}
+                />
+
+                {w}
+              </Button>
+            </Grid>
+          ))}{" "}
+          <Button onClick={DownloadFolders}>Download WorkBooks</Button>
+        </Grid>
+      </div>
+    </div>
+  );
+};
+
+export default AllLab;

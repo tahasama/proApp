@@ -143,7 +143,23 @@ const Login = () => {
         authorization}
       <div className="">
         {/* <NavBar /> */}
-        <div className="registerContainer" style={{ marginRight: 400 }}>
+        <h1 style={{ marginTop: 20, fontFamily: "initial", letterSpacing: 3 }}>
+          WasteWater Treatment Plant Project Of SAFI
+        </h1>
+        <h2
+          style={{
+            letterSpacing: 5,
+            fontFamily: "initial",
+            fontSize: 25,
+            textDecoration: "underline",
+          }}
+        >
+          Quality Control Department
+        </h2>
+        <div
+          className="registerContainer"
+          style={{ marginRight: 400, marginTop: -130 }}
+        >
           <form className="logingForm" onSubmit={handleSubmit}>
             <div className="labelInputLogin">
               <label htmlFor="email" className="formlabel">

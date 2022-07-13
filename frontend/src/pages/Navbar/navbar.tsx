@@ -248,7 +248,7 @@ export default function NavBar() {
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <Button color="inherit" sx={{ marginRight: 4 }}>
-              Reinforcement
+              RIR
             </Button>
           </Link>{" "}
           <Link
@@ -263,8 +263,16 @@ export default function NavBar() {
             to="../allQor"
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <Button color="inherit" sx={{ marginRight: 9 }}>
+            <Button color="inherit" sx={{ marginRight: 4 }}>
               QOR
+            </Button>
+          </Link>
+          <Link
+            to="../allLab"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <Button color="inherit" sx={{ marginRight: 9 }}>
+              Laboratory
             </Button>
           </Link>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>

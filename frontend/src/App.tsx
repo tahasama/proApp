@@ -23,6 +23,8 @@ import ResetPassword from "./pages/allAuth/resetPassword";
 import Home from "./pages/home";
 import Authorize from "./pages/allAuth/authorize";
 import { useAppDispatch, useAppSelector } from "./state/hooks";
+import AllLab from "./pages/allLab/allLab";
+import Workbook from "./pages/allLab/workbook/workbook";
 
 // import Checklist from "./pages/individualItn/itnForm/checklist6";
 // import Checklist5 from "./pages/individualItn/itnForm/checklist5";
@@ -67,6 +69,8 @@ function App() {
               <Route path="/allreinforcement" element={<AllReinforcement />} />
               <Route path="/allNcr" element={<AllNcr />} />
               <Route path="/allQor" element={<AllQor />} />
+              <Route path="/allLab" element={<AllLab />} />
+              <Route path="/allLab/:book" element={<Workbook />} />
               <Route path="/:itp" element={<LocationDetail />} />
               <Route path="/:itp/:itnId" element={<IndividualItn />} />
               <Route path="/:itp/:itnId/itnForm" element={<ItnForm />} />

@@ -4,6 +4,7 @@ import concreteReducer from "./reducers/concreteSlice";
 import reinforcementReducer from "./reducers/reinforcementSlice";
 import qorNcrReducer from "./reducers/qorNcrSlice";
 import authReducer from "./reducers/authSlice";
+import labReducer from "./reducers/labSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     reinforcementz: reinforcementReducer,
     qorNcrz: qorNcrReducer,
     authUser: authReducer,
+    labz: labReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
