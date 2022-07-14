@@ -15,18 +15,16 @@ const FullPlan = () => {
       <div className="masterPlan">
         <img src={plan} alt="" width={1114} className="fullPlan" />
         {locations.flat().map((i: any) => (
-          <>
-            <div key={i}>
-              <Link to={`../${i}`} className={i}></Link>
-              <div className={"name-" + i}>
-                <i>
-                  <b>
-                    <u>{i}</u>
-                  </b>
-                </i>
-              </div>
+          <div key={i}>
+            <Link to={`../${i}`} className={i}></Link>
+            <div className={"name-" + i}>
+              <i>
+                <b>
+                  <u>{i}</u>
+                </b>
+              </i>
             </div>
-          </>
+          </div>
         ))}
         <Link to={`../closingWall`} className="closingWall">
           <p className="wallText">closingWall</p>

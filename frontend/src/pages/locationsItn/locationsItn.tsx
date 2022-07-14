@@ -218,9 +218,9 @@ const LocationsItn = (itp: any) => {
             <Item
               style={{ position: "fixed", marginLeft: 339, marginTop: -10 }}
             >
-              <p style={{ margin: 0, padding: 0 }}>Filter By: </p>
+              <span style={{ margin: 0, padding: 0 }}>Filter By: </span>
               {routines.map((i: any) => (
-                <div onClick={() => setFilterBy(i)} className="filters">
+                <div key={i} onClick={() => setFilterBy(i)} className="filters">
                   {i}
                 </div>
               ))}
