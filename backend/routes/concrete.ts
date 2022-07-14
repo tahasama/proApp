@@ -4,7 +4,8 @@ const routerC = require("express").Router();
 // get all Concrete
 routerC.get("/all", async (req, res) => {
   try {
-    const concretes = await Concrete.find({}).populate("relatedItn");
+    // const concretes = await Concrete.find({}).populate("relatedItn");
+    const concretes = await Concrete.find({});
 
     res.status(200).json(concretes);
   } catch (err) {
@@ -19,7 +20,8 @@ routerC.get("/all/:itp", async (req, res) => {
 
     const concretes = await Concrete.find({
       itp: { $regex: itp, $options: "i" },
-    }).populate("relatedItn");
+    });
+    // .populate("relatedItn");
     res.status(200).json(concretes);
   } catch (err) {
     res.status(500).json(err);
@@ -40,9 +42,10 @@ routerC.post("/create", async (req, res) => {
 // get concrete by id
 routerC.get("/:itp/:id", async (req, res) => {
   try {
-    const concrete = await Concrete.findById(req.params.id).populate(
-      "relatedItn"
-    );
+    // const concrete = await Concrete.findById(req.params.id).populate(
+    //   "relatedItn"
+    // );
+    const concrete = await Concrete.findById(req.params.id);
 
     res.status(200).json(concrete);
   } catch (err) {

@@ -75,7 +75,7 @@ interface concretesProps {
     ww: any[];
     newLocation: string;
     newType: string;
-    newRelated: string;
+    // newRelated: string;
   };
 }
 
@@ -86,7 +86,7 @@ const initialState = {
   individualConcrete: {},
   newLocation: "",
   newType: "",
-  newRelated: "",
+  // newRelated: "",
   ww: [],
 };
 
@@ -103,7 +103,7 @@ export const projectsSlice = createSlice({
     UpdateValuesOfSelect: (state, action) => {
       state.newLocation = action.payload.newLocation;
       state.newType = action.payload.newType;
-      state.newRelated = action.payload.newRelated;
+      // state.newRelated = action.payload.newRelated;
     },
   },
   extraReducers: (builder) => {

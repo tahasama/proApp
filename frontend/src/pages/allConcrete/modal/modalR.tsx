@@ -34,7 +34,7 @@ export default function ModalM() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useAppDispatch();
-  const { newLocation, newType, newRelated } = useAppSelector(concreteData);
+  const { newLocation, newType } = useAppSelector(concreteData);
   const [value, setValue] = React.useState<Date | null>(new Date());
 
   const inputRef = React.useRef<any>(null);
@@ -97,7 +97,7 @@ export default function ModalM() {
                     type: newType,
                     dateOfUsage: value,
                     quantity: inputRef.current.value,
-                    relatedItn: newRelated,
+                    // relatedItn: newRelated,
                   })
                 ),
                 setTimeout(() => {

@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { itnData, uploadPdfFile } from "../../../state";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 import CircularProgress from "@mui/material/CircularProgress";
+import Button from "@mui/material/Button";
 
 const UploadItn = ({ handleClose }: any) => {
   const { individualItn } = useAppSelector(itnData);
@@ -32,17 +33,20 @@ const UploadItn = ({ handleClose }: any) => {
   return (
     <div>
       <label htmlFor="file-upload" className="imageUpload">
-        Browse Image
+        <p style={{ fontWeight: 500 }}> Browse Files</p>
       </label>
+      <i>ITN </i>
       <input id="file-upload" ref={pdfRef} type="file" />
 
-      <button onClick={upload} className="imageUpload upload xx">
+      <Button
+        onClick={upload}
+        className="imageUpload upload xx"
+        variant="contained"
+        style={{ marginLeft: 300, position: "relative", top: 10 }}
+      >
         {loading && <CircularProgress color="secondary" />}
         <span className="uploadText">Upload</span>
-      </button>
-      <button className="imageUpload upload xy">
-        <span className="uploadText"> Cancel</span>
-      </button>
+      </Button>
       {error && (
         <p className="errorMessage">please add an image before uploading!</p>
       )}

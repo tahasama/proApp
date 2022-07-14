@@ -3,7 +3,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import "./locationDetail.css";
 import LocationsItn from "../locationsItn/locationsItn";

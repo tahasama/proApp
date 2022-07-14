@@ -15,7 +15,7 @@ export default function SelectStuff() {
   const { all } = useAppSelector(itnData);
   const [location, setLocation] = useState<any>();
   const [type, setType] = useState<any>();
-  const [related, setRelated] = useState<any>();
+  // const [related, setRelated] = useState<any>();
 
   const concretTypes = ["B15", "B20", "B25", "B35", "B40"];
 
@@ -25,9 +25,9 @@ export default function SelectStuff() {
   const handleTypeChange = (event: SelectChangeEvent) => {
     setType(event.target.value as string);
   };
-  const handleRelatedChange = (event: SelectChangeEvent) => {
-    setRelated(event.target.value as string);
-  };
+  // const handleRelatedChange = (event: SelectChangeEvent) => {
+  //   setRelated(event.target.value as string);
+  // };
 
   useEffect(() => {
     dispatch(getAllItns());
@@ -38,10 +38,10 @@ export default function SelectStuff() {
       UpdateValuesOfSelect({
         newLocation: location,
         newType: type,
-        newRelated: related,
+        // newRelated: related,
       })
     );
-  }, [location, type, related]);
+  }, [location, type]);
 
   return (
     <Box sx={{ minWidth: 120 }}>
@@ -78,7 +78,7 @@ export default function SelectStuff() {
           ))}
         </Select>
       </FormControl>{" "}
-      <FormControl fullWidth style={{ marginTop: 12 }}>
+      {/* <FormControl fullWidth style={{ marginTop: 12 }}>
         <InputLabel id="demo-simple-select-label">Related Itn</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -93,7 +93,7 @@ export default function SelectStuff() {
             </MenuItem>
           ))}
         </Select>
-      </FormControl>
+      </FormControl> */}
     </Box>
   );
 }

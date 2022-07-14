@@ -42,7 +42,7 @@ export default function ModalS() {
       >
         <Box sx={style}>
           <div>
-            <p>Update the curruent infos ?</p>
+            <p>Update the curruent infos ??</p>
 
             <UploadItn handleClose={handleClose} />
           </div>

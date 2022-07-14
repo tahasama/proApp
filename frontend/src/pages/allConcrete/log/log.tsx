@@ -80,22 +80,22 @@ const Log = () => {
       field: "quantity",
       headerName: "Quantity (m³)",
     },
-    {
-      field: "relatedItn",
-      headerName: "Related ITN",
-      cellRenderer: (params: any) => {
-        return (
-          params.value !== undefined && (
-            <Link
-              style={{ color: "blue" }}
-              to={`/${params.value.itp}/${params.value._id}`}
-            >
-              QW211101-SNCE-QA-ITN- {handleNumber(params.value.num)}
-            </Link>
-          )
-        );
-      },
-    },
+    // {
+    //   field: "relatedItn",
+    //   headerName: "Related ITN",
+    //   cellRenderer: (params: any) => {
+    //     return (
+    //       params.value !== undefined && (
+    //         <Link
+    //           style={{ color: "blue" }}
+    //           to={`/${params.value.itp}/${params.value._id}`}
+    //         >
+    //           QW211101-SNCE-QA-ITN- {handleNumber(params.value.num)}
+    //         </Link>
+    //       )
+    //     );
+    //   },
+    // },
   ]);
   const defaultColDef = useMemo(() => {
     return {

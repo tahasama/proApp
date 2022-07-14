@@ -89,32 +89,49 @@ export const uploadPdfFile = createAsyncThunk(
   }
 );
 
-export const uploadImages = createAsyncThunk(
-  "uploadImage",
-  async (value: any) => {
-    const storageRef = ref(
-      storage,
-      value.image1
-        ? `itn/images/${value.itnId1}.jpg`
-        : `itn/images/${value.itnId2}.jpg`
-    );
+export const uploadImage1 = createAsyncThunk(
+  "uploadImage1",
+  async (value1: any) => {
+    console.log("zzzab", value1);
+    const storageRef = ref(storage, `images/${value1.itnId1}.jpg`);
     try {
-      await uploadBytesResumable(
-        storageRef,
-        value.image1 ? value.image1 : value.image2
-      );
+      await uploadBytesResumable(storageRef, value1.image1);
 
       try {
         setTimeout(async () => {
           const res = await getDownloadURL(storageRef);
+          console.log("zzzab res", res);
 
-          value.image1 !== undefined
-            ? await axios.put(POJECT_URL + value.itnId, {
-                image1Url: res,
-              })
-            : await axios.put(POJECT_URL + value.itnId, {
-                image2Url: res,
-              });
+          await axios.put(POJECT_URL + value1.itnId, {
+            image1Url: res,
+          });
+
+          return res;
+        }, 2000);
+      } catch (error) {}
+    } catch (error: any) {
+      return error;
+    }
+  }
+);
+
+export const uploadImage2 = createAsyncThunk(
+  "uploadImage1",
+  async (value2: any) => {
+    console.log("zzzab2", value2);
+    const storageRef = ref(storage, `images/${value2.itnId2}.jpg`);
+    try {
+      await uploadBytesResumable(storageRef, value2.image2);
+
+      try {
+        setTimeout(async () => {
+          const res = await getDownloadURL(storageRef);
+          console.log("zzzab res2", res);
+
+          await axios.put(POJECT_URL + value2.itnId, {
+            image2Url: res,
+          });
+
           return res;
         }, 2000);
       } catch (error) {}

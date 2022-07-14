@@ -2,17 +2,13 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import { useAppDispatch, useAppSelector } from "../../../state/hooks";
-import { useEffect, useRef, useState } from "react";
-import { LocalizationProvider, MobileDatePicker } from "@mui/lab";
-import { Stack, TextField } from "@mui/material";
-import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+import { useAppDispatch } from "../../../state/hooks";
+import { useRef, useState } from "react";
+
 import CircularProgress from "@mui/material/CircularProgress";
 
-import SendIcon from "@mui/icons-material/Send";
 import "./modalD.css";
-import { Input } from "@mui/material";
-import SelectStuff from "../../individualItn/modal/select/SelectStuff";
+
 import { useParams } from "react-router-dom";
 import { uploadItp } from "../../../state/reducers/itpSlice";
 
@@ -34,9 +30,6 @@ export default function ModalD() {
   const handleClose = () => setOpen(false);
   const dispatch = useAppDispatch();
   const { itp } = useParams();
-  const [value, setValue] = React.useState<Date | null>(new Date());
-
-  const inputRef = React.useRef<any>(null);
 
   const pdfRef = useRef<any>(null);
   const [error, setError] = useState(false);
@@ -81,17 +74,20 @@ export default function ModalD() {
         <Box sx={style}>
           <div>
             <label htmlFor="file-upload" className="imageUpload">
-              Browse Image
+              <p style={{ fontWeight: 500 }}> Browse Files</p>
             </label>
+            <i>ITP </i>
             <input id="file-upload" ref={pdfRef} type="file" />
 
-            <button onClick={upload} className="imageUpload upload xx">
+            <Button
+              onClick={upload}
+              className="imageUpload upload xx"
+              variant="contained"
+              style={{ marginLeft: 300, position: "relative", top: 10 }}
+            >
               {loading && <CircularProgress color="secondary" />}
               <span className="uploadText">Upload</span>
-            </button>
-            <button className="imageUpload upload xy">
-              <span className="uploadText"> Cancel</span>
-            </button>
+            </Button>
             {error && (
               <p className="errorMessage">
                 please add an image before uploading!
