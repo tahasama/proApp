@@ -3,7 +3,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import "./locationDetail.css";
 import LocationsItn from "../locationsItn/locationsItn";
@@ -11,7 +11,11 @@ import NavBar from "../Navbar/navbar";
 import ModalC from "./modalC/modalC";
 import ConcreteOfLocation from "./ConcreteOfLocation/concreteOfLocation";
 import ReinforcementOfLocation from "./ReinforcementOfLocation/ReinforcementOfLocation";
-import { useAppSelector } from "../../state/hooks";
+import { useAppDispatch, useAppSelector } from "../../state/hooks";
+import ModalD from "./modalD/modalD";
+import Button from "@mui/material/Button";
+import { useEffect } from "react";
+import { getItp, itpData } from "../../state/reducers/itpSlice";
 import { getAuthData } from "../../state/reducers/authSlice";
 
 interface TabPanelProps {
@@ -49,13 +53,17 @@ function a11yProps(index: number) {
 
 const LocationDetails = () => {
   const { status } = useAppSelector(getAuthData);
-
+  const { individualitp } = useAppSelector(itpData);
+  const dispatch = useAppDispatch();
   const [value, setValue] = React.useState(0);
   const { itp } = useParams();
-
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    dispatch(getItp(itp));
+  }, [itp]);
 
   return (
     <div>
@@ -64,7 +72,33 @@ const LocationDetails = () => {
       </div>
 
       <h6 className="locationName">{itp}: </h6>
-      {status === "manager" && <ModalC />}
+      {status === "manager" && (
+        <>
+          <ModalC />
+          <ModalD />
+        </>
+      )}
+
+      <Button
+        variant="contained"
+        size="large"
+        color="inherit"
+        className="getItp"
+      >
+        <a
+          style={{
+            textDecoration: "none",
+            color: "gray",
+            fontWeight: "bold",
+          }}
+          // href=""
+          href={individualitp.length > 0 ? individualitp[0].ItpUrl : ""}
+          target="_blank"
+          rel="noreferrer"
+        >
+          See ITP
+        </a>
+      </Button>
 
       <div className="restOfPage">
         <Box
@@ -89,7 +123,7 @@ const LocationDetails = () => {
               {...a11yProps(0)}
               style={{
                 position: "fixed",
-                marginTop: 40,
+                marginTop: -40,
                 boxShadow: "10px 5px 5px grey",
                 width: 150,
                 backgroundColor: "#EBEDEF",
@@ -100,7 +134,7 @@ const LocationDetails = () => {
               {...a11yProps(1)}
               style={{
                 position: "fixed",
-                marginTop: 105,
+                marginTop: 40,
                 boxShadow: "10px 5px 5px grey",
                 width: 150,
                 backgroundColor: "#EBEDEF",
@@ -111,7 +145,7 @@ const LocationDetails = () => {
               {...a11yProps(2)}
               style={{
                 position: "fixed",
-                marginTop: 170,
+                marginTop: 120,
                 boxShadow: "10px 5px 5px grey",
                 width: 150,
                 backgroundColor: "#EBEDEF",

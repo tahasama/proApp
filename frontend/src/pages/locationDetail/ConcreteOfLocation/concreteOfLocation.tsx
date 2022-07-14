@@ -59,11 +59,7 @@ const ConcreteOfLocation = () => {
   };
 
   const labels: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  const types: any = ["B15", "B20", "B25", "B35", "B40"];
 
-  let dict: any = {};
-  let dict1: any = {};
-  let dict2: any = {};
   let uu: any = [];
   let uu1: any = [];
   let uu2: any = [];
@@ -197,7 +193,7 @@ const ConcreteOfLocation = () => {
       {" "}
       <TableContainer
         component={Paper}
-        style={{ marginLeft: 100, marginTop: -40 }}
+        style={{ marginLeft: 100, marginTop: -120 }}
       >
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>

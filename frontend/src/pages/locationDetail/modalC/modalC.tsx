@@ -53,9 +53,14 @@ export default function ModalC() {
 
   return (
     <div>
-      <button className="createItn" onClick={handleOpen}>
+      <Button
+        variant="contained"
+        size="large"
+        className="createItn"
+        onClick={handleOpen}
+      >
         Create ITN
-      </button>
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}

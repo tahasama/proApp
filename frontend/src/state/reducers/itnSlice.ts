@@ -1,17 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {
-  getDownloadURL,
-  getMetadata,
-  getStorage,
-  listAll,
-  ref,
-  uploadBytesResumable,
-} from "firebase/storage";
-import firebase, { storage } from "../../firebase";
-import JSZip from "jszip";
-import * as FileSaver from "file-saver";
-import { useState } from "react";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { storage } from "../../firebase";
 
 const POJECT_URL: any = process.env.REACT_APP_PROJECT_URL_ITN;
 
@@ -105,8 +95,8 @@ export const uploadImages = createAsyncThunk(
     const storageRef = ref(
       storage,
       value.image1
-        ? `itn/aizenFolder/${value.itnId1}.jpg`
-        : `${value.itnId2}.jpg`
+        ? `itn/images/${value.itnId1}.jpg`
+        : `itn/images/${value.itnId2}.jpg`
     );
     try {
       await uploadBytesResumable(
@@ -133,6 +123,7 @@ export const uploadImages = createAsyncThunk(
     }
   }
 );
+
 interface itnsProps {
   itnz: {
     all: {}[];
@@ -147,6 +138,7 @@ interface itnsProps {
     _id: string;
     filter: any;
     ww: any[];
+    itp: string;
   };
 }
 
@@ -163,6 +155,7 @@ const initialState = {
   itnId: "",
   filter: "",
   ww: [],
+  itp: "",
 };
 
 export const projectsSlice = createSlice({

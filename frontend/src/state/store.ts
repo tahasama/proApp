@@ -5,6 +5,7 @@ import reinforcementReducer from "./reducers/reinforcementSlice";
 import qorNcrReducer from "./reducers/qorNcrSlice";
 import authReducer from "./reducers/authSlice";
 import labReducer from "./reducers/labSlice";
+import itpReducer from "./reducers/itpSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     qorNcrz: qorNcrReducer,
     authUser: authReducer,
     labz: labReducer,
+    itpz: itpReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

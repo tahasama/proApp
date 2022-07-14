@@ -175,13 +175,7 @@ export const projectsSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const QorNcrData = (state: QorNcrsProps) => state.qorNcrz;
 
-export const {
-  updateWw,
-  UpdateValuesOfSelect,
-  UpdateSelectedBox,
-  //   UpdateValuesOfSelect,
-  //   removeItns,
-  //   filterByRoutine,
-} = projectsSlice.actions;
+export const { updateWw, UpdateValuesOfSelect, UpdateSelectedBox } =
+  projectsSlice.actions;
 
 export default projectsSlice.reducer;

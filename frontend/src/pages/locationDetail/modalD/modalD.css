@@ -1,6 +1,7 @@
-.createItn {
+.uploadItp {
   position: absolute;
-  top: 460px;
+  top: 480px;
   z-index: 999;
   left: -600px;
+  padding: 1px 10px;
 }
