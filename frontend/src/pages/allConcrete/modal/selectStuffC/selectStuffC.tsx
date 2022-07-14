@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAllItns, itnData, UpdateValuesOfSelect } from "../../../../state";
 import { useAppSelector } from "../../../../state/hooks";
+import { handleNumber, locations } from "../../../../constants/constant";
 
 export default function SelectStuff(table: any) {
   const dispatch = useDispatch();
@@ -16,20 +17,8 @@ export default function SelectStuff(table: any) {
   const [type, setType] = useState<any>();
   const [related, setRelated] = useState<any>();
 
-  const locations = [
-    "secondaryClarifierP24",
-    "secondaryClarifierP25",
-    "secondaryClarifierP32",
-    "PrimaryClarifierP7",
-    "PrimaryClarifierP8",
-    "PrimaryClarifierP9",
-    "aerationTank",
-  ];
+  const concretTypes = ["B15", "B20", "B25", "B35", "B40"];
 
-  const types = ["B15", "B20", "B25", "B35", "B40"];
-  const handleNumber = (num: any) => {
-    return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
-  };
   const handleLocationChange = (event: SelectChangeEvent) => {
     setLocation(event.target.value as string);
   };
@@ -85,7 +74,7 @@ export default function SelectStuff(table: any) {
           label="type"
           onChange={handleTypeChange}
         >
-          {types.map((k: any) => (
+          {concretTypes.map((k: any) => (
             <MenuItem value={k} key={k}>
               {k}
             </MenuItem>

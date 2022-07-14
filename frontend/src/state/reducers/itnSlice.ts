@@ -77,8 +77,6 @@ const handleNumber = (num: any) => {
 export const uploadPdfFile = createAsyncThunk(
   "uploadPdfFile",
   async (value: any) => {
-    console.log("MMMMUUUUU", value);
-
     const storageRef = ref(
       storage,
       `itn/${value.itnValues.itp}/${
@@ -179,11 +177,7 @@ export const projectsSlice = createSlice({
       state.newRoutine = action.payload.newRoutine;
       state.newReview = action.payload.newReview;
     },
-    // removeItns: (state, action) => {
-    //   state.all = state.all
-    //     .flat()
-    //     .filter((itn: any) => itn._id !== action.payload);
-    // },
+
     filterByRoutine: (state, action) => {
       state.filter = action.payload;
     },
@@ -214,9 +208,6 @@ export const projectsSlice = createSlice({
     builder.addCase(deleteItn.fulfilled, (state, action) => {
       state = action.payload;
     });
-    // builder.addCase(uploadImages.fulfilled, (state, action) => {
-    //   state = action.payload;
-    // });
   },
 });
 

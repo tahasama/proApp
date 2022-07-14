@@ -4,7 +4,6 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../firebase";
 
 const POJECT_URL: any = process.env.REACT_APP_PROJECT_URL_REINFORCEMENT;
-console.log("SWFDDD", POJECT_URL);
 
 export const getAllReinforcements: any = createAsyncThunk(
   "getAllReinforcements",
@@ -33,7 +32,6 @@ export const getReinforcementsByItp: any = createAsyncThunk(
 export const getReinforcement = createAsyncThunk(
   "getReinforcement",
   async (value: any) => {
-    console.log("vaaaaaluuuueeee", value);
     try {
       const res = await axios.get(POJECT_URL + "/" + value);
 
@@ -48,7 +46,6 @@ export const createReinforcement = createAsyncThunk(
   "createReinforcement",
   async (value: any) => {
     try {
-      console.log("EEEEEEEEEEEEEEEE", value);
       const res = await axios.post(POJECT_URL + "create/", value);
       return res.data;
     } catch (error) {
@@ -63,7 +60,6 @@ export const deleteReinforcement = createAsyncThunk(
   async (value: any) => {
     try {
       const res = await axios.delete(POJECT_URL + value);
-      console.log("Slice delete", res.data);
 
       return res.data;
     } catch (error) {
@@ -87,7 +83,6 @@ export const updateReinforcement = createAsyncThunk(
 export const uploadImages = createAsyncThunk(
   "uploadImages",
   async (value: any) => {
-    console.log("UYUYUYUYU8888", value);
     const storageRef = ref(storage, `${value.reinforcementId}.pdf`);
     try {
       await uploadBytesResumable(storageRef, value.image);
@@ -95,7 +90,6 @@ export const uploadImages = createAsyncThunk(
       try {
         setTimeout(async () => {
           const res = await getDownloadURL(storageRef);
-          console.log("UYUYUYUYU8888000000000000", res);
 
           value.image !== undefined &&
             (await axios.put(POJECT_URL + value.reinforcementId, {
@@ -118,7 +112,6 @@ interface ReinforcementsProps {
     loading: boolean;
     individualReinforcement: any;
     ww: any[];
-    X: string;
     newLocation: string;
     newType: string;
     selectedBox: string;
@@ -135,7 +128,6 @@ const initialState = {
   newType: "",
   newReview: "",
   ww: [],
-  X: "hahaha",
   selectedBox: "",
 };
 
@@ -155,23 +147,8 @@ export const projectsSlice = createSlice({
       state.newReview = action.payload.newReview;
     },
     UpdateSelectedBox: (state, action) => {
-      console.log("sliiiiicehhhhhhhhhh", action.payload);
       state.selectedBox = action.payload;
     },
-
-    // },
-    // UpdateValuesOfSelect: (state, action) => {
-    //   state.newLocation = action.payload.newLocation;
-    //   state.newRoutine = action.payload.newRoutine;
-    //   state.newReview = action.payload.newReview;
-    // },
-    // removeItns: (state, action) => {
-    //   state.all = state.all
-    //     .flat()
-    //     .filter((itn: any) => itn._id !== action.payload);
-    // },
-    // filterByRoutine: (state, action) => {
-    //   state.filter = action.payload;
   },
   extraReducers: (builder) => {
     builder.addCase(getAllReinforcements.fulfilled, (state, action) => {
@@ -191,7 +168,6 @@ export const projectsSlice = createSlice({
     });
     builder.addCase(deleteReinforcement.fulfilled, (state, action) => {
       state = action.payload;
-      state.X = "Reinforcement has been deleted...";
     });
     builder.addCase(updateReinforcement.fulfilled, (state, action) => {
       state = action.payload;
@@ -203,14 +179,7 @@ export const projectsSlice = createSlice({
 export const ReinforcementData = (state: ReinforcementsProps) =>
   state.reinforcementz;
 
-export const {
-  updateWw,
-  UpdateValuesOfSelect,
-  UpdateSelectedBox,
-
-  //   UpdateValuesOfSelect,
-  //   removeItns,
-  //   filterByRoutine,
-} = projectsSlice.actions;
+export const { updateWw, UpdateValuesOfSelect, UpdateSelectedBox } =
+  projectsSlice.actions;
 
 export default projectsSlice.reducer;

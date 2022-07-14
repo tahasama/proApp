@@ -21,10 +21,7 @@ import {
 } from "../../../state/reducers/reinforcementSlice";
 import ModalN from "../modal/modalN";
 import { getAuthData } from "../../../state/reducers/authSlice";
-
-const handleNumber = (num: any) => {
-  return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
-};
+import { handleNumber } from "../../../constants/constant";
 
 const Log = () => {
   const dispatch = useAppDispatch();
@@ -34,7 +31,7 @@ const Log = () => {
   const { all, ww } = useAppSelector(ReinforcementData);
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
-  const [selected, setSelected] = useState();
+  const [showother, setShowother] = useState(false);
 
   const handleDelete = () => {
     dispatch(deleteReinforcement(selectedBox));
@@ -51,9 +48,7 @@ const Log = () => {
   useEffect(() => {
     dispatch(getReinforcement(selectedBox));
   }, [selectedBox]);
-  const handleNumber = (num: any) => {
-    return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
-  };
+
   const [columnDefs, setColumnDefs] = useState([
     {
       field: "numY",
@@ -209,7 +204,16 @@ const Log = () => {
       dispatch(updateWw(rr));
     }
   };
-
+  // function initialFilter() {
+  //   gridop.current.api.SetFilterValues(numY !== 0);
+  // }
+  console.log(
+    "fofof",
+    all
+      .flat()
+      .filter((n: any) => console.log("iiii", n.numY === undefined))
+      .reverse()
+  );
   return (
     <div className="log1">
       <div>
@@ -247,7 +251,14 @@ const Log = () => {
             <div style={containerStyle}>
               <div style={gridStyle} className="ag-theme-alpine">
                 <AgGridReact
-                  rowData={all.flat().reverse()}
+                  rowData={
+                    showother
+                      ? all.flat().reverse()
+                      : all
+                          .flat()
+                          .filter((n: any) => n.numY !== undefined)
+                          .reverse()
+                  }
                   columnDefs={columnDefs}
                   groupIncludeFooter={true}
                   groupIncludeTotalFooter={true}
@@ -273,14 +284,23 @@ const Log = () => {
                       return { background: "rgb(255,0,0,0.15)" };
                     } else return { background: "white" };
                   }}
+                  // onGridReady={initialFilter}
                 ></AgGridReact>
               </div>
             </div>{" "}
-            <Button variant="contained" className="total">
+            <Button variant="contained" className="total" style={{ left: -40 }}>
               <p>
                 TOTAL = {totalreinforcement}
                 <i style={{ textTransform: "lowercase" }}>&nbsp;Kg</i>
               </p>
+            </Button>
+            <Button
+              variant="contained"
+              color="inherit"
+              style={{ position: "relative", float: "left" }}
+              onClick={() => setShowother(!showother)}
+            >
+              All w/o RIR
             </Button>
           </>
         ) : (

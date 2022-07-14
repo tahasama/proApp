@@ -38,14 +38,16 @@
   /* font-size: 15.5px !important; */
   /* margin: 10px 0px 5px 0px !important; */
   /* padding: 0px 50px !important; */
-  top: 10px;
-  padding: 2px;
+  top: 8px;
+
+  padding: 10px !important;
+  font-size: 15px !important;
   float: left;
 }
 .donwload {
   top: 10px;
-  padding: 20px;
-
+  padding: 10px !important;
+  font-size: 15px !important;
   /* left: 550px; */
   float: right;
 }

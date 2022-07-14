@@ -16,6 +16,7 @@ import NavBar from "../Navbar/navbar";
 import ModalQOR from "./modal/modalQOR";
 import Button from "@mui/material/Button";
 import { getAuthData } from "../../state/reducers/authSlice";
+import { handleNumber } from "../../constants/constant";
 
 const AllQor = () => {
   const dispatch = useAppDispatch();
@@ -34,9 +35,7 @@ const AllQor = () => {
   useEffect(() => {
     dispatch(getAllQorNcrs());
   }, []);
-  const handleNumber = (num: any) => {
-    return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
-  };
+
   const [columnDefs, setColumnDefs] = useState([
     {
       field: "numR",

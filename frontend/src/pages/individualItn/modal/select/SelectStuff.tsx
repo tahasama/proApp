@@ -7,6 +7,7 @@ import { useAppSelector } from "../../../../state/hooks";
 import { itnData, UpdateValuesOfSelect } from "../../../../state";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { locations, routines } from "../../../../constants/constant";
 
 export default function SelectStuff(table: any) {
   const dispatch = useDispatch();
@@ -14,32 +15,6 @@ export default function SelectStuff(table: any) {
   const [location, setLocation] = useState<any>(individualItn.itp);
   const [routine, setRoutine] = useState<any>(individualItn.routine);
   const [review, setReview] = useState<any>(individualItn.review);
-
-  const locations = [
-    "secondaryClarifierP24",
-    "secondaryClarifierP25",
-    "secondaryClarifierP32",
-    "PrimaryClarifierP7",
-    "PrimaryClarifierP8",
-    "PrimaryClarifierP9",
-    "aerationTank",
-  ];
-
-  const routines = [
-    "all",
-    "Setting Out",
-    "Excavation until foundation Bottom",
-    "Conduites Installation ",
-    "Lean Concrete",
-    "Mass Concrete",
-    "Reinforcement & Formwork",
-    "Concrete placing and finishing",
-    "Curing",
-    "Waterproofing coat ",
-    "Backfilling",
-    "Treatement protection layer",
-    "Concrete Tests",
-  ];
 
   const reviews = ["C1", "C2", "C3", "C4"];
 

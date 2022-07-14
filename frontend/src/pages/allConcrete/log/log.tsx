@@ -18,10 +18,7 @@ import "./log.css";
 import { Link } from "react-router-dom";
 import ModalR from "../modal/modalR";
 import { getAuthData } from "../../../state/reducers/authSlice";
-
-const handleNumber = (num: any) => {
-  return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
-};
+import { handleNumber } from "../../../constants/constant";
 
 const Log = () => {
   const dispatch = useAppDispatch();
@@ -260,6 +257,19 @@ const Log = () => {
                   onSelectionChanged={(v: any) =>
                     setSelected(v.api.getSelectedRows()[0]._id)
                   }
+                  getRowStyle={(params) => {
+                    if (params.data?.type === "B15") {
+                      return { background: "rgb(0,255,0,0.15)" };
+                    } else if (params.data?.type === "B20") {
+                      return { background: "rgb(255,0,0,0.15)" };
+                    } else if (params.data?.type === "B25") {
+                      return { background: "rgb(0,0,255,0.15)" };
+                    } else if (params.data?.type === "B35") {
+                      return { background: "rgb(255,255,20,0.15)" };
+                    } else if (params.data?.type === "B40") {
+                      return { background: "rgb(145,30,180,0.2)" };
+                    } else return { background: "white" };
+                  }}
                 ></AgGridReact>
               </div>
             </div>{" "}

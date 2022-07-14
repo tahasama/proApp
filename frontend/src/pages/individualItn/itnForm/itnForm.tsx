@@ -12,15 +12,12 @@ import Checklist3 from "./checklist3";
 import Checklist5 from "./checklist5";
 import Checklist4 from "./checklist4";
 import Button from "@mui/material/Button";
+import { handleNumber } from "../../../constants/constant";
 
 const ItnForm = () => {
   const params: any = useParams();
   const dispatch = useAppDispatch();
   const { individualItn } = useAppSelector(itnData);
-
-  const handleNumber = (num: any) => {
-    return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
-  };
 
   const dateITN: any = new Date(
     individualItn.dateOfInspection

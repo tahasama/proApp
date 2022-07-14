@@ -46,7 +46,7 @@ const Workbook = () => {
   const [columnDefs, setColumnDefs] = useState([
     {
       field: "numL",
-      headerName: "Number",
+      headerName: "Designation",
       checkboxSelection: true,
 
       filter: "agMultiColumnFilter",

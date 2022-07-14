@@ -15,6 +15,7 @@ import snce from "../../images/snce.png";
 import jesa from "../../images/jesa.png";
 import background from "../../images/background.jpg";
 import Button from "@mui/material/Button";
+import { handleNumber } from "../../constants/constant";
 
 const IndividualItn = () => {
   const params = useParams();
@@ -28,9 +29,6 @@ const IndividualItn = () => {
     }
   }, [individualItn]);
   // console.log("some stuff", individualItn);
-  const handleNumber = (num: any) => {
-    return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
-  };
 
   const handleDeleteItn = async () => {
     const result = window.confirm(

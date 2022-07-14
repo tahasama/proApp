@@ -30,10 +30,7 @@ import {
 import * as FileSaver from "file-saver";
 import DownloadIcon from "@mui/icons-material/Download";
 import { getAuthData } from "../../../state/reducers/authSlice";
-
-const handleNumber = (num: any) => {
-  return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
-};
+import { handleNumber, locations, routines } from "../../../constants/constant";
 
 const Log = () => {
   const dispatch = useAppDispatch();
@@ -381,36 +378,14 @@ const Log = () => {
   };
 
   //============================================================
-  const locations = [
-    "secondaryClarifierP24",
-    "secondaryClarifierP25",
-    "secondaryClarifierP32",
-    "PrimaryClarifierP7",
-    "PrimaryClarifierP8",
-    "PrimaryClarifierP9",
-    "aerationTank",
-  ];
-  const routine = [
-    "Setting Out",
-    "Excavation until foundation Bottom",
-    "Conduites Installation ",
-    "Lean Concrete",
-    "Mass Concrete",
-    "Reinforcement & Formwork",
-    "Concrete placing and finishing",
-    "Curing",
-    "Waterproofing coat",
-    "Backfilling",
-    "Treatement protection layer",
-    "Concrete Tests",
-  ];
+
   const DownloadFolders = async (): Promise<any> => {
     const jszip = new JSZip();
     const xxx: any = jszip.folder("All");
     const proms2 = locations
       .map(async (loca: any) => {
         const ccc: any = xxx.folder(`${loca}`);
-        const proms1 = routine
+        const proms1 = routines
           .map(async (rot: any) => {
             const jszip = new JSZip();
             const storage = getStorage();

@@ -10,7 +10,6 @@ export const getAllQorNcrs: any = createAsyncThunk(
   async () => {
     try {
       const res = await axios.get(PROJECT_URL + "all/");
-      console.log("waaaaaaaa", res.data);
       return res.data;
     } catch (error) {
       return error;
@@ -20,9 +19,7 @@ export const getAllQorNcrs: any = createAsyncThunk(
 
 export const getQorNcr = createAsyncThunk("getQorNcr", async (value: any) => {
   try {
-    console.log("00000d", value);
-    const res = await axios.get("http://localhost:5000/api/qorncr/" + value);
-    console.log("888888888888", res.data);
+    const res = await axios.get(PROJECT_URL + value);
 
     return res.data;
   } catch (error) {
@@ -33,10 +30,8 @@ export const getQorNcr = createAsyncThunk("getQorNcr", async (value: any) => {
 export const createQorNcr = createAsyncThunk(
   "createQorNcr",
   async (value: any) => {
-    console.log("44444444", value);
     try {
       const res = await axios.post(PROJECT_URL + "create/", value);
-      console.log("5555555", res.data);
 
       return res.data;
     } catch (error) {
@@ -50,10 +45,7 @@ export const deleteQorNcr = createAsyncThunk(
 
   async (value: any) => {
     try {
-      console.log("Slice delete44444", value);
-
       const res = await axios.delete(PROJECT_URL + value);
-      console.log("Slice delete", res.data);
 
       return res.data;
     } catch (error) {
@@ -75,7 +67,6 @@ export const updateQorNcr = createAsyncThunk(
 export const uploadImages1 = createAsyncThunk(
   "uploadImage1",
   async (value: any) => {
-    console.log("UYUYUYUYU8888", value);
     const storageRef = ref(storage, `${value.qorncrId1}.pdf`);
     try {
       await uploadBytesResumable(storageRef, value.image1);
@@ -158,23 +149,8 @@ export const projectsSlice = createSlice({
       state.newStatus = action.payload.newStatus;
     },
     UpdateSelectedBox: (state, action) => {
-      console.log("sliiiiice", action.payload);
       state.selectedBox = action.payload;
     },
-
-    // },
-    // UpdateValuesOfSelect: (state, action) => {
-    //   state.newLocation = action.payload.newLocation;
-    //   state.newRoutine = action.payload.newRoutine;
-    //   state.newReview = action.payload.newReview;
-    // },
-    // removeItns: (state, action) => {
-    //   state.all = state.all
-    //     .flat()
-    //     .filter((itn: any) => itn._id !== action.payload);
-    // },
-    // filterByRoutine: (state, action) => {
-    //   state.filter = action.payload;
   },
   extraReducers: (builder) => {
     builder.addCase(getAllQorNcrs.fulfilled, (state, action) => {

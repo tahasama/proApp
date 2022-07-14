@@ -28,6 +28,7 @@ import {
   Title,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { handleNumber, labelsName, routines } from "../../constants/constant";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -54,26 +55,13 @@ const LocationsItn = (itp: any) => {
   const params = useParams();
 
   const [filterBy, setFilterBy] = useState("All");
+  useEffect(() => {
+    !routines.includes("All") && routines.unshift("All");
+  }, []);
 
   useEffect(() => {
     dispatch(getItnsByItp(itp));
   }, [allitp]);
-
-  const routine = [
-    "All",
-    "Setting Out",
-    "Excavation until foundation Bottom",
-    "Conduites Installation ",
-    "Lean Concrete",
-    "Mass Concrete",
-    "Reinforcement & Formwork",
-    "Concrete placing and finishing",
-    "Curing",
-    "Waterproofing coat",
-    "Backfilling",
-    "Treatement protection layer",
-    "Concrete Tests",
-  ];
 
   const filterByRoutine = allitp.flat().filter((itn: any) => {
     return itn.routine === filterBy;
@@ -81,9 +69,6 @@ const LocationsItn = (itp: any) => {
 
   const arr = (filterBy !== "All" ? filterByRoutine : allitp).reverse();
 
-  const handleNumber = (num: any) => {
-    return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
-  };
   let itpName = itp.itp;
   const data = {
     labels: [itpName, "Other ITN"],
@@ -119,20 +104,7 @@ const LocationsItn = (itp: any) => {
   let u = allitp
     .flat()
     .map((x: any) => new Date(x.dateOfInspection).getMonth() + 1);
-  const labelsName: any = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
+
   const labels: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   let a: any[] = [];
   let b: any[] = [];
@@ -243,7 +215,7 @@ const LocationsItn = (itp: any) => {
               style={{ position: "fixed", marginLeft: 339, marginTop: -10 }}
             >
               <p style={{ margin: 0, padding: 0 }}>Filter By: </p>
-              {routine.map((i: any) => (
+              {routines.map((i: any) => (
                 <div onClick={() => setFilterBy(i)} className="filters">
                   {i}
                 </div>

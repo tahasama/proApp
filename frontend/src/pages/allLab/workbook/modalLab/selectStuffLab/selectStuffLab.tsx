@@ -12,6 +12,7 @@ import {
   UpdateValuesOfSelect,
 } from "../../../../../state/reducers/labSlice";
 import { useAppSelector } from "../../../../../state/hooks";
+import { locations, workbooks } from "../../../../../constants/constant";
 
 export default function SelectStuffLab(individualLab: any) {
   const dispatch = useDispatch();
@@ -19,14 +20,23 @@ export default function SelectStuffLab(individualLab: any) {
   const [type, setType] = useState<any>();
   const [location, setLocation] = useState<any>();
 
-  const locations = [
-    "secondaryClarifierP24",
-    "secondaryClarifierP25",
-    "secondaryClarifierP32",
-    "PrimaryClarifierP7",
-    "PrimaryClarifierP8",
-    "PrimaryClarifierP9",
+  const handleTypeChange = (event: SelectChangeEvent) => {
+    setType(event.target.value as string);
+  };
+  const handleLocationChange = (event: SelectChangeEvent) => {
+    setLocation(event.target.value as string);
+  };
+  const locationsR = [
+    "secondaryClarifier",
+    "PrimaryClarifier",
     "aerationTank",
+    "mainBuilding",
+    "workShop",
+    "chlorinationTank",
+    "pumpingStation2",
+    "pumpingStation1",
+    "sandFilter",
+    "closingWall",
     "GAT01",
     "GAT02",
     "GAT03",
@@ -34,24 +44,7 @@ export default function SelectStuffLab(individualLab: any) {
     "Stock",
   ];
 
-  const workbooks = [
-    "Compaction Tests",
-    "Compression Strength 7 days",
-    "Compression Strength 28 days",
-    "Concrete Formulation Report",
-    "Convenience Report",
-    "Geotechnical Study + Excavation Bottom Foundation Check",
-    "Preliminairy Report",
-    "Material Identification",
-  ];
-
-  const handleTypeChange = (event: SelectChangeEvent) => {
-    setType(event.target.value as string);
-  };
-  const handleLocationChange = (event: SelectChangeEvent) => {
-    setLocation(event.target.value as string);
-  };
-
+  console.log("hhhhhhhhzzzzz", locations);
   useEffect(() => {
     dispatch(
       UpdateValuesOfSelect({
@@ -71,7 +64,7 @@ export default function SelectStuffLab(individualLab: any) {
           label="Location"
           onChange={handleLocationChange}
         >
-          {locations.map((u: any) => (
+          {locationsR.map((u: any) => (
             <MenuItem value={u} key={u}>
               {u}
             </MenuItem>

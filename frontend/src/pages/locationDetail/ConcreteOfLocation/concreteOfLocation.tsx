@@ -29,6 +29,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { AnyArray } from "immer/dist/internal";
+import { labelsName } from "../../../constants/constant";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -124,20 +125,6 @@ const ConcreteOfLocation = () => {
   // console.log("MOOOOOOOOOOO", uu);
   // console.log("MOOOOOOOOOOO111", uu1);
   // console.log("MOOOOOOOOOOO222", uu2);
-  const labelsName: any = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
 
   const data: any = {
     labels: labelsName,

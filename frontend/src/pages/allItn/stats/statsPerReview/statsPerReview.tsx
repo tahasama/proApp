@@ -13,6 +13,7 @@ import {
   Title,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { labelsName } from "../../../../constants/constant";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -96,21 +97,6 @@ const StatsPerReview = (all: any) => {
   // labels.map((i: any) => {
   //   dict[i] !== undefined ? uu2.push(dict[i]) : uu2.push(0);
   // });
-
-  const labelsName: any = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
 
   const data: any = {
     labels: labelsName,

@@ -25,6 +25,7 @@ import {
   ReinforcementData,
 } from "../../../state/reducers/reinforcementSlice";
 import Button from "@mui/material/Button";
+import { labelsName } from "../../../constants/constant";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -58,25 +59,6 @@ const ReinforcementOfLocation = () => {
     dispatch(getAllReinforcements());
   }, [allitp]);
 
-  const routine = [
-    "All",
-    "Setting Out",
-    "Excavation until foundation Bottom",
-    "Conduites Installation ",
-    "Lean Concrete",
-    "Mass Concrete",
-    "Reinforcement & Formwork",
-    "Concrete placing and finishing",
-    "Curing",
-    "Waterproofing coat",
-    "Backfilling",
-    "Treatement protection layer",
-    "Concrete Tests",
-  ];
-  //   console.log("allitp", allitp);
-  const handleNumber = (num: any) => {
-    return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
-  };
   let itpName =
     itp === "secondaryClarifierP24" ||
     itp === "secondaryClarifierP25" ||
@@ -156,20 +138,6 @@ const ReinforcementOfLocation = () => {
   };
 
   let u1 = all.flat().map((x: any) => new Date(x.dateOfUsage).getMonth() + 1);
-  const labelsName: any = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
 
   const labels1: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   let a1: any[] = [];

@@ -3,11 +3,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* z-index: 0; */
-  background-color: blueviolet;
+
   /* height: 90vh; */
 }
-
+.fullPlan {
+  position: fixed;
+  /* align-items: center; */
+  top: 0px;
+}
 .secondaryClarifierP24 {
   cursor: pointer;
   position: absolute;
@@ -33,7 +36,7 @@
   bottom: 350px;
   opacity: 0;
   transition: 1.2s opacity;
-  font-size: 24px;
+  font-size: 20px;
   border-radius: 15px;
   background-color: rgba(225, 243, 243, 0.6);
   padding: 5px;
@@ -103,7 +106,7 @@
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
-  font-size: 24px;
+  font-size: 20px;
   background-color: rgba(225, 243, 243, 0.6);
 
   border-radius: 15px;
@@ -139,7 +142,7 @@
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
-  font-size: 24px;
+  font-size: 20px;
   background-color: rgba(225, 243, 243, 0.6);
 
   border-radius: 15px;
@@ -175,7 +178,7 @@
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
-  font-size: 24px;
+  font-size: 20px;
   background-color: rgba(225, 243, 243, 0.6);
 
   border-radius: 15px;
@@ -210,7 +213,7 @@
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
-  font-size: 24px;
+  font-size: 20px;
   background-color: rgba(225, 243, 243, 0.6);
 
   border-radius: 15px;
@@ -243,7 +246,7 @@
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
-  font-size: 24px;
+  font-size: 20px;
   background-color: rgba(225, 243, 243, 0.6);
 
   border-radius: 15px;
@@ -252,4 +255,236 @@
 
 .aerationTank:hover + .name-aerationTank {
   opacity: 1;
+}
+
+.mainBuilding {
+  cursor: pointer;
+  position: absolute;
+  top: 410px;
+  left: 180px;
+  height: 110px;
+  width: 80px;
+  opacity: 0;
+  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
+  border-radius: 10%;
+}
+.mainBuilding:hover {
+  opacity: 0.7;
+}
+
+.name-mainBuilding {
+  position: absolute;
+  left: 260px;
+  bottom: 220px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  color: crimson;
+  font-size: 20px;
+  background-color: rgba(225, 243, 243, 0.6);
+
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.mainBuilding:hover + .name-mainBuilding {
+  opacity: 1;
+}
+
+.workShop {
+  cursor: pointer;
+  position: absolute;
+  top: 370px;
+  left: 180px;
+  height: 40px;
+  width: 30px;
+  opacity: 0;
+  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
+  border-radius: 10%;
+}
+.workShop:hover {
+  opacity: 0.7;
+}
+
+.name-workShop {
+  position: absolute;
+  left: 240px;
+  bottom: 220px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  color: crimson;
+  font-size: 20px;
+  background-color: rgba(225, 243, 243, 0.6);
+
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.workShop:hover + .name-workShop {
+  opacity: 1;
+}
+
+.chlorinationTank {
+  cursor: pointer;
+  position: absolute;
+  top: 280px;
+  left: 180px;
+  height: 100px;
+  width: 80px;
+  opacity: 0;
+  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
+  border-radius: 10%;
+}
+.chlorinationTank:hover {
+  opacity: 0.7;
+}
+
+.name-chlorinationTank {
+  position: absolute;
+  left: 270px;
+  bottom: 360px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  color: crimson;
+  font-size: 20px;
+  background-color: rgba(225, 243, 243, 0.6);
+
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.chlorinationTank:hover + .name-chlorinationTank {
+  opacity: 1;
+}
+
+.pumpingStation2 {
+  cursor: pointer;
+  position: absolute;
+  top: 400px;
+  left: 320px;
+  height: 30px;
+  width: 60px;
+  opacity: 0;
+  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
+  border-radius: 10%;
+}
+.pumpingStation2:hover {
+  opacity: 0.7;
+}
+
+.name-pumpingStation2 {
+  position: absolute;
+  left: 320px;
+  bottom: 240px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  color: crimson;
+  font-size: 20px;
+  background-color: rgba(225, 243, 243, 0.7);
+
+  border-radius: 15px;
+  padding: 0px;
+}
+
+.pumpingStation2:hover + .name-pumpingStation2 {
+  opacity: 1;
+}
+
+.pumpingStation1 {
+  cursor: pointer;
+  position: absolute;
+  top: 430px;
+  right: 430px;
+  height: 30px;
+  width: 60px;
+  opacity: 0;
+  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
+  border-radius: 10%;
+}
+.pumpingStation1:hover {
+  opacity: 0.7;
+}
+
+.name-pumpingStation1 {
+  position: absolute;
+  right: 300px;
+  bottom: 210px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  color: crimson;
+  font-size: 20px;
+  background-color: rgba(225, 243, 243, 0.7);
+
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.pumpingStation1:hover + .name-pumpingStation1 {
+  opacity: 1;
+}
+
+.sandFilter {
+  cursor: pointer;
+  position: absolute;
+  top: 328px;
+  left: 320px;
+  height: 52px;
+  width: 90px;
+  opacity: 0;
+  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
+  border-radius: 10%;
+}
+.sandFilter:hover {
+  opacity: 0.7;
+}
+
+.name-sandFilter {
+  position: absolute;
+  left: 380px;
+  bottom: 200px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  color: crimson;
+  font-size: 20px;
+  background-color: rgba(225, 243, 243, 0.7);
+
+  border-radius: 15px;
+  padding: 5px;
+}
+
+.sandFilter:hover + .name-sandFilter {
+  opacity: 1;
+}
+
+.closingWall {
+  position: absolute;
+  top: 60px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+}
+.wallText {
+  position: relative;
+  left: 330px;
+  top: 15px;
+}
+.arrow {
+  width: 120px;
+}
+
+.line {
+  margin-top: 14px;
+  width: 90px;
+  background: rgb(106, 106, 204);
+  height: 10px;
+  margin-left: 360px;
+}
+
+.point {
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 30px solid rgb(106, 106, 204);
+  margin-left: 450px;
+  margin-top: -25px;
 }

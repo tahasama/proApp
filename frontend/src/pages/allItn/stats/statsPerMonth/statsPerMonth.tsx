@@ -16,6 +16,7 @@ import {
 import { Line } from "react-chartjs-2";
 
 import "./statsPerMonth.css";
+import { labelsName, locations } from "../../../../constants/constant";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -48,15 +49,7 @@ const StatsPerMonth = () => {
       },
     },
   };
-  const locations1 = [
-    "aerationTank",
-    "PrimaryClarifierP7",
-    "PrimaryClarifierP8",
-    "PrimaryClarifierP9",
-    "secondaryClarifierP24",
-    "secondaryClarifierP25",
-    "secondaryClarifierP32",
-  ];
+
   const labels: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
   let dict: any = {};
@@ -67,6 +60,12 @@ const StatsPerMonth = () => {
   let uu4: any = [];
   let uu5: any = [];
   let uu6: any = [];
+  let uu7: any = [];
+  let uu8: any = [];
+  let uu9: any = [];
+  let uu10: any = [];
+  let uu11: any = [];
+  let uu12: any = [];
 
   //===============================================================================the function start
   const lm = (v: any) => {
@@ -135,56 +134,92 @@ const StatsPerMonth = () => {
   labels.map((i: any) => {
     dict[i] !== undefined ? uu.push(dict[i]) : uu.push(0);
   });
+
   dict = {};
   lm("PrimaryClarifierP7");
 
   labels.map((i: any) => {
     dict[i] !== undefined ? uu1.push(dict[i]) : uu1.push(0);
   });
+
   dict = {};
   lm("PrimaryClarifierP8");
 
   labels.map((i: any) => {
     dict[i] !== undefined ? uu2.push(dict[i]) : uu2.push(0);
   });
+
   dict = {};
   lm("PrimaryClarifierP9");
 
   labels.map((i: any) => {
     dict[i] !== undefined ? uu3.push(dict[i]) : uu3.push(0);
   });
+
+  dict = {};
   lm("secondaryClarifierP24");
+
   labels.map((i: any) => {
     dict[i] !== undefined ? uu4.push(dict[i]) : uu4.push(0);
   });
-  dict = {};
 
+  dict = {};
   lm("secondaryClarifierP25");
 
   labels.map((i: any) => {
     dict[i] !== undefined ? uu5.push(dict[i]) : uu5.push(0);
   });
+
   dict = {};
   lm("secondaryClarifierP32");
 
   labels.map((i: any) => {
     dict[i] !== undefined ? uu6.push(dict[i]) : uu6.push(0);
   });
-  const labelsName: any = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  const [q, setQ] = useState<any[]>(locations1);
+
+  dict = {};
+  lm("mainBuilding");
+
+  labels.map((i: any) => {
+    dict[i] !== undefined ? uu7.push(dict[i]) : uu7.push(0);
+  });
+
+  dict = {};
+  lm("workShop");
+
+  labels.map((i: any) => {
+    dict[i] !== undefined ? uu8.push(dict[i]) : uu8.push(0);
+  });
+
+  dict = {};
+  lm("chlorinationTank");
+
+  labels.map((i: any) => {
+    dict[i] !== undefined ? uu9.push(dict[i]) : uu9.push(0);
+  });
+
+  dict = {};
+  lm("pumpingStation2");
+
+  labels.map((i: any) => {
+    dict[i] !== undefined ? uu10.push(dict[i]) : uu10.push(0);
+  });
+
+  dict = {};
+  lm("pumpingStation1");
+
+  labels.map((i: any) => {
+    dict[i] !== undefined ? uu11.push(dict[i]) : uu11.push(0);
+  });
+
+  dict = {};
+  lm("sandFilter");
+
+  labels.map((i: any) => {
+    dict[i] !== undefined ? uu12.push(dict[i]) : uu12.push(0);
+  });
+
+  const [q, setQ] = useState<any[]>(locations);
   const [filters, setFilters] = useState(true);
 
   const data: any = {
@@ -237,6 +272,42 @@ const StatsPerMonth = () => {
         borderColor: "#9933cc",
         tension: 0.3,
       },
+      {
+        label: "mainB",
+        data: !q.includes("mainBuilding") ? [0] : uu7,
+        borderColor: "#1933cc",
+        tension: 0.3,
+      },
+      {
+        label: "workShop",
+        data: !q.includes("workShop") ? [0] : uu8,
+        borderColor: "#9f33cc",
+        tension: 0.3,
+      },
+      {
+        label: "chlorinationT",
+        data: !q.includes("chlorinationTank") ? [0] : uu9,
+        borderColor: "#99007c",
+        tension: 0.3,
+      },
+      {
+        label: "SP2",
+        data: !q.includes("pumpingStation2") ? [0] : uu10,
+        borderColor: "#9ee3cc",
+        tension: 0.3,
+      },
+      {
+        label: "SP1",
+        data: !q.includes("pumpingStation1") ? [0] : uu11,
+        borderColor: "#39a3ca",
+        tension: 0.3,
+      },
+      {
+        label: "sandFilter",
+        data: !q.includes("sandFilter") ? [0] : uu12,
+        borderColor: "#ff33cc",
+        tension: 0.3,
+      },
     ],
   };
 
@@ -268,7 +339,7 @@ const StatsPerMonth = () => {
         >
           {filters && (
             <FormGroup>
-              {locations1.map((xgonna: any) => (
+              {locations.map((xgonna: any) => (
                 <FormControlLabel
                   className="hayya"
                   key={xgonna}

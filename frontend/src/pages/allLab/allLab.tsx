@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./allLab.css";
 import FolderIcon from "@mui/icons-material/Folder";
 import Button from "@mui/material/Button";
@@ -18,6 +18,7 @@ import {
   ref,
 } from "firebase/storage";
 import * as FileSaver from "file-saver";
+import { locations, workbooks } from "../../constants/constant";
 
 // const Item = styled(Paper)(({ theme }) => ({
 //   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -29,31 +30,9 @@ import * as FileSaver from "file-saver";
 
 const AllLab = () => {
   const navigate = useNavigate();
-  const workbooks = [
-    "Compaction Tests",
-    "Compression Strength 7 days",
-    "Compression Strength 28 days",
-    "Concrete Formulation Report",
-    "Convenience Report",
-    "Geotechnical Study ",
-    "Excavation Bottom Foundation Check",
-    "Preliminairy Report",
-    "Material Identification",
-  ];
-  const locations = [
-    "secondaryClarifierP24",
-    "secondaryClarifierP25",
-    "secondaryClarifierP32",
-    "PrimaryClarifierP7",
-    "PrimaryClarifierP8",
-    "PrimaryClarifierP9",
-    "aerationTank",
-    "GAT01",
-    "GAT02",
-    "GAT03",
-    "GAT04",
-    "Stock",
-  ];
+  useEffect(() => {
+    locations.push("GAT01", "GAT02", "GAT03", "GAT04", "Stock");
+  }, []);
 
   const DownloadFolders = async (): Promise<any> => {
     const jszip = new JSZip();
@@ -120,12 +99,25 @@ const AllLab = () => {
                 <FolderIcon
                   style={{ color: "rgb(248, 215, 117)", fontSize: 64 }}
                 />
-
                 {w}
               </Button>
             </Grid>
           ))}{" "}
-          <Button onClick={DownloadFolders}>Download WorkBooks</Button>
+          <Button
+            variant="contained"
+            color="success"
+            onClick={DownloadFolders}
+            startIcon={<DownloadIcon />}
+            style={{
+              position: "relative",
+              fontSize: 16,
+              padding: 15,
+              left: 581,
+              top: 25,
+            }}
+          >
+            Download WorkBooks
+          </Button>
         </Grid>
       </div>
     </div>

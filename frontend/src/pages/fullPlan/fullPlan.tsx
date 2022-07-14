@@ -3,18 +3,9 @@ import { Link } from "react-router-dom";
 
 import "./fullPlan.css";
 import NavBar from "../Navbar/navbar";
+import { locations } from "../../constants/constant";
 
 const FullPlan = () => {
-  const locations = [
-    "secondaryClarifierP24",
-    "secondaryClarifierP25",
-    "secondaryClarifierP32",
-    "PrimaryClarifierP7",
-    "PrimaryClarifierP8",
-    "PrimaryClarifierP9",
-    "aerationTank",
-  ];
-
   return (
     <div>
       <div className="navbar">
@@ -22,19 +13,28 @@ const FullPlan = () => {
       </div>
 
       <div className="masterPlan">
-        <img src={plan} alt="" width={1114} />
+        <img src={plan} alt="" width={1114} className="fullPlan" />
         {locations.flat().map((i: any) => (
-          <div key={i}>
-            <Link to={`../${i}`} className={i}></Link>
-            <div className={"name-" + i}>
-              <i>
-                <b>
-                  <u>{i}</u>
-                </b>
-              </i>
+          <>
+            <div key={i}>
+              <Link to={`../${i}`} className={i}></Link>
+              <div className={"name-" + i}>
+                <i>
+                  <b>
+                    <u>{i}</u>
+                  </b>
+                </i>
+              </div>
             </div>
-          </div>
+          </>
         ))}
+        <Link to={`../closingWall`} className="closingWall">
+          <p className="wallText">closingWall</p>
+          <div className="arrow">
+            <div className="line"></div>
+            <div className="point"></div>
+          </div>
+        </Link>
       </div>
     </div>
   );

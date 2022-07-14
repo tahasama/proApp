@@ -138,7 +138,6 @@ export const authSlice = createSlice({
   reducers: {
     updateError: (state, action) => {
       state.err.message = action.payload;
-      //   state.error.code = action.payload;
     },
     saveUser: (state, action) => {
       state.email = action.payload?.email;
@@ -168,9 +167,6 @@ export const authSlice = createSlice({
     });
     builder.addCase(getUser.fulfilled, (state, action: any) => {
       state.status = action.payload?.status;
-
-      // state.user = action.payload.uid;
-      // Object.assign(state, action.payload);
     });
     builder.addCase(updateUserStatus.fulfilled, (state, action: any) => {
       state.status = action.payload.status;

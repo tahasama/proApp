@@ -14,6 +14,7 @@ import {
   UpdateValuesOfSelect,
 } from "../../../../state/reducers/reinforcementSlice";
 import { getAllItns, itnData } from "../../../../state";
+import { locationsR } from "../../../../constants/constant";
 
 export default function SelectStuff({ individualReinforcement }: any) {
   const dispatch = useDispatch();
@@ -22,12 +23,8 @@ export default function SelectStuff({ individualReinforcement }: any) {
   const [type, setType] = useState<any>();
   const [review, setReview] = useState<any>();
 
-  const locations = ["secondaryClarifier", "PrimaryClarifier", "aerationTank"];
   const types = ["Reinforcement", "Conduites"];
   const reviews = ["C1", "C2", "C3"];
-  const handleNumber = (num: any) => {
-    return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
-  };
 
   console.log("maaadjkljiedfgv", individualReinforcement);
   const handleLocationChange = (event: SelectChangeEvent) => {
@@ -66,7 +63,7 @@ export default function SelectStuff({ individualReinforcement }: any) {
           label="location"
           onChange={handleLocationChange}
         >
-          {locations.map((j: any) => (
+          {locationsR.map((j: any) => (
             <MenuItem value={j} key={j}>
               {j}
             </MenuItem>

@@ -14,6 +14,7 @@ import {
   Title,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { labelsName } from "../../../../constants/constant";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -102,20 +103,6 @@ const StatsPerReview = (all: any) => {
   // console.log("MOOOOOOOOOOO", uu);
   // console.log("MOOOOOOOOOOO111", uu1);
   // console.log("MOOOOOOOOOOO222", uu2);
-  const labelsName: any = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
 
   const data: any = {
     labels: labelsName,

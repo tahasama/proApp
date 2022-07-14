@@ -5,7 +5,7 @@ const LabSchema = new mongooses.Schema(
   {
     typeL: { type: String, required: false },
     location: { type: String, required: false },
-    numL: { type: Number, required: false },
+    numL: { type: String, required: false },
     dateL: { type: Date, required: false },
     manifoldUrl: { type: String, required: false },
     reportUrl: { type: String, required: false },

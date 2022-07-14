@@ -23,6 +23,7 @@ import {
   concreteData,
   getAllConcretes,
 } from "../../../state/reducers/concreteSlice";
+import { labelsName, locations } from "../../../constants/constant";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -39,20 +40,6 @@ ChartJS.register(
 const Stats = () => {
   const dispatch = useAppDispatch();
   const { all } = useAppSelector(concreteData);
-  const labelsName: any = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
 
   const optionsPie = {
     plugins: {
@@ -84,16 +71,6 @@ const Stats = () => {
     dispatch(getAllConcretes());
   }, []);
 
-  const locations1 = [
-    "aerationTank",
-    "PrimaryClarifierP7",
-    "PrimaryClarifierP8",
-    "PrimaryClarifierP9",
-    "secondaryClarifierP24",
-    "secondaryClarifierP25",
-    "secondaryClarifierP32",
-  ];
-
   //-------------------------------------for doughnut chart start
 
   let u = all.flat().map((i: any) => i.itp);
@@ -104,6 +81,12 @@ const Stats = () => {
   let e: any[] = [];
   let f: any[] = [];
   let g: any[] = [];
+  let h: any[] = [];
+  let i: any[] = [];
+  let j: any[] = [];
+  let k: any[] = [];
+  let l: any[] = [];
+  let m: any[] = [];
   let dict: any = {};
 
   const dew = (value: any) =>
@@ -138,21 +121,59 @@ const Stats = () => {
     } else if (val === "secondaryClarifierP32") {
       g.push(dew(val));
       dict[7] = g;
+    } else if (val === "mainBuilding") {
+      h.push(dew(val));
+      dict[8] = h;
+    } else if (val === "workShop") {
+      i.push(dew(val));
+      dict[9] = i;
+    } else if (val === "chlorinationTank") {
+      j.push(dew(val));
+      dict[10] = j;
+    } else if (val === "pumpingStation2") {
+      k.push(dew(val));
+      dict[11] = k;
+    } else if (val === "pumpingStation1") {
+      l.push(dew(val));
+      dict[12] = l;
+    } else if (val === "sandFilter") {
+      m.push(dew(val));
+      dict[3] = m;
     }
   });
   const data = {
-    labels: locations1,
+    labels: locations,
     datasets: [
       {
-        data: [a[0], b[0], c[0], d[0], e[0], f[0], g[0]],
+        data: [
+          a[0],
+          b[0],
+          c[0],
+          d[0],
+          e[0],
+          f[0],
+          g[0],
+          h[0],
+          i[0],
+          j[0],
+          k[0],
+          l[0],
+          m[0],
+        ],
         backgroundColor: [
           "rgba(255, 99, 132, 0.3)",
           "rgba(54, 162, 235, 0.3)",
           "rgba(255, 206, 86, 0.3)",
           "rgba(75, 192, 192, 0.3)",
-          "rgba(153, 102, 255, 0.3)",
-          "rgba(255, 159, 64, 0.3)",
-          "rgba(225, 119, 64, 0.3)",
+          "rgba(153, 12, 255, 0.3)",
+          "rgba(205, 19, 64, 0.3)",
+          "rgba(25, 11, 64, 0.3)",
+          "rgba(125, 59, 84, 0.3)",
+          "rgba(135, 79, 44, 0.3)",
+          "rgba(95, 187, 124, 0.3)",
+          "rgba(245, 93, 222, 0.3)",
+          "rgba(89, 219, 190, 0.3)",
+          "rgba(45, 100, 64, 0.3)",
         ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
@@ -162,6 +183,12 @@ const Stats = () => {
           "rgba(153, 102, 255, 1)",
           "rgba(255, 159, 64, 1)",
           "rgba(235, 119, 64, 1)",
+          "rgba(125, 59, 84,1)",
+          "rgba(135, 79, 44,1)",
+          "rgba(95, 187, 124,1)",
+          "rgba(245, 93, 222,1)",
+          "rgba(89, 219, 190,1)",
+          "rgba(45, 0, 64, 1)",
         ],
         borderWidth: 1,
         fill: false,

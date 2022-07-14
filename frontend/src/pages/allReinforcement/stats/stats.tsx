@@ -27,6 +27,7 @@ import {
   getAllReinforcements,
   ReinforcementData,
 } from "../../../state/reducers/reinforcementSlice";
+import { labelsName, locationsR } from "../../../constants/constant";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -43,20 +44,6 @@ ChartJS.register(
 const Stats = () => {
   const dispatch = useAppDispatch();
   const { all } = useAppSelector(ReinforcementData);
-  const labelsName: any = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
 
   const optionsPie = {
     plugins: {
@@ -88,8 +75,6 @@ const Stats = () => {
     dispatch(getAllReinforcements());
   }, []);
 
-  const locations1 = ["aerationTank", "PrimaryClarifier", "secondaryClarifier"];
-
   //-------------------------------------for doughnut chart start
 
   let u = all.flat().map((i: any) => i.itp);
@@ -100,6 +85,8 @@ const Stats = () => {
   let e: any[] = [];
   let f: any[] = [];
   let g: any[] = [];
+  let h: any[] = [];
+  let i: any[] = [];
   let dict: any = {};
 
   const dew = (value: any) =>
@@ -112,36 +99,38 @@ const Stats = () => {
   u.forEach((val, index) => {
     if (val === "aerationTank") {
       a.push(dew(val));
-
       dict[1] = a;
     } else if (val === "PrimaryClarifier") {
       b.push(dew(val));
-
       dict[2] = b;
     } else if (val === "secondaryClarifier") {
       c.push(dew(val));
-
       dict[3] = c;
+    } else if (val === "mainBuilding") {
+      d.push(dew(val));
+      dict[4] = d;
+    } else if (val === "workShop") {
+      e.push(dew(val));
+      dict[5] = e;
+    } else if (val === "chlorinationTank") {
+      f.push(dew(val));
+      dict[6] = f;
+    } else if (val === "pumpingStation2") {
+      g.push(dew(val));
+      dict[7] = g;
+    } else if (val === "pumpingStation1") {
+      h.push(dew(val));
+      dict[7] = h;
+    } else if (val === "sandFilter") {
+      i.push(dew(val));
+      dict[7] = i;
     }
-    // else if (val === "PrimaryClarifierP9") {
-    //   d.push(dew(val));
-    //   dict[4] = d;
-    // } else if (val === "secondaryClarifierP24") {
-    //   e.push(dew(val));
-    //   dict[5] = e;
-    // } else if (val === "secondaryClarifierP25") {
-    //   f.push(dew(val));
-    //   dict[6] = f;
-    // } else if (val === "secondaryClarifierP32") {
-    //   g.push(dew(val));
-    //   dict[7] = g;
-    // }
   });
   const data = {
-    labels: locations1,
+    labels: locationsR,
     datasets: [
       {
-        data: [a[0], b[0], c[0], d[0], e[0], f[0], g[0]],
+        data: [a[0], b[0], c[0], d[0], e[0], f[0], g[0], h[0], i[0]],
         backgroundColor: [
           "rgba(255, 99, 132, 0.3)",
           "rgba(54, 162, 235, 0.3)",
@@ -150,6 +139,8 @@ const Stats = () => {
           "rgba(153, 102, 255, 0.3)",
           "rgba(255, 159, 64, 0.3)",
           "rgba(225, 119, 64, 0.3)",
+          "rgba(25, 189, 164, 0.3)",
+          "rgba(205, 19, 94, 0.3)",
         ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
@@ -159,6 +150,9 @@ const Stats = () => {
           "rgba(153, 102, 255, 1)",
           "rgba(255, 159, 64, 1)",
           "rgba(235, 119, 64, 1)",
+          "rgba(225, 119, 64, 1)",
+          "rgba(25, 189, 164, 1)",
+          "rgba(205, 19, 94, 1)",
         ],
         borderWidth: 1,
         fill: false,

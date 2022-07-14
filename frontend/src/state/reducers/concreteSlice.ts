@@ -59,8 +59,6 @@ export const deleteConcrete = createAsyncThunk(
   async (value: any) => {
     try {
       const res = await axios.delete(POJECT_URL + value);
-      console.log("Slice delete", res.data);
-
       return res.data;
     } catch (error) {
       return error;
@@ -75,7 +73,6 @@ interface concretesProps {
     loading: boolean;
     individualConcrete: any;
     ww: any[];
-    X: string;
     newLocation: string;
     newType: string;
     newRelated: string;
@@ -91,7 +88,6 @@ const initialState = {
   newType: "",
   newRelated: "",
   ww: [],
-  X: "hahaha",
 };
 
 export const projectsSlice = createSlice({
@@ -109,20 +105,6 @@ export const projectsSlice = createSlice({
       state.newType = action.payload.newType;
       state.newRelated = action.payload.newRelated;
     },
-
-    // },
-    // UpdateValuesOfSelect: (state, action) => {
-    //   state.newLocation = action.payload.newLocation;
-    //   state.newRoutine = action.payload.newRoutine;
-    //   state.newReview = action.payload.newReview;
-    // },
-    // removeItns: (state, action) => {
-    //   state.all = state.all
-    //     .flat()
-    //     .filter((itn: any) => itn._id !== action.payload);
-    // },
-    // filterByRoutine: (state, action) => {
-    //   state.filter = action.payload;
   },
   extraReducers: (builder) => {
     builder.addCase(getAllConcretes.fulfilled, (state, action) => {
@@ -142,7 +124,6 @@ export const projectsSlice = createSlice({
     });
     builder.addCase(deleteConcrete.fulfilled, (state, action) => {
       state = action.payload;
-      state.X = "Concrete has been deleted...";
     });
   },
 });
@@ -150,13 +131,6 @@ export const projectsSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const concreteData = (state: concretesProps) => state.concretez;
 
-export const {
-  updateWw,
-  UpdateValuesOfSelect,
-
-  //   UpdateValuesOfSelect,
-  //   removeItns,
-  //   filterByRoutine,
-} = projectsSlice.actions;
+export const { updateWw, UpdateValuesOfSelect } = projectsSlice.actions;
 
 export default projectsSlice.reducer;

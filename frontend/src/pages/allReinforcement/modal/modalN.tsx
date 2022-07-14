@@ -196,7 +196,6 @@ export default function ModalM() {
                     ),
                 setTimeout(() => {
                   dispatch(UpdateSelectedBox(""));
-
                   dispatch(getAllReinforcements());
                 }, 1000),
                 handleClose()
