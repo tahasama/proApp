@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { LocalizationProvider, MobileDatePicker } from "@mui/lab";
 import { Stack, TextField } from "@mui/material";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
@@ -16,7 +16,6 @@ import SelectStuffNCR from "./selectStuffNCR/selectStuffNCR";
 import {
   createQorNcr,
   getAllQorNcrs,
-  getQorNcr,
   QorNcrData,
   updateQorNcr,
   UpdateSelectedBox,
@@ -24,10 +23,6 @@ import {
   uploadImages2,
 } from "../../../state/reducers/qorNcrSlice";
 import CircularProgress from "@mui/material/CircularProgress";
-
-import FileUploadTwoToneIcon from "@mui/icons-material/FileUploadTwoTone";
-import NavBar from "../../Navbar/navbar";
-import { getAuthData } from "../../../state/reducers/authSlice";
 
 const style = {
   position: "absolute" as "absolute",
@@ -49,11 +44,10 @@ export default function ModalM() {
   const handleClose = () => setOpen(false);
   const dispatch = useAppDispatch();
 
-  const { newStatus, individualQorNcr, all, ww, selectedBox } =
+  const { newStatus, individualQorNcr, selectedBox } =
     useAppSelector(QorNcrData);
   const [value, setValue] = React.useState<Date | null>(new Date());
   const [value2, setValue2] = React.useState<Date | null>(new Date());
-  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const inputRefNum = React.useRef<any>(null);

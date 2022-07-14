@@ -267,7 +267,7 @@ const Log = () => {
     ) {
       dispatch(updateWw(tt));
     } else if (
-      filter1 == "" &&
+      filter1 === "" &&
       filter === "" &&
       filter2 === "" &&
       filter3 !== ""

@@ -118,11 +118,11 @@ const AllNcr = () => {
       menuTabs: ["filterMenuTab"],
     };
   }, []);
-  const sideBar = useMemo(() => {
-    return {
-      toolPanels: ["filters"],
-    };
-  }, []);
+  // const sideBar = useMemo(() => {
+  //   return {
+  //     toolPanels: ["filters"],
+  //   };
+  // }, []);
 
   const gridRef = useRef<any>();
 

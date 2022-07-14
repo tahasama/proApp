@@ -63,7 +63,7 @@ const LocationDetails = () => {
 
   useEffect(() => {
     dispatch(getItp(itp));
-  }, [itp]);
+  }, [itp, dispatch]);
 
   return (
     <div>
@@ -91,8 +91,7 @@ const LocationDetails = () => {
             color: "gray",
             fontWeight: "bold",
           }}
-          // href=""
-          href={individualitp.length > 0 ? individualitp[0].ItpUrl : ""}
+          href={`${individualitp.length > 0 ? individualitp[0].ItpUrl : ""}`}
           target="_blank"
           rel="noreferrer"
         >

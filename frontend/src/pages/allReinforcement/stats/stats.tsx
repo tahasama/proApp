@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Doughnut } from "react-chartjs-2";
-import { getAllItns, itnData } from "../../../state";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 import {
   Chart as ChartJS,
@@ -17,10 +16,7 @@ import {
   Title,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import {
-  concreteData,
-  getAllConcretes,
-} from "../../../state/reducers/concreteSlice";
+
 import {
   getAllReinforcements,
   ReinforcementData,
@@ -71,7 +67,7 @@ const Stats = () => {
 
   useEffect(() => {
     dispatch(getAllReinforcements());
-  }, []);
+  }, [dispatch]);
 
   //-------------------------------------for doughnut chart start
 
@@ -225,7 +221,7 @@ const Stats = () => {
   });
   let uu1: any = [];
   labels1.map((i: any) => {
-    dict1[i] !== undefined ? uu1.push(dict1[i]) : uu1.push(0);
+    return dict1[i] !== undefined ? uu1.push(dict1[i]) : uu1.push(0);
   });
 
   const data1: any = {

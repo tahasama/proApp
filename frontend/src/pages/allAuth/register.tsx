@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { provider } from "../../firebase";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
@@ -10,7 +9,6 @@ import {
   updateError,
   updateStatus,
 } from "../../state/reducers/authSlice";
-import Navbar from "../Navbar/navbar";
 
 import "./register.css";
 

@@ -42,7 +42,7 @@ export default function ModalM() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useAppDispatch();
-  const { newStatus, individualQorNcr, all, ww, selectedBox } =
+  const { newStatus, individualQorNcr, selectedBox } =
     useAppSelector(QorNcrData);
   const [value, setValue] = React.useState<Date | null>(new Date());
   const [value2, setValue2] = React.useState<Date | null>(new Date());

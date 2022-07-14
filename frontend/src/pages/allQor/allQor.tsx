@@ -1,7 +1,7 @@
 import { AgGridReact } from "ag-grid-react";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import {
   deleteQorNcr,
@@ -19,9 +19,9 @@ import { handleNumber } from "../../constants/constant";
 
 const AllQor = () => {
   const dispatch = useAppDispatch();
-  const { user, status, uid, newstatus, email } = useAppSelector(getAuthData);
+  const { status } = useAppSelector(getAuthData);
 
-  const { all, ww, individualQorNcr, selectedBox } = useAppSelector(QorNcrData);
+  const { all, ww, selectedBox } = useAppSelector(QorNcrData);
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
   const handleDelete = () => {
@@ -116,11 +116,11 @@ const AllQor = () => {
       menuTabs: ["filterMenuTab"],
     };
   }, []);
-  const sideBar = useMemo(() => {
-    return {
-      toolPanels: ["filters"],
-    };
-  }, []);
+  // const sideBar = useMemo(() => {
+  //   return {
+  //     toolPanels: ["filters"],
+  //   };
+  // }, []);
 
   const gridRef = useRef<any>();
 

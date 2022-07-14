@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { locations, routines } from "../../../../constants/constant";
 
-export default function SelectStuff(table: any) {
+export default function SelectStuff() {
   const dispatch = useDispatch();
   const { individualItn } = useAppSelector(itnData);
   const [location, setLocation] = useState<any>(individualItn.itp);
@@ -36,7 +36,7 @@ export default function SelectStuff(table: any) {
         newReview: review,
       })
     );
-  }, [location, routine, review]);
+  }, [location, routine, review, dispatch]);
 
   return (
     <Box sx={{ minWidth: 120 }}>

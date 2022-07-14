@@ -1,7 +1,5 @@
 import snce from "../../../images/snce.png";
-import jesa from "../../../images/jesa.png";
 import "./checklist.css";
-import { textAlign } from "@mui/system";
 import { itnData } from "../../../state";
 import { useAppSelector } from "../../../state/hooks";
 import { handleNumber } from "../../../constants/constant";

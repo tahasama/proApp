@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Doughnut } from "react-chartjs-2";
-import { getAllItns, itnData } from "../../../state";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 import {
   Chart as ChartJS,

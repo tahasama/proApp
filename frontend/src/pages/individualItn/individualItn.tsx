@@ -13,7 +13,6 @@ import ModalF from "./uploadImages/modalF/modalF";
 import NavBar from "../Navbar/navbar";
 import snce from "../../images/snce.png";
 import jesa from "../../images/jesa.png";
-import background from "../../images/background.jpg";
 import Button from "@mui/material/Button";
 import { handleNumber } from "../../constants/constant";
 
@@ -27,7 +26,7 @@ const IndividualItn = () => {
     if (params) {
       dispatch(getItn(params));
     }
-  }, [individualItn]);
+  }, [dispatch, params]);
 
   const handleDeleteItn = async () => {
     const result = window.confirm(

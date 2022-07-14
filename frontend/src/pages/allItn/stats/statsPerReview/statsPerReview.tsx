@@ -38,25 +38,12 @@ const StatsPerReview = (all: any) => {
 
   const labels: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-  let dict: any = {};
   let uu: any = [];
   let uu1: any = [];
   let uu2: any = [];
 
   //===============================================================================the function start
   const lm = (v: any) => {
-    let a: any[] = [];
-    let b: any[] = [];
-    let c: any[] = [];
-    let d: any[] = [];
-    let e: any[] = [];
-    let f: any[] = [];
-    let g: any[] = [];
-    let h: any[] = [];
-    let i: any[] = [];
-    let j: any[] = [];
-    let k: any[] = [];
-    let l: any[] = [];
     const uuu = labels.map(
       (l: any) =>
         all.all

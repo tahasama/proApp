@@ -29,7 +29,6 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { handleNumber, labelsName, routines } from "../../constants/constant";
-import { NoBackpackSharp } from "@mui/icons-material";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -62,7 +61,7 @@ const LocationsItn = (itp: any) => {
 
   useEffect(() => {
     dispatch(getItnsByItp(itp));
-  }, [allitp]);
+  }, [itp, dispatch]);
 
   const filterByRoutine = allitp.flat().filter((itn: any) => {
     return itn.routine === filterBy;
@@ -166,7 +165,7 @@ const LocationsItn = (itp: any) => {
   });
   let uu: any = [];
   labels.map((i: any) => {
-    dict[i] !== undefined ? uu.push(dict[i]) : uu.push(0);
+    return dict[i] !== undefined ? uu.push(dict[i]) : uu.push(0);
   });
 
   const data2: any = {

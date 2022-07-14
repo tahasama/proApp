@@ -131,11 +131,11 @@ const Log = () => {
       menuTabs: ["filterMenuTab"],
     };
   }, []);
-  const sideBar = useMemo(() => {
-    return {
-      toolPanels: ["filters"],
-    };
-  }, []);
+  // const sideBar = useMemo(() => {
+  //   return {
+  //     toolPanels: ["filters"],
+  //   };
+  // }, []);
 
   const gridRef = useRef<any>();
   const [filter, setFilter] = useState("");
@@ -162,12 +162,6 @@ const Log = () => {
       : setFilter2("");
   };
   const [totalreinforcement, setTotalreinforcement] = useState();
-
-  const initialTotal = all
-    .flat()
-    .map((ds: any) => ds.quantity)
-    .map((v) => (v === undefined ? 0 : v))
-    .reduce((a, b) => a + b, 0);
 
   const getTotal = () => {
     const rr = all.flat();

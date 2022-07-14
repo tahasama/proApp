@@ -6,13 +6,8 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  getAllLab,
-  LabData,
-  UpdateValuesOfSelect,
-} from "../../../../../state/reducers/labSlice";
-import { useAppSelector } from "../../../../../state/hooks";
-import { locations, workbooks } from "../../../../../constants/constant";
+import { UpdateValuesOfSelect } from "../../../../../state/reducers/labSlice";
+import { workbooks } from "../../../../../constants/constant";
 
 export default function SelectStuffLab(individualLab: any) {
   const dispatch = useDispatch();

@@ -38,7 +38,7 @@ const ItnForm = () => {
     if (params) {
       dispatch(getItn(params));
     }
-  }, []);
+  }, [dispatch, params]);
 
   const ItpStuff = {
     ItpNum:

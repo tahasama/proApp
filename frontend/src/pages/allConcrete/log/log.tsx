@@ -14,14 +14,12 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 import "./log.css";
-import { Link } from "react-router-dom";
 import ModalR from "../modal/modalR";
 import { getAuthData } from "../../../state/reducers/authSlice";
-import { handleNumber } from "../../../constants/constant";
 
 const Log = () => {
   const dispatch = useAppDispatch();
-  const { user, status, uid, newstatus, email } = useAppSelector(getAuthData);
+  const { status } = useAppSelector(getAuthData);
 
   const { all, ww } = useAppSelector(concreteData);
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);

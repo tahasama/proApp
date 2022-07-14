@@ -6,19 +6,15 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../../../state/hooks";
 
 import {
   getAllReinforcements,
-  ReinforcementData,
   UpdateValuesOfSelect,
 } from "../../../../state/reducers/reinforcementSlice";
-import { getAllItns, itnData } from "../../../../state";
 import { locationsR } from "../../../../constants/constant";
 
-export default function SelectStuff({ individualReinforcement }: any) {
+export default function SelectStuff() {
   const dispatch = useDispatch();
-  const { all } = useAppSelector(itnData);
   const [location, setLocation] = useState<any>();
   const [type, setType] = useState<any>();
   const [review, setReview] = useState<any>();
@@ -39,7 +35,7 @@ export default function SelectStuff({ individualReinforcement }: any) {
 
   useEffect(() => {
     dispatch(getAllReinforcements());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(

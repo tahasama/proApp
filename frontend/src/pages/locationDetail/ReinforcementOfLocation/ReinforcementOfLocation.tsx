@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { useParams } from "react-router-dom";
 
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import {
@@ -36,13 +34,13 @@ ChartJS.register(
 
 const ReinforcementOfLocation = () => {
   const dispatch = useAppDispatch();
-  const { allitp, all } = useAppSelector(ReinforcementData);
+  const { all } = useAppSelector(ReinforcementData);
   const { itp } = useParams();
 
   useEffect(() => {
     dispatch(getReinforcementsByItp(itp));
     dispatch(getAllReinforcements());
-  }, [allitp]);
+  }, [itp, dispatch]);
 
   let itpName =
     itp === "secondaryClarifierP24" ||
@@ -192,7 +190,7 @@ const ReinforcementOfLocation = () => {
   });
   let uu1: any = [];
   labels1.map((i: any) => {
-    dict1[i] !== undefined ? uu1.push(dict1[i]) : uu1.push(0);
+    return dict1[i] !== undefined ? uu1.push(dict1[i]) : uu1.push(0);
   });
 
   const data2: any = {

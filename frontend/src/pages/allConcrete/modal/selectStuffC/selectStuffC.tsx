@@ -8,11 +8,10 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAllItns, itnData, UpdateValuesOfSelect } from "../../../../state";
 import { useAppSelector } from "../../../../state/hooks";
-import { handleNumber, locations } from "../../../../constants/constant";
+import { locations } from "../../../../constants/constant";
 
 export default function SelectStuff() {
   const dispatch = useDispatch();
-  const { all } = useAppSelector(itnData);
   const [location, setLocation] = useState<any>();
   const [type, setType] = useState<any>();
   // const [related, setRelated] = useState<any>();

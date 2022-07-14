@@ -36,12 +36,12 @@ ChartJS.register(
 const ConcreteOfLocation = () => {
   const dispatch = useAppDispatch();
 
-  const { all, ww } = useAppSelector(concreteData);
+  const { all } = useAppSelector(concreteData);
   const { itp } = useParams();
 
   useEffect(() => {
     dispatch(getAllConcretes());
-  }, []);
+  }, [dispatch]);
 
   const optionsLine = {
     responsive: true,
@@ -69,19 +69,6 @@ const ConcreteOfLocation = () => {
   //===============================================================================the function start
 
   const lm = (v: any) => {
-    let a: any[] = [];
-    let b: any[] = [];
-    let c: any[] = [];
-    let d: any[] = [];
-    let e: any[] = [];
-    let f: any[] = [];
-    let g: any[] = [];
-    let h: any[] = [];
-    let i: any[] = [];
-    let j: any[] = [];
-    let k: any[] = [];
-    let l: any[] = [];
-
     const uuu = labels.map((l: any) =>
       all
         .flat()

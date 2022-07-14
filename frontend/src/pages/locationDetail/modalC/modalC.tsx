@@ -41,7 +41,7 @@ export default function ModalC() {
   };
   useEffect(() => {
     dispatch(getAllItns());
-  }, []);
+  }, [dispatch]);
 
   const getNumber = () => {
     const itnNumber: any = all.flat().slice(-1)[0];

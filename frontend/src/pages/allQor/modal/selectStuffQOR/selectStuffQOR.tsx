@@ -6,11 +6,9 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../../../state/hooks";
 
 import {
   getAllQorNcrs,
-  QorNcrData,
   UpdateValuesOfSelect,
 } from "../../../../state/reducers/qorNcrSlice";
 

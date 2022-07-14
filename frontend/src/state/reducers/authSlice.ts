@@ -76,7 +76,7 @@ export const resetPasswordo: any = createAsyncThunk(
   "resetPasswordo",
   async (email: string) => {
     try {
-      const res = await sendPasswordResetEmail(auth, email);
+      await sendPasswordResetEmail(auth, email);
     } catch (error: any) {
       return error;
     }
