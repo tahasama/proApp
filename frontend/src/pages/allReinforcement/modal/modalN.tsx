@@ -9,7 +9,6 @@ import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import SendIcon from "@mui/icons-material/Send";
-// import "./modalM.css";
 import { Input } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 
@@ -21,7 +20,6 @@ import {
   updateReinforcement,
   UpdateSelectedBox,
   uploadImages,
-  // uploadImages,
 } from "../../../state/reducers/reinforcementSlice";
 
 const style = {
@@ -55,7 +53,6 @@ export default function ModalM() {
   const [value, setValue] = React.useState<Date | null>(new Date());
 
   const inputRef = React.useRef<any>(null);
-  console.log("individualReinforcement..........222", selectedBox);
   const handleChange = (newValue: Date | null) => {
     setValue(newValue);
   };
@@ -71,11 +68,9 @@ export default function ModalM() {
 
     dispatch(uploadImages(value));
     setTimeout(() => {
-      // handleClose();
       setLoading(false);
     }, 2000);
   };
-  console.log("selectedBox.......", selectedBox);
 
   return (
     <div>

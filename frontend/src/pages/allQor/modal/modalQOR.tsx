@@ -2,13 +2,12 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { LocalizationProvider, MobileDatePicker } from "@mui/lab";
 import { Stack, TextField } from "@mui/material";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 
 import SendIcon from "@mui/icons-material/Send";
-// import "./modalNCR.css";
 import { Input } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 
@@ -16,7 +15,6 @@ import SelectStuffQOR from "./selectStuffQOR/selectStuffQOR";
 import {
   createQorNcr,
   getAllQorNcrs,
-  getQorNcr,
   QorNcrData,
   updateQorNcr,
   UpdateSelectedBox,
@@ -24,9 +22,6 @@ import {
   uploadImages2,
 } from "../../../state/reducers/qorNcrSlice";
 import CircularProgress from "@mui/material/CircularProgress";
-
-import FileUploadTwoToneIcon from "@mui/icons-material/FileUploadTwoTone";
-import NavBar from "../../Navbar/navbar";
 
 const style = {
   position: "absolute" as "absolute",
@@ -51,7 +46,6 @@ export default function ModalM() {
     useAppSelector(QorNcrData);
   const [value, setValue] = React.useState<Date | null>(new Date());
   const [value2, setValue2] = React.useState<Date | null>(new Date());
-  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const inputRefNum = React.useRef<any>(null);
@@ -63,9 +57,7 @@ export default function ModalM() {
   const handleChange2 = (newValue: Date | null) => {
     setValue2(newValue);
   };
-  // const handleUpload = () => {
-  //   dispatch(deleteQorNcr(selected));
-  // };
+
   const upload = async (e: any) => {
     e.preventDefault();
 
@@ -86,33 +78,11 @@ export default function ModalM() {
     };
 
     dispatch(uploadImages2(value2));
-    // dispatch(
-    //   updateqorncr({
 
-    //   })
-    // ),
-    // dispatch(
-    //   newUserImage({
-    //     userimage: imgUrl,
-    //   })
-    // );
-    //   dispatch(
-    //     newImage({
-    //       image: imgUrl,
-    //     })
-    //   );
-
-    //dispatch(cancelState({ cancelImage: false }));
     setTimeout(() => {
-      // handleClose();
       dispatch(UpdateSelectedBox(""));
       setLoading(false);
     }, 2000);
-
-    //     } else {
-    //       setError(true);
-    //       //   dispatch(cancelState({ cancelImage: true }));
-    //     }
   };
   return (
     <div>

@@ -9,7 +9,6 @@ import {
   Legend,
   BarElement,
 } from "chart.js";
-// import "./stats.css";
 import {
   CategoryScale,
   LinearScale,
@@ -18,7 +17,6 @@ import {
   Title,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-// import StatsPerReview from "./statsPerReview/statsPerReview";
 import {
   concreteData,
   getAllConcretes,
@@ -179,11 +177,9 @@ const Stats = () => {
   let k1: any[] = [];
   let l1: any[] = [];
   let dict1: any = {};
-  // const dew1 = (value: any) => all;
   const dew1 = (value: any) =>
     all
       .flat()
-      // .filter((y: any) => y.dateOfUsage?.slice(6, 7) === value)
       .filter((y: any) => y.dateOfUsage.slice(6, 7) === JSON.stringify(value))
       .map((x: any) => x.quantity)
       .reduce((a, b): any => a + b, 0);

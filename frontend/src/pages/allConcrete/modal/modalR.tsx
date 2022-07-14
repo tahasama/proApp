@@ -8,7 +8,6 @@ import { Stack, TextField } from "@mui/material";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 
 import SendIcon from "@mui/icons-material/Send";
-// import "./modalM.css";
 import { Input } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 import {
@@ -92,18 +91,6 @@ export default function ModalM() {
 
             <div
               onClick={() => (
-                console.log(
-                  "itp",
-                  newLocation,
-                  "type",
-                  newType,
-                  "dateOfUsage",
-                  value,
-                  "quantity",
-                  inputRef.current.value,
-                  "relatedItn",
-                  newRelated
-                ),
                 dispatch(
                   createConcrete({
                     itp: newLocation,

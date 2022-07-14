@@ -11,16 +11,7 @@ import {
   updateStatus,
 } from "../../state/reducers/authSlice";
 import Navbar from "../Navbar/navbar";
-// import SideBar from "../components/sideBar";
-// import TopBar from "../components/topBar";
-// import { provider } from "../firebase";
-// import { useAppSelector } from "../state/hooks";
-// import {
-//   getAuthData,
-//   loginUser,
-//   registerUser,
-// } from "../state/reducers/authSlice";
-// import { updateError } from "../state/reducers/userSlice";
+
 import "./register.css";
 
 const Register: React.FC = () => {
@@ -31,8 +22,6 @@ const Register: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { uid, err } = useAppSelector(getAuthData);
-
-  console.log("vvvvvvvvvvvvvvvvv", uid);
 
   if (err.code === "auth/weak-password") {
     dispatch(updateError("Password should be at least 6 characters"));
@@ -96,7 +85,6 @@ const Register: React.FC = () => {
   };
   return (
     <div>
-      {/* <Navbar /> */}
       <div className="registerContainer">
         <form className="registerForm" onSubmit={handleSubmit}>
           <div className="labelInput">

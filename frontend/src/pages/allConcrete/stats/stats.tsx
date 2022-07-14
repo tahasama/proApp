@@ -215,11 +215,10 @@ const Stats = () => {
   let k1: any[] = [];
   let l1: any[] = [];
   let dict1: any = {};
-  // const dew1 = (value: any) => all;
+
   const dew1 = (value: any) =>
     all
       .flat()
-      // .filter((y: any) => y.dateOfUsage?.slice(6, 7) === value)
       .filter((y: any) => y.dateOfUsage.slice(6, 7) === JSON.stringify(value))
       .map((x: any) => x.quantity)
       .reduce((a, b): any => a + b, 0);

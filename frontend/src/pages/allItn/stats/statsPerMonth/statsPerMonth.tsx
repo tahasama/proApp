@@ -368,7 +368,6 @@ const StatsPerMonth = () => {
           width: 340,
           marginTop: -20,
           backgroundColor: "rgb(210,215,230,0.8)",
-          // opacity: 0.4,
         }}
         className="statsPerMonthLine"
       />

@@ -94,6 +94,20 @@ export default function NavBar() {
       navigate("/secondaryClarifierP25");
     } else if (searchRef.current.value === "p32") {
       navigate("/secondaryClarifierP32");
+    } else if (searchRef.current.value === "mb") {
+      navigate("/mainBuilding");
+    } else if (searchRef.current.value === "ws") {
+      navigate("/workShop");
+    } else if (searchRef.current.value === "ct") {
+      navigate("/chlorinationTank");
+    } else if (searchRef.current.value === "sp2") {
+      navigate("/pumpingStation2");
+    } else if (searchRef.current.value === "sp1") {
+      navigate("/pumpingStation2");
+    } else if (searchRef.current.value === "sf") {
+      navigate("/sandFilter");
+    } else if (searchRef.current.value === "cw") {
+      navigate("/closingWall");
     }
   };
 

@@ -65,9 +65,7 @@ export default function ModalM() {
   const handleChange2 = (newValue: Date | null) => {
     setValue2(newValue);
   };
-  // const handleUpload = () => {
-  //   dispatch(deleteQorNcr(selected));
-  // };
+
   const upload = async (e: any) => {
     e.preventDefault();
 
@@ -88,33 +86,11 @@ export default function ModalM() {
     };
 
     dispatch(uploadImages2(value2));
-    // dispatch(
-    //   updateqorncr({
 
-    //   })
-    // ),
-    // dispatch(
-    //   newUserImage({
-    //     userimage: imgUrl,
-    //   })
-    // );
-    //   dispatch(
-    //     newImage({
-    //       image: imgUrl,
-    //     })
-    //   );
-
-    //dispatch(cancelState({ cancelImage: false }));
     setTimeout(() => {
-      // handleClose();
       dispatch(UpdateSelectedBox(""));
       setLoading(false);
     }, 2000);
-
-    //     } else {
-    //       setError(true);
-    //       //   dispatch(cancelState({ cancelImage: true }));
-    //     }
   };
   return (
     <div>

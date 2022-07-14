@@ -15,36 +15,18 @@ const UploadItn = ({ handleClose }: any) => {
     setLoading(true);
     e.preventDefault();
     if (pdfRef.current.files[0] !== undefined) {
-      // const imgUrl = URL.createObjectURL(pdfRef.current.files[0]);
       const value = {
         itnValues: individualItn,
         pdf: pdfRef.current.files[0],
       };
       dispatch(uploadPdfFile(value));
-      // dispatch(
-      //   updateItn({
 
-      //   })
-      // ),
-      // dispatch(
-      //   newUserImage({
-      //     userimage: imgUrl,
-      //   })
-      // );
-      //   dispatch(
-      //     newImage({
-      //       image: imgUrl,
-      //     })
-      //   );
-
-      //   dispatch(cancelState({ cancelImage: false }));
       setTimeout(() => {
         handleClose();
         setLoading(false);
       }, 2000);
     } else {
       setError(true);
-      //   dispatch(cancelState({ cancelImage: true }));
     }
   };
   return (
@@ -58,10 +40,7 @@ const UploadItn = ({ handleClose }: any) => {
         {loading && <CircularProgress color="secondary" />}
         <span className="uploadText">Upload</span>
       </button>
-      <button
-        className="imageUpload upload xy"
-        // onClick={() => dispatch(cancelState({ cancelImage: false }))}
-      >
+      <button className="imageUpload upload xy">
         <span className="uploadText"> Cancel</span>
       </button>
       {error && (

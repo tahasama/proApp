@@ -1,6 +1,5 @@
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
-// import ModalM from "./modalM/modalM";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
@@ -9,8 +8,7 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
-// import "./log.css";
-import { Link } from "react-router-dom";
+
 import {
   deleteReinforcement,
   getAllReinforcements,
@@ -25,9 +23,8 @@ import { handleNumber } from "../../../constants/constant";
 
 const Log = () => {
   const dispatch = useAppDispatch();
-  const { user, status, uid, newstatus, email } = useAppSelector(getAuthData);
-  const { newLocation, newType, individualReinforcement, selectedBox } =
-    useAppSelector(ReinforcementData);
+  const { status } = useAppSelector(getAuthData);
+  const { selectedBox } = useAppSelector(ReinforcementData);
   const { all, ww } = useAppSelector(ReinforcementData);
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
@@ -43,8 +40,7 @@ const Log = () => {
   useEffect(() => {
     dispatch(getAllReinforcements());
   }, []);
-  console.log("ZZZRRRRRRRRRPPPPPPP", all);
-  console.log("individualReinforcement..........", individualReinforcement);
+
   useEffect(() => {
     dispatch(getReinforcement(selectedBox));
   }, [selectedBox]);
@@ -145,7 +141,6 @@ const Log = () => {
   const [filter, setFilter] = useState("");
   const [filter1, setFilter1] = useState("");
   const [filter2, setFilter2] = useState("");
-  console.log("qqqqqqqqqqqqqqq", all);
   useEffect(() => {
     getTotal();
   }, [filter, filter1, filter2, all]);
@@ -204,16 +199,7 @@ const Log = () => {
       dispatch(updateWw(rr));
     }
   };
-  // function initialFilter() {
-  //   gridop.current.api.SetFilterValues(numY !== 0);
-  // }
-  console.log(
-    "fofof",
-    all
-      .flat()
-      .filter((n: any) => console.log("iiii", n.numY === undefined))
-      .reverse()
-  );
+
   return (
     <div className="log1">
       <div>
@@ -276,7 +262,6 @@ const Log = () => {
                   }
                   getRowStyle={(params) => {
                     if (params.data?.review === "C1") {
-                      console.log("werfwerwerwerwer", params.data.review);
                       return { background: "rgb(0,255,0,0.15)" };
                     } else if (params.data?.review === "C2") {
                       return { background: "rgb(0,0,255,0.15)" };
@@ -284,7 +269,6 @@ const Log = () => {
                       return { background: "rgb(255,0,0,0.15)" };
                     } else return { background: "white" };
                   }}
-                  // onGridReady={initialFilter}
                 ></AgGridReact>
               </div>
             </div>{" "}

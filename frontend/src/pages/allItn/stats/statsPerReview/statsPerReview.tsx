@@ -1,10 +1,4 @@
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-  BarElement,
-} from "chart.js";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import {
   CategoryScale,
   LinearScale,
@@ -71,8 +65,6 @@ const StatsPerReview = (all: any) => {
           .filter(
             (d: any) => d.dateOfInspection.slice(6, 7) === JSON.stringify(l)
           ).length
-      // .map((q: any) => q.review)
-      // .reduce((a: any, b: any) => a + b, 0)
     );
     v === "C1" && uu.push(uuu);
     v === "C2" && uu1.push(uuu);
@@ -84,19 +76,6 @@ const StatsPerReview = (all: any) => {
   lm("C1");
   lm("C2");
   lm("C3");
-
-  // dict = {};
-  // labels.map((i: any) => {
-  //   dict[i] !== undefined ? uu.push(dict[i]) : uu.push(0);
-  // });
-  // dict = {};
-  // labels.map((i: any) => {
-  //   dict[i] !== undefined ? uu1.push(dict[i]) : uu1.push(0);
-  // });
-  // dict = {};
-  // labels.map((i: any) => {
-  //   dict[i] !== undefined ? uu2.push(dict[i]) : uu2.push(0);
-  // });
 
   const data: any = {
     labels: labelsName,

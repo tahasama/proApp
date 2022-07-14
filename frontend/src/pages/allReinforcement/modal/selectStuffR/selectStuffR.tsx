@@ -26,7 +26,6 @@ export default function SelectStuff({ individualReinforcement }: any) {
   const types = ["Reinforcement", "Conduites"];
   const reviews = ["C1", "C2", "C3"];
 
-  console.log("maaadjkljiedfgv", individualReinforcement);
   const handleLocationChange = (event: SelectChangeEvent) => {
     setLocation(event.target.value as string);
   };
@@ -51,7 +50,7 @@ export default function SelectStuff({ individualReinforcement }: any) {
       })
     );
   }, [location, type, review]);
-  console.log("itnsssssss", all);
+
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>

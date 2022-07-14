@@ -5,71 +5,9 @@ import { textAlign } from "@mui/system";
 import { itnData } from "../../../state";
 import { useAppSelector } from "../../../state/hooks";
 import { handleNumber } from "../../../constants/constant";
-const Checklist4 = (dateItn: any) => {
-  const { individualItn } = useAppSelector(itnData);
 
-  const ItpStuff = {
-    ItpNum:
-      individualItn.itp === "aerationTank"
-        ? "003"
-        : individualItn.itp === "PrimaryClarifierP7"
-        ? "001"
-        : individualItn.itp === "PrimaryClarifierP8"
-        ? "001"
-        : individualItn.itp === "PrimaryClarifierP9"
-        ? "001"
-        : individualItn.itp === "secondaryClarifierP24"
-        ? "002"
-        : individualItn.itp === "secondaryClarifierP25"
-        ? "002"
-        : individualItn.itp === "secondaryClarifierP32"
-        ? "002"
-        : individualItn.itp === "mainBuilding"
-        ? "004"
-        : individualItn.itp === "workShop"
-        ? "005"
-        : individualItn.itp === "chlorinationTank"
-        ? "006"
-        : individualItn.itp === "pumpingStation2"
-        ? "007"
-        : individualItn.itp === "pumpingStation1"
-        ? "008"
-        : individualItn.itp === "sandFilter"
-        ? "010"
-        : individualItn.itp === "closingWall"
-        ? "011"
-        : "000",
-    DrawingNum:
-      individualItn.itp === "aerationTank"
-        ? "02-CI-DGA-00015"
-        : individualItn.itp === "PrimaryClarifierP7"
-        ? "01-CI-DGA-00001"
-        : individualItn.itp === "PrimaryClarifierP8"
-        ? "01-CI-DGA-00001"
-        : individualItn.itp === "PrimaryClarifierP9"
-        ? "01-CI-DGA-00001"
-        : individualItn.itp === "secondaryClarifierP24"
-        ? "02-CI-DGA-00001"
-        : individualItn.itp === "secondaryClarifierP25"
-        ? "02-CI-DGA-00001"
-        : individualItn.itp === "secondaryClarifierP32"
-        ? "02-CI-DGA-00001"
-        : individualItn.itp === "mainBuilding"
-        ? "00-CI-DRD-00001"
-        : individualItn.itp === "workShop"
-        ? "00-CI-DRD-00004"
-        : individualItn.itp === "chlorinationTank"
-        ? "03-CI-DGA-00005"
-        : individualItn.itp === "pumpingStation2"
-        ? "02-CI-DGA-00021"
-        : individualItn.itp === "pumpingStation1"
-        ? "02-CI-DGA-00023"
-        : individualItn.itp === "sandFilter"
-        ? "03-CI-DGA-00015"
-        : individualItn.itp === "closingWall"
-        ? "05-CI-DAL-00012"
-        : "000",
-  };
+const Checklist4 = ({ dateITN, ItpStuff }: any) => {
+  const { individualItn } = useAppSelector(itnData);
 
   return (
     <div className="checkCover" style={{ fontSize: 21 }}>
@@ -111,7 +49,7 @@ const Checklist4 = (dateItn: any) => {
         <p className="border4">
           Drawing / Specification no. : QW211101-{ItpStuff.DrawingNum}
         </p>
-        <p className="border4">Inspection Date : {dateItn.dateITN}</p>
+        <p className="border4">Inspection Date : {dateITN}</p>
       </div>
       <div className="space"></div>
       <div className="bigTable" style={{ height: 50 }}>

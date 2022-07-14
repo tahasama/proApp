@@ -1,11 +1,8 @@
 import { Button } from "@mui/material";
-import { useCallback, useEffect, useState } from "react";
-// import ModalM from "./modalM/modalM";
+import { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import {
-  concreteData,
-  deleteConcrete,
   getAllConcretes,
   updateWw,
 } from "../../../state/reducers/concreteSlice";
@@ -18,7 +15,6 @@ import "./log.css";
 import { Link } from "react-router-dom";
 import { deleteItn, getAllItns, itnData } from "../../../state";
 import ModalM from "./modalM/modalM";
-import { viVN } from "@mui/x-data-grid";
 import JSZip from "jszip";
 import {
   getDownloadURL,
@@ -36,9 +32,7 @@ const Log = () => {
   const dispatch = useAppDispatch();
 
   const { all, ww } = useAppSelector(itnData);
-  const { user, status, uid, newstatus, email } = useAppSelector(getAuthData);
-
-  const [num, setNum] = useState<any>();
+  const { status } = useAppSelector(getAuthData);
 
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   const gridStyle = useMemo(
@@ -88,13 +82,11 @@ const Log = () => {
     {
       field: "itp",
       headerName: "Location",
-      // filter: "agTextColumnFilter",
       filter: "agTextColumnFilter",
     },
     {
       field: "subLocation",
       headerName: "Sub-Location",
-      // filter: "agTextColumnFilter",
       minWidth: 50,
     },
     {
@@ -139,10 +131,6 @@ const Log = () => {
         ],
       },
     },
-    // {
-    //   field: "relatedItn",
-    //   headerName: "Related ITN",
-    // },
   ]);
   const defaultColDef = useMemo(() => {
     return {
@@ -153,11 +141,7 @@ const Log = () => {
       menuTabs: ["filterMenuTab"],
     };
   }, []);
-  const sideBar = useMemo(() => {
-    return {
-      toolPanels: ["filters"],
-    };
-  }, []);
+
   const gridRef = useRef<any>();
   const [filter, setFilter] = useState("");
   const [filter1, setFilter1] = useState("");
@@ -168,12 +152,6 @@ const Log = () => {
   useEffect(() => {
     getTotal();
   }, [filter, filter1, filter2, filter3, all]);
-  // console.log("jjjjjjjjjjj", filter, "ggggg", filter1, "tttttttt", filter2);
-
-  // useEffect(() => {
-  //   const vv: number = ww.length;
-  //   // setRowsNumber(vv);
-  // }, [ww]);
 
   const handleFilterChange = () => {
     gridRef.current.api.getFilterModel().routine
@@ -387,7 +365,6 @@ const Log = () => {
         const ccc: any = xxx.folder(`${loca}`);
         const proms1 = routines
           .map(async (rot: any) => {
-            const jszip = new JSZip();
             const storage = getStorage();
             const folder = await listAll(ref(storage, `/itn/${loca}/${rot}`));
             const promises = folder.items
@@ -406,7 +383,6 @@ const Log = () => {
               .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
 
             await promises;
-            const blob = await ccc.generateAsync({ type: "blob" });
           })
           .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
         await proms1;
@@ -417,7 +393,6 @@ const Log = () => {
     FileSaver.saveAs(blob, `QC.zip`);
   };
   //============================================================
-  console.log("status is:", status);
 
   return (
     <div className="log">
@@ -459,7 +434,6 @@ const Log = () => {
                   animateRows={true}
                   ref={gridRef}
                   enableCellTextSelection={true}
-                  // onFilterChanged={handleFilterChange}
                   onSelectionChanged={(v: any) =>
                     setSelected(v.api.getSelectedRows()[0]._id)
                   }

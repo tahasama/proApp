@@ -6,43 +6,23 @@ import {
   getUser,
   loginUser,
   updateError,
-  updateStatus,
 } from "../../state/reducers/authSlice";
-import NavBar from "../Navbar/navbar";
 import "./login.css";
-import { auth, provider } from "../../firebase";
-import firebase, { storage } from "../../firebase";
-import JSZip from "jszip";
-import * as FileSaver from "file-saver";
+import { provider } from "../../firebase";
+
 import { useState } from "react";
-import {
-  getDownloadURL,
-  getMetadata,
-  getStorage,
-  listAll,
-  ref,
-} from "firebase/storage";
-import folder from "material-ui/svg-icons/file/folder";
+
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
-import Stack from "@mui/material/Stack";
-import { signOut } from "firebase/auth";
-import FullPlan from "../fullPlan/fullPlan";
 
 const Login = () => {
-  const [promises, setpromises] = useState<any>();
   const emailRef = useRef<any>(null);
   const passwordRef = useRef<any>(null);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { err } = useAppSelector(getAuthData);
   const [alerto, setAlerto] = useState(true);
-  const firstRenderRef = useRef(false);
-  const { user, status, uid, newstatus, email } = useAppSelector(getAuthData);
-  console.log("statussss in login page", status);
-  console.log("NEWstatussss in login page", newstatus);
-  console.log("UID in login page", uid);
-  console.log("EMAIL in login page", email);
+  const { status, uid } = useAppSelector(getAuthData);
 
   useEffect(() => {
     dispatch(getUser(uid));
@@ -77,17 +57,12 @@ const Login = () => {
       );
     } catch (err) {
       dispatch(updateError("failed to login, please try again"));
-      // dispatch(updateStatus("unauthorized"));
       navigate("/fullPlan");
     }
   };
 
   const LoginGoogle = (e: any) => {
     dispatch(loginUser({ email: "", password: "", provider: provider }));
-
-    // setTimeout(() => {
-    //   dispatch(updateStatus("unauthorized"));
-    // }, 5000);
   };
 
   useEffect(() => {
@@ -96,22 +71,8 @@ const Login = () => {
       : navigate("/");
   }, [status]);
 
-  // useEffect(() => {
-  //   if (firstRenderRef.current === false) {
-  //     (status === "unauthorized" || newstatus === "unauthorized") &&
-  //       setTimeout(() => {
-  //         signOut(auth);
-  //       }, 5000);
-  //     return () => {
-  //       firstRenderRef.current = true;
-  //     };
-  //   }
-  // }, [status, newstatus, auth]);
-
   useEffect(() => {
     setTimeout(() => {
-      // After 3 seconds set the show value to false
-      // setAlerto(false);
       status !== "authorized" && status !== undefined && setAlerto(false);
     }, 7000);
     return setAlerto(true);
@@ -133,16 +94,12 @@ const Login = () => {
 
   return (
     <div>
-      {/* {!user ||
-      (user && status === "unauthorized") ||
-      newstatus === "unauthorized" ? ( */}
       {alerto &&
         status !== "authorized" &&
         status !== undefined &&
         status !== "manager" &&
         authorization}
       <div className="">
-        {/* <NavBar /> */}
         <h1 style={{ marginTop: 20, fontFamily: "initial", letterSpacing: 3 }}>
           WasteWater Treatment Plant Project Of SAFI
         </h1>
@@ -229,9 +186,6 @@ const Login = () => {
           {err && <p className="errorMessageLogin">{err.message}</p>}
         </div>
       </div>
-      {/* ) : (
-        <FullPlan />
-      )} */}
     </div>
   );
 };

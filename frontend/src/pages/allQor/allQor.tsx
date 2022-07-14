@@ -1,5 +1,4 @@
 import { AgGridReact } from "ag-grid-react";
-// import { CircularProgress } from "material-ui";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
@@ -49,15 +48,6 @@ const AllQor = () => {
     {
       field: "description",
       headerName: "description",
-      // cellRenderer: (params: any) => {
-      //   return (
-      //     params.value !== undefined && (
-      //       <Link style={{ color: "blue" }} to={""}>
-      //         XXX
-      //       </Link>
-      //     )
-      //   );
-      // },
     },
 
     {
@@ -96,7 +86,6 @@ const AllQor = () => {
       filter: "agMultiColumnFilter",
       filterParams: {
         filter: "agMultiColumnFilter",
-        // suppressAndOrCondition: true,
       },
     },
     {
@@ -141,7 +130,6 @@ const AllQor = () => {
 
   const [filter, setFilter] = useState("");
   const [filter1, setFilter1] = useState("");
-  // const [nn, setnn] = useState<any[]>();
   useEffect(() => {
     getTotal();
   }, [filter, filter1, all]);
@@ -239,8 +227,6 @@ const AllQor = () => {
                             UpdateSelectedBox(v.api.getSelectedRows()[0]._id)
                           )
                     }
-                    // rowStyle={{ background: "black" }}
-
                     getRowStyle={(params) => {
                       if (params.data?.status === "Closed") {
                         return { background: "rgb(0,255,0,0.15)" };

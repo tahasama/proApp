@@ -12,7 +12,6 @@ import SelectStuff from "./select/SelectStuff";
 import SendIcon from "@mui/icons-material/Send";
 import "./modalP.css";
 import { Input } from "@mui/material";
-import DeleteOutlineTwoToneIcon from "@mui/icons-material/DeleteOutlineTwoTone";
 
 const style = {
   position: "absolute" as "absolute",
@@ -50,7 +49,6 @@ export default function ModalP() {
         className="pos"
         variant="contained"
         color="success"
-        // className="update"
         startIcon={<BorderColorTwoToneIcon />}
       >
         <i>Update Itn</i>

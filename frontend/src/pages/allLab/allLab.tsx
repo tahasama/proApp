@@ -20,14 +20,6 @@ import {
 import * as FileSaver from "file-saver";
 import { locations, workbooks } from "../../constants/constant";
 
-// const Item = styled(Paper)(({ theme }) => ({
-//   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-//   ...theme.typography.body2,
-//   padding: theme.spacing(1),
-//   textAlign: "center",
-//   color: theme.palette.text.secondary,
-// }));
-
 const AllLab = () => {
   const navigate = useNavigate();
   useEffect(() => {
@@ -42,7 +34,6 @@ const AllLab = () => {
         const ccc: any = xxx.folder(`${wor}`);
         const proms1 = locations
           .map(async (loca: any) => {
-            const jszip = new JSZip();
             const storage = getStorage();
             const folder = await listAll(
               ref(storage, `/Workbooks/${wor}/${loca}`)
@@ -63,7 +54,6 @@ const AllLab = () => {
               .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
 
             await promises;
-            const blob = await ccc.generateAsync({ type: "blob" });
           })
           .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
         await proms1;

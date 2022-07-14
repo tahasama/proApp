@@ -48,7 +48,7 @@ function a11yProps(index: number) {
 }
 
 const LocationDetails = () => {
-  const { user, status, uid, newstatus, email } = useAppSelector(getAuthData);
+  const { status } = useAppSelector(getAuthData);
 
   const [value, setValue] = React.useState(0);
   const { itp } = useParams();

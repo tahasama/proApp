@@ -1,12 +1,5 @@
-import React, { useEffect } from "react";
-import { stringify } from "@firebase/util";
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-  BarElement,
-} from "chart.js";
+import { useEffect } from "react";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import {
   CategoryScale,
   LinearScale,
@@ -28,7 +21,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { AnyArray } from "immer/dist/internal";
 import { labelsName } from "../../../constants/constant";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -117,14 +109,6 @@ const ConcreteOfLocation = () => {
   lm("B25");
   lm("B20");
   lm("B15");
-  // labels.map((i: any) => {
-  //   dict[i] !== undefined ? uu.push(dict[i]) : uu.push(0);
-  // });
-  console.log("99999999999", uu.flat());
-
-  // console.log("MOOOOOOOOOOO", uu);
-  // console.log("MOOOOOOOOOOO111", uu1);
-  // console.log("MOOOOOOOOOOO222", uu2);
 
   const data: any = {
     labels: labelsName,
@@ -190,14 +174,7 @@ const ConcreteOfLocation = () => {
       .filter((l: any) => l.itp === itp)
       .map((q: any) => q.quantity)
       .reduce((a: any, b: any) => a + b, 0);
-  console.log(
-    "QQQQQQQQQQ",
-    all
-      .flat()
-      .filter((l: any) => l.itp === itp)
-      .map((q: any) => q.quantity)
-      .reduce((a: any, b: any) => a + b, 0)
-  );
+
   const rows = [
     createData(
       "Total",

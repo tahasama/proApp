@@ -281,7 +281,6 @@ const Stats = () => {
           options={optionsLine}
           data={data1}
           style={{
-            // width: "100%",
             marginTop: -22,
             backgroundColor: "rgb(210,215,230,0.8)",
           }}

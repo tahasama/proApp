@@ -10,7 +10,7 @@ import { getAllItns, itnData, UpdateValuesOfSelect } from "../../../../state";
 import { useAppSelector } from "../../../../state/hooks";
 import { handleNumber, locations } from "../../../../constants/constant";
 
-export default function SelectStuff(table: any) {
+export default function SelectStuff() {
   const dispatch = useDispatch();
   const { all } = useAppSelector(itnData);
   const [location, setLocation] = useState<any>();
@@ -42,10 +42,7 @@ export default function SelectStuff(table: any) {
       })
     );
   }, [location, type, related]);
-  console.log(
-    "itnsssssss",
-    all.flat().map((k: any) => k.num)
-  );
+
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>

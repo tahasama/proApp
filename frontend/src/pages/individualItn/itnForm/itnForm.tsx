@@ -5,13 +5,11 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getItn, itnData } from "../../../state";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
-import Checklist from "./checklist6";
 import Checklist6 from "./checklist6";
 import Checklist2 from "./checklist2";
 import Checklist3 from "./checklist3";
 import Checklist5 from "./checklist5";
 import Checklist4 from "./checklist4";
-import Button from "@mui/material/Button";
 import { handleNumber } from "../../../constants/constant";
 
 const ItnForm = () => {
@@ -29,7 +27,6 @@ const ItnForm = () => {
 
   var previousDate = new Date(individualItn.dateOfInspection);
   previousDate.setDate(previousDate.getDate() - 1);
-  // const previousDateString: any = previousDate.toDateString();
 
   const fff = new Date(previousDate).toLocaleDateString(navigator.language, {
     year: "numeric",
@@ -42,7 +39,69 @@ const ItnForm = () => {
       dispatch(getItn(params));
     }
   }, []);
-  console.log("GGGGGG", individualItn.routine);
+
+  const ItpStuff = {
+    ItpNum:
+      individualItn.itp === "aerationTank"
+        ? "003"
+        : individualItn.itp === "PrimaryClarifierP7"
+        ? "001"
+        : individualItn.itp === "PrimaryClarifierP8"
+        ? "001"
+        : individualItn.itp === "PrimaryClarifierP9"
+        ? "001"
+        : individualItn.itp === "secondaryClarifierP24"
+        ? "002"
+        : individualItn.itp === "secondaryClarifierP25"
+        ? "002"
+        : individualItn.itp === "secondaryClarifierP32"
+        ? "002"
+        : individualItn.itp === "mainBuilding"
+        ? "004"
+        : individualItn.itp === "workShop"
+        ? "005"
+        : individualItn.itp === "chlorinationTank"
+        ? "006"
+        : individualItn.itp === "pumpingStation2"
+        ? "007"
+        : individualItn.itp === "pumpingStation1"
+        ? "008"
+        : individualItn.itp === "sandFilter"
+        ? "010"
+        : individualItn.itp === "closingWall"
+        ? "011"
+        : "000",
+    DrawingNum:
+      individualItn.itp === "aerationTank"
+        ? "02-CI-DGA-00015"
+        : individualItn.itp === "PrimaryClarifierP7"
+        ? "01-CI-DGA-00001"
+        : individualItn.itp === "PrimaryClarifierP8"
+        ? "01-CI-DGA-00001"
+        : individualItn.itp === "PrimaryClarifierP9"
+        ? "01-CI-DGA-00001"
+        : individualItn.itp === "secondaryClarifierP24"
+        ? "02-CI-DGA-00001"
+        : individualItn.itp === "secondaryClarifierP25"
+        ? "02-CI-DGA-00001"
+        : individualItn.itp === "secondaryClarifierP32"
+        ? "02-CI-DGA-00001"
+        : individualItn.itp === "mainBuilding"
+        ? "00-CI-DRD-00001"
+        : individualItn.itp === "workShop"
+        ? "00-CI-DRD-00004"
+        : individualItn.itp === "chlorinationTank"
+        ? "03-CI-DGA-00005"
+        : individualItn.itp === "pumpingStation2"
+        ? "02-CI-DGA-00021"
+        : individualItn.itp === "pumpingStation1"
+        ? "02-CI-DGA-00023"
+        : individualItn.itp === "sandFilter"
+        ? "03-CI-DGA-00015"
+        : individualItn.itp === "closingWall"
+        ? "05-CI-DAL-00012"
+        : "000",
+  };
   return (
     <div className="carcass">
       <Link
@@ -329,22 +388,44 @@ const ItnForm = () => {
         </p>
       </div>
       {individualItn.routine === "Backfilling" && (
-        <Checklist6 dateITN={dateITN} individualItnValue={individualItn} />
+        <Checklist6
+          dateITN={dateITN}
+          individualItnValue={individualItn}
+          ItpStuff={ItpStuff}
+        />
       )}
       {(individualItn.routine === "Concrete Tests" ||
-        individualItn.routine === "Curing") && <Checklist5 dateITN={dateITN} />}
+        individualItn.routine === "Curing") && (
+        <Checklist5 dateITN={dateITN} ItpStuff={ItpStuff} />
+      )}
       {individualItn.routine === "Concrete placing and finishing" && (
-        <Checklist4 dateITN={dateITN} individualItnValue={individualItn} />
+        <Checklist4
+          dateITN={dateITN}
+          individualItnValue={individualItn}
+          ItpStuff={ItpStuff}
+        />
       )}
       {(individualItn.routine === "Lean Concrete" ||
         individualItn.routine === "Mass Concrete") && (
-        <Checklist2 dateITN={dateITN} individualItnValue={individualItn} />
+        <Checklist2
+          dateITN={dateITN}
+          individualItnValue={individualItn}
+          ItpStuff={ItpStuff}
+        />
       )}
       {individualItn.routine === "Reinforcement & Formwork" && (
-        <Checklist3 dateITN={dateITN} individualItnValue={individualItn} />
+        <Checklist3
+          dateITN={dateITN}
+          individualItnValue={individualItn}
+          ItpStuff={ItpStuff}
+        />
       )}
       {individualItn.routine === "Excavation until foundation Bottom" && (
-        <Checklist5 dateITN={dateITN} individualItnValue={individualItn} />
+        <Checklist5
+          dateITN={dateITN}
+          individualItnValue={individualItn}
+          ItpStuff={ItpStuff}
+        />
       )}
     </div>
   );

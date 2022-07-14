@@ -2,12 +2,8 @@ import { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 
-// import "./locationsItn.css";
-
 import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import {
@@ -38,21 +34,10 @@ ChartJS.register(
   Legend
 );
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
-
 const ReinforcementOfLocation = () => {
   const dispatch = useAppDispatch();
   const { allitp, all } = useAppSelector(ReinforcementData);
   const { itp } = useParams();
-  //   console.log("ffffffff", all);
-
-  const [filterBy, setFilterBy] = useState("All");
 
   useEffect(() => {
     dispatch(getReinforcementsByItp(itp));
@@ -84,12 +69,7 @@ const ReinforcementOfLocation = () => {
     })
     .map((xxv: any) => xxv.quantity)
     .reduce((nn: any, mm: any) => nn + mm, 0);
-  // console.log(
-  //   all
-  //     .flat()
-  //     .map((xxv: any) => xxv.quantity)
-  //     .reduce((nn: any, mm: any) => nn + mm, 0)
-  // );
+
   const data = {
     labels: [itpName + "(%)", "Other Locations (%)"],
     datasets: [
@@ -121,7 +101,6 @@ const ReinforcementOfLocation = () => {
 
   const optionsPie = {
     responsive: true,
-    // maintainAspectRatio: true,
     plugins: {
       legend: {
         position: "top" as const,
@@ -153,7 +132,7 @@ const ReinforcementOfLocation = () => {
   let k1: any[] = [];
   let l1: any[] = [];
   let dict1: any = {};
-  // const dew1 = (value: any) => all;
+
   const dew1 = (value: any) =>
     all
       .flat()

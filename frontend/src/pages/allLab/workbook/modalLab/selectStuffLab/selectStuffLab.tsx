@@ -16,7 +16,6 @@ import { locations, workbooks } from "../../../../../constants/constant";
 
 export default function SelectStuffLab(individualLab: any) {
   const dispatch = useDispatch();
-  const { all } = useAppSelector(LabData);
   const [type, setType] = useState<any>();
   const [location, setLocation] = useState<any>();
 
@@ -44,7 +43,6 @@ export default function SelectStuffLab(individualLab: any) {
     "Stock",
   ];
 
-  console.log("hhhhhhhhzzzzz", locations);
   useEffect(() => {
     dispatch(
       UpdateValuesOfSelect({

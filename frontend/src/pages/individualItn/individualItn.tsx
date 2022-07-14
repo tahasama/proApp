@@ -28,7 +28,6 @@ const IndividualItn = () => {
       dispatch(getItn(params));
     }
   }, [individualItn]);
-  // console.log("some stuff", individualItn);
 
   const handleDeleteItn = async () => {
     const result = window.confirm(
@@ -44,10 +43,7 @@ const IndividualItn = () => {
   };
 
   return (
-    <div
-      className="itnCover"
-      // style={{ backgroundImage: "url(" + background + ")" }}
-    >
+    <div className="itnCover">
       <div className="navbar">
         <NavBar />
       </div>
@@ -82,7 +78,7 @@ const IndividualItn = () => {
           className="print"
           startIcon={<LocalPrintshopRoundedIcon />}
         >
-          <i>Print Initial Itn </i>
+          <i onClick={() => navigate("./itnForm")}>Print Initial Itn </i>
         </Button>
         <Button
           variant="contained"

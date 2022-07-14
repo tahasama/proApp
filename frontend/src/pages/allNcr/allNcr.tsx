@@ -1,8 +1,7 @@
 import { AgGridReact } from "ag-grid-react";
-// import { CircularProgress } from "material-ui";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import {
   deleteQorNcr,
@@ -16,14 +15,13 @@ import NavBar from "../Navbar/navbar";
 import ModalNCR from "./modal/modalNCR";
 import Button from "@mui/material/Button";
 import { getAuthData } from "../../state/reducers/authSlice";
-import Navbar from "../Navbar/navbar";
 import { handleNumber } from "../../constants/constant";
 
 const AllNcr = () => {
   const dispatch = useAppDispatch();
 
-  const { all, ww, individualQorNcr, selectedBox } = useAppSelector(QorNcrData);
-  const { user, status, uid, newstatus, email } = useAppSelector(getAuthData);
+  const { all, ww, selectedBox } = useAppSelector(QorNcrData);
+  const { status } = useAppSelector(getAuthData);
 
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
@@ -51,15 +49,6 @@ const AllNcr = () => {
     {
       field: "description",
       headerName: "description",
-      // cellRenderer: (params: any) => {
-      //   return (
-      //     params.value !== undefined && (
-      //       <Link style={{ color: "blue" }} to={""}>
-      //         XXX
-      //       </Link>
-      //     )
-      //   );
-      // },
     },
 
     {
@@ -98,7 +87,6 @@ const AllNcr = () => {
       filter: "agMultiColumnFilter",
       filterParams: {
         filter: "agMultiColumnFilter",
-        // suppressAndOrCondition: true,
       },
     },
     {
@@ -143,7 +131,7 @@ const AllNcr = () => {
   }, [selectedBox]);
   const [filter, setFilter] = useState("");
   const [filter1, setFilter1] = useState("");
-  // const [nn, setnn] = useState<any[]>();
+
   useEffect(() => {
     getTotal();
   }, [filter, filter1, all]);

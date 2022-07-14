@@ -6,11 +6,6 @@ import Box from "@mui/material/Box";
 import NavBar from "../Navbar/navbar";
 import Log from "./log/log";
 import Stats from "./stats/stats";
-// import Log from "./log/log";
-// import Stats from "./stats/stats";
-// import Log from "./log/log";
-// import Stats from "./stats/stats";
-// import StatsPerMonth from "./stats/statsPerMonth/statsPerMonth";
 
 interface TabPanelProps {
   children?: React.ReactNode;

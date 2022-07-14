@@ -20,8 +20,8 @@ const Workbook = () => {
   const { book } = useParams();
   const dispatch = useAppDispatch();
   const gridRef = useRef<any>();
-  const { all, ww, individualLab, selectedBox } = useAppSelector(LabData);
-  const { user, status, uid, newstatus, email } = useAppSelector(getAuthData);
+  const { all, selectedBox } = useAppSelector(LabData);
+  const { status } = useAppSelector(getAuthData);
 
   useEffect(() => {
     dispatch(getAllLab());
@@ -52,7 +52,6 @@ const Workbook = () => {
       filter: "agMultiColumnFilter",
       filterParams: {
         filter: "agMultiColumnFilter",
-        // suppressAndOrCondition: true,
       },
     },
     {
@@ -62,7 +61,6 @@ const Workbook = () => {
       filter: "agMultiColumnFilter",
       filterParams: {
         filter: "agMultiColumnFilter",
-        // suppressAndOrCondition: true,
       },
     },
     {
@@ -71,7 +69,6 @@ const Workbook = () => {
       filter: "agMultiColumnFilter",
       filterParams: {
         filter: "agMultiColumnFilter",
-        // suppressAndOrCondition: true,
       },
       cellRenderer: (params: any) => {
         return (
@@ -86,11 +83,9 @@ const Workbook = () => {
       filter: "agMultiColumnFilter",
       filterParams: {
         filter: "agMultiColumnFilter",
-        // suppressAndOrCondition: true,
       },
       cellRenderer: (params: any) => {
         const link4 = params.value;
-        console.log("00000000000000", params.value);
         return link4 && <a href={link4}>See PV</a>;
       },
     },
@@ -100,7 +95,6 @@ const Workbook = () => {
       filter: "agMultiColumnFilter",
       filterParams: {
         filter: "agMultiColumnFilter",
-        // suppressAndOrCondition: true,
       },
       cellRenderer: (params: any) => {
         const link5 = params.value;
@@ -108,13 +102,14 @@ const Workbook = () => {
       },
     },
   ]);
+
   const handleDelete = () => {
     dispatch(deleteLab(selectedBox));
     setTimeout(() => {
       dispatch(getAllLab());
     }, 250);
   };
-  console.log("werwerwer", book);
+
   return (
     <div>
       <div className="navbar">

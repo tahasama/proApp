@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch } from "../../state/hooks";
 import { updateUserStatus } from "../../state/reducers/authSlice";
@@ -6,7 +6,6 @@ import { updateUserStatus } from "../../state/reducers/authSlice";
 const Authorize = () => {
   const dispatch = useAppDispatch();
   const { id, email } = useParams();
-  console.log("update user id params", id, email);
   const [sendOne, setSendOne] = useState(false);
 
   useEffect(() => {

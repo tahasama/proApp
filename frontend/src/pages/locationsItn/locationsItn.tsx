@@ -29,6 +29,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { handleNumber, labelsName, routines } from "../../constants/constant";
+import { NoBackpackSharp } from "@mui/icons-material";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -71,10 +72,14 @@ const LocationsItn = (itp: any) => {
 
   let itpName = itp.itp;
   const data = {
-    labels: [itpName, "Other ITN"],
+    labels: [`${itpName} (%)`, "Other ITN (%)"],
     datasets: [
       {
-        data: [allitp.flat().length, all.flat().length - allitp.flat().length],
+        data: [
+          (allitp.flat().length * 100) / all.flat().length,
+          ((all.flat().length - allitp.flat().length) * 100) /
+            all.flat().length,
+        ],
         backgroundColor: ["rgba(54, 162, 235, 0.3)", "rgba(255, 99, 132, 0.3)"],
         borderColor: ["rgba(54, 162, 235, 1)", "rgba(255, 99, 132, 1)"],
         borderWidth: 1,

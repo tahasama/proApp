@@ -9,7 +9,6 @@ import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import SendIcon from "@mui/icons-material/Send";
-// import "./modalNCR.css";
 import { Input } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../../state/hooks";
 import {
@@ -45,9 +44,7 @@ export default function ModalLab() {
 
   const { newType, newLocation, individualLab, all, ww, selectedBox } =
     useAppSelector(LabData);
-  console.log("zzzzzzzz", individualLab);
   const [value, setValue] = React.useState<Date | null>(new Date());
-  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const inputRefNum = React.useRef<any>(null);
@@ -56,9 +53,6 @@ export default function ModalLab() {
     setValue(newValue);
   };
 
-  // const handleUpload = () => {
-  //   dispatch(deleteQorNcr(selected));
-  // };
   const upload = (e: any) => {
     e.preventDefault();
 
@@ -85,8 +79,6 @@ export default function ModalLab() {
     dispatch(uploadImages2(value2));
 
     setTimeout(() => {
-      // handleClose();
-      // dispatch(UpdateSelectedBox(""));
       setLoading(false);
     }, 2000);
   };

@@ -23,32 +23,11 @@ const UploadImages = ({ handleClose }: any) => {
       image2: imageRef2.current.files[0],
     };
     dispatch(uploadImages(value));
-    // dispatch(
-    //   updateItn({
 
-    //   })
-    // ),
-    // dispatch(
-    //   newUserImage({
-    //     userimage: imgUrl,
-    //   })
-    // );
-    //   dispatch(
-    //     newImage({
-    //       image: imgUrl,
-    //     })
-    //   );
-
-    //   dispatch(cancelState({ cancelImage: false }));
     setTimeout(() => {
       handleClose();
       setLoading(false);
     }, 2000);
-
-    //     } else {
-    //       setError(true);
-    //       //   dispatch(cancelState({ cancelImage: true }));
-    //     }
   };
   return (
     <div>
@@ -62,10 +41,7 @@ const UploadImages = ({ handleClose }: any) => {
         {loading && <CircularProgress color="secondary" />}
         <span className="uploadText">Upload</span>
       </button>
-      <button
-        className="imageUpload upload xy"
-        // onClick={() => dispatch(cancelState({ cancelImage: false }))}
-      >
+      <button className="imageUpload upload xy">
         <span className="uploadText"> Cancel</span>
       </button>
       {error && (

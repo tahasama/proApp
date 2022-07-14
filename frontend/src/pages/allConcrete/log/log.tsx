@@ -1,6 +1,5 @@
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
-// import ModalM from "./modalM/modalM";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import {
@@ -44,7 +43,6 @@ const Log = () => {
       field: "type",
       checkboxSelection: true,
       headerName: "Type",
-      // headerClass: "ag-header-cell-center-text",
 
       filter: "agColumnFilter",
       filterParams: {
@@ -144,12 +142,6 @@ const Log = () => {
       : setFilter2("");
   };
   const [totalconcrete, setTotalconcrete] = useState();
-
-  const initialTotal = all
-    .flat()
-    .map((ds: any) => ds.quantity)
-    .map((v) => (v === undefined ? 0 : v))
-    .reduce((a, b) => a + b, 0);
 
   const getTotal = () => {
     const rr = all.flat();

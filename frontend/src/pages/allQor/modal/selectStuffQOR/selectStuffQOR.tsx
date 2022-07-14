@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../../../state/hooks";
 
-import { getAllItns, itnData } from "../../../../state";
 import {
   getAllQorNcrs,
   QorNcrData,
@@ -17,10 +16,7 @@ import {
 
 export default function SelectStuff(individualQorNcr: any) {
   const dispatch = useDispatch();
-  const { all } = useAppSelector(QorNcrData);
   const [status, setStatus] = useState<any>();
-  const [type, setType] = useState<any>();
-  const [related, setRelated] = useState<any>();
 
   const statusArray = ["Open", "Closed", "Pending"];
 

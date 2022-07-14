@@ -1,11 +1,4 @@
-import { stringify } from "@firebase/util";
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-  BarElement,
-} from "chart.js";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import {
   CategoryScale,
   LinearScale,
@@ -44,11 +37,7 @@ const StatsPerReview = (all: any) => {
   };
 
   const labels: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  const types: any = ["B15", "B20", , "B25", "B35", "B40"];
 
-  let dict: any = {};
-  let dict1: any = {};
-  let dict2: any = {};
   let uu: any = [];
   let uu1: any = [];
   let uu2: any = [];
@@ -95,14 +84,6 @@ const StatsPerReview = (all: any) => {
   lm("B25");
 
   lm("B15");
-  // labels.map((i: any) => {
-  //   dict[i] !== undefined ? uu.push(dict[i]) : uu.push(0);
-  // });
-  console.log("99999999999", uu.flat());
-
-  // console.log("MOOOOOOOOOOO", uu);
-  // console.log("MOOOOOOOOOOO111", uu1);
-  // console.log("MOOOOOOOOOOO222", uu2);
 
   const data: any = {
     labels: labelsName,
