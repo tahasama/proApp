@@ -159,7 +159,7 @@ const Workbook = () => {
     dispatch(deleteLab(selectedBox));
     setTimeout(() => {
       dispatch(getAllLab());
-    }, 250);
+    }, 1000);
   };
 
   return (

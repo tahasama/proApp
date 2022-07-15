@@ -22,7 +22,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { err } = useAppSelector(getAuthData);
   const [alerto, setAlerto] = useState(true);
-  const { status, uid } = useAppSelector(getAuthData);
+  const { status, uid, user } = useAppSelector(getAuthData);
 
   useEffect(() => {
     dispatch(getUser(uid));
@@ -69,7 +69,7 @@ const Login = () => {
     status === "authorized" || status === "manager"
       ? navigate("/fullPlan")
       : navigate("/");
-  }, [status]);
+  }, [status, user]);
 
   useEffect(() => {
     setTimeout(() => {

@@ -29,7 +29,7 @@ const Log = () => {
   const dispatch = useAppDispatch();
 
   const { all, ww } = useAppSelector(itnData);
-  const { status } = useAppSelector(getAuthData);
+  const { status, user } = useAppSelector(getAuthData);
 
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   const gridStyle = useMemo(
