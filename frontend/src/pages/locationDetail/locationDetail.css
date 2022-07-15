@@ -9,7 +9,8 @@
 }
 
 .restOfPage {
-  margin-top: 100px;
+  position: absolute;
+  top: 190px;
 }
 
 .navbar {
@@ -38,12 +39,11 @@
   transform: translate(1px, 1px);
 }
 
-.getItp {
-  position: absolute;
-  top: 300px;
+.getItp1 {
+  position: fixed;
   /* left: -500px; */
   float: left;
-  padding: 10px 47px !important;
+  padding: 10px 63px !important;
   border-radius: 0 !important;
   box-shadow: 10px 5px 5px rgb(160, 153, 153) !important;
 }

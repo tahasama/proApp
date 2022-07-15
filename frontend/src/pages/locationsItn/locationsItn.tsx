@@ -49,27 +49,26 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const LocationsItn = (itp: any) => {
+const LocationsItn = () => {
   const dispatch = useAppDispatch();
   const { allitp, all } = useAppSelector(itnData);
-  const params = useParams();
+  const { itp } = useParams();
 
   const [filterBy, setFilterBy] = useState("All");
+
   useEffect(() => {
     !routines.includes("All") && routines.unshift("All");
   }, []);
 
   useEffect(() => {
     dispatch(getItnsByItp(itp));
-  }, [itp, dispatch]);
-
+  }, []);
   const filterByRoutine = allitp.flat().filter((itn: any) => {
     return itn.routine === filterBy;
   });
-
   const arr = (filterBy !== "All" ? filterByRoutine : allitp).reverse();
 
-  let itpName = itp.itp;
+  let itpName = itp;
   const data = {
     labels: [`${itpName} (%)`, "Other ITN (%)"],
     datasets: [
@@ -261,7 +260,7 @@ const LocationsItn = (itp: any) => {
                       </TimelineSeparator>
                       <TimelineContent>
                         <a
-                          href={"/" + params.itp + "/" + itn._id}
+                          href={"/" + itp + "/" + itn._id}
                           className="tulipeDimensions"
                           style={{
                             cursor: "pointer",

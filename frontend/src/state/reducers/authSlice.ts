@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../firebase";
 
-const USER_URL: any = process.env.REACT_APP_PROJECT_URL_USER;
+const USER_URL: any = process.env.REACT_APP_HEROKU_URL + "user/";
 
 interface valueProps {
   email: string;

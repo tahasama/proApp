@@ -7,12 +7,13 @@ import { useEffect } from "react";
 import { LocalizationProvider, MobileDatePicker } from "@mui/lab";
 import { Stack, TextField } from "@mui/material";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
-import { createItn, getAllItns, itnData } from "../../../state";
+import { createItn, getAllItns, getItnsByItp, itnData } from "../../../state";
 
 import SendIcon from "@mui/icons-material/Send";
 import "./modalC.css";
 import { Input } from "@mui/material";
 import SelectStuff from "../../individualItn/modal/select/SelectStuff";
+import { useParams } from "react-router-dom";
 
 const style = {
   position: "absolute" as "absolute",
@@ -27,6 +28,8 @@ const style = {
 };
 
 export default function ModalC() {
+  const { itp } = useParams();
+  console.log("eeeeeeee33", itp);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -111,7 +114,9 @@ export default function ModalC() {
                     review: newReview,
                   })
                 ),
-                dispatch(getAllItns()),
+                setTimeout(() => {
+                  dispatch(getItnsByItp(itp));
+                }, 1000),
                 handleClose()
               )}
             >

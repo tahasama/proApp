@@ -3,11 +3,11 @@ import axios from "axios";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../firebase";
 
-const POJECT_URL: any = process.env.REACT_APP_PROJECT_URL_ITN;
+const PROJECT_URL: any = process.env.REACT_APP_HEROKU_URL + "itn/";
 
 export const getAllItns: any = createAsyncThunk("getAllItns", async () => {
   try {
-    const res = await axios.get(POJECT_URL + "all/");
+    const res = await axios.get(PROJECT_URL + "all/");
     return res.data;
   } catch (error) {
     return error;
@@ -18,7 +18,7 @@ export const getItnsByItp: any = createAsyncThunk(
   "getItnsByItp",
   async (value: any) => {
     try {
-      const res = await axios.get(POJECT_URL + "all/" + value.itp);
+      const res = await axios.get(PROJECT_URL + "all/" + value);
       return res.data;
     } catch (error) {
       return error;
@@ -28,7 +28,7 @@ export const getItnsByItp: any = createAsyncThunk(
 
 export const createItn = createAsyncThunk("createItn", async (value: any) => {
   try {
-    const res = await axios.post(POJECT_URL + "create/", value);
+    const res = await axios.post(PROJECT_URL + "create/", value);
     return res.data;
   } catch (error) {
     return error;
@@ -37,7 +37,7 @@ export const createItn = createAsyncThunk("createItn", async (value: any) => {
 
 export const updateItn = createAsyncThunk("updateItn", async (value: any) => {
   try {
-    const res = await axios.put(POJECT_URL + value._id, value);
+    const res = await axios.put(PROJECT_URL + value._id, value);
     return res.data;
   } catch (error) {
     return error;
@@ -46,7 +46,7 @@ export const updateItn = createAsyncThunk("updateItn", async (value: any) => {
 
 export const deleteItn = createAsyncThunk("deleteItn", async (value: any) => {
   try {
-    const res = await axios.delete(POJECT_URL + value);
+    const res = await axios.delete(PROJECT_URL + value);
     return res.data;
   } catch (error) {
     return error;
@@ -55,7 +55,7 @@ export const deleteItn = createAsyncThunk("deleteItn", async (value: any) => {
 
 export const getItn = createAsyncThunk("getItn", async (value: any) => {
   try {
-    const res = await axios.get(POJECT_URL + value.itp + "/" + value.itnId);
+    const res = await axios.get(PROJECT_URL + value.itp + "/" + value.itnId);
     return res.data;
   } catch (error) {
     return error;
@@ -77,7 +77,7 @@ export const uploadPdfFile = createAsyncThunk(
       await uploadBytesResumable(storageRef, value.pdf);
       try {
         const res = await getDownloadURL(storageRef);
-        await axios.put(POJECT_URL + value.itnId, {
+        await axios.put(PROJECT_URL + value.itnId, {
           pdfUrl: res,
         });
       } catch (error) {
@@ -102,7 +102,7 @@ export const uploadImage1 = createAsyncThunk(
           const res = await getDownloadURL(storageRef);
           console.log("zzzab res", res);
 
-          await axios.put(POJECT_URL + value1.itnId, {
+          await axios.put(PROJECT_URL + value1.itnId, {
             image1Url: res,
           });
 
@@ -128,7 +128,7 @@ export const uploadImage2 = createAsyncThunk(
           const res = await getDownloadURL(storageRef);
           console.log("zzzab res2", res);
 
-          await axios.put(POJECT_URL + value2.itnId, {
+          await axios.put(PROJECT_URL + value2.itnId, {
             image2Url: res,
           });
 

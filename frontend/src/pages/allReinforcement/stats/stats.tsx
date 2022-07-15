@@ -81,6 +81,7 @@ const Stats = () => {
   let g: any[] = [];
   let h: any[] = [];
   let i: any[] = [];
+  let j: any[] = [];
   let dict: any = {};
 
   const dew = (value: any) =>
@@ -118,13 +119,16 @@ const Stats = () => {
     } else if (val === "sandFilter") {
       i.push(dew(val));
       dict[7] = i;
+    } else if (val === "preliminaryTreatment") {
+      j.push(dew(val));
+      dict[8] = j;
     }
   });
   const data = {
     labels: locationsR,
     datasets: [
       {
-        data: [a[0], b[0], c[0], d[0], e[0], f[0], g[0], h[0], i[0]],
+        data: [a[0], b[0], c[0], d[0], e[0], f[0], g[0], h[0], i[0], j[0]],
         backgroundColor: [
           "rgba(255, 99, 132, 0.3)",
           "rgba(54, 162, 235, 0.3)",
@@ -135,6 +139,7 @@ const Stats = () => {
           "rgba(225, 119, 64, 0.3)",
           "rgba(25, 189, 164, 0.3)",
           "rgba(205, 19, 94, 0.3)",
+          "rgba(25, 109, 194, 0.3)",
         ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
@@ -147,6 +152,7 @@ const Stats = () => {
           "rgba(225, 119, 64, 1)",
           "rgba(25, 189, 164, 1)",
           "rgba(205, 19, 94, 1)",
+          "rgba(25, 109, 194, 1)",
         ],
         borderWidth: 1,
         fill: false,

@@ -3,7 +3,7 @@ import axios from "axios";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../firebase";
 
-const PROJECT_URL: any = process.env.REACT_APP_PROJECT_URL_NCRQOR;
+const PROJECT_URL: any = process.env.REACT_APP_HEROKU_URL + "qorncr/";
 
 export const getAllQorNcrs: any = createAsyncThunk(
   "getAllQorNcrs",
@@ -67,7 +67,7 @@ export const updateQorNcr = createAsyncThunk(
 export const uploadImages1 = createAsyncThunk(
   "uploadImage1",
   async (value: any) => {
-    const storageRef = ref(storage, `${value.qorncrId1}.pdf`);
+    const storageRef = ref(storage, `QOR & NCR/${value.qorncrId1}.pdf`);
     try {
       await uploadBytesResumable(storageRef, value.image1);
 
@@ -91,7 +91,7 @@ export const uploadImages1 = createAsyncThunk(
 export const uploadImages2 = createAsyncThunk(
   "uploadImage",
   async (value: any) => {
-    const storageRef = ref(storage, `${value.qorncrId2}.pdf`);
+    const storageRef = ref(storage, `QOR & NCR/${value.qorncrId2}.pdf`);
     try {
       value.image2 !== undefined &&
         (await uploadBytesResumable(storageRef, value.image2));

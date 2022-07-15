@@ -1,4 +1,4 @@
-const Concrete = require("../models/Concrete.ts");
+const Concrete = require("../models/Concrete");
 const routerC = require("express").Router();
 
 // get all Concrete

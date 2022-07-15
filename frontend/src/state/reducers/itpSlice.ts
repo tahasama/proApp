@@ -3,7 +3,7 @@ import axios from "axios";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../firebase";
 
-const POJECT_URL: any = process.env.REACT_APP_PROJECT_URL_ITP;
+const PROJECT_URL: any = process.env.REACT_APP_HEROKU_URL + "itp/";
 
 export const uploadItp = createAsyncThunk("uploadItp", async (value: any) => {
   const storageRef = ref(storage, `itp/${value.itp}.pdf`);
@@ -11,7 +11,7 @@ export const uploadItp = createAsyncThunk("uploadItp", async (value: any) => {
     await uploadBytesResumable(storageRef, value.pdf);
     try {
       const res = await getDownloadURL(storageRef);
-      await axios.post(POJECT_URL + "create/", {
+      await axios.post(PROJECT_URL + "create/", {
         ItpUrl: res,
         ItpName: value.itp,
       });
@@ -25,7 +25,7 @@ export const uploadItp = createAsyncThunk("uploadItp", async (value: any) => {
 
 export const getItp: any = createAsyncThunk("getItp", async (value: any) => {
   try {
-    const res = await axios.get(POJECT_URL + value);
+    const res = await axios.get(PROJECT_URL + value);
 
     return res.data;
   } catch (error) {

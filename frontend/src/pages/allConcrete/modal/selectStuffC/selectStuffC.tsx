@@ -7,7 +7,6 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAllItns, itnData, UpdateValuesOfSelect } from "../../../../state";
-import { useAppSelector } from "../../../../state/hooks";
 import { locations } from "../../../../constants/constant";
 
 export default function SelectStuff() {

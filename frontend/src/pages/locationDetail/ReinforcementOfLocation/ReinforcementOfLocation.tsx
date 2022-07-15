@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-
+import "./ReinforcementOfLocation.css";
 import { useParams } from "react-router-dom";
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
@@ -240,7 +240,11 @@ const ReinforcementOfLocation = () => {
             .reduce((a, b): any => a + b, 0)}
           &nbsp; Kg
         </Button>
-        <div className="DoughnutDimension" style={{ padding: 0, width: "32%" }}>
+
+        <div
+          className="DoughnutDimension7"
+          style={{ padding: 0, width: "52%" }}
+        >
           <Pie
             options={optionsPie}
             data={data}
@@ -252,10 +256,9 @@ const ReinforcementOfLocation = () => {
             }}
           />
         </div>
-
         <div
-          className="LineDimension"
-          style={{ margin: 0, padding: 0, width: "52%" }}
+          className="LineDimension7"
+          style={{ margin: 0, padding: 0, width: "73%" }}
         >
           <Line
             options={optionsLine}

@@ -52,7 +52,7 @@ function a11yProps(index: number) {
 }
 
 const LocationDetails = () => {
-  const { status } = useAppSelector(getAuthData);
+  const { status, email } = useAppSelector(getAuthData);
   const { individualitp } = useAppSelector(itpData);
   const dispatch = useAppDispatch();
   const [value, setValue] = React.useState(0);
@@ -83,7 +83,8 @@ const LocationDetails = () => {
         variant="contained"
         size="large"
         color="inherit"
-        className="getItp"
+        className="getItp1"
+        style={{ top: status !== "manager" ? 130 : 50 }}
       >
         <a
           style={{
@@ -95,7 +96,7 @@ const LocationDetails = () => {
           target="_blank"
           rel="noreferrer"
         >
-          See ITP
+          ITP
         </a>
       </Button>
 
@@ -122,7 +123,7 @@ const LocationDetails = () => {
               {...a11yProps(0)}
               style={{
                 position: "fixed",
-                marginTop: -40,
+                marginTop: 20,
                 boxShadow: "10px 5px 5px grey",
                 width: 150,
                 backgroundColor: "#EBEDEF",
@@ -133,7 +134,7 @@ const LocationDetails = () => {
               {...a11yProps(1)}
               style={{
                 position: "fixed",
-                marginTop: 40,
+                marginTop: 95,
                 boxShadow: "10px 5px 5px grey",
                 width: 150,
                 backgroundColor: "#EBEDEF",
@@ -144,7 +145,7 @@ const LocationDetails = () => {
               {...a11yProps(2)}
               style={{
                 position: "fixed",
-                marginTop: 120,
+                marginTop: 170,
                 boxShadow: "10px 5px 5px grey",
                 width: 150,
                 backgroundColor: "#EBEDEF",
@@ -153,7 +154,7 @@ const LocationDetails = () => {
           </Tabs>
           <TabPanel value={value} index={0}>
             <div style={{ marginLeft: 200 }}>
-              <LocationsItn itp={itp} />
+              <LocationsItn />
             </div>
           </TabPanel>
           <TabPanel value={value} index={1}>

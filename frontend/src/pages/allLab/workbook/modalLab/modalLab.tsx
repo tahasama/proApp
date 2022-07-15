@@ -21,6 +21,7 @@ import {
   uploadImages2,
 } from "../../../../state/reducers/labSlice";
 import SelectStuffLab from "./selectStuffLab/selectStuffLab";
+import { useParams } from "react-router-dom";
 
 const style = {
   position: "absolute" as "absolute",
@@ -42,12 +43,17 @@ export default function ModalLab() {
   const handleClose = () => setOpen(false);
   const dispatch = useAppDispatch();
 
-  const { newType, newLocation, individualLab, all, ww, selectedBox } =
+  const { newType, newLocation, individualLab, selectedBox } =
     useAppSelector(LabData);
   const [value, setValue] = React.useState<Date | null>(new Date());
   const [loading, setLoading] = useState(false);
+  const { book } = useParams();
 
   const inputRefNum = React.useRef<any>(null);
+  const inputRefValueL1 = React.useRef<any>(null);
+  const inputRefValueL2 = React.useRef<any>(null);
+  const inputRefValueL3 = React.useRef<any>(null);
+  const inputRefSubLocation = React.useRef<any>(null);
 
   const handleChange = (newValue: Date | null) => {
     setValue(newValue);
@@ -82,6 +88,7 @@ export default function ModalLab() {
       setLoading(false);
     }, 2000);
   };
+
   return (
     <div>
       {" "}
@@ -112,9 +119,6 @@ export default function ModalLab() {
             >
               Please complete the following informations :{" "}
             </p>
-            <div>
-              <SelectStuffLab individualLab={individualLab} />
-            </div>
             <div style={{ marginTop: 12 }}>
               <Input
                 type="text"
@@ -124,7 +128,57 @@ export default function ModalLab() {
                 placeholder="Number"
                 name="wooow"
               />
+              <div>
+                <SelectStuffLab individualLab={individualLab} />
+              </div>
+              <div style={{ marginTop: 12 }}>
+                <Input
+                  type="text"
+                  defaultValue={individualLab.subLocation}
+                  inputRef={inputRefSubLocation}
+                  color="success"
+                  placeholder="Sub Location"
+                  name="wooow"
+                />
+              </div>{" "}
             </div>{" "}
+            {(book === "Compression Strength 7 days" ||
+              book === "Compression Strength 28 days") &&
+              selectedBox !== "" && (
+                <>
+                  <div style={{ marginTop: 12 }}>
+                    <Input
+                      type="text"
+                      inputRef={inputRefValueL1}
+                      color="success"
+                      placeholder="first value"
+                      defaultValue={individualLab.valueL1}
+                      name="wooow"
+                    />
+                  </div>
+
+                  <div style={{ marginTop: 12 }}>
+                    <Input
+                      type="text"
+                      inputRef={inputRefValueL2}
+                      color="success"
+                      placeholder="second value"
+                      defaultValue={individualLab.valueL2}
+                      name="wooow"
+                    />
+                  </div>
+                  <div style={{ marginTop: 12 }}>
+                    <Input
+                      type="text"
+                      defaultValue={individualLab.valueL3}
+                      inputRef={inputRefValueL3}
+                      color="success"
+                      placeholder="third value"
+                      name="wooow"
+                    />
+                  </div>
+                </>
+              )}
             <div style={{ marginTop: 12 }}>
               <LocalizationProvider dateAdapter={AdapterMoment}>
                 <Stack spacing={3}>
@@ -187,7 +241,27 @@ export default function ModalLab() {
                         numL: inputRefNum.current.value,
                         dateL: value,
                         location: newLocation,
+                        subLocation: inputRefSubLocation.current.value,
 
+                        valueL1:
+                          (book === "Compression Strength 7 days" ||
+                            book === "Compression Strength 28 days") &&
+                          inputRefValueL1.current.value,
+                        valueL2:
+                          (book === "Compression Strength 7 days" ||
+                            book === "Compression Strength 28 days") &&
+                          inputRefValueL2.current.value,
+                        valueL3:
+                          (book === "Compression Strength 7 days" ||
+                            book === "Compression Strength 28 days") &&
+                          inputRefValueL3.current.value,
+                        valueL4:
+                          (book === "Compression Strength 7 days" ||
+                            book === "Compression Strength 28 days") &&
+                          (parseInt(inputRefValueL1.current.value) +
+                            parseInt(inputRefValueL2.current.value) +
+                            parseInt(inputRefValueL3.current.value)) /
+                            3,
                         manifoldUrl: imageRef1.current.files[0],
                         reportUrl: imageRef2.current.files[0],
                       })
@@ -198,12 +272,13 @@ export default function ModalLab() {
                         numL: inputRefNum.current.value,
                         dateL: value,
                         location: newLocation,
+                        subLocation: inputRefSubLocation.current.value,
                       })
                     ),
                 setTimeout(() => {
                   dispatch(getAllLab());
                   dispatch(UpdateSelectedBox(""));
-                }, 1000),
+                }, 2000),
                 handleClose()
               )}
             >

@@ -1,4 +1,4 @@
-const Itp = require("../models/itp.ts");
+const Itp = require("../models/Itp.ts");
 const routerI = require("express").Router();
 
 routerI.post("/create", async (req, res) => {

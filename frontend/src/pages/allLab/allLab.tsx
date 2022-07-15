@@ -25,41 +25,47 @@ const AllLab = () => {
   }, []);
 
   const DownloadFolders = async (): Promise<any> => {
-    const jszip = new JSZip();
-    const xxx: any = jszip.folder("All");
-    const proms2 = workbooks
-      .map(async (wor: any) => {
-        const ccc: any = xxx.folder(`${wor}`);
-        const proms1 = locations
-          .map(async (loca: any) => {
-            const storage = getStorage();
-            const folder = await listAll(
-              ref(storage, `/Workbooks/${wor}/${loca}`)
-            );
-            const promises = folder.items
-              .map(async (item) => {
-                const file = await getMetadata(item);
-                const fileRef = ref(storage, item.fullPath);
-                const fileBlob = await getDownloadURL(fileRef).then(
-                  async (url) => {
-                    const response = await fetch(url);
-                    return await response.blob();
-                  }
-                );
+    try {
+      const jszip = new JSZip();
+      const xxx: any = jszip.folder("All");
+      const proms2 = workbooks
+        .map(async (wor: any) => {
+          const ccc: any = xxx.folder(`${wor}`);
+          const proms1 = locations
+            .map(async (loca: any) => {
+              const storage = getStorage();
+              const folder = await listAll(
+                ref(storage, `/Workbooks/${wor}/${loca}`)
+              );
+              const promises = folder.items
+                .map(async (item) => {
+                  const file = await getMetadata(item);
+                  const fileRef = ref(storage, item.fullPath);
+                  const fileBlob = await getDownloadURL(fileRef).then(
+                    async (url) => {
+                      const response = await fetch(url);
+                      return await response.blob();
+                    }
+                  );
 
-                ccc.file(loca + "/" + file.name, fileBlob);
-              })
-              .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
+                  ccc.file(loca + "/" + file.name, fileBlob);
+                })
+                .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
 
-            await promises;
-          })
-          .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
-        await proms1;
-      })
-      .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
-    await proms2;
-    const blob = await xxx.generateAsync({ type: "blob" });
-    FileSaver.saveAs(blob, `WorkBooks.zip`);
+              await promises;
+            })
+            .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
+          await proms1;
+        })
+        .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
+      await proms2;
+      const blob = await xxx.generateAsync({
+        type: "blob",
+      });
+      FileSaver.saveAs(blob, `WorkBooks.zip`);
+    } catch (err) {
+      console.log("here is an error", err);
+    }
   };
 
   return (

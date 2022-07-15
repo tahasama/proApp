@@ -3,7 +3,7 @@ import axios from "axios";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../firebase";
 
-const PROJECT_URL: any = process.env.REACT_APP_PROJECT_URL_LAB;
+const PROJECT_URL: any = process.env.REACT_APP_HEROKU_URL + "lab/";
 
 export const getAllLab: any = createAsyncThunk("getAllLab", async () => {
   try {

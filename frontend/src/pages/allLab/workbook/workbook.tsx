@@ -64,8 +64,18 @@ const Workbook = () => {
       },
     },
     {
+      field: "subLocation",
+      headerName: "Sublocation",
+      minWidth: 125,
+      filter: "agMultiColumnFilter",
+      filterParams: {
+        filter: "agMultiColumnFilter",
+      },
+    },
+    {
       field: "dateL",
       headerName: "Date",
+      minWidth: 100,
       filter: "agMultiColumnFilter",
       filterParams: {
         filter: "agMultiColumnFilter",
@@ -78,8 +88,49 @@ const Workbook = () => {
       },
     },
     {
+      field: "valueL1",
+      headerName: "v1 (N/mm2) ",
+      minWidth: 115,
+      hide:
+        book === "Compression Strength 7 days" ||
+        book === "Compression Strength 28 days"
+          ? false
+          : true,
+    },
+    {
+      field: "valueL2",
+      headerName: "v2 (N/mm2) ",
+      minWidth: 115,
+      hide:
+        book === "Compression Strength 7 days" ||
+        book === "Compression Strength 28 days"
+          ? false
+          : true,
+    },
+    {
+      field: "valueL3",
+      headerName: " v3 (N/mm2) ",
+      minWidth: 115,
+      hide:
+        book === "Compression Strength 7 days" ||
+        book === "Compression Strength 28 days"
+          ? false
+          : true,
+    },
+    {
+      field: "valueL4",
+      headerName: "Avg (N/mm2) ",
+      minWidth: 125,
+      hide:
+        book === "Compression Strength 7 days" ||
+        book === "Compression Strength 28 days"
+          ? false
+          : true,
+    },
+    {
       field: "manifoldUrl",
       headerName: "Manifold",
+      minWidth: 110,
       filter: "agMultiColumnFilter",
       filterParams: {
         filter: "agMultiColumnFilter",
@@ -91,7 +142,8 @@ const Workbook = () => {
     },
     {
       field: "reportUrl",
-      headerName: "Conformity Report",
+      headerName: "Lab Report",
+      minWidth: 120,
       filter: "agMultiColumnFilter",
       filterParams: {
         filter: "agMultiColumnFilter",

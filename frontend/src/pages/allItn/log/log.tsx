@@ -2,10 +2,7 @@ import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-import {
-  getAllConcretes,
-  updateWw,
-} from "../../../state/reducers/concreteSlice";
+
 import { useMemo, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
@@ -13,7 +10,7 @@ import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 import "./log.css";
 import { Link } from "react-router-dom";
-import { deleteItn, getAllItns, itnData } from "../../../state";
+import { deleteItn, getAllItns, itnData, updateWw } from "../../../state";
 import ModalM from "./modalM/modalM";
 import JSZip from "jszip";
 import {
@@ -47,7 +44,7 @@ const Log = () => {
   const handleDelete = () => {
     dispatch(deleteItn(selected));
     setTimeout(() => {
-      dispatch(getAllConcretes());
+      dispatch(getAllItns());
     }, 250);
   };
 

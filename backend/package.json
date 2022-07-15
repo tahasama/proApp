@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./index.ts"
+    "start": "ts-node ./index.ts"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +16,7 @@
     "helmet": "^5.1.0",
     "mongoose": "^6.3.6",
     "nodemailer": "^6.7.7",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "ts-node": "^10.9.1"
   }
 }

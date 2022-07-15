@@ -7,7 +7,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { UpdateValuesOfSelect } from "../../../../../state/reducers/labSlice";
-import { workbooks } from "../../../../../constants/constant";
+import { locationsR, workbooks } from "../../../../../constants/constant";
 
 export default function SelectStuffLab(individualLab: any) {
   const dispatch = useDispatch();
@@ -20,23 +20,6 @@ export default function SelectStuffLab(individualLab: any) {
   const handleLocationChange = (event: SelectChangeEvent) => {
     setLocation(event.target.value as string);
   };
-  const locationsR = [
-    "secondaryClarifier",
-    "PrimaryClarifier",
-    "aerationTank",
-    "mainBuilding",
-    "workShop",
-    "chlorinationTank",
-    "pumpingStation2",
-    "pumpingStation1",
-    "sandFilter",
-    "closingWall",
-    "GAT01",
-    "GAT02",
-    "GAT03",
-    "GAT04",
-    "Stock",
-  ];
 
   useEffect(() => {
     dispatch(
@@ -69,7 +52,7 @@ export default function SelectStuffLab(individualLab: any) {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          defaultValue={individualLab.individualLab.type}
+          defaultValue={individualLab.individualLab.typeL}
           label="type"
           onChange={handleTypeChange}
         >

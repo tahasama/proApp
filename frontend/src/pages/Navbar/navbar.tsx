@@ -24,6 +24,7 @@ import { auth } from "../../firebase";
 import { useAppSelector } from "../../state/hooks";
 import { getAuthData } from "../../state/reducers/authSlice";
 import LogoutIcon from "@mui/icons-material/Logout";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -67,7 +68,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function NavBar() {
   const searchRef = useRef<any>(null);
-  const { user } = useAppSelector(getAuthData);
+  const { user, displayName, email } = useAppSelector(getAuthData);
 
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -108,6 +109,8 @@ export default function NavBar() {
       navigate("/sandFilter");
     } else if (searchRef.current.value === "cw") {
       navigate("/closingWall");
+    } else if (searchRef.current.value === "pt") {
+      navigate("/preliminaryTreatment");
     }
   };
 
@@ -216,7 +219,7 @@ export default function NavBar() {
             <MenuIcon />
           </IconButton>
           <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-            <Button color="inherit" sx={{ marginRight: 4 }}>
+            <Button color="inherit" sx={{ marginRight: 0 }}>
               <Typography
                 variant="h6"
                 noWrap
@@ -245,7 +248,7 @@ export default function NavBar() {
             to="../allitn"
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <Button color="inherit" sx={{ marginRight: 4 }}>
+            <Button color="inherit" sx={{ marginRight: 3, marginLeft: 0 }}>
               ITN
             </Button>
           </Link>
@@ -253,7 +256,7 @@ export default function NavBar() {
             to="../allconcrete"
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <Button color="inherit" sx={{ marginRight: 4 }}>
+            <Button color="inherit" sx={{ marginRight: 3 }}>
               CONCRETE
             </Button>
           </Link>
@@ -261,7 +264,7 @@ export default function NavBar() {
             to="../allreinforcement"
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <Button color="inherit" sx={{ marginRight: 4 }}>
+            <Button color="inherit" sx={{ marginRight: 3 }}>
               RIR
             </Button>
           </Link>{" "}
@@ -269,7 +272,7 @@ export default function NavBar() {
             to="../allNcr"
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <Button color="inherit" sx={{ marginRight: 4 }}>
+            <Button color="inherit" sx={{ marginRight: 3 }}>
               NCR
             </Button>
           </Link>{" "}
@@ -277,7 +280,7 @@ export default function NavBar() {
             to="../allQor"
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <Button color="inherit" sx={{ marginRight: 4 }}>
+            <Button color="inherit" sx={{ marginRight: 3 }}>
               QOR
             </Button>
           </Link>
@@ -285,7 +288,7 @@ export default function NavBar() {
             to="../allLab"
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <Button color="inherit" sx={{ marginRight: 9 }}>
+            <Button color="inherit" sx={{ marginRight: 3 }}>
               Laboratory
             </Button>
           </Link>
@@ -301,6 +304,13 @@ export default function NavBar() {
               <MoreIcon />
             </IconButton>
           </Box>
+          <Button
+            color="inherit"
+            startIcon={<AccountCircleIcon />}
+            sx={{ marginRight: 3, textTransform: "lowercase" }}
+          >
+            {email}
+          </Button>
           {user && (
             <Button
               variant="contained"

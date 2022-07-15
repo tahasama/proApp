@@ -73,7 +73,10 @@ const Login = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      status !== "authorized" && status !== undefined && setAlerto(false);
+      status !== "authorized" &&
+        status !== "manager" &&
+        status !== undefined &&
+        setAlerto(false);
     }, 7000);
     return setAlerto(true);
   }, [status]);

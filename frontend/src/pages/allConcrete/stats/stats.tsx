@@ -86,6 +86,7 @@ const Stats = () => {
   let k: any[] = [];
   let l: any[] = [];
   let m: any[] = [];
+  let n: any[] = [];
   let dict: any = {};
 
   const dew = (value: any) =>
@@ -137,7 +138,10 @@ const Stats = () => {
       dict[12] = l;
     } else if (val === "sandFilter") {
       m.push(dew(val));
-      dict[3] = m;
+      dict[13] = m;
+    } else if (val === "preliminaryTreatment") {
+      n.push(dew(val));
+      dict[14] = n;
     }
   });
   const data = {
@@ -158,6 +162,7 @@ const Stats = () => {
           k[0],
           l[0],
           m[0],
+          n[0],
         ],
         backgroundColor: [
           "rgba(255, 99, 132, 0.3)",
@@ -173,6 +178,8 @@ const Stats = () => {
           "rgba(245, 93, 222, 0.3)",
           "rgba(89, 219, 190, 0.3)",
           "rgba(45, 100, 64, 0.3)",
+          "rgba(75, 700, 14, 0.3)",
+          "rgba(75, 200, 14, 0.3)",
         ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
@@ -188,6 +195,8 @@ const Stats = () => {
           "rgba(245, 93, 222,1)",
           "rgba(89, 219, 190,1)",
           "rgba(45, 0, 64, 1)",
+          "rgba(75, 700, 14, 1)",
+          "rgba(75, 200, 14, 1)",
         ],
         borderWidth: 1,
         fill: false,

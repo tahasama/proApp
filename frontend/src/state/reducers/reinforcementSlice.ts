@@ -3,13 +3,13 @@ import axios from "axios";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../firebase";
 
-const POJECT_URL: any = process.env.REACT_APP_PROJECT_URL_REINFORCEMENT;
-
+const PROJECT_URL: any = process.env.REACT_APP_HEROKU_URL + "reinforcement/";
+console.log("rrrrrrrrrrrrrrrrrr", PROJECT_URL);
 export const getAllReinforcements: any = createAsyncThunk(
   "getAllReinforcements",
   async () => {
     try {
-      const res = await axios.get(POJECT_URL + "all/");
+      const res = await axios.get(PROJECT_URL + "all/");
       return res.data;
     } catch (error) {
       return error;
@@ -21,7 +21,7 @@ export const getReinforcementsByItp: any = createAsyncThunk(
   "getReinforcementsByItp",
   async (value: any) => {
     try {
-      const res = await axios.get(POJECT_URL + "all/" + value);
+      const res = await axios.get(PROJECT_URL + "all/" + value);
 
       return res.data;
     } catch (error) {
@@ -33,7 +33,7 @@ export const getReinforcement = createAsyncThunk(
   "getReinforcement",
   async (value: any) => {
     try {
-      const res = await axios.get(POJECT_URL + "/" + value);
+      const res = await axios.get(PROJECT_URL + "/" + value);
 
       return res.data;
     } catch (error) {
@@ -46,7 +46,7 @@ export const createReinforcement = createAsyncThunk(
   "createReinforcement",
   async (value: any) => {
     try {
-      const res = await axios.post(POJECT_URL + "create/", value);
+      const res = await axios.post(PROJECT_URL + "create/", value);
       return res.data;
     } catch (error) {
       return error;
@@ -59,7 +59,7 @@ export const deleteReinforcement = createAsyncThunk(
 
   async (value: any) => {
     try {
-      const res = await axios.delete(POJECT_URL + value);
+      const res = await axios.delete(PROJECT_URL + value);
 
       return res.data;
     } catch (error) {
@@ -72,7 +72,7 @@ export const updateReinforcement = createAsyncThunk(
   "updateReinforcement",
   async (value: any) => {
     try {
-      const res = await axios.put(POJECT_URL + value._id, value);
+      const res = await axios.put(PROJECT_URL + value._id, value);
       return res.data;
     } catch (error) {
       return error;
@@ -83,7 +83,7 @@ export const updateReinforcement = createAsyncThunk(
 export const uploadImages = createAsyncThunk(
   "uploadImages",
   async (value: any) => {
-    const storageRef = ref(storage, `${value.reinforcementId}.pdf`);
+    const storageRef = ref(storage, `RIR/${value.reinforcementId}.pdf`);
     try {
       await uploadBytesResumable(storageRef, value.image);
 
@@ -92,7 +92,7 @@ export const uploadImages = createAsyncThunk(
           const res = await getDownloadURL(storageRef);
 
           value.image !== undefined &&
-            (await axios.put(POJECT_URL + value.reinforcementId, {
+            (await axios.put(PROJECT_URL + value.reinforcementId, {
               relatedDocs: res,
             }));
 

@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const POJECT_URL: any = process.env.REACT_APP_PROJECT_URL_CONCRETE;
+const PROJECT_URL: any = process.env.REACT_APP_HEROKU_URL + "concrete/";
 
 export const getAllConcretes: any = createAsyncThunk(
   "getAllConcretes",
   async () => {
     try {
-      const res = await axios.get(POJECT_URL + "all/");
+      const res = await axios.get(PROJECT_URL + "all/");
       return res.data;
     } catch (error) {
       return error;
@@ -19,7 +19,7 @@ export const getConcretesByItp: any = createAsyncThunk(
   "getItnsByItp",
   async (value: any) => {
     try {
-      const res = await axios.get(POJECT_URL + "all/" + value.itp);
+      const res = await axios.get(PROJECT_URL + "all/" + value.itp);
       return res.data;
     } catch (error) {
       return error;
@@ -31,7 +31,7 @@ export const getConcrete = createAsyncThunk(
   async (value: any) => {
     try {
       const res = await axios.get(
-        POJECT_URL + value.itp + "/" + value.concreteId
+        PROJECT_URL + value.itp + "/" + value.concreteId
       );
 
       return res.data;
@@ -45,7 +45,7 @@ export const createConcrete = createAsyncThunk(
   "createConcrete",
   async (value: any) => {
     try {
-      const res = await axios.post(POJECT_URL + "create/", value);
+      const res = await axios.post(PROJECT_URL + "create/", value);
       return res.data;
     } catch (error) {
       return error;
@@ -58,7 +58,7 @@ export const deleteConcrete = createAsyncThunk(
 
   async (value: any) => {
     try {
-      const res = await axios.delete(POJECT_URL + value);
+      const res = await axios.delete(PROJECT_URL + value);
       return res.data;
     } catch (error) {
       return error;

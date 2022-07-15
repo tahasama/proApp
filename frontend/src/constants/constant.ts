@@ -13,20 +13,22 @@ export const locations = [
   "pumpingStation1",
   "sandFilter",
   "closingWall",
+  "preliminaryTreatment",
 ];
 
-export const locationsR = [
-  "secondaryClarifier",
-  "PrimaryClarifier",
-  "aerationTank",
-  "mainBuilding",
-  "workShop",
-  "chlorinationTank",
-  "pumpingStation2",
-  "pumpingStation1",
-  "sandFilter",
-  "closingWall",
-];
+// export const locationsR = [
+//   "secondaryClarifier",
+//   "PrimaryClarifier",
+//   "aerationTank",
+//   "mainBuilding",
+//   "workShop",
+//   "chlorinationTank",
+//   "pumpingStation2",
+//   "pumpingStation1",
+//   "sandFilter",
+//   "closingWall",
+//   "preliminaryTreatment",
+// ];
 
 export const labelsName: any = [
   "Jan",
@@ -73,3 +75,21 @@ export const workbooks = [
 export const handleNumber = (num: any) => {
   return num < 10 ? "000" + num : num < 100 ? "00" + num : "0" + num;
 };
+
+export const locationsR = [
+  "secondaryClarifier",
+  "PrimaryClarifier",
+  "aerationTank",
+  "mainBuilding",
+  "workShop",
+  "chlorinationTank",
+  "pumpingStation2",
+  "pumpingStation1",
+  "sandFilter",
+  "closingWall",
+  "GAT01",
+  "GAT02",
+  "GAT03",
+  "GAT04",
+  "Stock",
+];

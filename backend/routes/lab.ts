@@ -1,4 +1,4 @@
-const Lab = require("../models/lab.ts");
+const Lab = require("../models/Lab.ts");
 const routerL = require("express").Router();
 
 // get all itns

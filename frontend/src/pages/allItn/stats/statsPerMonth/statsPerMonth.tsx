@@ -66,6 +66,7 @@ const StatsPerMonth = () => {
   let uu10: any = [];
   let uu11: any = [];
   let uu12: any = [];
+  let uu13: any = [];
 
   //===============================================================================the function start
   const lm = (v: any) => {
@@ -219,6 +220,13 @@ const StatsPerMonth = () => {
     dict[i] !== undefined ? uu12.push(dict[i]) : uu12.push(0);
   });
 
+  dict = {};
+  lm("preliminaryTreatment");
+
+  labels.map((i: any) => {
+    dict[i] !== undefined ? uu12.push(dict[i]) : uu13.push(0);
+  });
+
   const [q, setQ] = useState<any[]>(locations);
   const [filters, setFilters] = useState(true);
 
@@ -306,6 +314,12 @@ const StatsPerMonth = () => {
         label: "sandFilter",
         data: !q.includes("sandFilter") ? [0] : uu12,
         borderColor: "#ff33cc",
+        tension: 0.3,
+      },
+      {
+        label: "preliminaryTreatment",
+        data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+        borderColor: "#f0d3cc",
         tension: 0.3,
       },
     ],
