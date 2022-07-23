@@ -27,6 +27,7 @@ import { handleNumber, locations, routines } from "../../../constants/constant";
 
 const Log = () => {
   const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false);
 
   const { all, ww } = useAppSelector(itnData);
   const { status, user } = useAppSelector(getAuthData);
@@ -126,6 +127,25 @@ const Log = () => {
             filter: "agSetColumnFilter",
           },
         ],
+      },
+    },
+    {
+      field: "pdfUrl",
+      headerName: "ITN Link",
+      minWidth: 70,
+      cellRenderer: (params: any) => {
+        return params.value !== undefined ? (
+          <a
+            href={params.value}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "blue" }}
+          >
+            See signed Itn
+          </a>
+        ) : (
+          <p></p>
+        );
       },
     },
   ]);
@@ -355,6 +375,7 @@ const Log = () => {
   //============================================================
 
   const DownloadFolders = async (): Promise<any> => {
+    setLoading(true);
     const jszip = new JSZip();
     const xxx: any = jszip.folder("All");
     const proms2 = locations
@@ -387,13 +408,17 @@ const Log = () => {
       .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
     await proms2;
     const blob = await xxx.generateAsync({ type: "blob" });
+    console.log("000", blob);
     FileSaver.saveAs(blob, `QC.zip`);
+    setTimeout(() => {
+      setLoading(false);
+    }, 4000);
   };
   //============================================================
 
   return (
-    <div className="log">
-      <div style={{ marginBottom: status === "authorized" ? 30 : 0 }}>
+    <div className="log" style={{ marginTop: 30 }}>
+      <div style={{ marginBottom: status === "authorized" ? 110 : 0 }}>
         <h2 className="title1">INSPECTION TEST NOTIFICATIONS</h2>
       </div>
 
@@ -455,6 +480,7 @@ const Log = () => {
                 variant="contained"
                 className="donwload"
                 onClick={DownloadFolders}
+                endIcon={loading && <CircularProgress color="secondary" />}
               >
                 Download ITN &nbsp;
                 <DownloadIcon />

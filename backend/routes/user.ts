@@ -9,14 +9,11 @@ var transporter = nodemailer.createTransport({
 
   auth: {
     type: "OAuth2",
-    user: "taha.maatof@gmail.com",
-    clientId:
-      "812566747763-3cckdbmpe2qcsj9let3jmvni05c6533d.apps.googleusercontent.com",
-    clientSecret: "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",
-    refreshToken:
-      "1//04BbAjbw-Og0rCgYIARAAGAQSNwF-L9IraOWU5cywM7sclc3Xv2zVXz9Od-fOdOQ_x3-GDGDhg_rhP-2Ik7RZJTifbseZkkQT2V0",
-    accessToken:
-      "ya29.a0AVA9y1v9XmhbwgWzVuB65wsLBwNYLERcrMl39wR5osglo8vLDojXYpqQUjMUmoxc1YU_V0rfqzBPFBAcA0fq_xk9Vf3rXBsOLQ1i7GLPfUnRC6w8pwtdF1Fot-QGR0LWW8rCSqcSxZ9Ix7uJN7e57fyX-dQZ",
+    user: process.env.UserOwner,
+    clientId: process.env.ClientId,
+    clientSecret: process.env.ClientSecret,
+    refreshToken: process.env.RefreshToken,
+    accessToken: process.env.AccessToken,
   },
 });
 
@@ -26,16 +23,16 @@ routerU.post("/", async (req, res) => {
   console.log("pleaaaaase", newUser);
 
   var mailOptions = {
-    from: "taha.maatof@gmail.com",
-    to: "taha.maatof@gmail.com",
+    from: process.env.UserOwner,
+    to: process.env.UserOwner,
     subject: "request authorization to browse the app",
     text: `a new user with the email: ${req.body.email}, request an access to the app.
-    click on this link to authorize this user's access http://localhost:3000/authorized/${newUser._id}/${req.body.email}`,
+    click on this link to authorize this user's access https://maatof-qc.netlify.app/authorized/${newUser._id}/${req.body.email}`,
   };
   var mailOptions2 = {
-    from: "taha.maatof@gmail.com",
+    from: process.env.UserOwner,
     to: `${req.body.email}`,
-    subject: "request authirization to browse the app",
+    subject: "request authorization to browse the app",
     text: `Your inscription will be examined
     if you are an authorized member you will receive an email very shortly ,
     ginving you access to the app, Thank you for your patience`,
@@ -46,10 +43,7 @@ routerU.post("/", async (req, res) => {
       if (!error) {
         if (!result) {
           try {
-            console.log("is thsi user exist????", result);
-
             const saveUser = await newUser.save();
-            console.log("did it work??", saveUser);
             transporter.sendMail(mailOptions, function (error, info) {
               if (error) {
                 console.log(error);
@@ -124,17 +118,17 @@ routerU.put("/:id/:email", async (req, res) => {
     // console.log("backend at work 2222", res);
 
     var mailOptions = {
-      from: "taha.maatof@gmail.com",
+      from: process.env.UserOwner,
       to: `${req.params.email}`,
       subject: "Welcome among us!!",
-      text: `Congatulations, your request has been fullfilled, you can no access the app, http://localhost:3000/`,
+      text: `Congratulations, your request has been fullfilled, you can now access the app, https://maatof-qc.netlify.app/`,
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         console.log(error);
       } else {
-        console.log("Email sent3: " + info.response);
+        console.log("Email sent: " + info.response);
       }
     }),
       res.status(200).json(updateUser);

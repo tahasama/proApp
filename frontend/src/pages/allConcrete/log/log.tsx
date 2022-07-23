@@ -30,7 +30,7 @@ const Log = () => {
     dispatch(deleteConcrete(selected));
     setTimeout(() => {
       dispatch(getAllConcretes());
-    }, 250);
+    }, 1000);
   };
   useEffect(() => {
     dispatch(getAllConcretes());
@@ -199,7 +199,7 @@ const Log = () => {
   };
 
   return (
-    <div className="log1">
+    <div className="log1" style={{ marginTop: 68 }}>
       <div>
         <h2 className="title4">Concrete Data Records</h2>
       </div>
@@ -235,7 +235,13 @@ const Log = () => {
             <div style={containerStyle}>
               <div style={gridStyle} className="ag-theme-alpine">
                 <AgGridReact
-                  rowData={all.flat().reverse()}
+                  rowData={all
+                    .flat()
+                    .sort(
+                      (a: any, b: any) =>
+                        new Date(b.dateOfUsage).valueOf() -
+                        new Date(a.dateOfUsage).valueOf()
+                    )}
                   columnDefs={columnDefs}
                   groupIncludeFooter={true}
                   groupIncludeTotalFooter={true}
@@ -249,15 +255,15 @@ const Log = () => {
                   }
                   getRowStyle={(params) => {
                     if (params.data?.type === "B15") {
-                      return { background: "rgb(0,255,0,0.15)" };
+                      return { background: "rgb(116, 40, 245 ,0.15)" };
                     } else if (params.data?.type === "B20") {
-                      return { background: "rgb(255,0,0,0.15)" };
+                      return { background: "rgb(40, 245, 207 ,0.15)" };
                     } else if (params.data?.type === "B25") {
-                      return { background: "rgb(0,0,255,0.15)" };
+                      return { background: "rgb(145,90,127,0.25)" };
                     } else if (params.data?.type === "B35") {
                       return { background: "rgb(255,255,20,0.15)" };
                     } else if (params.data?.type === "B40") {
-                      return { background: "rgb(145,30,180,0.2)" };
+                      return { background: "rgb(77,122,127,0.2)" };
                     } else return { background: "white" };
                   }}
                 ></AgGridReact>

@@ -69,9 +69,13 @@ export default function AllItn() {
                 backgroundColor: "#CCCCFF",
               }}
             >
-              <Tab label="LOG" {...a11yProps(0)} />
-              <Tab label="STATS" {...a11yProps(1)} />
-              <Tab label="DETAILED CHART" {...a11yProps(2)} />
+              <Tab label="LOG" {...a11yProps(0)} style={{ zIndex: 99 }} />
+              <Tab label="STATS" {...a11yProps(1)} style={{ zIndex: 99 }} />
+              <Tab
+                label="DETAILED CHART"
+                {...a11yProps(2)}
+                style={{ zIndex: 99 }}
+              />
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>

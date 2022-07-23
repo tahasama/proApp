@@ -1,7 +1,5 @@
 .statsPerMonth {
   position: relative;
-  display: flex;
-  flex-direction: row;
 }
 .statsPerMonthFilterButton {
   padding: 15px 15px;
@@ -23,3 +21,35 @@
 /* ::-webkit-scrollbar {
   width: 5px;
 } */
+/* .statsPerMonthLine {
+  width: 3000px;
+} */
+
+.statsPerMonthLine {
+  position: relative;
+  width: 975px;
+  left: 140px;
+  top: 0px;
+  margin: 0;
+}
+
+.buttonn {
+  position: absolute;
+  left: 770px;
+  top: 50px;
+}
+
+.buttonn1 {
+  position: absolute;
+  left: 1140px;
+  top: 150px;
+  width: 160px;
+  padding: 10px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.MuiTypography-body2 {
+  margin-top: -70px !important;
+}

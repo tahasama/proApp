@@ -116,7 +116,7 @@ const ReinforcementOfLocation = () => {
 
   let u1 = all.flat().map((x: any) => new Date(x.dateOfUsage).getMonth() + 1);
 
-  const labels1: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const labels1: any = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   let a1: any[] = [];
   let b1: any[] = [];
   let c1: any[] = [];
@@ -210,7 +210,7 @@ const ReinforcementOfLocation = () => {
   };
 
   return (
-    <div className="cover">
+    <div className="cover" style={{ marginTop: -160 }}>
       <div>
         <Button
           variant="contained"
@@ -243,7 +243,7 @@ const ReinforcementOfLocation = () => {
 
         <div
           className="DoughnutDimension7"
-          style={{ padding: 0, width: "52%" }}
+          style={{ padding: 0, marginLeft: 4, width: "47%" }}
         >
           <Pie
             options={optionsPie}
@@ -258,13 +258,13 @@ const ReinforcementOfLocation = () => {
         </div>
         <div
           className="LineDimension7"
-          style={{ margin: 0, padding: 0, width: "73%" }}
+          style={{ marginTop: 0, padding: 0, width: "85%" }}
         >
           <Line
             options={optionsLine}
             data={data2}
             style={{
-              width: 340,
+              width: 320,
               marginTop: -175,
               marginLeft: 120,
               backgroundColor: "rgb(230,230,230,0.9)",

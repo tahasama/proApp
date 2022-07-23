@@ -77,7 +77,9 @@ const AllNcr = () => {
       cellRenderer: (params: any) => {
         return (
           params.value !== undefined &&
-          params.value.slice(2, 10).split("-").reverse().join("-")
+          (params.value !== null
+            ? params.value.slice(2, 10).split("-").reverse().join("-")
+            : null)
         );
       },
     },
@@ -95,7 +97,13 @@ const AllNcr = () => {
       minWidth: 40,
       cellRenderer: (params: any) => {
         const link1 = params.value;
-        return link1 && <a href={link1}>See NCR</a>;
+        return (
+          link1 && (
+            <a href={link1} target="_blank" rel="noreferrer">
+              See NCR
+            </a>
+          )
+        );
       },
     },
     {
@@ -104,7 +112,13 @@ const AllNcr = () => {
       minWidth: 40,
       cellRenderer: (params: any) => {
         const link2 = params.value;
-        return link2 && <a href={link2}>See action</a>;
+        return (
+          link2 && (
+            <a href={link2} target="_blank" rel="noreferrer">
+              See action
+            </a>
+          )
+        );
       },
     },
   ]);

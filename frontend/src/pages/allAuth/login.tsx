@@ -97,11 +97,7 @@ const Login = () => {
 
   return (
     <div>
-      {alerto &&
-        status !== "authorized" &&
-        status !== undefined &&
-        status !== "manager" &&
-        authorization}
+      {alerto && status !== undefined && status !== "" && authorization}
       <div className="">
         <h1 style={{ marginTop: 20, fontFamily: "initial", letterSpacing: 3 }}>
           WasteWater Treatment Plant Project Of SAFI

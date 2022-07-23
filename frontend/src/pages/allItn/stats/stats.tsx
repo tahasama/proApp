@@ -20,6 +20,8 @@ import {
 import { Line } from "react-chartjs-2";
 import StatsPerReview from "./statsPerReview/statsPerReview";
 import { labelsName, locations } from "../../../constants/constant";
+import { Button, Card } from "@mui/material";
+import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -83,6 +85,8 @@ const Stats = () => {
   let k: any[] = [];
   let l: any[] = [];
   let m: any[] = [];
+  let n: any[] = [];
+  let o: any[] = [];
   let dict: any = {};
 
   u.forEach((val, index) => {
@@ -125,6 +129,12 @@ const Stats = () => {
     } else if (val === "sandFilter") {
       m.push(index);
       dict[13] = m;
+    } else if (val === "preliminaryTreatment") {
+      n.push(index);
+      dict[14] = n;
+    } else if (val === "closingWall") {
+      o.push(index);
+      dict[15] = o;
     }
   });
 
@@ -146,36 +156,46 @@ const Stats = () => {
           k.length,
           l.length,
           m.length,
+          n.length,
+          o.length,
         ],
         backgroundColor: [
-          "rgba(255, 99, 132, 0.3)",
-          "rgba(54, 162, 235, 0.3)",
-          "rgba(255, 206, 86, 0.3)",
-          "rgba(75, 192, 192, 0.3)",
-          "rgba(153, 102, 255, 0.3)",
-          "rgba(255, 159, 64, 0.3)",
-          "rgba(225, 119, 64, 0.3)",
-          "rgba(125, 59, 84, 0.3)",
-          "rgba(135, 79, 44, 0.3)",
-          "rgba(95, 187, 124, 0.3)",
-          "rgba(245, 93, 222, 0.3)",
+          "rgba(0,0,128, 0.3)",
+          "rgba(125, 150, 84, 0.3)",
+          "rgba(0,128,0, 0.3)",
+          "rgba(0,128,128, 0.3)",
+          "rgba(0,255,0, 0.3)",
+          "rgba(0,255,255, 0.3)",
+          "rgba(128,0,0, 0.3)",
+          "rgba(128,0,128, 0.3)",
+          "rgba(128,128,0, 0.3)",
+          "rgba(255,0,0, 0.3)",
+          "rgba(255,0,255, 0.3)",
+          "rgba(255,255,0, 0.3)",
+          "rgba(106, 90, 205, 0.3)",
+          "rgba(238, 130, 238, 0.3)",
+          "rgba(255, 165, 0, 0.3)",
           "rgba(89, 219, 190, 0.3)",
           "rgba(45, 100, 64, 0.3)",
         ],
         borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-          "rgba(235, 119, 64, 1)",
-          "rgba(125, 59, 84,1)",
-          "rgba(135, 79, 44,1)",
-          "rgba(95, 187, 124,1)",
-          "rgba(245, 93, 222,1)",
+          "rgba(0,0,128,1)",
+          "rgba(125, 150, 84,1)",
+          "rgba(0,128,0,1)",
+          "rgba(0,128,128,1)",
+          "rgba(0,255,0,1)",
+          "rgba(0,255,255,1)",
+          "rgba(128,0,0,1)",
+          "rgba(128,0,128,1)",
+          "rgba(128,128,0,1)",
+          "rgba(255,0,0,1)",
+          "rgba(255,0,255,1)",
+          "rgba(255,255,0,1)",
+          "rgba(106, 90, 205,1)",
+          "rgba(238, 130, 238,1)",
+          "rgba(255, 165, 0,1)",
           "rgba(89, 219, 190,1)",
-          "rgba(45, 0, 64, 1)",
+          "rgba(45, 100, 64,1)",
         ],
         borderWidth: 1,
         fill: false,
@@ -189,7 +209,7 @@ const Stats = () => {
     .flat()
     .map((x: any) => new Date(x.dateOfInspection).getMonth() + 1);
 
-  const labels1: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const labels1: any = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   let a1: any[] = [];
   let b1: any[] = [];
   let c1: any[] = [];
@@ -265,14 +285,22 @@ const Stats = () => {
 
   return (
     <div>
+      <Card className="buttonn1" style={{ marginLeft: 35 }}>
+        <TipsAndUpdatesIcon color="warning" /> click on a location to show/hide
+        it on the chart
+      </Card>
       <div
         className="DoughnutDimension"
-        style={{ margin: 0, padding: 0, width: "31%" }}
+        style={{ margin: 0, padding: 0, width: "29%" }}
       >
         <Doughnut
           options={optionsPie}
           data={data}
-          style={{ marginTop: -74, backgroundColor: "rgb(210,215,230,0.9)" }}
+          style={{
+            marginTop: -74,
+            marginLeft: -65,
+            backgroundColor: "rgb(210,215,230,0.9)",
+          }}
         />
       </div>
 
@@ -288,7 +316,7 @@ const Stats = () => {
       </div>
       <div
         className="BarDimension"
-        style={{ marginTop: 3, marginLeft: 92, padding: 0, width: 520 }}
+        style={{ marginTop: -97, marginLeft: -18, padding: 0, width: 520 }}
       >
         <StatsPerReview all={all} />
       </div>

@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
+import { Button, Card } from "@mui/material";
+import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -21,7 +23,7 @@ import {
   getAllReinforcements,
   ReinforcementData,
 } from "../../../state/reducers/reinforcementSlice";
-import { labelsName, locationsR } from "../../../constants/constant";
+import { labelsName, locations, locationsR } from "../../../constants/constant";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -82,6 +84,7 @@ const Stats = () => {
   let h: any[] = [];
   let i: any[] = [];
   let j: any[] = [];
+  let k: any[] = [];
   let dict: any = {};
 
   const dew = (value: any) =>
@@ -115,31 +118,47 @@ const Stats = () => {
       dict[7] = g;
     } else if (val === "pumpingStation1") {
       h.push(dew(val));
-      dict[7] = h;
+      dict[8] = h;
     } else if (val === "sandFilter") {
       i.push(dew(val));
-      dict[7] = i;
+      dict[9] = i;
     } else if (val === "preliminaryTreatment") {
       j.push(dew(val));
-      dict[8] = j;
+      dict[10] = j;
+    } else if (val === "closingWall") {
+      k.push(dew(val));
+      dict[11] = k;
     }
   });
   const data = {
     labels: locationsR,
     datasets: [
       {
-        data: [a[0], b[0], c[0], d[0], e[0], f[0], g[0], h[0], i[0], j[0]],
+        data: [
+          a[0],
+          b[0],
+          c[0],
+          d[0],
+          e[0],
+          f[0],
+          g[0],
+          h[0],
+          i[0],
+          j[0],
+          k[0],
+        ],
         backgroundColor: [
           "rgba(255, 99, 132, 0.3)",
           "rgba(54, 162, 235, 0.3)",
           "rgba(255, 206, 86, 0.3)",
-          "rgba(75, 192, 192, 0.3)",
-          "rgba(153, 102, 255, 0.3)",
+          "rgba(115, 92, 192, 0.3)",
+          "rgba(173, 102, 255, 0.3)",
           "rgba(255, 159, 64, 0.3)",
           "rgba(225, 119, 64, 0.3)",
           "rgba(25, 189, 164, 0.3)",
           "rgba(205, 19, 94, 0.3)",
           "rgba(25, 109, 194, 0.3)",
+          "rgba(4, 109, 220, 0.3)",
         ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
@@ -247,9 +266,13 @@ const Stats = () => {
 
   return (
     <div>
+      <Card className="buttonn1" style={{ marginTop: 5, marginLeft: 28 }}>
+        <TipsAndUpdatesIcon color="warning" /> click on a location to show/hide
+        it on the chart
+      </Card>
       <div
         className="DoughnutDimension"
-        style={{ margin: 0, padding: 0, width: "33%" }}
+        style={{ marginLeft: -70, padding: 0, width: "33%" }}
       >
         <Doughnut
           options={optionsPie}
@@ -264,7 +287,7 @@ const Stats = () => {
 
       <div
         className="LineDimension"
-        style={{ margin: 0, padding: 0, width: "48%" }}
+        style={{ marginTop: 2, padding: 0, width: "44%" }}
       >
         <Line
           options={optionsLine}

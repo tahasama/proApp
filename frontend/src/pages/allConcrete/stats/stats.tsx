@@ -87,6 +87,7 @@ const Stats = () => {
   let l: any[] = [];
   let m: any[] = [];
   let n: any[] = [];
+  let o: any[] = [];
   let dict: any = {};
 
   const dew = (value: any) =>
@@ -142,6 +143,9 @@ const Stats = () => {
     } else if (val === "preliminaryTreatment") {
       n.push(dew(val));
       dict[14] = n;
+    } else if (val === "closingWall") {
+      o.push(dew(val));
+      dict[15] = o;
     }
   });
   const data = {
@@ -163,6 +167,7 @@ const Stats = () => {
           l[0],
           m[0],
           n[0],
+          o[0],
         ],
         backgroundColor: [
           "rgba(255, 99, 132, 0.3)",
@@ -175,11 +180,11 @@ const Stats = () => {
           "rgba(125, 59, 84, 0.3)",
           "rgba(135, 79, 44, 0.3)",
           "rgba(95, 187, 124, 0.3)",
-          "rgba(245, 93, 222, 0.3)",
+          "rgba(225, 186, 86, 0.3)",
           "rgba(89, 219, 190, 0.3)",
           "rgba(45, 100, 64, 0.3)",
-          "rgba(75, 700, 14, 0.3)",
-          "rgba(75, 200, 14, 0.3)",
+          "rgba(75, 25500, 14, 0.3)",
+          "rgba(85, 200, 94, 0.3)",
         ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
@@ -209,7 +214,7 @@ const Stats = () => {
   //-----------------------------------------------------------------for all itn total per month start
   let u1 = all.flat().map((x: any) => new Date(x.dateOfUsage).getMonth() + 1);
 
-  const labels1: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const labels1: any = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   let a1: any[] = [];
   let b1: any[] = [];
   let c1: any[] = [];
@@ -326,11 +331,11 @@ const Stats = () => {
       <div
         className="BarDimension"
         style={{
-          marginTop: 3,
+          marginTop: -97,
 
           padding: 0,
           width: 520,
-          marginLeft: 91,
+          marginLeft: -19,
         }}
       >
         <StatsPerReview all={all} />

@@ -36,7 +36,7 @@ const StatsPerReview = (all: any) => {
     },
   };
 
-  const labels: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const labels: any = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
   let uu: any = [];
   let uu1: any = [];
@@ -71,15 +71,16 @@ const StatsPerReview = (all: any) => {
       {
         label: "C1",
         data: uu.flat(),
-        borderColor: "#85c600",
-        backgroundColor: "#85c600",
+        borderColor: "#256fff",
+        backgroundColor: "#256fff",
         tension: 0.3,
       },
       {
         label: "C2",
         data: uu1.flat(),
-        borderColor: "#256fff",
-        backgroundColor: "#256fff",
+        borderColor: "#85c600",
+        backgroundColor: "#85c600",
+
         tension: 0.3,
       },
       {

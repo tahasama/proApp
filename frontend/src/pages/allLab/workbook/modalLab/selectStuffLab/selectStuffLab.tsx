@@ -7,7 +7,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { UpdateValuesOfSelect } from "../../../../../state/reducers/labSlice";
-import { locationsR, workbooks } from "../../../../../constants/constant";
+import { locationsL, workbooks } from "../../../../../constants/constant";
 
 export default function SelectStuffLab(individualLab: any) {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ export default function SelectStuffLab(individualLab: any) {
           label="Location"
           onChange={handleLocationChange}
         >
-          {locationsR.map((u: any) => (
+          {locationsL.map((u: any) => (
             <MenuItem value={u} key={u}>
               {u}
             </MenuItem>

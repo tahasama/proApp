@@ -108,7 +108,7 @@ const LocationsItn = () => {
     .flat()
     .map((x: any) => new Date(x.dateOfInspection).getMonth() + 1);
 
-  const labels: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const labels: any = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   let a: any[] = [];
   let b: any[] = [];
   let c: any[] = [];
@@ -232,10 +232,12 @@ const LocationsItn = () => {
                 position: "absolute",
                 marginLeft: 619,
                 marginTop: -26,
-                width: 430,
+                width: 440,
                 paddingLeft: 4,
                 paddingRight: 4,
                 maxHeight: 468,
+
+                // marginRight: 0,
               }}
             >
               <Timeline position="alternate">

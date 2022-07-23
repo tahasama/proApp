@@ -1,12 +1,12 @@
 import { useRef, useState } from "react";
-import { itnData, uploadPdfFile } from "../../../state";
+import { getItn, itnData, uploadPdfFile } from "../../../state";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 import CircularProgress from "@mui/material/CircularProgress";
 import Button from "@mui/material/Button";
+import { useParams } from "react-router-dom";
 
 const UploadItn = ({ handleClose }: any) => {
   const { individualItn } = useAppSelector(itnData);
-
   const dispatch = useAppDispatch();
   const pdfRef = useRef<any>(null);
   const [error, setError] = useState(false);

@@ -94,7 +94,13 @@ const AllQor = () => {
       minWidth: 40,
       cellRenderer: (params: any) => {
         const link1 = params.value;
-        return link1 && <a href={link1}>See QOR</a>;
+        return (
+          link1 && (
+            <a href={link1} target="_blank" rel="noreferrer">
+              See QOR
+            </a>
+          )
+        );
       },
     },
     {
@@ -103,7 +109,13 @@ const AllQor = () => {
       minWidth: 40,
       cellRenderer: (params: any) => {
         const link2 = params.value;
-        return link2 && <a href={link2}>See action</a>;
+        return (
+          link2 && (
+            <a href={link2} target="_blank" rel="noreferrer">
+              See action
+            </a>
+          )
+        );
       },
     },
   ]);

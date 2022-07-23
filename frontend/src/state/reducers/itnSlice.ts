@@ -67,19 +67,29 @@ const handleNumber = (num: any) => {
 export const uploadPdfFile = createAsyncThunk(
   "uploadPdfFile",
   async (value: any) => {
+    console.log("before storage");
+
     const storageRef = ref(
       storage,
       `itn/${value.itnValues.itp}/${
         value.itnValues.routine
       }/QW211101-SNCE-QA-ITN-${handleNumber(value.itnValues.num)}.pdf`
     );
+    console.log("after storage");
+
     try {
-      await uploadBytesResumable(storageRef, value.pdf);
+      const pp = await uploadBytesResumable(storageRef, value.pdf);
+      console.log("pppp", pp);
+
       try {
         const res = await getDownloadURL(storageRef);
-        await axios.put(PROJECT_URL + value.itnId, {
+        console.log("res", res);
+        console.log("itnId", value);
+
+        const reso = await axios.put(PROJECT_URL + value.itnValues._id, {
           pdfUrl: res,
         });
+        console.log("eeeeee", reso);
       } catch (error) {
         return error;
       }

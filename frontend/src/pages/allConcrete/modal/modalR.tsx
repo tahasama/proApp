@@ -42,6 +42,17 @@ export default function ModalM() {
     setValue(newValue);
   };
 
+  // const handleChange = (date: Date | null) => {
+  //   date
+  //     ? setValue(
+  //         ((theDate) =>
+  //           new Date(
+  //             theDate.getTime() - theDate.getTimezoneOffset() * 60 * 1000
+  //           ))(new Date(date))
+  //       )
+  //     : setValue(date);
+  // };
+
   return (
     <div>
       <Button
@@ -79,7 +90,7 @@ export default function ModalM() {
                 <Stack spacing={3}>
                   <MobileDatePicker
                     label="Date"
-                    inputFormat="MM/dd/yyyy"
+                    inputFormat="MM/DD/yyyy"
                     value={value}
                     onChange={handleChange}
                     renderInput={(params) => <TextField {...params} />}

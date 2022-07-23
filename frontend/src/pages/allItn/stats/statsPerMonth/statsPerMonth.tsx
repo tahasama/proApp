@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { Button } from "@mui/material";
+import { Button, Card } from "@mui/material";
+import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import { getAllItns, itnData } from "../../../../state";
 import { useAppDispatch, useAppSelector } from "../../../../state/hooks";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
@@ -13,8 +14,7 @@ import {
   LineElement,
   Title,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
-
+import { Bar, Line } from "react-chartjs-2";
 import "./statsPerMonth.css";
 import { labelsName, locations } from "../../../../constants/constant";
 
@@ -36,8 +36,8 @@ const StatsPerMonth = () => {
     dispatch(getAllItns());
   }, [all]);
   const optionsLine = {
-    responsive: true,
-    maintainAspectRatio: true,
+    // responsive: true,
+    // maintainAspectRatio: true,
     plugins: {
       legend: {
         position: "top" as const,
@@ -50,7 +50,7 @@ const StatsPerMonth = () => {
     },
   };
 
-  const labels: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const labels: any = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
   let dict: any = {};
   let uu: any = [];
@@ -133,102 +133,103 @@ const StatsPerMonth = () => {
   lm("aerationTank");
 
   labels.map((i: any) => {
-    dict[i] !== undefined ? uu.push(dict[i]) : uu.push(0);
+    return dict[i] !== undefined ? uu.push(dict[i]) : uu.push(0);
   });
 
   dict = {};
   lm("PrimaryClarifierP7");
 
   labels.map((i: any) => {
-    dict[i] !== undefined ? uu1.push(dict[i]) : uu1.push(0);
+    return dict[i] !== undefined ? uu1.push(dict[i]) : uu1.push(0);
   });
 
   dict = {};
   lm("PrimaryClarifierP8");
 
   labels.map((i: any) => {
-    dict[i] !== undefined ? uu2.push(dict[i]) : uu2.push(0);
+    return dict[i] !== undefined ? uu2.push(dict[i]) : uu2.push(0);
   });
 
   dict = {};
   lm("PrimaryClarifierP9");
 
   labels.map((i: any) => {
-    dict[i] !== undefined ? uu3.push(dict[i]) : uu3.push(0);
+    return dict[i] !== undefined ? uu3.push(dict[i]) : uu3.push(0);
   });
 
   dict = {};
   lm("secondaryClarifierP24");
 
   labels.map((i: any) => {
-    dict[i] !== undefined ? uu4.push(dict[i]) : uu4.push(0);
+    return dict[i] !== undefined ? uu4.push(dict[i]) : uu4.push(0);
   });
 
   dict = {};
   lm("secondaryClarifierP25");
 
   labels.map((i: any) => {
-    dict[i] !== undefined ? uu5.push(dict[i]) : uu5.push(0);
+    return dict[i] !== undefined ? uu5.push(dict[i]) : uu5.push(0);
   });
 
   dict = {};
   lm("secondaryClarifierP32");
 
   labels.map((i: any) => {
-    dict[i] !== undefined ? uu6.push(dict[i]) : uu6.push(0);
+    return dict[i] !== undefined ? uu6.push(dict[i]) : uu6.push(0);
   });
 
   dict = {};
   lm("mainBuilding");
 
   labels.map((i: any) => {
-    dict[i] !== undefined ? uu7.push(dict[i]) : uu7.push(0);
+    return dict[i] !== undefined ? uu7.push(dict[i]) : uu7.push(0);
   });
 
   dict = {};
   lm("workShop");
 
   labels.map((i: any) => {
-    dict[i] !== undefined ? uu8.push(dict[i]) : uu8.push(0);
+    return dict[i] !== undefined ? uu8.push(dict[i]) : uu8.push(0);
   });
 
   dict = {};
   lm("chlorinationTank");
 
   labels.map((i: any) => {
-    dict[i] !== undefined ? uu9.push(dict[i]) : uu9.push(0);
+    return dict[i] !== undefined ? uu9.push(dict[i]) : uu9.push(0);
   });
 
   dict = {};
   lm("pumpingStation2");
 
   labels.map((i: any) => {
-    dict[i] !== undefined ? uu10.push(dict[i]) : uu10.push(0);
+    return dict[i] !== undefined ? uu10.push(dict[i]) : uu10.push(0);
   });
 
   dict = {};
   lm("pumpingStation1");
 
   labels.map((i: any) => {
-    dict[i] !== undefined ? uu11.push(dict[i]) : uu11.push(0);
+    return dict[i] !== undefined ? uu11.push(dict[i]) : uu11.push(0);
   });
 
   dict = {};
   lm("sandFilter");
 
   labels.map((i: any) => {
-    dict[i] !== undefined ? uu12.push(dict[i]) : uu12.push(0);
+    return dict[i] !== undefined ? uu12.push(dict[i]) : uu12.push(0);
   });
 
   dict = {};
   lm("preliminaryTreatment");
 
   labels.map((i: any) => {
-    dict[i] !== undefined ? uu12.push(dict[i]) : uu13.push(0);
+    return dict[i] !== undefined ? uu13.push(dict[i]) : uu13.push(0);
   });
 
-  const [q, setQ] = useState<any[]>(locations);
-  const [filters, setFilters] = useState(true);
+  // const [q, setQ] = useState<any[]>(locations);
+  // const [filters, setFilters] = useState(true);
+  const [lineBar, setLineBar] = useState(false);
 
   const data: any = {
     labels: labelsName,
@@ -236,103 +237,142 @@ const StatsPerMonth = () => {
     datasets: [
       {
         label: "Aeration",
-        data: q.includes("aerationTank") ? uu : [0],
+        // data: q.includes("aerationTank") ? uu : [0],
+        data: uu,
         borderColor: "#cc0000",
+        backgroundColor: "#cc0000",
         tension: 0.3,
       },
       {
         label: "P7",
-        data: !q.includes("PrimaryClarifierP7") ? [0] : uu1,
+        // data: !q.includes("PrimaryClarifierP7") ? [0] : uu1,
+        data: uu1,
+
         borderColor: "#ff8800",
+        backgroundColor: "#ff8800",
         tension: 0.3,
       },
       {
         label: "P8",
-        data: !q.includes("PrimaryClarifierP8") ? [0] : uu2,
+        // data: !q.includes("PrimaryClarifierP8") ? [0] : uu2,
+        data: uu2,
 
-        borderColor: "#007e33",
+        borderColor: "#a07e33",
+        backgroundColor: "#a07e33",
         tension: 0.3,
       },
       {
         label: "P9",
-        data: !q.includes("PrimaryClarifierP9") ? [0] : uu3,
+        // data: !q.includes("PrimaryClarifierP9") ? [0] : uu3,
+        data: uu3,
 
         borderColor: "#0099cc",
+        backgroundColor: "#0099cc",
         tension: 0.3,
       },
       {
         label: "P24",
-        data: !q.includes("secondaryClarifierP24") ? [0] : uu4,
+        // data: !q.includes("secondaryClarifierP24") ? [0] : uu4,
+        data: uu4,
 
         borderColor: "#00695c",
+        backgroundColor: "#00695c",
+
         tension: 0.3,
       },
       {
         label: "P25",
-        data: !q.includes("secondaryClarifierP25") ? [0] : uu5,
+        // data: !q.includes("secondaryClarifierP25") ? [0] : uu5,
+        data: uu5,
 
         borderColor: "#0d47a1",
+        backgroundColor: "#0d47a1",
+
         tension: 0.3,
       },
       {
         label: "P32",
-        data: !q.includes("secondaryClarifierP32") ? [0] : uu6,
-        borderColor: "#9933cc",
+        // data: !q.includes("secondaryClarifierP32") ? [0] : uu6,
+        data: uu6,
+
+        borderColor: "#ffd000",
+        backgroundColor: "#ffd000",
         tension: 0.3,
       },
       {
         label: "mainB",
-        data: !q.includes("mainBuilding") ? [0] : uu7,
+        // data: !q.includes("mainBuilding") ? [0] : uu7,
+        data: uu7,
+
         borderColor: "#1933cc",
+        backgroundColor: "#1933cc",
         tension: 0.3,
       },
       {
         label: "workShop",
-        data: !q.includes("workShop") ? [0] : uu8,
+        // data: !q.includes("workShop") ? [0] : uu8,
+        data: uu8,
+
         borderColor: "#9f33cc",
+        backgroundColor: "#9f33cc",
         tension: 0.3,
       },
       {
         label: "chlorinationT",
-        data: !q.includes("chlorinationTank") ? [0] : uu9,
+        // data: !q.includes("chlorinationTank") ? [0] : uu9,
+        data: uu9,
+
         borderColor: "#99007c",
+        backgroundColor: "#99007c",
         tension: 0.3,
       },
       {
         label: "SP2",
-        data: !q.includes("pumpingStation2") ? [0] : uu10,
+        // data: !q.includes("pumpingStation2") ? [0] : uu10,
+        data: uu10,
+
         borderColor: "#9ee3cc",
+        backgroundColor: "#9ee3cc",
         tension: 0.3,
       },
       {
         label: "SP1",
-        data: !q.includes("pumpingStation1") ? [0] : uu11,
-        borderColor: "#39a3ca",
+        // data: !q.includes("pumpingStation1") ? [0] : uu11,
+        data: uu11,
+
+        borderColor: "#00ff00",
+        backgroundColor: "#00ff00",
         tension: 0.3,
       },
       {
         label: "sandFilter",
-        data: !q.includes("sandFilter") ? [0] : uu12,
+        // data: !q.includes("sandFilter") ? [0] : uu12,
+        data: uu12,
+
         borderColor: "#ff33cc",
+        backgroundColor: "#ff33cc",
         tension: 0.3,
       },
       {
-        label: "preliminaryTreatment",
-        data: !q.includes("preliminaryTreatment") ? [0] : uu13,
-        borderColor: "#f0d3cc",
+        label: "pre Treatment",
+        // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+        data: uu13,
+
+        borderColor: "#e0c3cc",
+        backgroundColor: "#e0c3cc",
         tension: 0.3,
       },
     ],
   };
 
-  const handleCheckBox = (e: any, key: any) => {
-    let w = e.target.name;
-    key ? setQ([...q, w]) : setQ(q.filter((t: any) => t !== w));
-  };
+  // const handleCheckBox = (e: any, key: any) => {
+  //   let w = e.target.name;
+  //   key ? setQ([...q, w]) : setQ(q.filter((t: any) => t !== w));
+  // };
 
   return (
     <div className="statsPerMonth">
-      <div className="statsPerMonthFilterButton">
+      {/* <div className="statsPerMonthFilterButton">
         <div>
           {filters ? (
             <Button variant="contained" onClick={() => setFilters(!filters)}>
@@ -374,17 +414,50 @@ const StatsPerMonth = () => {
             </FormGroup>
           )}
         </div>
-      </div>
-      <Line
-        options={optionsLine}
-        data={data}
-        style={{
-          width: 340,
-          marginTop: -20,
-          backgroundColor: "rgb(210,215,230,0.8)",
-        }}
-        className="statsPerMonthLine"
-      />
+      </div> */}
+      <Button
+        variant="contained"
+        className="buttonn"
+        color="error"
+        onClick={() => setLineBar(!lineBar)}
+      >
+        to {lineBar ? "Line" : "Bar"} Chart
+      </Button>
+      <Card className="buttonn1">
+        <TipsAndUpdatesIcon color="warning" />
+        click on the button above to switch from Dohgnut Bar chart to Line chart
+        and vice versa
+      </Card>
+      <Card className="buttonn1" style={{ marginTop: 150 }}>
+        <TipsAndUpdatesIcon color="warning" /> click on a location to show/hide
+        it on the chart
+      </Card>
+      {lineBar ? (
+        <div className="statsPerMonthLine">
+          <Bar
+            options={optionsLine}
+            data={data}
+            style={{
+              //   marginTop: -20,
+              //   marginRight: 80,
+              backgroundColor: "rgb(210,215,230,0.8)",
+              //   width: "1400px",
+            }}
+          />
+        </div>
+      ) : (
+        <div className="statsPerMonthLine">
+          <Line
+            options={optionsLine}
+            data={data}
+            style={{
+              //   marginTop: -20,
+              backgroundColor: "rgb(210,215,230,0.8)",
+              //   width: "1400px",
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };

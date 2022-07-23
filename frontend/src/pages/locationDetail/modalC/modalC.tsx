@@ -83,7 +83,7 @@ export default function ModalC() {
                 <Stack spacing={3}>
                   <MobileDatePicker
                     label="Date"
-                    inputFormat="MM/dd/yyyy"
+                    inputFormat="MM/DD/yyyy"
                     value={value}
                     onChange={handleChange}
                     renderInput={(params) => <TextField {...params} />}

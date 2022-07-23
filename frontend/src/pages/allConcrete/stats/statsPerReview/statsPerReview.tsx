@@ -36,7 +36,7 @@ const StatsPerReview = (all: any) => {
     },
   };
 
-  const labels: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const labels: any = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
   let uu: any = [];
   let uu1: any = [];

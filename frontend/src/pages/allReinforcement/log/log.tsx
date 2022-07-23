@@ -52,7 +52,9 @@ const Log = () => {
       checkboxSelection: true,
       minWidth: 270,
       cellRenderer: (params: any) => {
-        return params.value !== undefined && params.value !== ""
+        return params.value !== undefined &&
+          params.value !== "" &&
+          params.value !== null
           ? `QW221101-SNCE-QA-RIR-${handleNumber(params.value)}`
           : "QW221101-SNCE-QA-RIR-0000";
       },
@@ -117,7 +119,13 @@ const Log = () => {
       cellRenderer: (params: any) => {
         const link3 = params.value;
 
-        return link3 && <a href={link3}>See Docs</a>;
+        return (
+          link3 && (
+            <a href={link3} target="_blank" rel="noreferrer">
+              See Docs
+            </a>
+          )
+        );
       },
     },
   ]);
@@ -195,7 +203,7 @@ const Log = () => {
   };
 
   return (
-    <div className="log1">
+    <div className="log1" style={{ marginTop: 68 }}>
       <div>
         <h2 className="title4">Reinforcement Data Records</h2>
       </div>
@@ -236,7 +244,9 @@ const Log = () => {
                       ? all.flat().reverse()
                       : all
                           .flat()
-                          .filter((n: any) => n.numY !== undefined)
+                          .filter(
+                            (n: any) => n.numY !== undefined && n.numY !== null
+                          )
                           .reverse()
                   }
                   columnDefs={columnDefs}

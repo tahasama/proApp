@@ -58,7 +58,7 @@ const ConcreteOfLocation = () => {
     },
   };
 
-  const labels: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const labels: any = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
   let uu: any = [];
   let uu1: any = [];
@@ -100,8 +100,8 @@ const ConcreteOfLocation = () => {
       {
         label: "B15",
         data: uu4.flat(),
-        borderColor: "#85c600",
-        backgroundColor: "#85c600",
+        borderColor: "#DAE42E",
+        backgroundColor: "#DAE42E",
         tension: 0.3,
       },
       {
@@ -180,7 +180,7 @@ const ConcreteOfLocation = () => {
       {" "}
       <TableContainer
         component={Paper}
-        style={{ marginLeft: 100, marginTop: -120 }}
+        style={{ marginLeft: 120, marginTop: -105 }}
       >
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -214,14 +214,17 @@ const ConcreteOfLocation = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <div className="statsPerMonth">
+      <div
+        className="statsPerMonth"
+        style={{ marginTop: 0, padding: 0, width: "80%" }}
+      >
         <Bar
           options={optionsLine}
           data={data}
           style={{
-            height: 350,
-            marginTop: 50,
-            marginLeft: 200,
+            width: "10%",
+            marginTop: 40,
+            marginLeft: 70,
             backgroundColor: "rgb(230,230,230,0.9)",
           }}
           className="statsPerMonthLine"

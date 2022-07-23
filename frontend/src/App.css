@@ -5,7 +5,8 @@
 body {
   background-image: url("./images/PPP.jpeg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 105%;
+  background-position-y: 0px;
 }
 
 .App-logo {
