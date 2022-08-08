@@ -13,7 +13,11 @@ export const locations = [
   "pumpingStation1",
   "sandFilter",
   "preliminaryTreatment",
+  "blowersRoom",
   "closingWall",
+  "mainStation",
+  "electricalRoom1",
+  "electricalRoom2",
   "other",
 ];
 
@@ -28,7 +32,11 @@ export const locationsR = [
   "pumpingStation1",
   "sandFilter",
   "preliminaryTreatment",
+  "blowersRoom",
   "closingWall",
+  "electricalRoom1",
+  "electricalRoom2",
+  "mainStation",
 ];
 
 export const labelsName: any = [
@@ -52,6 +60,7 @@ export const routines = [
   "Conduites Installation ",
   "Lean Concrete",
   "Mass Concrete",
+  "Cyclopeen Concrete",
   "Reinforcement & Formwork",
   "Concrete placing and finishing",
   "Curing",
@@ -59,6 +68,7 @@ export const routines = [
   "Backfilling",
   "Treatement protection layer",
   "Concrete Tests",
+  "Masonry",
 ];
 
 export const workbooks = [
@@ -78,16 +88,26 @@ export const handleNumber = (num: any) => {
 };
 
 export const locationsL = [
-  "secondaryClarifier",
-  "PrimaryClarifier",
   "aerationTank",
+  "PrimaryClarifierP7",
+  "PrimaryClarifierP8",
+  "PrimaryClarifierP9",
+  "secondaryClarifierP24",
+  "secondaryClarifierP25",
+  "secondaryClarifierP32",
   "mainBuilding",
   "workShop",
   "chlorinationTank",
   "pumpingStation2",
   "pumpingStation1",
   "sandFilter",
+  "preliminaryTreatment",
+  "blowersRoom",
   "closingWall",
+  "mainStation",
+  "electricalRoom1",
+  "electricalRoom2",
+  "other",
   "GAT01",
   "GAT02",
   "GAT03",

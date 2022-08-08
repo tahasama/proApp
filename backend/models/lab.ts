@@ -14,6 +14,7 @@ const LabSchema = new mongooses.Schema(
     valueL2: { type: Number, required: false },
     valueL3: { type: Number, required: false },
     valueL4: { type: Number, required: false },
+    concreteType: { type: String, required: false },
   },
   {
     timestamps: true,

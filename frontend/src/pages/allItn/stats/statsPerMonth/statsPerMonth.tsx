@@ -67,6 +67,11 @@ const StatsPerMonth = () => {
   let uu11: any = [];
   let uu12: any = [];
   let uu13: any = [];
+  let uu14: any = [];
+  let uu15: any = [];
+  let uu16: any = [];
+  let uu17: any = [];
+  let uu18: any = [];
 
   //===============================================================================the function start
   const lm = (v: any) => {
@@ -227,6 +232,41 @@ const StatsPerMonth = () => {
     return dict[i] !== undefined ? uu13.push(dict[i]) : uu13.push(0);
   });
 
+  dict = {};
+  lm("closingWall");
+
+  labels.map((i: any) => {
+    return dict[i] !== undefined ? uu14.push(dict[i]) : uu14.push(0);
+  });
+
+  dict = {};
+  lm("blowersRoom");
+
+  labels.map((i: any) => {
+    return dict[i] !== undefined ? uu15.push(dict[i]) : uu15.push(0);
+  });
+
+  dict = {};
+  lm("mainStation");
+
+  labels.map((i: any) => {
+    return dict[i] !== undefined ? uu16.push(dict[i]) : uu16.push(0);
+  });
+
+  dict = {};
+  lm("electricalRoom1");
+
+  labels.map((i: any) => {
+    return dict[i] !== undefined ? uu17.push(dict[i]) : uu17.push(0);
+  });
+
+  dict = {};
+  lm("electricalRoom2");
+
+  labels.map((i: any) => {
+    return dict[i] !== undefined ? uu18.push(dict[i]) : uu18.push(0);
+  });
+
   // const [q, setQ] = useState<any[]>(locations);
   // const [filters, setFilters] = useState(true);
   const [lineBar, setLineBar] = useState(false);
@@ -360,6 +400,51 @@ const StatsPerMonth = () => {
 
         borderColor: "#e0c3cc",
         backgroundColor: "#e0c3cc",
+        tension: 0.3,
+      },
+      {
+        label: "C.Wall",
+        // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+        data: uu14,
+
+        borderColor: "#2fc3cc",
+        backgroundColor: "#2fc3cc",
+        tension: 0.3,
+      },
+      {
+        label: "Blowers.R",
+        // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+        data: uu15,
+
+        borderColor: "#2d93cc",
+        backgroundColor: "#2d93cc",
+        tension: 0.3,
+      },
+      {
+        label: "M.Station",
+        // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+        data: uu16,
+
+        borderColor: "#8003cc",
+        backgroundColor: "#8003cc",
+        tension: 0.3,
+      },
+      {
+        label: "Electrical.R1",
+        // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+        data: uu17,
+
+        borderColor: "#dd03cc",
+        backgroundColor: "#dd03cc",
+        tension: 0.3,
+      },
+      {
+        label: "Electrical.R2",
+        // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+        data: uu18,
+
+        borderColor: "#a103cc",
+        backgroundColor: "#a103cc",
         tension: 0.3,
       },
     ],

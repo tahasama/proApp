@@ -59,6 +59,14 @@ export default function ModalLab() {
     setValue(newValue);
   };
 
+  console.log(
+    "nnnnnnnn",
+    (parseFloat(inputRefValueL1?.current?.value) +
+      parseFloat(inputRefValueL2?.current?.value) +
+      parseFloat(inputRefValueL3?.current?.value)) /
+      3
+  );
+
   const upload = (e: any) => {
     e.preventDefault();
 

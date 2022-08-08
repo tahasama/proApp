@@ -83,34 +83,80 @@ export default function NavBar() {
     console.log("adadfads222222", searchRef.current);
     if (searchRef.current.value === "at") {
       navigate("/aerationTank");
+      window.location.reload();
+      return false;
     } else if (searchRef.current.value === "p7") {
       navigate("/PrimaryClarifierP7");
+      window.location.reload();
+      return false;
     } else if (searchRef.current.value === "p8") {
       navigate("/PrimaryClarifierP8");
+      window.location.reload();
+      return false;
     } else if (searchRef.current.value === "p9") {
       navigate("/PrimaryClarifierP9");
+      window.location.reload();
+      return false;
     } else if (searchRef.current.value === "p24") {
       navigate("/secondaryClarifierP24");
+      window.location.reload();
+      return false;
     } else if (searchRef.current.value === "p25") {
       navigate("/secondaryClarifierP25");
+      window.location.reload();
+      return false;
     } else if (searchRef.current.value === "p32") {
       navigate("/secondaryClarifierP32");
+      window.location.reload();
+      return false;
     } else if (searchRef.current.value === "mb") {
       navigate("/mainBuilding");
+      window.location.reload();
+      return false;
     } else if (searchRef.current.value === "ws") {
       navigate("/workShop");
+      window.location.reload();
+      return false;
     } else if (searchRef.current.value === "ct") {
       navigate("/chlorinationTank");
-    } else if (searchRef.current.value === "sp2") {
+      window.location.reload();
+      return false;
+    } else if (searchRef.current.value === "ps2") {
       navigate("/pumpingStation2");
-    } else if (searchRef.current.value === "sp1") {
-      navigate("/pumpingStation2");
+      window.location.reload();
+      return false;
+    } else if (searchRef.current.value === "ps1") {
+      navigate("/pumpingStation1");
+      window.location.reload();
+      return false;
     } else if (searchRef.current.value === "sf") {
       navigate("/sandFilter");
+      window.location.reload();
+      return false;
     } else if (searchRef.current.value === "cw") {
       navigate("/closingWall");
+      window.location.reload();
+      return false;
     } else if (searchRef.current.value === "pt") {
       navigate("/preliminaryTreatment");
+      window.location.reload();
+      return false;
+    } else if (searchRef.current.value === "br") {
+      navigate("/blowersRoom");
+      window.location.reload();
+      return false;
+    } else if (searchRef.current.value === "ms") {
+      navigate("/mainStation");
+      window.location.reload();
+      return false;
+    } else if (searchRef.current.value === "er1") {
+      navigate("/electricalRoom1");
+      window.location.reload();
+      return false;
+    } else if (searchRef.current.value === "er2") {
+      navigate("/electricalRoom2");
+      window.location.reload();
+      return false;
     }
   };
 

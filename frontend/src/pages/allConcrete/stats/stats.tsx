@@ -88,6 +88,10 @@ const Stats = () => {
   let m: any[] = [];
   let n: any[] = [];
   let o: any[] = [];
+  let p: any[] = [];
+  let q: any[] = [];
+  let r: any[] = [];
+  let s: any[] = [];
   let dict: any = {};
 
   const dew = (value: any) =>
@@ -100,15 +104,12 @@ const Stats = () => {
   u.forEach((val, index) => {
     if (val === "aerationTank") {
       a.push(dew(val));
-
       dict[1] = a;
     } else if (val === "PrimaryClarifierP7") {
       b.push(dew(val));
-
       dict[2] = b;
     } else if (val === "PrimaryClarifierP8") {
       c.push(dew(val));
-
       dict[3] = c;
     } else if (val === "PrimaryClarifierP9") {
       d.push(dew(val));
@@ -146,6 +147,18 @@ const Stats = () => {
     } else if (val === "closingWall") {
       o.push(dew(val));
       dict[15] = o;
+    } else if (val === "blowersRoom") {
+      p.push(dew(val));
+      dict[16] = p;
+    } else if (val === "mainStation") {
+      q.push(dew(val));
+      dict[17] = q;
+    } else if (val === "electricalRoom1") {
+      r.push(dew(val));
+      dict[18] = r;
+    } else if (val === "electricalRoom2") {
+      s.push(dew(val));
+      dict[19] = s;
     }
   });
   const data = {
@@ -168,6 +181,10 @@ const Stats = () => {
           m[0],
           n[0],
           o[0],
+          p[0],
+          q[0],
+          r[0],
+          s[0],
         ],
         backgroundColor: [
           "rgba(255, 99, 132, 0.3)",
@@ -184,7 +201,11 @@ const Stats = () => {
           "rgba(89, 219, 190, 0.3)",
           "rgba(45, 100, 64, 0.3)",
           "rgba(75, 25500, 14, 0.3)",
-          "rgba(85, 200, 94, 0.3)",
+          "rgba(185, 200, 94, 0.3)",
+          "rgba(85, 230, 94, 0.3)",
+          "rgba(165, 33, 94, 0.3)",
+          "rgba(240, 200, 94, 0.3)",
+          "rgba(135, 250, 94, 0.3)",
         ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
@@ -202,6 +223,11 @@ const Stats = () => {
           "rgba(45, 0, 64, 1)",
           "rgba(75, 700, 14, 1)",
           "rgba(75, 200, 14, 1)",
+          "rgba(185, 200, 94, 0.3)",
+          "rgba(85, 230, 94, 0.3)",
+          "rgba(165, 33, 94, 0.3)",
+          "rgba(240, 200, 94, 0.3)",
+          "rgba(135, 250, 94, 0.3)",
         ],
         borderWidth: 1,
         fill: false,

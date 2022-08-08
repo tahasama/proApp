@@ -16,13 +16,10 @@ import {
   ref,
 } from "firebase/storage";
 import * as FileSaver from "file-saver";
-import { locations, workbooks } from "../../constants/constant";
+import { locationsL, workbooks } from "../../constants/constant";
 
 const AllLab = () => {
   const navigate = useNavigate();
-  useEffect(() => {
-    locations.push("GAT01", "GAT02", "GAT03", "GAT04", "Stock");
-  }, []);
 
   const DownloadFolders = async (): Promise<any> => {
     try {
@@ -31,7 +28,7 @@ const AllLab = () => {
       const proms2 = workbooks
         .map(async (wor: any) => {
           const ccc: any = xxx.folder(`${wor}`);
-          const proms1 = locations
+          const proms1 = locationsL
             .map(async (loca: any) => {
               const storage = getStorage();
               const folder = await listAll(

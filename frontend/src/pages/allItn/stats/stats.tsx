@@ -87,6 +87,10 @@ const Stats = () => {
   let m: any[] = [];
   let n: any[] = [];
   let o: any[] = [];
+  let p: any[] = [];
+  let q: any[] = [];
+  let r: any[] = [];
+  let s: any[] = [];
   let dict: any = {};
 
   u.forEach((val, index) => {
@@ -132,9 +136,21 @@ const Stats = () => {
     } else if (val === "preliminaryTreatment") {
       n.push(index);
       dict[14] = n;
-    } else if (val === "closingWall") {
+    } else if (val === "blowersRoom") {
       o.push(index);
       dict[15] = o;
+    } else if (val === "closingWall") {
+      p.push(index);
+      dict[16] = p;
+    } else if (val === "mainStation") {
+      q.push(index);
+      dict[17] = q;
+    } else if (val === "electricalRoom1") {
+      r.push(index);
+      dict[17] = r;
+    } else if (val === "electricalRoom2") {
+      s.push(index);
+      dict[17] = s;
     }
   });
 
@@ -158,6 +174,10 @@ const Stats = () => {
           m.length,
           n.length,
           o.length,
+          p.length,
+          q.length,
+          r.length,
+          s.length,
         ],
         backgroundColor: [
           "rgba(0,0,128, 0.3)",
@@ -166,7 +186,7 @@ const Stats = () => {
           "rgba(0,128,128, 0.3)",
           "rgba(0,255,0, 0.3)",
           "rgba(0,255,255, 0.3)",
-          "rgba(128,0,0, 0.3)",
+          "rgba(128,90,0, 0.3)",
           "rgba(128,0,128, 0.3)",
           "rgba(128,128,0, 0.3)",
           "rgba(255,0,0, 0.3)",
@@ -176,7 +196,11 @@ const Stats = () => {
           "rgba(238, 130, 238, 0.3)",
           "rgba(255, 165, 0, 0.3)",
           "rgba(89, 219, 190, 0.3)",
-          "rgba(45, 100, 64, 0.3)",
+          "rgba(245, 100, 64, 0.3)",
+          "rgba(185, 133, 44, 0.3)",
+          "rgba(105, 233, 144, 0.3)",
+          "rgba(228,0,128, 0.3)",
+          "rgba(228,128,0, 0.3)",
         ],
         borderColor: [
           "rgba(0,0,128,1)",
@@ -196,6 +220,10 @@ const Stats = () => {
           "rgba(255, 165, 0,1)",
           "rgba(89, 219, 190,1)",
           "rgba(45, 100, 64,1)",
+          "rgba(105, 233, 144, 0.3)",
+          "rgba(85, 133, 44, 0.3)",
+          "rgba(228,0,128, 0.3)",
+          "rgba(228,128,0, 0.3)",
         ],
         borderWidth: 1,
         fill: false,

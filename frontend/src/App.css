@@ -9,6 +9,20 @@ body {
   background-position-y: 0px;
 }
 
+.dev {
+  position: fixed;
+  bottom: -12px;
+  right: 200px;
+  z-index: 99;
+  background-color: rgba(24, 228, 41, 0.8);
+  color: rgb(24, 24, 26);
+  font-family: "Times New Roman";
+  font-size: 17px;
+  border-radius: 20px;
+  padding: 3px;
+  font-weight: 700;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

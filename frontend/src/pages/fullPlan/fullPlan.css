@@ -455,6 +455,130 @@
   opacity: 1;
 }
 
+.electricalRoom1 {
+  cursor: pointer;
+  position: absolute;
+  top: 290px;
+  left: 860px;
+  height: 25px;
+  width: 60px;
+  opacity: 0;
+  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
+  border-radius: 10%;
+}
+.electricalRoom1:hover {
+  opacity: 0.7;
+}
+
+.name-electricalRoom1 {
+  position: absolute;
+  right: 320px;
+  bottom: 350px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  font-size: 20px;
+  border-radius: 15px;
+  background-color: rgba(225, 243, 243, 0.6);
+  padding: 5px;
+}
+
+.electricalRoom1:hover + .name-electricalRoom1 {
+  opacity: 1;
+}
+
+.electricalRoom2 {
+  cursor: pointer;
+  position: absolute;
+  top: 290px;
+  left: 280px;
+  height: 55px;
+  width: 30px;
+  opacity: 0;
+  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
+  border-radius: 10%;
+}
+.electricalRoom2:hover {
+  opacity: 0.7;
+}
+
+.name-electricalRoom2 {
+  position: absolute;
+  left: 300px;
+  bottom: 350px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  font-size: 20px;
+  border-radius: 15px;
+  background-color: rgba(225, 243, 243, 0.6);
+  padding: 5px;
+}
+
+.electricalRoom2:hover + .name-electricalRoom2 {
+  opacity: 1;
+}
+
+.blowersRoom {
+  cursor: pointer;
+  position: absolute;
+  top: 290px;
+  right: 510px;
+  height: 35px;
+  width: 50px;
+  opacity: 0;
+  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
+  border-radius: 10%;
+}
+.blowersRoom:hover {
+  opacity: 0.7;
+}
+
+.name-blowersRoom {
+  position: absolute;
+  right: 500px;
+  bottom: 350px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  font-size: 20px;
+  border-radius: 15px;
+  background-color: rgba(225, 243, 243, 0.6);
+  padding: 5px;
+}
+
+.blowersRoom:hover + .name-blowersRoom {
+  opacity: 1;
+}
+
+.generator {
+  cursor: pointer;
+  position: absolute;
+  top: 220px;
+  left: 215px;
+  height: 15px;
+  width: 10px;
+  opacity: 0;
+  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
+  border-radius: 10%;
+}
+.generator:hover {
+  opacity: 0.7;
+}
+
+.name-generator {
+  position: absolute;
+  left: 220px;
+  bottom: 420px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  font-size: 20px;
+  border-radius: 15px;
+  background-color: rgba(225, 243, 243, 0.6);
+  padding: 5px;
+}
+
+.generator:hover + .name-generator {
+  opacity: 1;
+}
+
 .closingWall {
   position: absolute;
   top: 60px;

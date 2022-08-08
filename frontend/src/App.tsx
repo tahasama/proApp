@@ -42,6 +42,7 @@ function App() {
 
   return (
     <div className="App">
+      <p className="dev">Developped by: taha.maatof@gmail.com</p>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
