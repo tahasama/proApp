@@ -24,7 +24,7 @@ routerL.post("/create", async (req, res) => {
   }
 });
 
-// get itn by id
+// get itn by id:
 routerL.get("/:id", async (req, res) => {
   try {
     const lab = await Lab.findById(req.params.id);

@@ -43,7 +43,7 @@ export default function ModalLab() {
   const handleClose = () => setOpen(false);
   const dispatch = useAppDispatch();
 
-  const { newType, newLocation, individualLab, selectedBox } =
+  const { newType, newLocation, newConcretType, individualLab, selectedBox } =
     useAppSelector(LabData);
   const [value, setValue] = React.useState<Date | null>(new Date());
   const [loading, setLoading] = useState(false);
@@ -249,6 +249,7 @@ export default function ModalLab() {
                         numL: inputRefNum.current.value,
                         dateL: value,
                         location: newLocation,
+                        concretType: newConcretType,
                         subLocation: inputRefSubLocation.current.value,
 
                         valueL1:
@@ -280,6 +281,7 @@ export default function ModalLab() {
                         numL: inputRefNum.current.value,
                         dateL: value,
                         location: newLocation,
+                        concretType: newConcretType,
                         subLocation: inputRefSubLocation.current.value,
                       })
                     ),

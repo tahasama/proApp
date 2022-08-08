@@ -119,6 +119,7 @@ interface LabsProps {
     newType: string;
     selectedBox: string;
     newLocation: string;
+    newConcretType: string;
   };
 }
 
@@ -131,6 +132,7 @@ const initialState = {
   ww: [],
   selectedBox: "",
   newLocation: "",
+  newConcretType: "",
 };
 
 export const projectsSlice = createSlice({
@@ -146,6 +148,7 @@ export const projectsSlice = createSlice({
     UpdateValuesOfSelect: (state, action) => {
       state.newType = action.payload.newType;
       state.newLocation = action.payload.newLocation;
+      state.newConcretType = action.payload.newConcretType;
     },
     UpdateSelectedBox: (state, action) => {
       state.selectedBox = action.payload;
