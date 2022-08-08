@@ -73,6 +73,15 @@ const Workbook = () => {
       },
     },
     {
+      field: "concreteType",
+      headerName: "Concrete Type",
+      minWidth: 125,
+      filter: "agMultiColumnFilter",
+      filterParams: {
+        filter: "agMultiColumnFilter",
+      },
+    },
+    {
       field: "dateL",
       headerName: "Date",
       minWidth: 100,

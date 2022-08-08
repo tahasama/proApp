@@ -43,7 +43,7 @@ export default function ModalLab() {
   const handleClose = () => setOpen(false);
   const dispatch = useAppDispatch();
 
-  const { newType, newLocation, newConcretType, individualLab, selectedBox } =
+  const { newType, newLocation, newConcreteType, individualLab, selectedBox } =
     useAppSelector(LabData);
   const [value, setValue] = React.useState<Date | null>(new Date());
   const [loading, setLoading] = useState(false);
@@ -58,14 +58,6 @@ export default function ModalLab() {
   const handleChange = (newValue: Date | null) => {
     setValue(newValue);
   };
-
-  console.log(
-    "nnnnnnnn",
-    (parseFloat(inputRefValueL1?.current?.value) +
-      parseFloat(inputRefValueL2?.current?.value) +
-      parseFloat(inputRefValueL3?.current?.value)) /
-      3
-  );
 
   const upload = (e: any) => {
     e.preventDefault();
@@ -96,7 +88,6 @@ export default function ModalLab() {
       setLoading(false);
     }, 2000);
   };
-
   return (
     <div>
       {" "}
@@ -249,7 +240,7 @@ export default function ModalLab() {
                         numL: inputRefNum.current.value,
                         dateL: value,
                         location: newLocation,
-                        concretType: newConcretType,
+                        concreteType: newConcreteType,
                         subLocation: inputRefSubLocation.current.value,
 
                         valueL1:
@@ -281,7 +272,7 @@ export default function ModalLab() {
                         numL: inputRefNum.current.value,
                         dateL: value,
                         location: newLocation,
-                        concretType: newConcretType,
+                        concreteType: newConcreteType,
                         subLocation: inputRefSubLocation.current.value,
                       })
                     ),

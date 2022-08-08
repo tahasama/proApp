@@ -10,12 +10,12 @@ import { UpdateValuesOfSelect } from "../../../../../state/reducers/labSlice";
 import { locationsL, workbooks } from "../../../../../constants/constant";
 
 export default function SelectStuffLab(individualLab: any) {
-  const concretTypes = ["B15", "B20", "B25", "B35", "B40"];
+  const concreteTypes = ["B15", "B20", "B25", "B35", "B40"];
 
   const dispatch = useDispatch();
   const [type, setType] = useState<any>();
   const [location, setLocation] = useState<any>();
-  const [concretType, setConcretType] = useState<any>();
+  const [concreteType, setConcreteType] = useState<any>();
 
   const handleTypeChange = (event: SelectChangeEvent) => {
     setType(event.target.value as string);
@@ -23,8 +23,8 @@ export default function SelectStuffLab(individualLab: any) {
   const handleLocationChange = (event: SelectChangeEvent) => {
     setLocation(event.target.value as string);
   };
-  const handleConcretTypeChange = (event: SelectChangeEvent) => {
-    setConcretType(event.target.value as string);
+  const handleconcreteTypeChange = (event: SelectChangeEvent) => {
+    setConcreteType(event.target.value as string);
   };
 
   useEffect(() => {
@@ -32,10 +32,10 @@ export default function SelectStuffLab(individualLab: any) {
       UpdateValuesOfSelect({
         newType: type,
         newLocation: location,
-        newConcretType: concretType,
+        newconcreteType: concreteType,
       })
     );
-  }, [type]);
+  }, [type, location, concreteType]);
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
@@ -75,11 +75,11 @@ export default function SelectStuffLab(individualLab: any) {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          defaultValue={individualLab.individualLab.concretType}
-          label="type"
-          onChange={handleConcretTypeChange}
+          defaultValue={individualLab.individualLab.concreteType}
+          label="conrete type"
+          onChange={handleconcreteTypeChange}
         >
-          {concretTypes.map((k: any) => (
+          {concreteTypes.map((k: any) => (
             <MenuItem value={k} key={k}>
               {k}
             </MenuItem>

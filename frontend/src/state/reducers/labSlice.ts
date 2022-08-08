@@ -3,7 +3,9 @@ import axios from "axios";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../firebase";
 
-const PROJECT_URL: any = process.env.REACT_APP_HEROKU_URL + "lab/";
+// const PROJECT_URL: any = process.env.REACT_APP_HEROKU_URL + "lab/";
+
+const PROJECT_URL: any = "http://localhost:5000/api/lab/";
 
 export const getAllLab: any = createAsyncThunk("getAllLab", async () => {
   try {
@@ -119,7 +121,7 @@ interface LabsProps {
     newType: string;
     selectedBox: string;
     newLocation: string;
-    newConcretType: string;
+    newConcreteType: string;
   };
 }
 
@@ -132,7 +134,7 @@ const initialState = {
   ww: [],
   selectedBox: "",
   newLocation: "",
-  newConcretType: "",
+  newConcreteType: "",
 };
 
 export const projectsSlice = createSlice({
@@ -148,7 +150,7 @@ export const projectsSlice = createSlice({
     UpdateValuesOfSelect: (state, action) => {
       state.newType = action.payload.newType;
       state.newLocation = action.payload.newLocation;
-      state.newConcretType = action.payload.newConcretType;
+      state.newConcreteType = action.payload.newConcreteType;
     },
     UpdateSelectedBox: (state, action) => {
       state.selectedBox = action.payload;

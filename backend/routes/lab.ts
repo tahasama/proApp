@@ -37,6 +37,7 @@ routerL.get("/:id", async (req, res) => {
 // update an itn
 routerL.put("/:id", async (req, res) => {
   try {
+    console.log("her you go", req.body);
     const updatelab = await Lab.findByIdAndUpdate(
       req.params.id,
       {
@@ -44,7 +45,6 @@ routerL.put("/:id", async (req, res) => {
       },
       { new: true }
     );
-    console.log("000999", updatelab);
 
     res.status(200).json(updatelab);
   } catch (err) {
