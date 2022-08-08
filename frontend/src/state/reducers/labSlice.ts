@@ -3,9 +3,9 @@ import axios from "axios";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../firebase";
 
-// const PROJECT_URL: any = process.env.REACT_APP_HEROKU_URL + "lab/";
+const PROJECT_URL: any = process.env.REACT_APP_HEROKU_URL + "lab/";
 
-const PROJECT_URL: any = "http://localhost:5000/api/lab/";
+// const PROJECT_URL: any = "http://localhost:5000/api/lab/";
 
 export const getAllLab: any = createAsyncThunk("getAllLab", async () => {
   try {
@@ -28,6 +28,7 @@ export const getLab = createAsyncThunk("getLab", async (value: any) => {
 
 export const createLab = createAsyncThunk("createLab", async (value: any) => {
   try {
+    console.log("dddddd", value);
     const res = await axios.post(PROJECT_URL + "create/", value);
 
     return res.data;
@@ -118,7 +119,7 @@ interface LabsProps {
     loading: boolean;
     individualLab: any;
     ww: any[];
-    newType: string;
+    // newType: string;
     selectedBox: string;
     newLocation: string;
     newConcreteType: string;
@@ -130,7 +131,7 @@ const initialState = {
   allitp: [{}],
   loading: true,
   individualLab: {},
-  newType: "",
+  // newType: "",
   ww: [],
   selectedBox: "",
   newLocation: "",
@@ -148,7 +149,8 @@ export const projectsSlice = createSlice({
       state.ww = action.payload;
     },
     UpdateValuesOfSelect: (state, action) => {
-      state.newType = action.payload.newType;
+      console.log("in slice", action.payload);
+      // state.newType = action.payload.newType;
       state.newLocation = action.payload.newLocation;
       state.newConcreteType = action.payload.newConcreteType;
     },

@@ -80,6 +80,11 @@ const Workbook = () => {
       filterParams: {
         filter: "agMultiColumnFilter",
       },
+      hide:
+        book === "Compression Strength 7 days" ||
+        book === "Compression Strength 28 days"
+          ? false
+          : true,
     },
     {
       field: "dateL",

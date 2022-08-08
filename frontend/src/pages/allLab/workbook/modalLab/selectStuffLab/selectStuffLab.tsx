@@ -8,18 +8,20 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { UpdateValuesOfSelect } from "../../../../../state/reducers/labSlice";
 import { locationsL, workbooks } from "../../../../../constants/constant";
+import { useParams } from "react-router-dom";
 
 export default function SelectStuffLab(individualLab: any) {
   const concreteTypes = ["B15", "B20", "B25", "B35", "B40"];
+  const { book } = useParams();
 
   const dispatch = useDispatch();
-  const [type, setType] = useState<any>();
+  // const [type, setType] = useState<any>();
   const [location, setLocation] = useState<any>();
   const [concreteType, setConcreteType] = useState<any>();
 
-  const handleTypeChange = (event: SelectChangeEvent) => {
-    setType(event.target.value as string);
-  };
+  // const handleTypeChange = (event: SelectChangeEvent) => {
+  //   setType(event.target.value as string);
+  // };
   const handleLocationChange = (event: SelectChangeEvent) => {
     setLocation(event.target.value as string);
   };
@@ -28,14 +30,17 @@ export default function SelectStuffLab(individualLab: any) {
   };
 
   useEffect(() => {
+    console.log("ppppppp", concreteType);
     dispatch(
       UpdateValuesOfSelect({
-        newType: type,
+        // newType: type,
         newLocation: location,
-        newconcreteType: concreteType,
+        newConcreteType: concreteType,
       })
     );
-  }, [type, location, concreteType]);
+  }, [location, concreteType]);
+
+  console.log("from select,", concreteType);
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
@@ -54,7 +59,7 @@ export default function SelectStuffLab(individualLab: any) {
           ))}
         </Select>
       </FormControl>
-      <FormControl fullWidth>
+      {/* <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Type</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -69,23 +74,26 @@ export default function SelectStuffLab(individualLab: any) {
             </MenuItem>
           ))}
         </Select>
-      </FormControl>
-      <FormControl fullWidth style={{ marginTop: 12 }}>
-        <InputLabel id="demo-simple-select-label">Concrete Type</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          defaultValue={individualLab.individualLab.concreteType}
-          label="conrete type"
-          onChange={handleconcreteTypeChange}
-        >
-          {concreteTypes.map((k: any) => (
-            <MenuItem value={k} key={k}>
-              {k}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>{" "}
+      </FormControl> */}
+      {(book === "Compression Strength 7 days" ||
+        book === "Compression Strength 28 days") && (
+        <FormControl fullWidth style={{ marginTop: 12 }}>
+          <InputLabel id="demo-simple-select-label">Concrete Type</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            defaultValue={individualLab.individualLab.concreteType}
+            label="conrete type"
+            onChange={handleconcreteTypeChange}
+          >
+            {concreteTypes.map((k: any) => (
+              <MenuItem value={k} key={k}>
+                {k}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      )}
     </Box>
   );
 }

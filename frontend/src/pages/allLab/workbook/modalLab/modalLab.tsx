@@ -43,7 +43,7 @@ export default function ModalLab() {
   const handleClose = () => setOpen(false);
   const dispatch = useAppDispatch();
 
-  const { newType, newLocation, newConcreteType, individualLab, selectedBox } =
+  const { newLocation, newConcreteType, individualLab, selectedBox } =
     useAppSelector(LabData);
   const [value, setValue] = React.useState<Date | null>(new Date());
   const [loading, setLoading] = useState(false);
@@ -88,6 +88,8 @@ export default function ModalLab() {
       setLoading(false);
     }, 2000);
   };
+  console.log("in modal", newConcreteType, newLocation);
+
   return (
     <div>
       {" "}
@@ -236,7 +238,8 @@ export default function ModalLab() {
                   ? dispatch(
                       updateLab({
                         _id: individualLab._id,
-                        typeL: newType,
+                        // typeL: newType,
+                        typeL: book,
                         numL: inputRefNum.current.value,
                         dateL: value,
                         location: newLocation,
@@ -268,7 +271,8 @@ export default function ModalLab() {
                     )
                   : dispatch(
                       createLab({
-                        typeL: newType,
+                        // typeL: newType,
+                        typeL: book,
                         numL: inputRefNum.current.value,
                         dateL: value,
                         location: newLocation,
