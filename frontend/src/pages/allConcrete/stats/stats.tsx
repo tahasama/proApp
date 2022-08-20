@@ -92,6 +92,7 @@ const Stats = () => {
   let q: any[] = [];
   let r: any[] = [];
   let s: any[] = [];
+  let t: any[] = [];
   let dict: any = {};
 
   const dew = (value: any) =>
@@ -159,6 +160,9 @@ const Stats = () => {
     } else if (val === "electricalRoom2") {
       s.push(dew(val));
       dict[19] = s;
+    } else if (val === "waterPipesNetwork") {
+      t.push(dew(val));
+      dict[20] = t;
     }
   });
   const data = {
@@ -185,6 +189,7 @@ const Stats = () => {
           q[0],
           r[0],
           s[0],
+          t[0],
         ],
         backgroundColor: [
           "rgba(255, 99, 132, 0.3)",
@@ -206,6 +211,7 @@ const Stats = () => {
           "rgba(165, 33, 94, 0.3)",
           "rgba(240, 200, 94, 0.3)",
           "rgba(135, 250, 94, 0.3)",
+          "rgba(15, 150, 94, 0.3)",
         ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
@@ -228,6 +234,7 @@ const Stats = () => {
           "rgba(165, 33, 94, 0.3)",
           "rgba(240, 200, 94, 0.3)",
           "rgba(135, 250, 94, 0.3)",
+          "rgba(15, 150, 94, 0.3)",
         ],
         borderWidth: 1,
         fill: false,
@@ -346,11 +353,11 @@ const Stats = () => {
           options={optionsLine}
           data={data1}
           style={{
-            width: 520,
+            width: 522,
 
             marginTop: -22,
 
-            backgroundColor: "rgb(210,215,230,0.8)",
+            backgroundColor: "rgb(210,215,230,0.9)",
           }}
         />
       </div>

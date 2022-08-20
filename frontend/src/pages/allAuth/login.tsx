@@ -96,10 +96,17 @@ const Login = () => {
   // ==============================================================
 
   return (
-    <div>
+    <div className="ddd">
       {alerto && status !== undefined && status !== "" && authorization}
       <div className="">
-        <h1 style={{ marginTop: 20, fontFamily: "initial", letterSpacing: 3 }}>
+        <h1
+          style={{
+            marginTop: 20,
+            fontFamily: "initial",
+            letterSpacing: 3,
+            color: "rgba(171, 236, 236, 0.75)",
+          }}
+        >
           WasteWater Treatment Plant Project Of SAFI
         </h1>
         <h2
@@ -108,6 +115,7 @@ const Login = () => {
             fontFamily: "initial",
             fontSize: 25,
             textDecoration: "underline",
+            color: "rgba(171, 236, 236, 0.7)",
           }}
         >
           Quality Control Department

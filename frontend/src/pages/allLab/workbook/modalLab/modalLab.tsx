@@ -76,7 +76,7 @@ export default function ModalLab() {
 
     const value2 = {
       LabId: individualLab._id,
-      LabId2: "report-" + individualLab.numL,
+      LabId2: "report-" + individualLab.numL + individualLab.dateL,
       image2: imageRef2.current.files[0],
       typeL: individualLab.typeL,
       location: individualLab.location,
@@ -97,6 +97,7 @@ export default function ModalLab() {
         variant="outlined"
         color="success"
         size="large"
+        style={{ borderColor: "#00d4ff", color: "#00d4ff" }}
         className="createButtons"
         onClick={handleOpen}
       >
@@ -261,10 +262,12 @@ export default function ModalLab() {
                         valueL4:
                           (book === "Compression Strength 7 days" ||
                             book === "Compression Strength 28 days") &&
-                          (parseInt(inputRefValueL1.current.value) +
-                            parseInt(inputRefValueL2.current.value) +
-                            parseInt(inputRefValueL3.current.value)) /
-                            3,
+                          (
+                            (parseFloat(inputRefValueL1.current.value) +
+                              parseFloat(inputRefValueL2.current.value) +
+                              parseFloat(inputRefValueL3.current.value)) /
+                            3
+                          ).toFixed(2),
                         manifoldUrl: imageRef1.current.files[0],
                         reportUrl: imageRef2.current.files[0],
                       })

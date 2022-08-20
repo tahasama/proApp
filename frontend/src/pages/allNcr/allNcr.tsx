@@ -204,6 +204,7 @@ const AllNcr = () => {
                 color="error"
                 variant="outlined"
                 size="large"
+                style={{ borderColor: "tomato", color: "tomato" }}
                 onClick={handleDelete}
               >
                 Delete selected

@@ -125,7 +125,7 @@ const Log = () => {
       .map((ds: any) => ds.quantity)
       .map((v: any) => (v === undefined ? 0 : v))
       .reduce((a: any, b: any) => a + b, 0);
-    setTotalconcrete(vv);
+    setTotalconcrete(vv.toFixed(2));
   }, [ww]);
 
   const handleFilterChange = () => {
@@ -212,10 +212,10 @@ const Log = () => {
           <div>
             <Button
               variant="outlined"
-              color="error"
               size="large"
               className="deleteButton"
               onClick={handleDelete}
+              style={{ borderColor: "tomato", color: "tomato" }}
             >
               Delete selected
             </Button>

@@ -57,6 +57,7 @@ export default function ModalM() {
         variant="outlined"
         color="success"
         size="large"
+        style={{ borderColor: "#00d4ff", color: "#00d4ff" }}
         className="createButtons"
         onClick={handleOpen}
       >

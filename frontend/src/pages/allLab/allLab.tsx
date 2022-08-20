@@ -83,6 +83,7 @@ const AllLab = () => {
                   color: "Background",
                   backgroundColor: "rgba(9, 15, 47, 0.6)",
                   margin: 25,
+                  textAlign: "center",
                 }}
                 variant="outlined"
                 onClick={() => navigate(`/allLab/${w}`)}
@@ -94,7 +95,8 @@ const AllLab = () => {
               </Button>
             </Grid>
           ))}{" "}
-          <Button
+          {/* <Button
+            disabled
             variant="contained"
             color="success"
             onClick={DownloadFolders}
@@ -108,7 +110,7 @@ const AllLab = () => {
             }}
           >
             Download WorkBooks
-          </Button>
+          </Button> */}
         </Grid>
       </div>
     </div>

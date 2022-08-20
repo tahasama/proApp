@@ -57,10 +57,11 @@ export default function ModalM() {
     <div>
       <Button
         variant="outlined"
-        color="success"
+        // color="inherit"
         size="large"
         className="createButtons"
         onClick={handleOpen}
+        style={{ borderColor: "#00d4ff", color: "#00d4ff" }}
       >
         Add a value
       </Button>

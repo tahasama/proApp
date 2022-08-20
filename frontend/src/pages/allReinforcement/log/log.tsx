@@ -218,6 +218,7 @@ const Log = () => {
               color="error"
               size="large"
               className="deleteButton"
+              style={{ borderColor: "tomato", color: "tomato" }}
               onClick={handleDelete}
             >
               Delete selected

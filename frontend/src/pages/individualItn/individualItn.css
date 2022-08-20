@@ -1,12 +1,18 @@
 .itnCover {
   position: absolute;
-  background-color: rgb(207, 207, 226, 0.7);
+
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
   top: 0;
   left: 0;
+
+  /* background-image: url("../../images/PPP.jpeg");
+  background-repeat: no-repeat;
+  background-size: 105%;
+  background-position-y: 0px;
+  z-index: auto; */
 }
 
 .itnCenter {

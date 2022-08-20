@@ -72,6 +72,7 @@ const StatsPerMonth = () => {
   let uu16: any = [];
   let uu17: any = [];
   let uu18: any = [];
+  let uu19: any = [];
 
   //===============================================================================the function start
   const lm = (v: any) => {
@@ -267,6 +268,13 @@ const StatsPerMonth = () => {
     return dict[i] !== undefined ? uu18.push(dict[i]) : uu18.push(0);
   });
 
+  dict = {};
+  lm("waterPipesNetwork");
+
+  labels.map((i: any) => {
+    return dict[i] !== undefined ? uu19.push(dict[i]) : uu19.push(0);
+  });
+
   // const [q, setQ] = useState<any[]>(locations);
   // const [filters, setFilters] = useState(true);
   const [lineBar, setLineBar] = useState(false);
@@ -447,6 +455,15 @@ const StatsPerMonth = () => {
         backgroundColor: "#a103cc",
         tension: 0.3,
       },
+      {
+        label: "WaterPipe.Net",
+        // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+        data: uu19,
+
+        borderColor: "#bd039c",
+        backgroundColor: "#bd039c",
+        tension: 0.3,
+      },
     ],
   };
 
@@ -525,7 +542,7 @@ const StatsPerMonth = () => {
             style={{
               //   marginTop: -20,
               //   marginRight: 80,
-              backgroundColor: "rgb(210,215,230,0.8)",
+              backgroundColor: "rgb(210,215,230,0.9)",
               //   width: "1400px",
             }}
           />
@@ -537,7 +554,7 @@ const StatsPerMonth = () => {
             data={data}
             style={{
               //   marginTop: -20,
-              backgroundColor: "rgb(210,215,230,0.8)",
+              backgroundColor: "rgb(210,215,230,0.9)",
               //   width: "1400px",
             }}
           />

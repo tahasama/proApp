@@ -91,6 +91,7 @@ const Stats = () => {
   let q: any[] = [];
   let r: any[] = [];
   let s: any[] = [];
+  let t: any[] = [];
   let dict: any = {};
 
   u.forEach((val, index) => {
@@ -147,10 +148,13 @@ const Stats = () => {
       dict[17] = q;
     } else if (val === "electricalRoom1") {
       r.push(index);
-      dict[17] = r;
+      dict[18] = r;
     } else if (val === "electricalRoom2") {
       s.push(index);
-      dict[17] = s;
+      dict[19] = s;
+    } else if (val === "waterPipesNetwork") {
+      t.push(index);
+      dict[20] = t;
     }
   });
 
@@ -178,6 +182,7 @@ const Stats = () => {
           q.length,
           r.length,
           s.length,
+          t.length,
         ],
         backgroundColor: [
           "rgba(0,0,128, 0.3)",
@@ -201,29 +206,31 @@ const Stats = () => {
           "rgba(105, 233, 144, 0.3)",
           "rgba(228,0,128, 0.3)",
           "rgba(228,128,0, 0.3)",
+          "rgba(28,228,0, 0.3)",
         ],
         borderColor: [
-          "rgba(0,0,128,1)",
-          "rgba(125, 150, 84,1)",
-          "rgba(0,128,0,1)",
-          "rgba(0,128,128,1)",
-          "rgba(0,255,0,1)",
-          "rgba(0,255,255,1)",
-          "rgba(128,0,0,1)",
-          "rgba(128,0,128,1)",
-          "rgba(128,128,0,1)",
-          "rgba(255,0,0,1)",
-          "rgba(255,0,255,1)",
-          "rgba(255,255,0,1)",
-          "rgba(106, 90, 205,1)",
-          "rgba(238, 130, 238,1)",
-          "rgba(255, 165, 0,1)",
-          "rgba(89, 219, 190,1)",
-          "rgba(45, 100, 64,1)",
+          "rgba(0,0,128, 0.3)",
+          "rgba(125, 150, 84, 0.3)",
+          "rgba(0,128,0, 0.3)",
+          "rgba(0,128,128, 0.3)",
+          "rgba(0,255,0, 0.3)",
+          "rgba(0,255,255, 0.3)",
+          "rgba(128,90,0, 0.3)",
+          "rgba(128,0,128, 0.3)",
+          "rgba(128,128,0, 0.3)",
+          "rgba(255,0,0, 0.3)",
+          "rgba(255,0,255, 0.3)",
+          "rgba(255,255,0, 0.3)",
+          "rgba(106, 90, 205, 0.3)",
+          "rgba(238, 130, 238, 0.3)",
+          "rgba(255, 165, 0, 0.3)",
+          "rgba(89, 219, 190, 0.3)",
+          "rgba(245, 100, 64, 0.3)",
+          "rgba(185, 133, 44, 0.3)",
           "rgba(105, 233, 144, 0.3)",
-          "rgba(85, 133, 44, 0.3)",
           "rgba(228,0,128, 0.3)",
           "rgba(228,128,0, 0.3)",
+          "rgba(28,228,0, 0.3)",
         ],
         borderWidth: 1,
         fill: false,
@@ -338,7 +345,7 @@ const Stats = () => {
           data={data1}
           style={{
             marginTop: -22,
-            backgroundColor: "rgb(210,215,230,0.8)",
+            backgroundColor: "rgb(210,215,230,0.9)",
           }}
         />
       </div>

@@ -18,6 +18,7 @@ export const locations = [
   "mainStation",
   "electricalRoom1",
   "electricalRoom2",
+  "waterPipesNetwork",
   "other",
 ];
 
@@ -37,6 +38,7 @@ export const locationsR = [
   "electricalRoom1",
   "electricalRoom2",
   "mainStation",
+  "waterPipesNetwork",
 ];
 
 export const labelsName: any = [
@@ -77,10 +79,10 @@ export const workbooks = [
   "Compression Strength 28 days",
   "Concrete Formulation Report",
   "Convenience Report",
-  "Geotechnical Study ",
+  "Geotechnical Study",
   "Excavation Bottom Foundation Check",
-  "Preliminairy Report",
   "Material Identification",
+  "PAQ (quality assurance plan)",
 ];
 
 export const handleNumber = (num: any) => {
@@ -107,10 +109,12 @@ export const locationsL = [
   "mainStation",
   "electricalRoom1",
   "electricalRoom2",
+  "waterPipesNetwork",
   "other",
   "GAT01",
   "GAT02",
   "GAT03",
   "GAT04",
+  "GAT05",
   "Stock",
 ];

@@ -76,7 +76,9 @@ const AllQor = () => {
       cellRenderer: (params: any) => {
         return (
           params.value !== undefined &&
-          params.value.slice(2, 10).split("-").reverse().join("-")
+          (params.value !== null
+            ? params.value.slice(2, 10).split("-").reverse().join("-")
+            : null)
         );
       },
     },
@@ -198,6 +200,7 @@ const AllQor = () => {
                 color="error"
                 variant="outlined"
                 size="large"
+                style={{ borderColor: "tomato", color: "tomato" }}
                 onClick={handleDelete}
               >
                 Delete selected

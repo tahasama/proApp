@@ -82,7 +82,7 @@ const Register: React.FC = () => {
     dispatch(updateStatus("unauthorized"));
   };
   return (
-    <div>
+    <div className="ddd">
       <div className="registerContainer">
         <form className="registerForm" onSubmit={handleSubmit}>
           <div className="labelInput">

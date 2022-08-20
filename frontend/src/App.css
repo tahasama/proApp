@@ -3,10 +3,15 @@
 }
 
 body {
-  background-image: url("./images/PPP.jpeg");
-  background-repeat: no-repeat;
-  background-size: 105%;
-  background-position-y: 0px;
+  /* background-color: rgba(32, 90, 141, 0.404) !important; */
+
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgb(5, 1, 78) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgb(99, 6, 153) 100%
+  );
 }
 
 .dev {
@@ -14,7 +19,7 @@ body {
   bottom: -12px;
   right: 200px;
   z-index: 99;
-  background-color: rgba(24, 228, 41, 0.8);
+  background-color: rgba(0, 255, 179, 0.9);
   color: rgb(24, 24, 26);
   font-family: "Times New Roman";
   font-size: 17px;

@@ -25,6 +25,7 @@ import { useAppSelector } from "../../state/hooks";
 import { getAuthData } from "../../state/reducers/authSlice";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ico from "../../images/favicon.png";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -157,6 +158,10 @@ export default function NavBar() {
       navigate("/electricalRoom2");
       window.location.reload();
       return false;
+    } else if (searchRef.current.value === "wp") {
+      navigate("/waterPipesNetwork");
+      window.location.reload();
+      return false;
     }
   };
 
@@ -255,15 +260,12 @@ export default function NavBar() {
     <Box sx={{ flexGrow: 1 }} className="navBar">
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+          <img
+            src={ico}
+            alt="hhh"
+            width="3.2%"
+            style={{ margin: "0 40px 0 0", padding: 0, left: 0 }}
+          />
           <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
             <Button color="inherit" sx={{ marginRight: 0 }}>
               <Typography
@@ -294,7 +296,7 @@ export default function NavBar() {
             to="../allitn"
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <Button color="inherit" sx={{ marginRight: 3, marginLeft: 0 }}>
+            <Button color="inherit" sx={{ marginRight: 3 }}>
               ITN
             </Button>
           </Link>
@@ -335,7 +337,7 @@ export default function NavBar() {
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <Button color="inherit" sx={{ marginRight: 3 }}>
-              Laboratory
+              Docs / Lab
             </Button>
           </Link>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>

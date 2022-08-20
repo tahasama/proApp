@@ -85,6 +85,12 @@ const Stats = () => {
   let i: any[] = [];
   let j: any[] = [];
   let k: any[] = [];
+  let l: any[] = [];
+  let m: any[] = [];
+  let n: any[] = [];
+  let o: any[] = [];
+  let p: any[] = [];
+  let q: any[] = [];
   let dict: any = {};
 
   const dew = (value: any) =>
@@ -128,6 +134,21 @@ const Stats = () => {
     } else if (val === "closingWall") {
       k.push(dew(val));
       dict[11] = k;
+    } else if (val === "mainStation") {
+      l.push(dew(val));
+      dict[12] = l;
+    } else if (val === "electricalRoom1") {
+      m.push(dew(val));
+      dict[13] = m;
+    } else if (val === "electricalRoom2") {
+      n.push(dew(val));
+      dict[14] = n;
+    } else if (val === "mainStation") {
+      o.push(dew(val));
+      dict[15] = o;
+    } else if (val === "waterPipesNetwork") {
+      p.push(dew(val));
+      dict[16] = p;
     }
   });
   const data = {
@@ -146,6 +167,11 @@ const Stats = () => {
           i[0],
           j[0],
           k[0],
+          l[0],
+          m[0],
+          n[0],
+          o[0],
+          p[0],
         ],
         backgroundColor: [
           "rgba(255, 99, 132, 0.3)",
@@ -159,6 +185,9 @@ const Stats = () => {
           "rgba(205, 19, 94, 0.3)",
           "rgba(25, 109, 194, 0.3)",
           "rgba(4, 109, 220, 0.3)",
+          "rgba(225, 119, 94, 0.3)",
+          "rgba(65, 99, 194, 0.3)",
+          "rgba(111, 109, 220, 0.3)",
         ],
         borderColor: [
           "rgba(255, 99, 132, 1)",
@@ -172,6 +201,9 @@ const Stats = () => {
           "rgba(25, 189, 164, 1)",
           "rgba(205, 19, 94, 1)",
           "rgba(25, 109, 194, 1)",
+          "rgba(225, 119, 94, 0.3)",
+          "rgba(65, 99, 194, 0.3)",
+          "rgba(111, 109, 220, 0.3)",
         ],
         borderWidth: 1,
         fill: false,
@@ -184,7 +216,7 @@ const Stats = () => {
   //-----------------------------------------------------------------for all itn total per month start
   let u1 = all.flat().map((x: any) => new Date(x.dateOfUsage).getMonth() + 1);
 
-  const labels1: any = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const labels1: any = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   let a1: any[] = [];
   let b1: any[] = [];
   let c1: any[] = [];

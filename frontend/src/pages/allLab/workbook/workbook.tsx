@@ -15,6 +15,10 @@ import {
 import NavBar from "../../Navbar/navbar";
 import CircularProgress from "@mui/material/CircularProgress";
 import ModalLab from "./modalLab/modalLab";
+import DownloadIcon from "@mui/icons-material/Download";
+import FolderIcon from "@mui/icons-material/Folder";
+import GeotechnicalStudy from "../../../images/GeotechnicalStudy.pdf";
+import Paq from "../../../images/Paq.pdf";
 
 const Workbook = () => {
   const { book } = useParams();
@@ -47,35 +51,45 @@ const Workbook = () => {
     {
       field: "numL",
       headerName: "Designation",
-      checkboxSelection: true,
 
       filter: "agMultiColumnFilter",
       filterParams: {
         filter: "agMultiColumnFilter",
       },
+      hide:
+        book === "Compression Strength 7 days" ||
+        book === "Compression Strength 28 days"
+          ? true
+          : false,
     },
     {
       field: "location",
       headerName: "Location",
-
+      checkboxSelection: true,
+      maxWidth: 200,
+      cellStyle: { "background-color": "#F4ECF7" },
       filter: "agMultiColumnFilter",
       filterParams: {
         filter: "agMultiColumnFilter",
       },
+      hide: book === "Concrete Formulation Report" ? true : false,
     },
     {
       field: "subLocation",
       headerName: "Sublocation",
-      minWidth: 125,
+      minWidth: 200,
       filter: "agMultiColumnFilter",
       filterParams: {
         filter: "agMultiColumnFilter",
       },
+      hide: book === "Concrete Formulation Report" ? true : false,
     },
     {
       field: "concreteType",
       headerName: "Concrete Type",
       minWidth: 125,
+      cellStyle: { "background-color": "#FDEDEC" },
+
       filter: "agMultiColumnFilter",
       filterParams: {
         filter: "agMultiColumnFilter",
@@ -89,6 +103,8 @@ const Workbook = () => {
     {
       field: "dateL",
       headerName: "Date",
+      cellStyle: { "background-color": "#FEF9E7" },
+
       minWidth: 100,
       filter: "agMultiColumnFilter",
       filterParams: {
@@ -105,6 +121,7 @@ const Workbook = () => {
       field: "valueL1",
       headerName: "v1 (N/mm2) ",
       minWidth: 115,
+      cellStyle: { "background-color": "#EBF5FB " },
       hide:
         book === "Compression Strength 7 days" ||
         book === "Compression Strength 28 days"
@@ -114,6 +131,8 @@ const Workbook = () => {
     {
       field: "valueL2",
       headerName: "v2 (N/mm2) ",
+      cellStyle: { "background-color": "#EBF5FB" },
+
       minWidth: 115,
       hide:
         book === "Compression Strength 7 days" ||
@@ -123,6 +142,8 @@ const Workbook = () => {
     },
     {
       field: "valueL3",
+      cellStyle: { "background-color": "#EBF5FB" },
+
       headerName: " v3 (N/mm2) ",
       minWidth: 115,
       hide:
@@ -134,6 +155,7 @@ const Workbook = () => {
     {
       field: "valueL4",
       headerName: "Avg (N/mm2) ",
+      cellStyle: { "background-color": "#EAECEE" },
       minWidth: 125,
       hide:
         book === "Compression Strength 7 days" ||
@@ -141,19 +163,19 @@ const Workbook = () => {
           ? false
           : true,
     },
-    {
-      field: "manifoldUrl",
-      headerName: "Manifold",
-      minWidth: 110,
-      filter: "agMultiColumnFilter",
-      filterParams: {
-        filter: "agMultiColumnFilter",
-      },
-      cellRenderer: (params: any) => {
-        const link4 = params.value;
-        return link4 && <a href={link4}>See PV</a>;
-      },
-    },
+    // {
+    //   field: "manifoldUrl",
+    //   headerName: "Manifold",
+    //   minWidth: 110,
+    //   filter: "agMultiColumnFilter",
+    //   filterParams: {
+    //     filter: "agMultiColumnFilter",
+    //   },
+    //   cellRenderer: (params: any) => {
+    //     const link4 = params.value;
+    //     return link4 && <a href={link4}>See PV</a>;
+    //   },
+    // },
     {
       field: "reportUrl",
       headerName: "Lab Report",
@@ -201,6 +223,7 @@ const Workbook = () => {
                 className="deleteButton"
                 color="error"
                 variant="outlined"
+                style={{ borderColor: "tomato", color: "tomato" }}
                 size="large"
                 onClick={handleDelete}
               >
@@ -210,48 +233,75 @@ const Workbook = () => {
           </>
         )}
 
-        <div
-          className="grid"
-          style={{
-            width: "98%",
-            height: 420,
-            margin: 10,
-            marginTop: status === "authorized" ? 90 : 0,
-          }}
-        >
-          {all.flat().length >= 0 ? (
-            <>
-              <div style={containerStyle}>
-                <div style={gridStyle} className="ag-theme-alpine">
-                  <AgGridReact
-                    rowData={all
-                      .flat()
-                      .filter((x: any) => x.typeL === book)
-                      .reverse()}
-                    columnDefs={columnDefs}
-                    groupIncludeFooter={true}
-                    groupIncludeTotalFooter={true}
-                    defaultColDef={defaultColDef}
-                    animateRows={true}
-                    ref={gridRef}
-                    enableCellTextSelection={true}
-                    onSelectionChanged={(v: any) =>
-                      v.api.getSelectedRows().length === 0
-                        ? dispatch(UpdateSelectedBox(""))
-                        : dispatch(
-                            UpdateSelectedBox(v.api.getSelectedRows()[0]._id)
-                          )
-                    }
-                  ></AgGridReact>
-                </div>
-              </div>{" "}
-            </>
-          ) : (
-            <div>
-              <CircularProgress style={{ marginTop: 200 }} size={120} />
-            </div>
-          )}
-        </div>
+        {book !== "Geotechnical Study" &&
+        book !== "PAQ (quality assurance plan)" ? (
+          <div
+            className="grid"
+            style={{
+              width: "98%",
+              height: 420,
+              margin: 10,
+              marginTop: status === "authorized" ? 90 : 0,
+            }}
+          >
+            {all.flat().length >= 0 ? (
+              <>
+                <div style={containerStyle}>
+                  <div style={gridStyle} className="ag-theme-alpine">
+                    <AgGridReact
+                      rowData={all
+                        .flat()
+                        .filter((x: any) => x.typeL === book)
+                        .reverse()}
+                      columnDefs={columnDefs}
+                      groupIncludeFooter={true}
+                      groupIncludeTotalFooter={true}
+                      defaultColDef={defaultColDef}
+                      animateRows={true}
+                      ref={gridRef}
+                      enableCellTextSelection={true}
+                      onSelectionChanged={(v: any) =>
+                        v.api.getSelectedRows().length === 0
+                          ? dispatch(UpdateSelectedBox(""))
+                          : dispatch(
+                              UpdateSelectedBox(v.api.getSelectedRows()[0]._id)
+                            )
+                      }
+                    ></AgGridReact>
+                  </div>
+                </div>{" "}
+              </>
+            ) : (
+              <div>
+                <CircularProgress style={{ marginTop: 200 }} size={120} />
+              </div>
+            )}
+          </div>
+        ) : (
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <a href={book !== "Geotechnical Study" ? Paq : GeotechnicalStudy}>
+              <FolderIcon
+                sx={{
+                  color: "pink",
+                  fontSize: 150,
+                  marginTop: 12,
+                }}
+              />
+            </a>
+            <a
+              href={book !== "Geotechnical Study" ? Paq : GeotechnicalStudy}
+              style={{
+                color: "whitesmoke",
+                fontWeight: 500,
+                fontSize: 20,
+              }}
+            >
+              {book !== "Geotechnical Study"
+                ? "PAQ (quality assurance plan)"
+                : "Geotechnichal study"}
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );

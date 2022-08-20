@@ -435,6 +435,7 @@ const Log = () => {
               size="large"
               className="deleteButton"
               onClick={handleDelete}
+              style={{ borderColor: "tomato", color: "tomato" }}
             >
               Delete selected
             </Button>
@@ -477,7 +478,9 @@ const Log = () => {
             </Button>
             <div>
               <Button
+                disabled
                 variant="contained"
+                color="error"
                 className="donwload"
                 onClick={DownloadFolders}
                 endIcon={loading && <CircularProgress color="secondary" />}

@@ -94,6 +94,7 @@ export default function ModalM() {
         color="success"
         size="large"
         className="createButtons"
+        style={{ borderColor: "#00d4ff", color: "#00d4ff" }}
         onClick={handleOpen}
       >
         {selectedBox === "" ? (

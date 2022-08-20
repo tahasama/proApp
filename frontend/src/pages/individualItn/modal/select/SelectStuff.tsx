@@ -18,6 +18,18 @@ export default function SelectStuff() {
 
   const reviews = ["C1", "C2", "C3", "C4"];
 
+  const wpn = [
+    "Setting Out",
+    "Excavation until foundation Bottom",
+    "Lean concrete for precast manhole",
+    "Manhole installation",
+    "Bedding",
+    "Pipes installations",
+    "Leak test",
+    "Primary Backfilling",
+    "Final Backfilling",
+  ];
+
   const handleLocationChange = (event: SelectChangeEvent) => {
     setLocation(event.target.value as string);
   };
@@ -67,11 +79,17 @@ export default function SelectStuff() {
           label="routine"
           onChange={handleRoutineChange}
         >
-          {routines.map((k: any) => (
-            <MenuItem value={k} key={k}>
-              {k}
-            </MenuItem>
-          ))}
+          {location !== "waterPipesNetwork"
+            ? routines.map((k: any) => (
+                <MenuItem value={k} key={k}>
+                  {k}
+                </MenuItem>
+              ))
+            : wpn.map((k: any) => (
+                <MenuItem value={k} key={k}>
+                  {k}
+                </MenuItem>
+              ))}
         </Select>
       </FormControl>
       <FormControl fullWidth style={{ marginTop: 12 }}>

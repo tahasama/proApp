@@ -45,7 +45,8 @@ export default function ModalM() {
   const { newStatus, individualQorNcr, selectedBox } =
     useAppSelector(QorNcrData);
   const [value, setValue] = React.useState<Date | null>(new Date());
-  const [value2, setValue2] = React.useState<Date | null>(new Date());
+  const [value2, setValue2] = React.useState<Date | null>(null);
+
   const [loading, setLoading] = useState(false);
 
   const inputRefNum = React.useRef<any>(null);
@@ -91,6 +92,7 @@ export default function ModalM() {
         variant="outlined"
         color="success"
         size="large"
+        style={{ borderColor: "#00d4ff", color: "#00d4ff" }}
         className="createButtons"
         onClick={handleOpen}
       >
@@ -148,7 +150,7 @@ export default function ModalM() {
                 <Stack spacing={3}>
                   <MobileDatePicker
                     label="Date raised"
-                    inputFormat="MM/dd/yyyy"
+                    inputFormat="MM/DD/yyyy"
                     value={value}
                     onChange={handleChange}
                     renderInput={(params) => <TextField {...params} />}
@@ -161,7 +163,7 @@ export default function ModalM() {
                 <Stack spacing={3}>
                   <MobileDatePicker
                     label="Date of response"
-                    inputFormat="MM/DD/yyyy"
+                    inputFormat="MM/dd/yyyy"
                     value={value2}
                     onChange={handleChange2}
                     renderInput={(params) => <TextField {...params} />}
