@@ -264,7 +264,7 @@ export default function NavBar() {
             src={ico}
             alt="hhh"
             width="3.2%"
-            style={{ margin: "0 40px 0 0", padding: 0, left: 0 }}
+            style={{ margin: "0 20px 0 0", padding: 0, left: 0 }}
           />
           <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
             <Button color="inherit" sx={{ marginRight: 0 }}>
@@ -337,10 +337,10 @@ export default function NavBar() {
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <Button color="inherit" sx={{ marginRight: 3 }}>
-              Docs / Lab
+              Docs&nbsp;/&nbsp;Lab
             </Button>
           </Link>
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ display: { xs: "flex", md: "none", marginRight: 3 } }}>
             <IconButton
               size="large"
               aria-label="show more"

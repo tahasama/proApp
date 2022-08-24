@@ -17,7 +17,7 @@ body {
 .dev {
   position: fixed;
   bottom: -12px;
-  right: 200px;
+  right: 0px;
   z-index: 99;
   background-color: rgba(0, 255, 179, 0.9);
   color: rgb(24, 24, 26);

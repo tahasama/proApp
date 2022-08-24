@@ -45,6 +45,7 @@ const Stats = () => {
   const optionsDoughnut = {
     responsive: true,
     maintainAspectRatio: true,
+
     plugins: {
       legend: {
         position: "bottom" as const,
@@ -115,10 +116,7 @@ const Stats = () => {
     ],
   };
   const statuss = ["Closed", "Pending", "Open"];
-  console.log(
-    "sssssssss",
-    uu.flat().reduce((a: any, b: any) => a + b)
-  );
+
   const data1 = {
     labels: statuss,
     datasets: [

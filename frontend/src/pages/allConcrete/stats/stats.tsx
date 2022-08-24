@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
+
 import {
   Chart as ChartJS,
   ArcElement,
@@ -23,6 +24,8 @@ import {
   getAllConcretes,
 } from "../../../state/reducers/concreteSlice";
 import { labelsName, locations } from "../../../constants/constant";
+import { Button, Card } from "@mui/material";
+import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -192,49 +195,55 @@ const Stats = () => {
           t[0],
         ],
         backgroundColor: [
-          "rgba(255, 99, 132, 0.3)",
-          "rgba(54, 162, 235, 0.3)",
-          "rgba(255, 206, 86, 0.3)",
-          "rgba(75, 192, 192, 0.3)",
-          "rgba(153, 12, 255, 0.3)",
-          "rgba(205, 19, 64, 0.3)",
-          "rgba(25, 11, 64, 0.3)",
-          "rgba(125, 59, 84, 0.3)",
-          "rgba(135, 79, 44, 0.3)",
-          "rgba(95, 187, 124, 0.3)",
-          "rgba(225, 186, 86, 0.3)",
-          "rgba(89, 219, 190, 0.3)",
-          "rgba(45, 100, 64, 0.3)",
-          "rgba(75, 25500, 14, 0.3)",
-          "rgba(185, 200, 94, 0.3)",
-          "rgba(85, 230, 94, 0.3)",
-          "rgba(165, 33, 94, 0.3)",
-          "rgba(240, 200, 94, 0.3)",
-          "rgba(135, 250, 94, 0.3)",
-          "rgba(15, 150, 94, 0.3)",
+          "#E74C3C",
+          "#AF7AC5",
+          "#8E44AD",
+          "#2980B9",
+          "#3498DB",
+          "#1ABC9C",
+          "#16A085",
+          "#27AE60",
+          "#2ECC71",
+          "#F1C40F",
+          "#F39C12",
+          "#E67E22",
+          "#D35400",
+          "#512E5F",
+          "#154360",
+          "#0B5345",
+          "#7D6608",
+          "#6E2C00",
+          "#F1948A",
+          "#D4EFDF",
+          "#FAD7A0",
+          "#D5F5E3",
+          "#C0392B",
         ],
         borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-          "rgba(235, 119, 64, 1)",
-          "rgba(125, 59, 84,1)",
-          "rgba(135, 79, 44,1)",
-          "rgba(95, 187, 124,1)",
-          "rgba(245, 93, 222,1)",
-          "rgba(89, 219, 190,1)",
-          "rgba(45, 0, 64, 1)",
-          "rgba(75, 700, 14, 1)",
-          "rgba(75, 200, 14, 1)",
-          "rgba(185, 200, 94, 0.3)",
-          "rgba(85, 230, 94, 0.3)",
-          "rgba(165, 33, 94, 0.3)",
-          "rgba(240, 200, 94, 0.3)",
-          "rgba(135, 250, 94, 0.3)",
-          "rgba(15, 150, 94, 0.3)",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
+          "#85C1E9",
         ],
         borderWidth: 1,
         fill: false,
@@ -330,9 +339,13 @@ const Stats = () => {
 
   return (
     <div>
+      <Card className="buttonn1" style={{ marginTop: 5, marginLeft: 74 }}>
+        <TipsAndUpdatesIcon color="warning" /> click on a location to show/hide
+        it on the chart
+      </Card>
       <div
         className="DoughnutDimension"
-        style={{ margin: 0, padding: 0, width: "31%" }}
+        style={{ marginLeft: -40, marginRight: 0, padding: 0, width: "34%" }}
       >
         <Doughnut
           options={optionsPie}
@@ -340,7 +353,6 @@ const Stats = () => {
           style={{ marginTop: -84, backgroundColor: "rgb(210,215,230,0.9)" }}
         />
       </div>
-
       <div
         className="LineDimension"
         style={{

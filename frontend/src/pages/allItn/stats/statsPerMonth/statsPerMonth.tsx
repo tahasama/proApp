@@ -525,12 +525,13 @@ const StatsPerMonth = () => {
       >
         to {lineBar ? "Line" : "Bar"} Chart
       </Button>
-      <Card className="buttonn1">
+      <Card className="buttonn1" style={{ marginTop: -30 }}>
         <TipsAndUpdatesIcon color="warning" />
         click on the button above to switch from Dohgnut Bar chart to Line chart
         and vice versa
       </Card>
-      <Card className="buttonn1" style={{ marginTop: 150 }}>
+
+      <Card className="buttonn1" style={{ marginTop: 160 }}>
         <TipsAndUpdatesIcon color="warning" /> click on a location to show/hide
         it on the chart
       </Card>
