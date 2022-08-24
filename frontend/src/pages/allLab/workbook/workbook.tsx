@@ -51,7 +51,7 @@ const Workbook = () => {
     {
       field: "numL",
       headerName: "Designation",
-
+      checkboxSelection: true,
       filter: "agMultiColumnFilter",
       filterParams: {
         filter: "agMultiColumnFilter",
@@ -65,14 +65,24 @@ const Workbook = () => {
     {
       field: "location",
       headerName: "Location",
-      checkboxSelection: true,
+      checkboxSelection:
+        book === "Excavation Bottom Foundation Check" ||
+        book == "Compaction Tests" ||
+        book === "Material Identification"
+          ? false
+          : true,
       maxWidth: 200,
       cellStyle: { "background-color": "#F4ECF7" },
       filter: "agMultiColumnFilter",
       filterParams: {
         filter: "agMultiColumnFilter",
       },
-      hide: book === "Concrete Formulation Report" ? true : false,
+      hide:
+        book === "Concrete Formulation Report" ||
+        book === "Convenience Report" ||
+        book === "Material Identification"
+          ? true
+          : false,
     },
     {
       field: "subLocation",
@@ -212,26 +222,28 @@ const Workbook = () => {
             {book} Data Records
           </h2>
         </div>
-        {status === "manager" && (
-          <>
-            {" "}
-            <div className="">
-              <ModalLab />{" "}
-            </div>
-            <div>
-              <Button
-                className="deleteButton"
-                color="error"
-                variant="outlined"
-                style={{ borderColor: "tomato", color: "tomato" }}
-                size="large"
-                onClick={handleDelete}
-              >
-                Delete selected
-              </Button>
-            </div>
-          </>
-        )}
+        {status === "manager" &&
+          book !== "PAQ (quality assurance plan)" &&
+          book !== "Geotechnical Study" && (
+            <>
+              {" "}
+              <div className="">
+                <ModalLab />{" "}
+              </div>
+              <div>
+                <Button
+                  className="deleteButton"
+                  color="error"
+                  variant="outlined"
+                  style={{ borderColor: "tomato", color: "tomato" }}
+                  size="large"
+                  onClick={handleDelete}
+                >
+                  Delete selected
+                </Button>
+              </div>
+            </>
+          )}
 
         {book !== "Geotechnical Study" &&
         book !== "PAQ (quality assurance plan)" ? (
