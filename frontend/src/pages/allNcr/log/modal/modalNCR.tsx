@@ -8,10 +8,11 @@ import { Stack, TextField } from "@mui/material";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 
 import SendIcon from "@mui/icons-material/Send";
+import "./modalNCR.css";
 import { Input } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../../../state/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../state/hooks";
 
-import SelectStuffQOR from "./selectStuffQOR/selectStuffQOR";
+import SelectStuffNCR from "./selectStuffNCR/selectStuffNCR";
 import {
   createQorNcr,
   getAllQorNcrs,
@@ -20,7 +21,7 @@ import {
   UpdateSelectedBox,
   uploadImages1,
   uploadImages2,
-} from "../../../state/reducers/qorNcrSlice";
+} from "../../../../state/reducers/qorNcrSlice";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const style = {
@@ -42,11 +43,11 @@ export default function ModalM() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useAppDispatch();
+
   const { newStatus, individualQorNcr, selectedBox } =
     useAppSelector(QorNcrData);
   const [value, setValue] = React.useState<Date | null>(new Date());
   const [value2, setValue2] = React.useState<Date | null>(null);
-
   const [loading, setLoading] = useState(false);
 
   const inputRefNum = React.useRef<any>(null);
@@ -92,12 +93,12 @@ export default function ModalM() {
         variant="outlined"
         color="success"
         size="large"
-        style={{ borderColor: "#00d4ff", color: "#00d4ff" }}
         className="createButtons"
+        style={{ borderColor: "#00d4ff", color: "#00d4ff" }}
         onClick={handleOpen}
       >
         {selectedBox === "" ? (
-          <span>Add an QOR</span>
+          <span>Add an NCR</span>
         ) : (
           <span>Update selected</span>
         )}
@@ -121,7 +122,7 @@ export default function ModalM() {
               Please complete the following informations :{" "}
             </p>
             <div>
-              <SelectStuffQOR individualQorNcr={individualQorNcr} />
+              <SelectStuffNCR individualQorNcr={individualQorNcr} />
             </div>
             <div style={{ marginTop: 12 }}>
               <Input
@@ -178,7 +179,7 @@ export default function ModalM() {
                     htmlFor="report"
                     style={{ color: "black", fontWeight: 500 }}
                   >
-                    Upload QOR &nbsp;&nbsp;
+                    Upload NCR &nbsp;&nbsp;
                   </label>
                   <input
                     id="file-upload"
@@ -216,7 +217,7 @@ export default function ModalM() {
                   ? dispatch(
                       updateQorNcr({
                         _id: individualQorNcr._id,
-                        typeR: "QOR",
+                        typeR: "NCR",
                         numR: inputRefNum.current.value,
                         dateRaised: value,
                         dateOfResponse: value2,
@@ -228,7 +229,7 @@ export default function ModalM() {
                     )
                   : dispatch(
                       createQorNcr({
-                        typeR: "QOR",
+                        typeR: "NCR",
                         numR: inputRefNum.current.value,
                         dateRaised: value,
                         dateOfResponse: value2,

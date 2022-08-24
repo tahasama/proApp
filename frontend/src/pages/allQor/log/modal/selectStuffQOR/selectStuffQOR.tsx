@@ -6,18 +6,15 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../../../state/hooks";
 
 import {
   getAllQorNcrs,
-  QorNcrData,
   UpdateValuesOfSelect,
-} from "../../../../state/reducers/qorNcrSlice";
+} from "../../../../../state/reducers/qorNcrSlice";
 
 export default function SelectStuff(individualQorNcr: any) {
   const dispatch = useDispatch();
   const [status, setStatus] = useState<any>();
-  // const [related, setRelated] = useState<any>();
 
   const statusArray = ["Open", "Closed", "Pending"];
 

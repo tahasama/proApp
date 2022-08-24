@@ -13,14 +13,22 @@
   background-size: 105%;
   background-position-y: 0px;
   z-index: auto; */
+
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgb(5, 1, 78) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgb(99, 6, 153) 100%
+  );
 }
 
 .itnCenter {
   position: absolute;
-  color: green;
-  border: 10px solid black;
+  /* color: rgb(255, 7, 7); */
+  border: 10px solid rgb(10, 161, 56, 0.4);
   border-style: double;
-  border-color: rgb(4, 78, 26, 0.4);
+  /* border-color: rgb(4, 78, 26, 0.4); */
   height: 150px;
   width: 150px;
   border-radius: 100%;
@@ -39,7 +47,7 @@
   line-height: 0px;
   transition: all 5s ease-out;
   font-size: 25px;
-  color: rgb(4, 78, 26);
+  color: rgb(10, 161, 56);
   cursor: pointer;
 }
 
@@ -129,6 +137,7 @@
   transform: rotate(-12deg);
   border-radius: 0;
   z-index: 99;
+  background-color: rgb(255, 255, 255);
 }
 
 .is-approved-w {
@@ -139,6 +148,7 @@
   z-index: 99;
   border-radius: 0;
   font-size: 40px;
+  background-color: rgb(255, 255, 255);
 }
 
 .is-nope {
@@ -148,11 +158,13 @@
   -webkit-mask-position: 2rem 3rem;
   z-index: 99;
   font-size: 2.2rem;
+  background-color: rgb(255, 255, 255);
 }
 
 .inf {
   z-index: 99;
   width: 260px;
+  background-color: rgb(255, 255, 255);
 }
 
 .title1 {

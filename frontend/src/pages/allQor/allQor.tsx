@@ -1,276 +1,85 @@
-import { AgGridReact } from "ag-grid-react";
-import CircularProgress from "@mui/material/CircularProgress";
-
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../state/hooks";
-import {
-  deleteQorNcr,
-  getAllQorNcrs,
-  getQorNcr,
-  QorNcrData,
-  UpdateSelectedBox,
-  updateWw,
-} from "../../state/reducers/qorNcrSlice";
+import * as React from "react";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import NavBar from "../Navbar/navbar";
-import ModalQOR from "./modal/modalQOR";
-import Button from "@mui/material/Button";
-import { getAuthData } from "../../state/reducers/authSlice";
-import { handleNumber } from "../../constants/constant";
+import Log from "./log/log";
+import Stats from "./stats/stats";
 
-const AllQor = () => {
-  const dispatch = useAppDispatch();
-  const { status } = useAppSelector(getAuthData);
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
 
-  const { all, ww, selectedBox } = useAppSelector(QorNcrData);
-  const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
-  const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
-  const handleDelete = () => {
-    dispatch(deleteQorNcr(selectedBox));
-    setTimeout(() => {
-      dispatch(getAllQorNcrs());
-    }, 250);
-  };
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
 
-  useEffect(() => {
-    dispatch(getAllQorNcrs());
-  }, []);
-
-  const [columnDefs, setColumnDefs] = useState([
-    {
-      field: "numR",
-      headerName: "number",
-      checkboxSelection: true,
-      minWidth: 270,
-      cellRenderer: (params: any) => {
-        return `QW221101-SNCE-QA-QOR-${handleNumber(params.value)}`;
-      },
-    },
-    {
-      field: "description",
-      headerName: "description",
-    },
-
-    {
-      field: "dateRaised",
-      headerName: "dateRaised",
-      filter: "agMultiColumnFilter",
-      filterParams: {
-        filter: "agMultiColumnFilter",
-        suppressAndOrCondition: true,
-      },
-      cellRenderer: (params: any) => {
-        return (
-          params.value !== undefined &&
-          params.value.slice(2, 10).split("-").reverse().join("-")
-        );
-      },
-    },
-    {
-      field: "dateOfResponse",
-      headerName: "dateOfResponse",
-      filter: "agMultiColumnFilter",
-      filterParams: {
-        filter: "agMultiColumnFilter",
-        suppressAndOrCondition: true,
-      },
-      cellRenderer: (params: any) => {
-        return (
-          params.value !== undefined &&
-          (params.value !== null
-            ? params.value.slice(2, 10).split("-").reverse().join("-")
-            : null)
-        );
-      },
-    },
-    {
-      field: "status",
-      headerName: "Status",
-      filter: "agMultiColumnFilter",
-      filterParams: {
-        filter: "agMultiColumnFilter",
-      },
-    },
-    {
-      field: "image1Url",
-      headerName: "See QOR",
-      minWidth: 40,
-      cellRenderer: (params: any) => {
-        const link1 = params.value;
-        return (
-          link1 && (
-            <a href={link1} target="_blank" rel="noreferrer">
-              See QOR
-            </a>
-          )
-        );
-      },
-    },
-    {
-      field: "image2Url",
-      headerName: "See action",
-      minWidth: 40,
-      cellRenderer: (params: any) => {
-        const link2 = params.value;
-        return (
-          link2 && (
-            <a href={link2} target="_blank" rel="noreferrer">
-              See action
-            </a>
-          )
-        );
-      },
-    },
-  ]);
-  const defaultColDef = useMemo(() => {
-    return {
-      sortable: true,
-      flex: 1,
-      minWidth: 200,
-      resizable: true,
-      menuTabs: ["filterMenuTab"],
-    };
-  }, []);
-  // const sideBar = useMemo(() => {
-  //   return {
-  //     toolPanels: ["filters"],
-  //   };
-  // }, []);
-
-  const gridRef = useRef<any>();
-
-  useEffect(() => {
-    dispatch(getQorNcr(selectedBox));
-  }, [selectedBox]);
-
-  const [filter, setFilter] = useState("");
-  const [filter1, setFilter1] = useState("");
-  useEffect(() => {
-    getTotal();
-  }, [filter, filter1, all]);
-
-  const getTotal = () => {
-    const rr = all.flat().filter((t: any) => t.typeR === "QOR");
-    const ss: any = rr.filter((filt: any) => filt.status === filter);
-    const tt: any = rr.filter(
-      (filt: any) =>
-        filt.dateRaised.slice(5, 7).split("-").reverse().join("-") === filter1
-    );
-    const ii: any = rr
-      .filter((filt: any) => filt.status === filter)
-      .filter(
-        (filt: any) =>
-          filt.dateRaised.slice(5, 7).split("-").reverse().join("-") === filter1
-      );
-    if (filter !== "" && filter1 === "") {
-      dispatch(updateWw(ss));
-    } else if (filter1 !== "" && filter === "") {
-      dispatch(updateWw(tt));
-    } else if (filter1 !== "" && filter !== "") {
-      dispatch(updateWw(ii));
-    } else dispatch(updateWw(rr));
-  };
-
-  const handleFilterChange = () => {
-    gridRef.current.api.getFilterModel().status
-      ? setFilter(gridRef.current.api.getFilterModel().status.filter)
-      : setFilter("");
-    gridRef.current.api.getFilterModel().dateRaised
-      ? setFilter1(gridRef.current.api.getFilterModel().dateRaised.filter)
-      : setFilter1("");
-  };
   return (
-    <>
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography component={"div"} variant={"body2"}>
+            {children}
+          </Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+function a11yProps(index: number) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
+
+export default function AllItn() {
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
+  return (
+    <div>
       <div className="navbar">
         <NavBar />
       </div>
-      <div className="" style={{ marginTop: status === "authorized" ? 15 : 0 }}>
-        <div>
-          <h2 className="title4" style={{ position: "relative", top: 64 }}>
-            QOR Data Records
-          </h2>
-        </div>
-        {status === "manager" && (
-          <>
-            <div className="">
-              <ModalQOR />
-            </div>
-            <div>
-              <Button
-                className="deleteButton"
-                color="error"
-                variant="outlined"
-                size="large"
-                style={{ borderColor: "tomato", color: "tomato" }}
-                onClick={handleDelete}
-              >
-                Delete selected
-              </Button>
-            </div>
-          </>
-        )}
-
-        <div
-          className="grid"
-          style={{
-            width: "98%",
-            height: 420,
-            margin: 10,
-            marginTop: status === "authorized" ? 90 : 0,
-          }}
-        >
-          {all.flat().length >= 0 ? (
-            <>
-              <div style={containerStyle}>
-                <div style={gridStyle} className="ag-theme-alpine">
-                  <AgGridReact
-                    rowData={all
-                      .flat()
-                      .filter((x: any) => x.typeR === "QOR")
-                      .reverse()}
-                    columnDefs={columnDefs}
-                    groupIncludeFooter={true}
-                    groupIncludeTotalFooter={true}
-                    defaultColDef={defaultColDef}
-                    animateRows={true}
-                    ref={gridRef}
-                    onFilterChanged={handleFilterChange}
-                    enableCellTextSelection={true}
-                    onSelectionChanged={(v: any) =>
-                      v.api.getSelectedRows().length === 0
-                        ? dispatch(UpdateSelectedBox(""))
-                        : dispatch(
-                            UpdateSelectedBox(v.api.getSelectedRows()[0]._id)
-                          )
-                    }
-                    getRowStyle={(params) => {
-                      if (params.data?.status === "Closed") {
-                        return { background: "rgb(0,255,0,0.15)" };
-                      } else if (params.data?.status === "Open") {
-                        return { background: "rgb(255,0,0,0.15)" };
-                      } else if (params.data?.status === "Pending") {
-                        return { background: "rgb(0,0,255,0.15)" };
-                      } else return { background: "white" };
-                    }}
-                  ></AgGridReact>
-                </div>
-                <Button
-                  variant="contained"
-                  className="total1"
-                  color="secondary"
-                >
-                  Total = {ww !== undefined && ww.length} QOR
-                </Button>
-              </div>{" "}
-            </>
-          ) : (
-            <div>
-              <CircularProgress style={{ marginTop: 200 }} size={120} />
-            </div>
-          )}
-        </div>
+      <div style={{ marginTop: 60 }}>
+        <Box sx={{ width: "100%" }}>
+          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              aria-label="basic tabs example"
+              variant="fullWidth"
+              style={{
+                marginTop: -8,
+                padding: 0,
+                backgroundColor: "#CCCCFF",
+              }}
+            >
+              <Tab label="LOG" {...a11yProps(0)} style={{ zIndex: 99 }} />
+              <Tab label="STATS" {...a11yProps(1)} style={{ zIndex: 99 }} />
+            </Tabs>
+          </Box>
+          <TabPanel value={value} index={0}>
+            <Log />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <Stats />
+          </TabPanel>{" "}
+        </Box>
       </div>
-    </>
+    </div>
   );
-};
-
-export default AllQor;
+}

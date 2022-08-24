@@ -1,0 +1,17 @@
+.statsQor {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 57%;
+}
+
+.statsQorLine {
+  margin: 0 0 0 100px;
+}
+.statsQorDoughnut {
+  margin: 12px 0 12px 70px;
+}
+
+.MuiTypography-body2 {
+  margin-top: -70px !important;
+}
