@@ -96,6 +96,7 @@ const Stats = () => {
   let r: any[] = [];
   let s: any[] = [];
   let t: any[] = [];
+  let v: any[] = [];
   let dict: any = {};
 
   const dew = (value: any) =>
@@ -166,6 +167,9 @@ const Stats = () => {
     } else if (val === "waterPipesNetwork") {
       t.push(dew(val));
       dict[20] = t;
+    } else if (val === "sludgeTreatmentBuilding") {
+      v.push(dew(val));
+      dict[21] = v;
     }
   });
   const data = {
@@ -193,6 +197,7 @@ const Stats = () => {
           r[0],
           s[0],
           t[0],
+          v[0],
         ],
         backgroundColor: [
           "#E74C3C",

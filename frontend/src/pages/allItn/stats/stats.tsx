@@ -92,6 +92,8 @@ const Stats = () => {
   let r: any[] = [];
   let s: any[] = [];
   let t: any[] = [];
+  let v: any[] = [];
+
   let dict: any = {};
 
   u.forEach((val, index) => {
@@ -155,6 +157,9 @@ const Stats = () => {
     } else if (val === "waterPipesNetwork") {
       t.push(index);
       dict[20] = t;
+    } else if (val === "sludgeTreatmentBuilding") {
+      v.push(index);
+      dict[21] = v;
     }
   });
 
@@ -183,6 +188,7 @@ const Stats = () => {
           r.length,
           s.length,
           t.length,
+          v.length,
         ],
         backgroundColor: [
           "#C0392B",

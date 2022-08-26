@@ -151,6 +151,9 @@ const Stats = () => {
     } else if (val === "waterPipesNetwork") {
       p.push(dew(val));
       dict[16] = p;
+    } else if (val === "sludgeTreatmentBuilding") {
+      q.push(dew(val));
+      dict[17] = q;
     }
   });
   const data = {

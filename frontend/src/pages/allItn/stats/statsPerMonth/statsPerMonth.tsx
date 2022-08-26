@@ -73,6 +73,7 @@ const StatsPerMonth = () => {
   let uu17: any = [];
   let uu18: any = [];
   let uu19: any = [];
+  let uu20: any = [];
 
   //===============================================================================the function start
   const lm = (v: any) => {
@@ -275,6 +276,13 @@ const StatsPerMonth = () => {
     return dict[i] !== undefined ? uu19.push(dict[i]) : uu19.push(0);
   });
 
+  dict = {};
+  lm("sludgeTreatmentBuilding");
+
+  labels.map((i: any) => {
+    return dict[i] !== undefined ? uu20.push(dict[i]) : uu20.push(0);
+  });
+
   // const [q, setQ] = useState<any[]>(locations);
   // const [filters, setFilters] = useState(true);
   const [lineBar, setLineBar] = useState(false);
@@ -464,6 +472,15 @@ const StatsPerMonth = () => {
         backgroundColor: "#bd039c",
         tension: 0.3,
       },
+      {
+        label: "Sludge.Treat",
+        // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+        data: uu20,
+
+        borderColor: "#ffffff",
+        backgroundColor: "#ffffff",
+        tension: 0.3,
+      },
     ],
   };
 
@@ -525,13 +542,12 @@ const StatsPerMonth = () => {
       >
         to {lineBar ? "Line" : "Bar"} Chart
       </Button>
-      <Card className="buttonn1" style={{ marginTop: -30 }}>
+      <Card className="buttonn1">
         <TipsAndUpdatesIcon color="warning" />
         click on the button above to switch from Dohgnut Bar chart to Line chart
         and vice versa
       </Card>
-
-      <Card className="buttonn1" style={{ marginTop: 160 }}>
+      <Card className="buttonn1" style={{ marginTop: 150 }}>
         <TipsAndUpdatesIcon color="warning" /> click on a location to show/hide
         it on the chart
       </Card>
