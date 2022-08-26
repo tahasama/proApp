@@ -162,6 +162,10 @@ export default function NavBar() {
       navigate("/waterPipesNetwork");
       window.location.reload();
       return false;
+    } else if (searchRef.current.value === "st") {
+      navigate("/sludgeTreatmentBuilding");
+      window.location.reload();
+      return false;
     }
   };
 
