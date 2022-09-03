@@ -295,13 +295,18 @@ export default function NavBar() {
               <MoreIcon />
             </IconButton>
           </Box>
-          {/* <Button
+          <Button
             color="inherit"
             startIcon={<AccountCircleIcon />}
-            sx={{ marginRight: 3, textTransform: "lowercase" }}
+            sx={{
+              margin: "0 18px",
+              textTransform: "lowercase",
+              xs: "flex",
+              md: "none",
+            }}
           >
             {email}
-          </Button> */}
+          </Button>
           {user && (
             <Button
               variant="contained"
