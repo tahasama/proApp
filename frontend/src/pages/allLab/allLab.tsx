@@ -66,7 +66,7 @@ const AllLab = () => {
   };
 
   return (
-    <div className="fullCover">
+    <div className="">
       <div className="navbar">
         <NavBar />
       </div>

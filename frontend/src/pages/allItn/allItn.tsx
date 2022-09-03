@@ -55,7 +55,7 @@ export default function AllItn() {
       <div className="navbar">
         <NavBar />
       </div>
-      <div style={{ marginTop: 39 }}>
+      <div style={{ marginTop: 37 }}>
         <Box sx={{ width: "100vw" }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <Tabs

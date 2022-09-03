@@ -98,7 +98,7 @@ export default function ModalLab() {
         color="success"
         size="large"
         style={{ borderColor: "#00d4ff", color: "#00d4ff" }}
-        className="createButtons"
+        className=""
         onClick={handleOpen}
       >
         {selectedBox === "" ? <span>Add </span> : <span>Update selected</span>}

@@ -226,37 +226,61 @@ export default function NavBar() {
           <Box sx={{ flexGrow: 1 }} />
           <Link
             to="../allitn"
-            style={{ textDecoration: "none", color: "inherit" }}
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              margin: "0 15px",
+            }}
           >
             <Button color="inherit">ITN</Button>
           </Link>
           <Link
             to="../allconcrete"
-            style={{ textDecoration: "none", color: "inherit" }}
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              margin: "0 15px",
+            }}
           >
             <Button color="inherit">CONCRETE</Button>
           </Link>
           <Link
             to="../allreinforcement"
-            style={{ textDecoration: "none", color: "inherit" }}
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              margin: "0 15px",
+            }}
           >
             <Button color="inherit">RIR</Button>
           </Link>{" "}
           <Link
             to="../allNcr"
-            style={{ textDecoration: "none", color: "inherit" }}
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              margin: "0 15px",
+            }}
           >
             <Button color="inherit">NCR</Button>
           </Link>{" "}
           <Link
             to="../allQor"
-            style={{ textDecoration: "none", color: "inherit" }}
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              margin: "0 15px",
+            }}
           >
             <Button color="inherit">QOR</Button>
           </Link>
           <Link
             to="../allLab"
-            style={{ textDecoration: "none", color: "inherit" }}
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+              margin: "0 15px",
+            }}
           >
             <Button color="inherit">Docs&nbsp;/&nbsp;Lab</Button>
           </Link>

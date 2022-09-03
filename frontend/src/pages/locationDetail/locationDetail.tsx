@@ -74,7 +74,7 @@ const LocationDetails = () => {
 
       <h6 className="locationName">{itp}: </h6>
       {status === "manager" && (
-        <div style={{ position: "absolute", bottom: 100, left: 3 }}>
+        <div style={{ position: "absolute", bottom: 100, left: 3, zIndex: 99 }}>
           <ModalC />
           <ModalD />
         </div>

@@ -19,6 +19,7 @@ import DownloadIcon from "@mui/icons-material/Download";
 import FolderIcon from "@mui/icons-material/Folder";
 import GeotechnicalStudy from "../../../images/GeotechnicalStudy.pdf";
 import Paq from "../../../images/Paq.pdf";
+import "./workbook.css";
 
 const Workbook = () => {
   const { book } = useParams();
@@ -214,35 +215,36 @@ const Workbook = () => {
         <NavBar />
       </div>
       <div
-        className=""
-        style={{ marginTop: status === "authorized" ? 35 : 20 }}
+        className="title1"
+        style={{ marginTop: status === "authorized" ? 25 : 10 }}
       >
-        <div>
-          <h2 className="title4" style={{ position: "relative", top: 64 }}>
-            {book} Data Records
-          </h2>
-        </div>
+        <h2 className="title4" style={{ position: "relative", top: 24 }}>
+          {book} Data Records
+        </h2>
+
         {status === "manager" &&
           book !== "PAQ (quality assurance plan)" &&
           book !== "Geotechnical Study" && (
-            <>
+            <div className="createDeleteB" style={{ top: -26 }}>
               {" "}
-              <div className="">
-                <ModalLab />{" "}
-              </div>
+              <ModalLab />{" "}
               <div>
                 <Button
-                  className="deleteButton"
-                  color="error"
                   variant="outlined"
-                  style={{ borderColor: "tomato", color: "tomato" }}
+                  color="error"
                   size="large"
+                  className="deleteB"
                   onClick={handleDelete}
+                  style={{
+                    borderColor: "tomato",
+                    color: "tomato",
+                    margin: "0 10px",
+                  }}
                 >
                   Delete selected
                 </Button>
               </div>
-            </>
+            </div>
           )}
 
         {book !== "Geotechnical Study" &&
