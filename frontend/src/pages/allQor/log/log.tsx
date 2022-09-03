@@ -180,29 +180,29 @@ const Log = () => {
   return (
     <>
       <div className="" style={{ marginTop: status === "authorized" ? 15 : 0 }}>
-        <div>
-          <h2 className="title4" style={{ position: "relative", top: 64 }}>
-            QOR Data Records
-          </h2>
-        </div>
+        <h2
+          className="title1"
+          style={{ marginBottom: status === "authorized" ? 110 : 0 }}
+        >
+          QOR Data Records
+        </h2>
+
         {status === "manager" && (
-          <>
-            <div className="">
-              <ModalQOR />
-            </div>
+          <div className="createDeleteB">
+            <ModalQOR />
             <div>
               <Button
-                className="deleteButton"
-                color="error"
                 variant="outlined"
+                color="error"
                 size="large"
-                style={{ borderColor: "tomato", color: "tomato" }}
+                className="deleteB"
                 onClick={handleDelete}
+                style={{ borderColor: "tomato", color: "tomato" }}
               >
                 Delete selected
               </Button>
             </div>
-          </>
+          </div>
         )}
 
         <div

@@ -52,13 +52,12 @@ export default function ModalM() {
   };
 
   return (
-    <div>
+    <div className="">
       <Button
         variant="outlined"
         color="success"
         size="large"
         style={{ borderColor: "#00d4ff", color: "#00d4ff" }}
-        className="createButtons"
         onClick={handleOpen}
       >
         Create ITN

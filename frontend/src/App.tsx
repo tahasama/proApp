@@ -41,32 +41,41 @@ function App() {
   }, [uid]);
 
   return (
-    <div className="App">
-      <p className="dev">Developped by: taha.maatof@gmail.com</p>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/authorized/:id/:email" element={<Authorize />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          {(status === "manager" ||
-            (status !== "unauthorized" && status !== undefined)) && (
-            <>
-              <Route path="/fullPlan" element={<FullPlan />} />
-              <Route path="/allitn" element={<AllItn />} />
-              <Route path="/allconcrete" element={<AllConcrete />} />
-              <Route path="/allreinforcement" element={<AllReinforcement />} />
-              <Route path="/allNcr" element={<AllNcr />} />
-              <Route path="/allQor" element={<AllQor />} />
-              <Route path="/allLab" element={<AllLab />} />
-              <Route path="/allLab/:book" element={<Workbook />} />
-              <Route path="/:itp" element={<LocationDetail />} />
-              <Route path="/:itp/:itnId" element={<IndividualItn />} />
-              <Route path="/:itp/:itnId/itnForm" element={<ItnForm />} />
-            </>
-          )}
-        </Routes>
-      </BrowserRouter>
+    <div className="all">
+      <div className="smallScreen">
+        This App is exclusively available on PC on Full Screen. Please use your
+        Laptop for an efficient experience
+      </div>
+      <div className="App">
+        <p className="dev">Developped by: taha.maatof@gmail.com</p>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/authorized/:id/:email" element={<Authorize />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            {(status === "manager" ||
+              (status !== "unauthorized" && status !== undefined)) && (
+              <>
+                <Route path="/fullPlan" element={<FullPlan />} />
+                <Route path="/allitn" element={<AllItn />} />
+                <Route path="/allconcrete" element={<AllConcrete />} />
+                <Route
+                  path="/allreinforcement"
+                  element={<AllReinforcement />}
+                />
+                <Route path="/allNcr" element={<AllNcr />} />
+                <Route path="/allQor" element={<AllQor />} />
+                <Route path="/allLab" element={<AllLab />} />
+                <Route path="/allLab/:book" element={<Workbook />} />
+                <Route path="/:itp" element={<LocationDetail />} />
+                <Route path="/:itp/:itnId" element={<IndividualItn />} />
+                <Route path="/:itp/:itnId/itnForm" element={<ItnForm />} />
+              </>
+            )}
+          </Routes>
+        </BrowserRouter>
+      </div>{" "}
     </div>
   );
 }

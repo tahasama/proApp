@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
 
   /* height: 90vh; */
 }
@@ -10,6 +11,7 @@
   position: fixed;
   /* align-items: center; */
   top: 0px;
+  height: 100vh;
 }
 .secondaryClarifierP24 {
   cursor: pointer;

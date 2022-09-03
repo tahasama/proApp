@@ -199,28 +199,30 @@ const Log = () => {
   };
 
   return (
-    <div className="log1" style={{ marginTop: 68 }}>
-      <div>
-        <h2 className="title4">Concrete Data Records</h2>
-      </div>
+    <div className="log1" style={{ marginTop: 30 }}>
+      <h2
+        className="title1"
+        style={{ marginBottom: status === "authorized" ? 110 : 0 }}
+      >
+        Concrete Data Records
+      </h2>
+
       {status === "manager" && (
-        <>
-          {" "}
-          <div className="overrideButtonCreate toUp1">
-            <ModalR />
-          </div>
+        <div className="createDeleteB">
+          <ModalR />
           <div>
             <Button
               variant="outlined"
+              color="error"
               size="large"
-              className="deleteButton"
+              className="deleteB"
               onClick={handleDelete}
               style={{ borderColor: "tomato", color: "tomato" }}
             >
               Delete selected
             </Button>
           </div>
-        </>
+        </div>
       )}
       <div
         className="grid"

@@ -13,7 +13,7 @@ const FullPlan = () => {
       </div>
 
       <div className="masterPlan">
-        <img src={plan} alt="" width={1114} className="fullPlan" />
+        <img src={plan} alt="" className="fullPlan" />
         {locations.flat().map((i: any) => (
           <div key={i}>
             <Link to={`../${i}`} className={i}></Link>

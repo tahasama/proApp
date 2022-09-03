@@ -14,16 +14,21 @@
   height: 450px;
 }
 
-.deleteButton {
-  position: absolute;
-  top: -10px;
-  right: 500px;
+.createDeleteB {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 15px 10px 20px 10px;
+}
+
+.deleteB {
 }
 
 .title1 {
-  position: absolute;
-  top: 100px;
-  margin-left: 440px;
+  position: relative;
+  top: 50px;
+  /* margin-left: 440px; */
   color: rgba(171, 236, 236, 0.75);
 }
 

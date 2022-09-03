@@ -203,28 +203,30 @@ const Log = () => {
   };
 
   return (
-    <div className="log1" style={{ marginTop: 68 }}>
-      <div>
-        <h2 className="title4">Reinforcement Data Records</h2>
-      </div>
+    <div className="log1" style={{ marginTop: 30 }}>
+      <h2
+        className="title1"
+        style={{ marginBottom: status === "authorized" ? 110 : 0 }}
+      >
+        Reinforcement Data Records
+      </h2>
+
       {status === "manager" && (
-        <>
-          <div className="overrideButtonCreate toUp1">
-            <ModalN />
-          </div>
+        <div className="createDeleteB">
+          <ModalN />
           <div>
             <Button
               variant="outlined"
               color="error"
               size="large"
-              className="deleteButton"
-              style={{ borderColor: "tomato", color: "tomato" }}
+              className="deleteB"
               onClick={handleDelete}
+              style={{ borderColor: "tomato", color: "tomato" }}
             >
               Delete selected
             </Button>
           </div>
-        </>
+        </div>
       )}
 
       <div
