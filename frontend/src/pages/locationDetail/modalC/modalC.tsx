@@ -59,7 +59,7 @@ export default function ModalC() {
       <Button
         variant="contained"
         size="large"
-        className="createItn"
+        style={{ margin: 10 }}
         onClick={handleOpen}
       >
         Create ITN

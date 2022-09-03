@@ -60,7 +60,7 @@ export default function ModalD() {
         variant="contained"
         size="large"
         color="info"
-        className="uploadItp"
+        className=""
         onClick={handleOpen}
       >
         Upload ITP

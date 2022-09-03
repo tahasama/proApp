@@ -215,7 +215,7 @@ export default function NavBar() {
               </Typography>
             </Button>
           </Link>
-          <Search>
+          <Search className="search">
             <form onSubmit={handleSearch}>
               <SearchIconWrapper>
                 <SearchIcon />

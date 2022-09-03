@@ -176,13 +176,30 @@ const ConcreteOfLocation = () => {
   ];
 
   return (
-    <>
+    <div
+      style={{
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        // background: "black",
+        // padding: 10,
+        margin: 20,
+        width: "70vw",
+        height: "81vh",
+        top: "30px",
+      }}
+    >
       {" "}
       <TableContainer
         component={Paper}
-        style={{ marginLeft: 120, marginTop: -105 }}
+        style={{
+          flex: 4,
+          backgroundColor: "rgb(230,230,230,0.9)",
+        }}
       >
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>{itp}</TableCell>
@@ -214,23 +231,20 @@ const ConcreteOfLocation = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <div
-        className="statsPerMonth"
-        style={{ marginTop: 0, padding: 0, width: "80%" }}
-      >
+      <div style={{ flex: 1 }}>
         <Bar
           options={optionsLine}
           data={data}
           style={{
-            width: "10%",
-            marginTop: 40,
-            marginLeft: 70,
-            backgroundColor: "rgb(230,230,230,0.9)",
+            width: "50vw",
+            marginTop: 10,
+            borderRadius: 6,
+            backgroundColor: "rgb(230,230,230,0.85)",
           }}
-          className="statsPerMonthLine"
+          className=""
         />
       </div>
-    </>
+    </div>
   );
 };
 

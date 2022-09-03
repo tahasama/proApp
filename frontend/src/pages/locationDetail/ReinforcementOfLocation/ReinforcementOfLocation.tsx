@@ -210,7 +210,7 @@ const ReinforcementOfLocation = () => {
   };
 
   return (
-    <div className="cover" style={{ marginTop: -160 }}>
+    <div className="cover2">
       <div>
         <Button
           variant="contained"
@@ -240,36 +240,39 @@ const ReinforcementOfLocation = () => {
             .reduce((a, b): any => a + b, 0)}
           &nbsp; Kg
         </Button>
-
         <div
-          className="DoughnutDimension7"
-          style={{ padding: 0, marginLeft: 4, width: "47%" }}
+          style={{
+            position: "relative",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            // padding: 10,
+            marginLeft: 120,
+            width: "60vw",
+            height: "55vh",
+            top: "30px",
+          }}
         >
-          <Pie
-            options={optionsPie}
-            data={data}
+          <div
             style={{
-              marginTop: 4,
-              marginLeft: 100,
-
-              backgroundColor: "rgb(230,230,230,0.9)",
+              flex: 8,
+              backgroundColor: "rgb(250,250,250,0.8)",
+              margin: 5,
+              padding: "26px 0",
             }}
-          />
-        </div>
-        <div
-          className="LineDimension7"
-          style={{ marginTop: 0, padding: 0, width: "85%" }}
-        >
-          <Line
-            options={optionsLine}
-            data={data2}
+          >
+            <Line options={optionsLine} data={data2} />
+          </div>
+          <div
             style={{
-              width: 320,
-              marginTop: -175,
-              marginLeft: 120,
-              backgroundColor: "rgb(230,230,230,0.9)",
+              flex: 4,
+              backgroundColor: "rgb(250,250,250,0.8)",
+              margin: 5,
             }}
-          />
+          >
+            <Pie options={optionsPie} data={data} />
+          </div>
         </div>
       </div>
     </div>

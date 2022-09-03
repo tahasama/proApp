@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import { useParams } from "react-router-dom";
 
 import "./locationDetail.css";
-import LocationsItn from "../locationsItn/locationsItn";
+
 import NavBar from "../Navbar/navbar";
 import ModalC from "./modalC/modalC";
 import ConcreteOfLocation from "./ConcreteOfLocation/concreteOfLocation";
@@ -17,6 +17,7 @@ import Button from "@mui/material/Button";
 import { useEffect } from "react";
 import { getItp, itpData } from "../../state/reducers/itpSlice";
 import { getAuthData } from "../../state/reducers/authSlice";
+import LocationsItn from "./locationsItn/locationsItn";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -73,10 +74,10 @@ const LocationDetails = () => {
 
       <h6 className="locationName">{itp}: </h6>
       {status === "manager" && (
-        <>
+        <div style={{ position: "absolute", bottom: 100, left: 3 }}>
           <ModalC />
           <ModalD />
-        </>
+        </div>
       )}
 
       <Button
@@ -116,15 +117,15 @@ const LocationDetails = () => {
             value={value}
             onChange={handleChange}
             aria-label="Vertical tabs example"
-            sx={{ borderRight: 1, borderColor: "divider" }}
+            sx={{ borderRight: 1, borderColor: "divider", display: "flex" }}
           >
             <Tab
               label="ITN"
               {...a11yProps(0)}
               style={{
                 position: "fixed",
-                marginTop: 20,
-                boxShadow: "10px 5px 5px grey",
+                marginTop: 170,
+                boxShadow: "7px 5px 5px grey",
                 width: 150,
                 backgroundColor: "#EBEDEF",
               }}
@@ -134,8 +135,8 @@ const LocationDetails = () => {
               {...a11yProps(1)}
               style={{
                 position: "fixed",
-                marginTop: 95,
-                boxShadow: "10px 5px 5px grey",
+                marginTop: 230,
+                boxShadow: "7px 5px 5px grey",
                 width: 150,
                 backgroundColor: "#EBEDEF",
               }}
@@ -145,15 +146,15 @@ const LocationDetails = () => {
               {...a11yProps(2)}
               style={{
                 position: "fixed",
-                marginTop: 170,
-                boxShadow: "10px 5px 5px grey",
+                marginTop: 290,
+                boxShadow: "7px 5px 5px grey",
                 width: 150,
                 backgroundColor: "#EBEDEF",
               }}
             />
           </Tabs>
           <TabPanel value={value} index={0}>
-            <div style={{ marginLeft: 200 }}>
+            <div style={{ marginLeft: 150, marginTop: 60 }}>
               <LocationsItn />
             </div>
           </TabPanel>

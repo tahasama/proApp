@@ -8,8 +8,8 @@ import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 
-import { useAppDispatch, useAppSelector } from "../../state/hooks";
-import { getItnsByItp, itnData } from "../../state";
+import { useAppDispatch, useAppSelector } from "../../../state/hooks";
+import { getAllItns, getItnsByItp, itnData } from "../../../state";
 import { useParams } from "react-router-dom";
 
 import "./locationsItn.css";
@@ -28,7 +28,11 @@ import {
   Title,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { handleNumber, labelsName, routines } from "../../constants/constant";
+import {
+  handleNumber,
+  labelsName,
+  routines,
+} from "../../../constants/constant";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -62,6 +66,7 @@ const LocationsItn = () => {
 
   useEffect(() => {
     dispatch(getItnsByItp(itp));
+    dispatch(getAllItns());
   }, []);
   const filterByRoutine = allitp.flat().filter((itn: any) => {
     return itn.routine === filterBy;
@@ -69,6 +74,8 @@ const LocationsItn = () => {
   const arr = (filterBy !== "All" ? filterByRoutine : allitp).reverse();
 
   let itpName = itp;
+
+  console.log(allitp, "AND", all);
   const data = {
     labels: [`${itpName} (%)`, "Other ITN (%)"],
     datasets: [
@@ -185,106 +192,88 @@ const LocationsItn = () => {
 
   return (
     <div className="cover">
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2}>
-          <Grid item xs={3} className="boxes">
-            <Item
-              style={{
-                position: "fixed",
-                marginLeft: -18,
-                marginTop: 6,
-                width: 333,
-              }}
-            >
-              <p style={{ margin: 0, padding: 0 }}>Stats:</p>
-              <div className="PieDimension">
-                <Pie
-                  options={optionsPie}
-                  data={data}
-                  style={{ padding: 30, marginTop: -30 }}
-                />
-              </div>
-              <div>
-                <Line
-                  options={optionsLine}
-                  data={data2}
-                  style={{ width: 340, marginTop: -20 }}
-                />
-              </div>
-            </Item>
-          </Grid>
-          <Grid item xs={3}>
-            <Item
-              style={{ position: "fixed", marginLeft: 344, marginTop: -10 }}
-            >
-              <span style={{ margin: 0, padding: 0 }}>Filter By: </span>
-              {routines.map((i: any) => (
-                <div key={i} onClick={() => setFilterBy(i)} className="filters">
-                  {i}
-                </div>
-              ))}
-            </Item>
-          </Grid>
-          <Grid item xs={6}>
-            <Item
-              className="example"
-              style={{
-                position: "absolute",
-                marginLeft: 619,
-                marginTop: -26,
-                width: 440,
-                paddingLeft: 4,
-                paddingRight: 4,
-                maxHeight: 468,
-
-                // marginRight: 0,
-              }}
-            >
-              <Timeline position="alternate">
-                {arr
-                  .flat()
-                  .reverse()
-                  .map((itn: any) => (
-                    <TimelineItem key={itn._id}>
-                      <TimelineOppositeContent color="text.secondary">
-                        {new Date(itn.dateOfInspection).toLocaleDateString(
-                          navigator.language,
-                          {
-                            year: "numeric",
-                            month: "short",
-                            day: "numeric",
-                          }
-                        )}
-                      </TimelineOppositeContent>
-                      <TimelineSeparator>
-                        <TimelineDot />
-                        <TimelineConnector />
-                      </TimelineSeparator>
-                      <TimelineContent>
-                        <a
-                          href={"/" + itp + "/" + itn._id}
-                          className="tulipeDimensions"
-                          style={{
-                            cursor: "pointer",
-                          }}
-                        >
-                          <h5
-                            className="tulipeDimensions"
-                            // style={{ marginLeft: 4 }}
-                          >
-                            QW211101-SNCE-QA-ITN-{handleNumber(itn.num)}
-                          </h5>
-                          <h6 className="tulipeDimensions"> {itn.routine} </h6>{" "}
-                        </a>
-                      </TimelineContent>
-                    </TimelineItem>
-                  ))}
-              </Timeline>
-            </Item>
-          </Grid>
+      <Grid container columnSpacing={{ xs: 1, sm: 2, md: 1 }}>
+        <Grid item xs={4}>
+          <Item style={{ height: "77vh" }}>
+            <p style={{ margin: 0, padding: 0 }}>Stats:</p>
+            <div>
+              <Pie
+                options={optionsPie}
+                data={data}
+                style={{ padding: 30, marginTop: -30 }}
+              />
+            </div>
+            <div>
+              <Line
+                options={optionsLine}
+                data={data2}
+                style={{ width: 340, marginTop: -20 }}
+              />
+            </div>
+          </Item>
         </Grid>
-      </Box>
-      <div></div>
+        <Grid item xs={4}>
+          <Item style={{ height: "77vh" }}>
+            {" "}
+            <span style={{ margin: 0, padding: 0 }}>Filter By: </span>
+            {routines.map((i: any) => (
+              <div key={i} onClick={() => setFilterBy(i)} className="filters">
+                {i}
+              </div>
+            ))}
+          </Item>
+        </Grid>
+        <Grid item xs={4}>
+          <Item
+            className="example"
+            style={{
+              width: "100%",
+              maxHeight: "77vh",
+            }}
+          >
+            <Timeline position="alternate">
+              {arr
+                .flat()
+                .reverse()
+                .map((itn: any) => (
+                  <TimelineItem key={itn._id}>
+                    <TimelineOppositeContent color="text.secondary">
+                      {new Date(itn.dateOfInspection).toLocaleDateString(
+                        navigator.language,
+                        {
+                          year: "numeric",
+                          month: "short",
+                          day: "numeric",
+                        }
+                      )}
+                    </TimelineOppositeContent>
+                    <TimelineSeparator>
+                      <TimelineDot />
+                      <TimelineConnector />
+                    </TimelineSeparator>
+                    <TimelineContent>
+                      <a
+                        href={"/" + itp + "/" + itn._id}
+                        className=""
+                        style={{
+                          cursor: "pointer",
+                          width: 4,
+                        }}
+                      >
+                        <h5
+                        // style={{ marginLeft: 4 }}
+                        >
+                          QW211101-SNCE-QA-ITN-{handleNumber(itn.num)}
+                        </h5>
+                        <h6 className=""> {itn.routine} </h6>{" "}
+                      </a>
+                    </TimelineContent>
+                  </TimelineItem>
+                ))}
+            </Timeline>
+          </Item>
+        </Grid>
+      </Grid>
     </div>
   );
 };
