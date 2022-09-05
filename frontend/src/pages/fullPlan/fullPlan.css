@@ -638,7 +638,71 @@
   opacity: 1;
 }
 
-.generator {
+.digester {
+  cursor: pointer;
+  position: absolute;
+  top: 106px;
+  left: 370px;
+  height: 138px;
+  width: 84px;
+  opacity: 1;
+  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff, 0 0 15px #049dff;
+  border-radius: 10%;
+}
+.digester:hover {
+  opacity: 0.7;
+  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
+}
+
+.name-digester {
+  position: absolute;
+  left: 270px;
+  top: 100px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  font-size: 20px;
+  border-radius: 15px;
+  background-color: rgba(225, 243, 243, 0.6);
+  padding: 5px;
+}
+
+.digester:hover + .name-digester {
+  opacity: 1;
+}
+
+.preliminaryTreatment {
+  cursor: pointer;
+  position: absolute;
+  bottom: 60px;
+  right: 400px;
+  height: 60px;
+  width: 30px;
+  opacity: 1;
+  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
+  border-radius: 10%;
+}
+.preliminaryTreatment:hover {
+  opacity: 0.7;
+  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
+}
+
+.name-preliminaryTreatment {
+  position: absolute;
+  right: 450px;
+  bottom: 50px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  font-size: 20px;
+  border-radius: 15px;
+  background-color: rgba(225, 243, 243, 0.6);
+  padding: 5px;
+}
+
+.preliminaryTreatment:hover + .name-preliminaryTreatment {
+  opacity: 1;
+}
+
+/* .generator {
   cursor: pointer;
   position: absolute;
   top: 220px;
@@ -669,7 +733,7 @@
 
 .generator:hover + .name-generator {
   opacity: 1;
-}
+} */
 
 .closingWall {
   position: absolute;

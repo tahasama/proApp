@@ -20,6 +20,9 @@ export const locations = [
   "electricalRoom2",
   "waterPipesNetwork",
   "sludgeTreatmentBuilding",
+  "digester",
+  // "digester1",
+  // "digester2",
   "other",
 ];
 
@@ -41,6 +44,9 @@ export const locationsR = [
   "mainStation",
   "waterPipesNetwork",
   "sludgeTreatmentBuilding",
+  "digester",
+  // "digester1",
+  // "digester2",
 ];
 
 export const labelsName: any = [
@@ -113,6 +119,9 @@ export const locationsL = [
   "electricalRoom2",
   "waterPipesNetwork",
   "sludgeTreatmentBuilding",
+  "digester",
+  // "digester1",
+  // "digester2",
   "other",
   "GAT01",
   "GAT02",
