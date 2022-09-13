@@ -97,6 +97,8 @@ const Stats = () => {
   let s: any[] = [];
   let t: any[] = [];
   let v: any[] = [];
+  let w: any[] = [];
+  let x: any[] = [];
   let dict: any = {};
 
   const dew = (value: any) =>
@@ -170,6 +172,12 @@ const Stats = () => {
     } else if (val === "sludgeTreatmentBuilding") {
       v.push(dew(val));
       dict[21] = v;
+    } else if (val === "digester1") {
+      w.push(index);
+      dict[22] = w;
+    } else if (val === "digester2") {
+      x.push(index);
+      dict[23] = x;
     }
   });
   const data = {
@@ -198,8 +206,11 @@ const Stats = () => {
           s[0],
           t[0],
           v[0],
+          w[0],
+          x[0],
         ],
         backgroundColor: [
+          "#C0392B",
           "#E74C3C",
           "#AF7AC5",
           "#8E44AD",
@@ -220,9 +231,8 @@ const Stats = () => {
           "#6E2C00",
           "#F1948A",
           "#D4EFDF",
+          "#A09090",
           "#FAD7A0",
-          "#D5F5E3",
-          "#C0392B",
         ],
         borderColor: [
           "#85C1E9",
@@ -249,6 +259,8 @@ const Stats = () => {
           "#85C1E9",
           "#85C1E9",
           "#85C1E9",
+          "#6AD7A0",
+          "#A5F5E3",
         ],
         borderWidth: 1,
         fill: false,

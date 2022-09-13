@@ -74,6 +74,8 @@ const StatsPerMonth = () => {
   let uu18: any = [];
   let uu19: any = [];
   let uu20: any = [];
+  let uu21: any = [];
+  let uu22: any = [];
 
   //===============================================================================the function start
   const lm = (v: any) => {
@@ -282,6 +284,18 @@ const StatsPerMonth = () => {
   labels.map((i: any) => {
     return dict[i] !== undefined ? uu20.push(dict[i]) : uu20.push(0);
   });
+  dict = {};
+  lm("digester1");
+
+  labels.map((i: any) => {
+    return dict[i] !== undefined ? uu21.push(dict[i]) : uu21.push(0);
+  });
+  dict = {};
+  lm("digester2");
+
+  labels.map((i: any) => {
+    return dict[i] !== undefined ? uu22.push(dict[i]) : uu22.push(0);
+  });
 
   // const [q, setQ] = useState<any[]>(locations);
   // const [filters, setFilters] = useState(true);
@@ -479,6 +493,24 @@ const StatsPerMonth = () => {
 
         borderColor: "#ffffff",
         backgroundColor: "#ffffff",
+        tension: 0.3,
+      },
+      {
+        label: "Digester1",
+        // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+        data: uu21,
+
+        borderColor: "#A78fff",
+        backgroundColor: "#A78fff",
+        tension: 0.3,
+      },
+      {
+        label: "Digester2",
+        // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+        data: uu22,
+
+        borderColor: "#6AD7A0",
+        backgroundColor: "#6AD7A0",
         tension: 0.3,
       },
     ],

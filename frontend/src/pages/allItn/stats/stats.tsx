@@ -93,6 +93,8 @@ const Stats = () => {
   let s: any[] = [];
   let t: any[] = [];
   let v: any[] = [];
+  let w: any[] = [];
+  let x: any[] = [];
 
   let dict: any = {};
 
@@ -160,6 +162,12 @@ const Stats = () => {
     } else if (val === "sludgeTreatmentBuilding") {
       v.push(index);
       dict[21] = v;
+    } else if (val === "digester1") {
+      w.push(index);
+      dict[22] = w;
+    } else if (val === "digester2") {
+      x.push(index);
+      dict[23] = x;
     }
   });
 
@@ -189,6 +197,8 @@ const Stats = () => {
           s.length,
           t.length,
           v.length,
+          w.length,
+          x.length,
         ],
         backgroundColor: [
           "#C0392B",
@@ -212,8 +222,8 @@ const Stats = () => {
           "#6E2C00",
           "#F1948A",
           "#D4EFDF",
+          "#A09090",
           "#FAD7A0",
-          "#D5F5E3",
         ],
         borderColor: [
           "#C0392B",
@@ -237,7 +247,7 @@ const Stats = () => {
           "#6E2C00",
           "#F1948A",
           "#D4EFDF",
-          "#D5F5E3",
+          "#A09090",
           "#FAD7A0",
         ],
         borderWidth: 1,
