@@ -28,7 +28,7 @@ function App() {
   const { status, uid } = useAppSelector(getAuthData);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, (user: any) => {
       if (user) {
         dispatch(saveUser(user));
       } else {

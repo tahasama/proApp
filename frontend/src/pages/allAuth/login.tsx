@@ -23,7 +23,7 @@ const Login = () => {
   const { err } = useAppSelector(getAuthData);
   const [alerto, setAlerto] = useState(true);
   const { status, uid, user } = useAppSelector(getAuthData);
-
+  // console.log("rrrrrrrrr", user.email);
   useEffect(() => {
     dispatch(getUser(uid));
   }, []);
@@ -82,15 +82,16 @@ const Login = () => {
   }, [status]);
 
   const authorization = (
-    <Alert
-      severity="success"
-      style={{ alignItems: "center", justifyContent: "center" }}
-    >
-      <AlertTitle>Your inscription will be examined</AlertTitle>
-      youl receive a confirmation email of subscription very shortly, if you are
-      an authorized member you will receive another email ginving you access to
-      the app, Thank you for your patience.
-    </Alert>
+    // <Alert
+    //   severity="success"
+    //   style={{ alignItems: "center", justifyContent: "center" }}
+    // >
+    //   <AlertTitle>Your inscription will be examined</AlertTitle>
+    //   youl receive a confirmation email of subscription very shortly, if you are
+    //   an authorized member you will receive another email ginving you access to
+    //   the app, Thank you for your patience.
+    // </Alert>
+    <div>ok</div>
   );
 
   // ==============================================================

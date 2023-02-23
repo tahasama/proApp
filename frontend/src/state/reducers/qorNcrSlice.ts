@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytesResumable } from "@firebase/storage";
 import { storage } from "../../firebase";
 
 const PROJECT_URL: any = process.env.REACT_APP_HEROKU_URL + "qorncr/";
