@@ -11,29 +11,28 @@ const FullPlan = () => {
       <div className="navbar">
         <NavBar />
       </div>
-      <div className="fullPage">
-        <div className="masterPlan">
-          <img src={plan} alt="" className="fullPlan" />
-          {locations.flat().map((i: any) => (
-            <div key={i}>
-              <Link to={`../${i}`} className={i}></Link>
-              <div className={"name-" + i}>
-                <i>
-                  <b>
-                    <u>{i}</u>
-                  </b>
-                </i>
-              </div>
+      {/* <img src={plan} alt="" className="fullPlan" /> */}
+
+      <div className="masterPlan">
+        {locations.flat().map((i: any) => (
+          <div key={i}>
+            <Link to={`../${i}`} className={i}></Link>
+            <div className={"name-" + i}>
+              <i>
+                <b>
+                  <u>{i}</u>
+                </b>
+              </i>
             </div>
-          ))}
-          <Link to={`../closingWall`} className="closingWall">
-            <p className="wallText">closingWall</p>
-            <div className="arrow">
-              <div className="line"></div>
-              <div className="point"></div>
-            </div>
-          </Link>
-        </div>
+          </div>
+        ))}
+        <Link to={`../closingWall`} className="closingWall">
+          <p className="wallText">closingWall</p>
+          <div className="arrow">
+            <div className="line"></div>
+            <div className="point"></div>
+          </div>
+        </Link>
       </div>
     </div>
   );

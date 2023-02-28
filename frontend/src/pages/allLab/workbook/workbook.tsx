@@ -17,7 +17,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import ModalLab from "./modalLab/modalLab";
 import DownloadIcon from "@mui/icons-material/Download";
 import FolderIcon from "@mui/icons-material/Folder";
-import GeotechnicalStudy from "../../../images/GeotechnicalStudy.pdf";
+// import GeotechnicalStudy from "../../../images/GeotechnicalStudy.pdf";
 // import Paq from "../../../images/Paq.pdf";
 import "./workbook.css";
 

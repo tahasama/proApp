@@ -6,14 +6,21 @@
 
 .masterPlan {
   /* background-color: blueviolet; */
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
+    position: relative;
+    
   /* height: ; */
-
+  background-image: url('../../images/plan.png');
+  background-size: cover;
+  background-position: center;
   height: 720px;
   width: 1283px;
-  background-color: #ff0101;
+  /* top: 55.7%; */
+  left: 10%;
+
+  /* background-color: #ff0101; */
 
 
 }
@@ -27,17 +34,22 @@
 }
 .secondaryClarifierP24 {
   cursor: pointer;
-  position: absolute;
-  top: 365px;
-  left: 540px;
+  /* top: 365px;
+  left: 540px; */
   opacity: 1;
-  height: 118px;
-  width: 118px;
+  height: 122px;
+  width: 122px;
   /* background-color: rgb(0, 255, 106); */
   box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
 
   margin: 0;
   border-radius: 50%;
+  position: absolute;
+  top: 55.7%;
+  left: 36.7%;
+  transform: translate(-50%, -50%);
+
+  /* background-color: red; */
 }
 .secondaryClarifierP24:hover {
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
@@ -54,6 +66,8 @@
   border-radius: 15px;
   background-color: rgba(225, 243, 243, 0.6);
   padding: 5px;
+
+  
 }
 
 .secondaryClarifierP24:hover + .name-secondaryClarifierP24 {
@@ -62,17 +76,16 @@
 
 .secondaryClarifierP25 {
   cursor: pointer;
-  position: absolute;
-  top: 555px;
-  left: 540px;
-  height: 118px;
-  width: 118px;
   opacity: 1;
-  /* background-color: rgb(0, 255, 106); */
+  height: 122px;
+  width: 122px;
   box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-
   margin: 0;
   border-radius: 50%;
+  position: absolute;
+  top: 81.8%;
+  left: 36.7%;
+  transform: translate(-50%, -50%);
 }
 .secondaryClarifierP25:hover {
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
@@ -86,7 +99,7 @@
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
-  font-size: 25px;
+  font-size: 22px;
   background-color: rgba(225, 243, 243, 0.6);
 
   border-radius: 15px;
@@ -99,16 +112,16 @@
 
 .secondaryClarifierP32 {
   cursor: pointer;
-  position: absolute;
-  top: 555px;
-  left: 336px;
-  height: 118px;
-  width: 118px;
   opacity: 1;
+  height: 122px;
+  width: 122px;
   box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-
+  margin: 0;
   border-radius: 50%;
-  /* background-color: rgb(0, 225, 255); */
+  position: absolute;
+  top: 81.8%;
+  left: 20.8%;
+  transform: translate(-50%, -50%);
 }
 .secondaryClarifierP32:hover {
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
@@ -135,16 +148,16 @@
 
 .PrimaryClarifierP7 {
   cursor: pointer;
-  position: absolute;
-  top: 394px;
-  right: 320px;
   opacity: 1;
-  height: 72px;
-  width: 72px;
+  height: 80px;
+  width: 80px;
   box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-
   margin: 0;
   border-radius: 50%;
+  position: absolute;
+  top: 56.4%;
+  left: 82.3%;
+  transform: translate(-50%, -50%);
 }
 .PrimaryClarifierP7:hover {
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
@@ -171,16 +184,16 @@
 
 .PrimaryClarifierP8 {
   cursor: pointer;
-  position: absolute;
-  top: 498px;
-  right: 319px;
   opacity: 1;
-  height: 72px;
-  width: 72px;
+  height: 80px;
+  width: 80px;
   box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-
   margin: 0;
   border-radius: 50%;
+  position: absolute;
+  top: 70.8%;
+  left: 82.2%;
+  transform: translate(-50%, -50%);
 }
 .PrimaryClarifierP8:hover {
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
@@ -207,16 +220,16 @@
 
 .PrimaryClarifierP9 {
   cursor: pointer;
-  position: absolute;
-  top: 603px;
-  right: 320px;
-  height: 72px;
-  width: 72px;
   opacity: 1;
+  height: 80px;
+  width: 80px;
   box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-
   margin: 0;
   border-radius: 50%;
+  position: absolute;
+  top: 85.7%;
+  left: 82.2%;
+  transform: translate(-50%, -50%);
 }
 .PrimaryClarifierP9:hover {
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
@@ -243,14 +256,16 @@
 
 .aerationTank {
   cursor: pointer;
-  position: absolute;
-  top: 420px;
-  left: 746px;
-  height: 240px;
-  width: 240px;
   opacity: 1;
+  height: 245px;
+  width: 245px;
   box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  border-radius: 10%;
+  margin: 0;
+  /* border-radius: 50%; */
+  position: absolute;
+  top: 71%;
+  left: 57.2%;
+  transform: translate(-50%, -50%);
 }
 .aerationTank:hover {
   opacity: 0.7;
@@ -259,8 +274,8 @@
 
 .name-aerationTank {
   position: absolute;
-  right: 700px;
-  bottom: 330px;
+  right: 570px;
+  bottom: 340px;
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
@@ -277,15 +292,15 @@
 
 .mainBuilding {
   cursor: pointer;
-  position: absolute;
-  top: 500px;
-  left: 180px;
-  height: 120px;
-  width: 100px;
   opacity: 1;
+  height: 134px;
+  width: 94px;
   box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-
-  border-radius: 10%;
+  margin: 0;
+  position: absolute;
+  top: 74.8%;
+  left: 8.2%;
+  transform: translate(-50%, -50%);
 }
 .mainBuilding:hover {
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
@@ -312,15 +327,15 @@
 
 .workShop {
   cursor: pointer;
-  position: absolute;
-  top: 460px;
-  left: 186px;
-  height: 30px;
-  width: 30px;
   opacity: 1;
-  box-shadow: 0 0 14px #ff01f2, 0 0 15px #ff01f2, 0 0 15px #ff01f2;
-
-  border-radius: 10%;
+  height: 40px;
+  width: 34px;
+  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
+  margin: 0;
+  position: absolute;
+  top: 62%;
+  left: 6%;
+  transform: translate(-50%, -50%);
 }
 .workShop:hover {
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
@@ -347,15 +362,15 @@
 
 .chlorinationTank {
   cursor: pointer;
-  position: absolute;
-  top: 340px;
-  left: 186px;
+  opacity: 1;
   height: 110px;
   width: 80px;
-  opacity: 1;
   box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-
-  border-radius: 10%;
+  margin: 0;
+  position: absolute;
+  top: 52%;
+  left: 8%;
+  transform: translate(-50%, -50%);
 }
 .chlorinationTank:hover {
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
@@ -382,15 +397,15 @@
 
 .pumpingStation2 {
   cursor: pointer;
-  position: absolute;
-  top: 485px;
-  left: 350px;
-  height: 30px;
-  width: 60px;
   opacity: 1;
+  height: 30px;
+  width: 40px;
   box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-
-  border-radius: 10%;
+  margin: 0;
+  position: absolute;
+  top: 66%;
+  left: 19%;
+  transform: translate(-50%, -50%);
 }
 .pumpingStation2:hover {
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
@@ -417,15 +432,15 @@
 
 .pumpingStation1 {
   cursor: pointer;
-  position: absolute;
-  top: 520px;
-  right: 460px;
-  height: 30px;
-  width: 60px;
   opacity: 1;
+  height: 30px;
+  width: 40px;
   box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-
-  border-radius: 10%;
+  margin: 0;
+  position: absolute;
+  top: 71.6%;
+  left: 71%;
+  transform: translate(-50%, -50%);
 }
 .pumpingStation1:hover {
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
@@ -435,7 +450,7 @@
 .name-pumpingStation1 {
   position: absolute;
   right: 300px;
-  bottom: 210px;
+  bottom: 230px;
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
@@ -452,15 +467,15 @@
 
 .sandFilter {
   cursor: pointer;
-  position: absolute;
-  top: 400px;
-  left: 355px;
-  height: 64px;
-  width: 105px;
   opacity: 1;
+  height: 67px;
+  width: 110px;
   box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-
-  border-radius: 10%;
+  margin: 0;
+  position: absolute;
+  top: 56%;
+  left: 21.6%;
+  transform: translate(-50%, -50%);
 }
 .sandFilter:hover {
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
@@ -469,7 +484,7 @@
 
 .name-sandFilter {
   position: absolute;
-  left: 380px;
+  left: 300px;
   bottom: 350px;
   opacity: 0;
   transition: 1.2s opacity;
@@ -487,15 +502,16 @@
 
 .electricalRoom1 {
   cursor: pointer;
-  position: absolute;
-  top: 355px;
-  left: 975px;
-  height: 25px;
-  width: 60px;
   opacity: 1;
+  height: 30px;
+  width: 60px;
   box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
+  margin: 0;
+  position: absolute;
 
-  border-radius: 10%;
+  top: 49%;
+  left: 68.6%;
+  transform: translate(-50%, -50%);
 }
 .electricalRoom1:hover {
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
@@ -505,7 +521,7 @@
 .name-electricalRoom1 {
   position: absolute;
   right: 320px;
-  bottom: 350px;
+  bottom: 390px;
   opacity: 0;
   transition: 1.2s opacity;
   font-size: 20px;
@@ -520,15 +536,15 @@
 
 .electricalRoom2 {
   cursor: pointer;
-  position: absolute;
-  top: 360px;
-  left: 310px;
-  height: 55px;
-  width: 30px;
   opacity: 1;
+  height: 60px;
+  width: 30px;
   box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-
-  border-radius: 10%;
+  margin: 0;
+  position: absolute;
+  top: 50.5%;
+  left: 15.6%;
+  transform: translate(-50%, -50%);
 }
 .electricalRoom2:hover {
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
@@ -537,7 +553,7 @@
 
 .name-electricalRoom2 {
   position: absolute;
-  left: 300px;
+  left: 220px;
   bottom: 390px;
   opacity: 0;
   transition: 1.2s opacity;
@@ -553,15 +569,15 @@
 
 .blowersRoom {
   cursor: pointer;
-  position: absolute;
-  top: 357px;
-  right: 572px;
-  height: 35px;
-  width: 50px;
   opacity: 1;
+  height: 30px;
+  width: 50px;
   box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-
-  border-radius: 10%;
+  margin: 0;
+  position: absolute;
+  top: 49%;
+  left: 62.8%;
+  transform: translate(-50%, -50%);
 }
 .blowersRoom:hover {
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
@@ -586,15 +602,15 @@
 
 .mainStation {
   cursor: pointer;
-  position: absolute;
-  top: 230px;
-  left: 180px;
-  height: 60px;
-  width: 70px;
   opacity: 1;
-  box-shadow: 0 0 15px #ff0101, 0 0 15px #ff0101, 0 0 15px #ff0101;
-
-  border-radius: 10%;
+  height: 65px;
+  width: 70px;
+  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
+  margin: 0;
+  position: absolute;
+  top: 33.5%;
+  left: 7%;
+  transform: translate(-50%, -50%);
 }
 .mainStation:hover {
   opacity: 0.7;
@@ -603,7 +619,7 @@
 
 .name-mainStation {
   position: absolute;
-  left: 250px;
+  left: 160px;
   top: 180px;
   opacity: 0;
   transition: 1.2s opacity;
@@ -619,15 +635,15 @@
 
 .sludgeTreatmentBuilding {
   cursor: pointer;
-  position: absolute;
-  top: 250px;
-  left: 620px;
-  height: 38px;
-  width: 70px;
   opacity: 1;
-  /* box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;  */
-  box-shadow: 0 0 15px #ff0101, 0 0 15px #ff0101, 0 0 15px #ff0101;
-  border-radius: 10%;
+  height: 60px;
+  width: 70px;
+  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
+  margin: 0;
+  position: absolute;
+  top: 33.5%;
+  left: 42%;
+  transform: translate(-50%, -50%);
 }
 .sludgeTreatmentBuilding:hover {
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
@@ -637,7 +653,7 @@
 .name-sludgeTreatmentBuilding {
   position: absolute;
   right: 600px;
-  top: 200px;
+  top: 160px;
   opacity: 0;
   transition: 1.2s opacity;
   font-size: 20px;
@@ -684,14 +700,15 @@
 
 .preliminaryTreatment {
   cursor: pointer;
-  position: absolute;
-  bottom: 70px;
-  right: 460px;
-  height: 60px;
-  width: 30px;
   opacity: 1;
+  height: 50px;
+  width: 30px;
   box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  border-radius: 10%;
+  margin: 0;
+  position: absolute;
+  top: 86.5%;
+  left: 72.8%;
+  transform: translate(-50%, -50%);
 }
 .preliminaryTreatment:hover {
   opacity: 0.7;
@@ -700,7 +717,7 @@
 
 .name-preliminaryTreatment {
   position: absolute;
-  right: 450px;
+  right: 350px;
   bottom: 50px;
   opacity: 0;
   transition: 1.2s opacity;
@@ -746,6 +763,56 @@
 .generator:hover + .name-generator {
   opacity: 1;
 } */
+
+.name-waterPipesNetwork
+{
+  position: absolute;
+  right: 450px;
+  bottom: 50px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  font-size: 20px;
+  border-radius: 15px;
+  background-color: rgba(225, 243, 243, 0.6);
+  padding: 5px;
+}
+
+.name-digester1
+{
+  position: absolute;
+  right: 450px;
+  bottom: 50px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  font-size: 20px;
+  border-radius: 15px;
+  background-color: rgba(225, 243, 243, 0.6);
+  padding: 5px;
+}
+.name-digester2
+{
+  position: absolute;
+  right: 450px;
+  bottom: 50px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  font-size: 20px;
+  border-radius: 15px;
+  background-color: rgba(225, 243, 243, 0.6);
+  padding: 5px;
+}
+.name-other
+{
+  position: absolute;
+  right: 450px;
+  bottom: 50px;
+  opacity: 0;
+  transition: 1.2s opacity;
+  font-size: 20px;
+  border-radius: 15px;
+  background-color: rgba(225, 243, 243, 0.6);
+  padding: 5px;
+}
 
 .closingWall {
   position: absolute;
