@@ -2,40 +2,40 @@ const QorNcr = require("../models/QorNcr.ts");
 const routerQ = require("express").Router();
 
 // get all itns
-routerQ.get("/all", async (req, res) => {
+routerQ.get("/all", async (req: any, res: any) => {
   try {
     const qorNcrs = await QorNcr.find({});
     res.status(200).json(qorNcrs);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });
 
 // create an itn
-routerQ.post("/create", async (req, res) => {
+routerQ.post("/create", async (req: any, res: any) => {
   const newQorNcr = new QorNcr(req.body);
 
   try {
     const saveQorNcr = await newQorNcr.save();
     console.log("BOOOOODY", saveQorNcr);
     res.status(200).json(saveQorNcr);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });
 
 // get itn by id
-routerQ.get("/:id", async (req, res) => {
+routerQ.get("/:id", async (req: any, res: any) => {
   try {
     const qorNcr = await QorNcr.findById(req.params.id);
     res.status(200).json(qorNcr);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });
 
 // update an itn
-routerQ.put("/:id", async (req, res) => {
+routerQ.put("/:id", async (req: any, res: any) => {
   try {
     const updateQorNcr = await QorNcr.findByIdAndUpdate(
       req.params.id,
@@ -47,13 +47,13 @@ routerQ.put("/:id", async (req, res) => {
     console.log("000999", updateQorNcr);
 
     res.status(200).json(updateQorNcr);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });
 
 // delete an itn
-routerQ.delete("/:id", async (req, res) => {
+routerQ.delete("/:id", async (req: any, res: any) => {
   console.log("sdsd", req.params);
 
   try {
@@ -61,16 +61,16 @@ routerQ.delete("/:id", async (req, res) => {
     try {
       await qorNcr.delete();
       res.status(200).json("Itn has been deleted...");
-    } catch (err) {
+    } catch (err: any) {
       res.status(500).json(err);
     }
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });
 
 //get itn by search
-routerQ.get("/search/q=:value", async (req, res) => {
+routerQ.get("/search/q=:value", async (req: any, res: any) => {
   try {
     const { value } = req.params;
 
@@ -84,7 +84,7 @@ routerQ.get("/search/q=:value", async (req, res) => {
     });
 
     res.status(200).json(itn);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });

@@ -18,7 +18,7 @@ var transporter = nodemailer.createTransport({
 });
 
 // create a project
-routerU.post("/", async (req, res) => {
+routerU.post("/", async (req: any, res: any) => {
   const newUser = new User(req.body);
   console.log("pleaaaaase", newUser);
 
@@ -39,29 +39,35 @@ routerU.post("/", async (req, res) => {
   };
   const UserExists = User.findOne(
     { uid: req.body.uid },
-    async (error, result) => {
+    async (error: any, result: any) => {
       if (!error) {
         if (!result) {
           try {
             const saveUser = await newUser.save();
-            transporter.sendMail(mailOptions, function (error, info) {
-              if (error) {
-                console.log(error);
-              } else {
-                console.log("Email sent: " + info.response);
+            transporter.sendMail(
+              mailOptions,
+              function (error: any, info: { response: any }) {
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log("Email sent: " + info.response);
+                }
               }
-            });
+            );
             console.log("yes it did");
-            transporter.sendMail(mailOptions2, function (error, info) {
-              if (error) {
-                console.log(error);
-              } else {
-                console.log("Email2 sent: " + info.response);
+            transporter.sendMail(
+              mailOptions2,
+              function (error: any, info: { response: any }) {
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log("Email2 sent: " + info.response);
+                }
               }
-            });
+            );
 
             res.status(200).json(saveUser);
-          } catch (err) {
+          } catch (err: any) {
             res.status(500).json(err);
           }
         }
@@ -105,7 +111,7 @@ routerU.get("/:uid", async (req, res) => {
 // });
 
 // update project
-routerU.put("/:id/:email", async (req, res) => {
+routerU.put("/:id/:email", async (req: any, res: any) => {
   try {
     console.log("backend at work", req.params.id);
     const updateUser = await User.findByIdAndUpdate(
@@ -124,7 +130,7 @@ routerU.put("/:id/:email", async (req, res) => {
       text: `Congratulations, your request has been fullfilled, you can now access the app, https://maatof-qc.netlify.app/`,
     };
 
-    transporter.sendMail(mailOptions, function (error, info) {
+    transporter.sendMail(mailOptions, function (error: any, info: any) {
       if (error) {
         console.log(error);
       } else {
@@ -132,7 +138,7 @@ routerU.put("/:id/:email", async (req, res) => {
       }
     }),
       res.status(200).json(updateUser);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });

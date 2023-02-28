@@ -2,19 +2,19 @@ const Concrete = require("../models/Concrete");
 const routerC = require("express").Router();
 
 // get all Concrete
-routerC.get("/all", async (req, res) => {
+routerC.get("/all", async (req: any, res: any) => {
   try {
     // const concretes = await Concrete.find({}).populate("relatedItn");
     const concretes = await Concrete.find({});
 
     res.status(200).json(concretes);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });
 
 // get Concrete by location
-routerC.get("/all/:itp", async (req, res) => {
+routerC.get("/all/:itp", async (req: any, res: any) => {
   try {
     const { itp } = req.params;
 
@@ -23,24 +23,24 @@ routerC.get("/all/:itp", async (req, res) => {
     });
     // .populate("relatedItn");
     res.status(200).json(concretes);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });
 
 // create an concrete
-routerC.post("/create", async (req, res) => {
+routerC.post("/create", async (req: any, res: any) => {
   const newConcrete = new Concrete(req.body);
   try {
     const saveConcrete = await newConcrete.save();
     res.status(200).json(saveConcrete);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });
 
 // get concrete by id
-routerC.get("/:itp/:id", async (req, res) => {
+routerC.get("/:itp/:id", async (req: any, res: any) => {
   try {
     // const concrete = await Concrete.findById(req.params.id).populate(
     //   "relatedItn"
@@ -48,7 +48,7 @@ routerC.get("/:itp/:id", async (req, res) => {
     const concrete = await Concrete.findById(req.params.id);
 
     res.status(200).json(concrete);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });
@@ -70,16 +70,16 @@ routerC.get("/:itp/:id", async (req, res) => {
 // });
 
 // delete an Concrete
-routerC.delete("/:id", async (req, res) => {
+routerC.delete("/:id", async (req: any, res: any) => {
   try {
     const concrete = await Concrete.findById(req.params.id);
     try {
       await concrete.delete();
       res.status(200);
-    } catch (err) {
+    } catch (err: any) {
       res.status(500).json(err);
     }
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });

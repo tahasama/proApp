@@ -2,7 +2,7 @@ const Lab = require("../models/Lab.ts");
 const routerL = require("express").Router();
 
 // get all itns
-routerL.get("/all", async (req, res) => {
+routerL.get("/all", async (req: any, res) => {
   try {
     const labs = await Lab.find({});
     res.status(200).json(labs);
@@ -12,30 +12,30 @@ routerL.get("/all", async (req, res) => {
 });
 
 // create an itn
-routerL.post("/create", async (req, res) => {
+routerL.post("/create", async (req: any, res: any) => {
   const newLab = new Lab(req.body);
 
   try {
     const saveLab = await newLab.save();
     console.log("BOOOOODY", saveLab);
     res.status(200).json(saveLab);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });
 
 // get itn by id:
-routerL.get("/:id", async (req, res) => {
+routerL.get("/:id", async (req: any, res: any) => {
   try {
     const lab = await Lab.findById(req.params.id);
     res.status(200).json(lab);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });
 
 // update an itn
-routerL.put("/:id", async (req, res) => {
+routerL.put("/:id", async (req: any, res: any) => {
   try {
     console.log("her you go", req.body);
     const updatelab = await Lab.findByIdAndUpdate(
@@ -47,13 +47,13 @@ routerL.put("/:id", async (req, res) => {
     );
 
     res.status(200).json(updatelab);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });
 
 // delete an itn
-routerL.delete("/:id", async (req, res) => {
+routerL.delete("/:id", async (req: any, res: any) => {
   console.log("sdsd", req.params);
 
   try {
@@ -61,10 +61,10 @@ routerL.delete("/:id", async (req, res) => {
     try {
       await lab.delete();
       res.status(200).json("Itn has been deleted...");
-    } catch (err) {
+    } catch (err: any) {
       res.status(500).json(err);
     }
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });

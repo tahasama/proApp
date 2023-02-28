@@ -2,50 +2,50 @@ const Itn = require("../models/Itn.ts");
 const router = require("express").Router();
 
 // get all itns
-router.get("/all", async (req, res) => {
+router.get("/all", async (req: any, res: any) => {
   try {
     const itns = await Itn.find({});
     res.status(200).json(itns);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });
 
 // get itns by location
-router.get("/all/:itp", async (req, res) => {
+router.get("/all/:itp", async (req: any, res: any) => {
   try {
     const { itp } = req.params;
 
     const itns = await Itn.find({ itp: { $regex: itp, $options: "i" } });
     res.status(200).json(itns);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });
 
 // create an itn
-router.post("/create", async (req, res) => {
+router.post("/create", async (req: any, res: any) => {
   const newItn = new Itn(req.body);
   try {
     const saveItn = await newItn.save();
     res.status(200).json(saveItn);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });
 
 // get itn by id
-router.get("/:itp/:id", async (req, res) => {
+router.get("/:itp/:id", async (req: any, res: any) => {
   try {
     const itn = await Itn.findById(req.params.id);
     res.status(200).json(itn);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });
 
 // update an itn
-router.put("/:id", async (req, res) => {
+router.put("/:id", async (req: any, res: any) => {
   try {
     const updateItn = await Itn.findByIdAndUpdate(
       req.params.id,
@@ -55,22 +55,22 @@ router.put("/:id", async (req, res) => {
       { new: true }
     );
     res.status(200).json(updateItn);
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });
 
 // delete an itn
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", async (req: any, res: any) => {
   try {
     const itn = await Itn.findById(req.params.id);
     try {
       await itn.delete();
       res.status(200).json("Itn has been deleted...");
-    } catch (err) {
+    } catch (err: any) {
       res.status(500).json(err);
     }
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json(err);
   }
 });
