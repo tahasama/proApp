@@ -334,42 +334,62 @@ const Stats = () => {
   };
 
   return (
-    <div>
-      <Card className="buttonn1" style={{ marginTop: 5, marginLeft: 74 }}>
-        <TipsAndUpdatesIcon color="warning" /> click on a location to show/hide
-        it on the chart
-      </Card>
+    <div
+      style={{
+        position: "relative",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 30,
+        width: "100%",
+        top: 80,
+      }}
+    >
       <div
-        className="DoughnutDimension"
-        style={{ marginLeft: -70, padding: 0, width: "37%" }}
-      >
-        <Doughnut
-          options={optionsPie}
-          data={data}
-          style={{
-            marginTop: -54,
-            marginLeft: 60,
-            backgroundColor: "rgb(210,215,230,0.9)",
-          }}
-        />
-      </div>
-
-      <div
-        className="LineDimension"
-        style={{ marginTop: 2, padding: 0, width: "44%" }}
+        style={{
+          backgroundColor: "rgb(210,215,230,0.9)",
+          flex: 3,
+        }}
       >
         <Line
           options={optionsLine}
           data={data1}
           style={{
-            width: 340,
-            height: "100%",
-            marginTop: -240,
-            marginLeft: -60,
-            backgroundColor: "rgb(210,215,230,0.9)",
+            width: 600,
+            //   height: "100%",
+            //   marginTop: -240,
+            //   marginLeft: -60,
+            //   backgroundColor: "rgb(210,215,230,0.9)",
           }}
         />
       </div>
+      <div
+        style={{
+          backgroundColor: "rgb(210,215,230,0.9)",
+          flex: 2,
+        }}
+      >
+        <Doughnut
+          options={optionsPie}
+          data={data}
+          style={{
+            width: 400,
+
+            //   height: "100%",
+            //   marginTop: -240,
+            //   marginLeft: -60,
+            //   backgroundColor: "rgb(210,215,230,0.9)",
+          }}
+        />
+      </div>
+      <Card
+        // className="buttonn1"
+        style={{ flex: 1 }}
+      >
+        <TipsAndUpdatesIcon color="warning" /> click on a location to show/hide
+        it on the chart
+      </Card>
     </div>
   );
 };

@@ -478,14 +478,14 @@ const Log = () => {
             </Button>
             <div>
               <Button
-                disabled
+                // disabled
                 variant="contained"
                 color="error"
                 className="donwload"
                 onClick={DownloadFolders}
                 endIcon={loading && <CircularProgress color="secondary" />}
               >
-                Download ITN &nbsp;
+                Download inspections &nbsp;
                 <DownloadIcon />
               </Button>
             </div>

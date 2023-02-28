@@ -77,7 +77,7 @@ const AllReinforcement = () => {
           </TabPanel>
           <TabPanel value={value} index={1}>
             <Stats />
-          </TabPanel>{" "}
+          </TabPanel>
         </Box>
       </div>
     </div>

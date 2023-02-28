@@ -6,14 +6,7 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
-import Badge from "@mui/material/Badge";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
@@ -220,7 +213,11 @@ export default function NavBar() {
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
-              <input placeholder="Search…" ref={searchRef} className="Winput" />
+              <input
+                placeholder="e.g < at > for aeration tank"
+                ref={searchRef}
+                className="Winput"
+              />
             </form>
           </Search>
           <Box sx={{ flexGrow: 1 }} />
@@ -229,17 +226,17 @@ export default function NavBar() {
             style={{
               textDecoration: "none",
               color: "inherit",
-              margin: "0 15px",
+              margin: "0 12px",
             }}
           >
-            <Button color="inherit">ITN</Button>
+            <Button color="inherit">Inspections</Button>
           </Link>
           <Link
             to="../allconcrete"
             style={{
               textDecoration: "none",
               color: "inherit",
-              margin: "0 15px",
+              margin: "0 12px",
             }}
           >
             <Button color="inherit">CONCRETE</Button>
@@ -249,37 +246,37 @@ export default function NavBar() {
             style={{
               textDecoration: "none",
               color: "inherit",
-              margin: "0 15px",
+              margin: "0 12px",
             }}
           >
-            <Button color="inherit">RIR</Button>
+            <Button color="inherit">Material</Button>
           </Link>{" "}
           <Link
             to="../allNcr"
             style={{
               textDecoration: "none",
               color: "inherit",
-              margin: "0 15px",
+              margin: "0 12px",
             }}
           >
-            <Button color="inherit">NCR</Button>
+            <Button color="inherit">Conformities</Button>
           </Link>{" "}
           <Link
             to="../allQor"
             style={{
               textDecoration: "none",
               color: "inherit",
-              margin: "0 15px",
+              margin: "0 12px",
             }}
           >
-            <Button color="inherit">QOR</Button>
+            <Button color="inherit">observations</Button>
           </Link>
           <Link
             to="../allLab"
             style={{
               textDecoration: "none",
               color: "inherit",
-              margin: "0 15px",
+              margin: "0 12px",
             }}
           >
             <Button color="inherit">Docs&nbsp;/&nbsp;Lab</Button>

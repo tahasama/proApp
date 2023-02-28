@@ -7,7 +7,6 @@ import AllReinforcement from "./pages/allReinforcement/allReinforcement";
 import AllItn from "./pages/allItn/allItn";
 import FullPlan from "./pages/fullPlan/fullPlan";
 import IndividualItn from "./pages/individualItn/individualItn";
-import ItnForm from "./pages/individualItn/itnForm/itnForm";
 
 import LocationDetail from "./pages/locationDetail/locationDetail";
 import AllNcr from "./pages/allNcr/allNcr";
@@ -70,7 +69,7 @@ function App() {
                 <Route path="/allLab/:book" element={<Workbook />} />
                 <Route path="/:itp" element={<LocationDetail />} />
                 <Route path="/:itp/:itnId" element={<IndividualItn />} />
-                <Route path="/:itp/:itnId/itnForm" element={<ItnForm />} />
+                {/* <Route path="/:itp/:itnId/itnForm" element={<ItnForm />} /> */}
               </>
             )}
           </Routes>

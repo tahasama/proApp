@@ -189,9 +189,9 @@ const ConcreteOfLocation = () => {
         width: "70vw",
         height: "81vh",
         top: "30px",
+        gap: 10,
       }}
     >
-      {" "}
       <TableContainer
         component={Paper}
         style={{

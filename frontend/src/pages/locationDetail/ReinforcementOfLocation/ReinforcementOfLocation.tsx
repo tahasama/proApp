@@ -211,68 +211,68 @@ const ReinforcementOfLocation = () => {
 
   return (
     <div className="cover2">
-      <div>
-        <Button
-          variant="contained"
-          style={{
-            marginTop: 50,
-            marginLeft: 340,
-            padding: 15,
-            cursor: "auto",
-            width: 500,
-          }}
-        >
-          Total = &nbsp;
-          {all
-            .flat()
-            .filter((i: any) => {
-              return itp === "secondaryClarifierP24" ||
-                itp === "secondaryClarifierP25" ||
-                itp === "secondaryClarifierP32"
-                ? i.itp === "secondaryClarifier"
-                : itp === "PrimaryClarifierP7" ||
-                  itp === "PrimaryClarifierP8" ||
-                  itp === "PrimaryClarifierP9"
-                ? i.itp === "PrimaryClarifier"
-                : itp === i.itp;
-            })
-            .map((x: any) => x.quantity)
-            .reduce((a, b): any => a + b, 0)}
-          &nbsp; Kg
-        </Button>
+      <Button
+        variant="contained"
+        style={{
+          marginTop: 50,
+          marginLeft: 340,
+          padding: 15,
+          cursor: "auto",
+          width: 500,
+        }}
+      >
+        Total = &nbsp;
+        {all
+          .flat()
+          .filter((i: any) => {
+            return itp === "secondaryClarifierP24" ||
+              itp === "secondaryClarifierP25" ||
+              itp === "secondaryClarifierP32"
+              ? i.itp === "secondaryClarifier"
+              : itp === "PrimaryClarifierP7" ||
+                itp === "PrimaryClarifierP8" ||
+                itp === "PrimaryClarifierP9"
+              ? i.itp === "PrimaryClarifier"
+              : itp === i.itp;
+          })
+          .map((x: any) => x.quantity)
+          .reduce((a, b): any => a + b, 0)}
+        &nbsp; Kg
+      </Button>
+      <div
+        style={{
+          position: "relative",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          // padding: 10,
+          marginLeft: 140,
+          width: "1000px",
+          // height: "55vh",
+          top: "60px",
+          gap: 30,
+        }}
+      >
         <div
           style={{
-            position: "relative",
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            // padding: 10,
-            marginLeft: 120,
-            width: "60vw",
-            height: "55vh",
-            top: "30px",
+            flex: 8,
+            backgroundColor: "rgb(250,250,250,0.8)",
+            margin: 5,
+            padding: "26px 0",
           }}
         >
-          <div
-            style={{
-              flex: 8,
-              backgroundColor: "rgb(250,250,250,0.8)",
-              margin: 5,
-              padding: "26px 0",
-            }}
-          >
-            <Line options={optionsLine} data={data2} />
-          </div>
-          <div
-            style={{
-              flex: 4,
-              backgroundColor: "rgb(250,250,250,0.8)",
-              margin: 5,
-            }}
-          >
-            <Pie options={optionsPie} data={data} />
-          </div>
+          <Line options={optionsLine} data={data2} />
+        </div>
+        <div
+          style={{
+            flex: 4,
+            backgroundColor: "rgb(250,250,250,0.8)",
+            margin: 5,
+            padding: 25,
+          }}
+        >
+          <Pie options={optionsPie} data={data} />
         </div>
       </div>
     </div>

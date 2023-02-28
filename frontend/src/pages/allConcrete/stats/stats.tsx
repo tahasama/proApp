@@ -356,7 +356,7 @@ const Stats = () => {
 
   return (
     <div>
-      <Card className="buttonn1" style={{ marginTop: 5, marginLeft: 74 }}>
+      <Card className="buttonn1" style={{ marginTop: 5, marginLeft: 130 }}>
         <TipsAndUpdatesIcon color="warning" /> click on a location to show/hide
         it on the chart
       </Card>
@@ -370,6 +370,7 @@ const Stats = () => {
           style={{ marginTop: -84, backgroundColor: "rgb(210,215,230,0.9)" }}
         />
       </div>
+      <div></div>
       <div
         className="LineDimension"
         style={{
@@ -384,7 +385,7 @@ const Stats = () => {
           style={{
             width: 522,
 
-            marginTop: -22,
+            marginTop: 0,
 
             backgroundColor: "rgb(210,215,230,0.9)",
           }}
@@ -393,9 +394,9 @@ const Stats = () => {
       <div
         className="BarDimension"
         style={{
-          marginTop: -97,
+          marginTop: -90,
 
-          padding: 0,
+          padding: "0 30px",
           width: 520,
           marginLeft: -19,
         }}
