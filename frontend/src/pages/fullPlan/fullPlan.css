@@ -15,10 +15,11 @@
   background-image: url('../../images/plan.png');
   background-size: cover;
   background-position: center;
-  height: 720px;
-  width: 1283px;
+  height: 640px;
+  width: 1180px;
   /* top: 55.7%; */
   left: 10%;
+  top: 40px;
 
   /* background-color: #ff0101; */
 
