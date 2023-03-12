@@ -108,7 +108,7 @@ const Login = () => {
             color: "rgba(171, 236, 236, 0.75)",
           }}
         >
-          WasteWater Treatment Plant Project Of SAFI
+          WasteWater Treatment Plant Project
         </h1>
         <h2
           style={{

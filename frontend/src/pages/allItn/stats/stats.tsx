@@ -338,7 +338,7 @@ const Stats = () => {
 
   return (
     <div>
-      <Card className="buttonn1" style={{ marginLeft: 35 }}>
+      <Card className="buttonn1" style={{ marginLeft: 100 }}>
         <TipsAndUpdatesIcon color="warning" /> click on a location to show/hide
         it on the chart
       </Card>
@@ -350,7 +350,7 @@ const Stats = () => {
           options={optionsPie}
           data={data}
           style={{
-            marginTop: -74,
+            marginTop: -94,
             marginLeft: -65,
             backgroundColor: "rgb(210,215,230,0.9)",
           }}
