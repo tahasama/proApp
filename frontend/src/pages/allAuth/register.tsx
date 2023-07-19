@@ -132,12 +132,13 @@ const Register: React.FC = () => {
           </div>
 
           <div className="loginButtons">
-            <button disabled={loading} type="submit" className="loginButton">
+            <button disabled={loading} type="submit" className="login-button">
               Register
             </button>
             <button
               type="button"
-              className="loginButton google"
+              className="login-button"
+              style={{ backgroundColor: "red" }}
               onClick={LoginGoogle}
             >
               Sign Up with Google

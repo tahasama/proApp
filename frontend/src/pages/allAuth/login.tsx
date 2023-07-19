@@ -71,16 +71,6 @@ const Login = () => {
       : navigate("/");
   }, [status, user]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      status !== "authorized" &&
-        status !== "manager" &&
-        status !== undefined &&
-        setAlerto(false);
-    }, 7000);
-    return setAlerto(true);
-  }, [status]);
-
   const authorization = (
     // <Alert
     //   severity="success"

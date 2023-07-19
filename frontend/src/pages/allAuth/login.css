@@ -2,7 +2,7 @@
   text-align: center;
   margin-top: -50px;
   font-family: Arial, sans-serif;
-  color: rgba(171, 236, 236, 0.75);
+  color: rgba(185, 240, 240, 0.75);
 }
 
 .content {
@@ -102,23 +102,23 @@ input[type="password"] {
 .forgot-password,
 .signup {
   font-size: 14px;
-  color: #333;
+  color: #9b9797;
   margin-bottom: 10px;
 }
 
 .forgot-password a,
 .signup a {
-  color: #0066cc;
+  color: #378de4;
   text-decoration: none;
 }
 
 .support {
   font-size: 14px;
-  color: #333;
+  color: #ddd6d6;
 }
 
 .support a {
-  color: #0066cc;
+  color: #0f6fce;
   text-decoration: none;
 }
 
