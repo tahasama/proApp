@@ -55,8 +55,8 @@ const Log = () => {
         return params.value !== undefined &&
           params.value !== "" &&
           params.value !== null
-          ? `QW221101-SNCE-QA-RIR-${handleNumber(params.value)}`
-          : "QW221101-SNCE-QA-RIR-0000";
+          ? `DM2023-OKY-AQ-MAT-${handleNumber(params.value)}`
+          : "DM2023-OKY-AQ-MAT-0000";
       },
     },
     {
@@ -285,14 +285,14 @@ const Log = () => {
                 <i style={{ textTransform: "lowercase" }}>&nbsp;Kg</i>
               </p>
             </Button>
-            <Button
+            {/* <Button
               variant="contained"
               color="inherit"
               style={{ position: "relative", float: "left" }}
               onClick={() => setShowother(!showother)}
             >
               All w/o RIR
-            </Button>
+            </Button> */}
           </>
         ) : (
           <Box

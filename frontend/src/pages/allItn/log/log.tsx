@@ -13,17 +13,12 @@ import { Link } from "react-router-dom";
 import { deleteItn, getAllItns, itnData, updateWw } from "../../../state";
 import ModalM from "./modalM/modalM";
 import JSZip from "jszip";
-import {
-  getDownloadURL,
-  getMetadata,
-  getStorage,
-  listAll,
-  ref,
-} from "firebase/storage";
+import { ref } from "firebase/storage";
 import * as FileSaver from "file-saver";
 import DownloadIcon from "@mui/icons-material/Download";
 import { getAuthData } from "../../../state/reducers/authSlice";
 import { handleNumber, locations, routines } from "../../../constants/constant";
+import { storage } from "../../../firebase";
 
 const Log = () => {
   const dispatch = useAppDispatch();
@@ -70,7 +65,7 @@ const Log = () => {
             style={{ color: "blue" }}
             to={`/${params.value.itp}/${params.value._id}`}
           >
-            <> QW211101-SNCE-QA-ITN-{handleNumber(params.value.num)}</>
+            <> DM2023-OKY-AQ-DOC-{handleNumber(params.value.num)}</>
           </Link>
         ) : (
           <p></p>
@@ -383,33 +378,38 @@ const Log = () => {
         const ccc: any = xxx.folder(`${loca}`);
         const proms1 = routines
           .map(async (rot: any) => {
-            const storage = getStorage();
-            const folder = await listAll(ref(storage, `/itn/${loca}/${rot}`));
-            const promises = folder.items
-              .map(async (item) => {
-                const file = await getMetadata(item);
-                const fileRef = ref(storage, item.fullPath);
-                const fileBlob = await getDownloadURL(fileRef).then(
-                  async (url) => {
-                    const response = await fetch(url);
-                    return await response.blob();
-                  }
-                );
+            ref(storage, `/itn/${loca}/${rot}`);
+            console.log(
+              "🚀 ~ file: log.tsx:387 ~ .map ~ storage:",
+              `/itn/${loca}/${rot}`
+            );
 
-                ccc.file(rot + "/" + file.name, fileBlob);
-              })
-              .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
+            // const folder = await listAll(ref(storage, `/itn/${loca}/${rot}`));
+            // const promises = folder.items
+            //   .map(async (item) => {
+            //     const file = await getMetadata(item);
+            //     const fileRef = ref(storage, item.fullPath);
+            //     const fileBlob = await getDownloadURL(fileRef).then(
+            //       async (url) => {
+            //         const response = await fetch(url);
+            //         return await response.blob();
+            //       }
+            //     );
 
-            await promises;
+            //     ccc.file(rot + "/" + file.name, fileBlob);
+            //   })
+            //   .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
+
+            // await promises;
           })
           .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
         await proms1;
       })
       .reduce((acc, curr) => acc.then(() => curr), Promise.resolve());
     await proms2;
-    const blob = await xxx.generateAsync({ type: "blob" });
-    console.log("000", blob);
-    FileSaver.saveAs(blob, `QC.zip`);
+    // const blob = await xxx.generateAsync({ type: "blob" });
+    // console.log("000", blob);
+    // FileSaver.saveAs(blob, `QC.zip`);
     setTimeout(() => {
       setLoading(false);
     }, 4000);
@@ -476,7 +476,7 @@ const Log = () => {
             <Button variant="contained" className="total1" color="secondary">
               Total = {ww.length} ITN
             </Button>
-            <div>
+            {/* <div>
               <Button
                 // disabled
                 variant="contained"
@@ -488,7 +488,7 @@ const Log = () => {
                 Download inspections &nbsp;
                 <DownloadIcon />
               </Button>
-            </div>
+            </div> */}
           </>
         ) : (
           <Box

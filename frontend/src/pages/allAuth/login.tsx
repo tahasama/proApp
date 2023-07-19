@@ -97,102 +97,80 @@ const Login = () => {
   // ==============================================================
 
   return (
-    <div className="ddd">
+    <div className="landing-container">
       {alerto && status !== undefined && status !== "" && authorization}
-      <div className="">
-        <h1
-          style={{
-            marginTop: 20,
-            fontFamily: "initial",
-            letterSpacing: 3,
-            color: "rgba(171, 236, 236, 0.75)",
-          }}
-        >
-          WasteWater Treatment Plant Project
+      <div className="content">
+        <h1 className="title">
+          Streamline Your Construction Projects with Our Data Management App
         </h1>
-        <h2
-          style={{
-            letterSpacing: 5,
-            fontFamily: "initial",
-            fontSize: 25,
-            textDecoration: "underline",
-            color: "rgba(171, 236, 236, 0.7)",
-          }}
-        >
-          Quality Control Department
-        </h2>
-        <div
-          className="registerContainer"
-          style={{ marginRight: 400, marginTop: -130 }}
-        >
-          <form className="logingForm" onSubmit={handleSubmit}>
-            <div className="labelInputLogin">
-              <label htmlFor="email" className="formlabel">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                className="formInput"
-                ref={emailRef}
-              />{" "}
-            </div>
-            <div className="labelInputLogin">
-              <label htmlFor="password" className="formlabel">
-                Password
-              </label>
-              <input
-                type="password"
-                name="password"
-                className="formInput"
-                ref={passwordRef}
-              />{" "}
-            </div>
-            <div className="loginButtons">
-              <button type="submit" className="loginButton">
-                Login
-              </button>
-              <button
-                type="button"
-                className="loginButton google"
-                onClick={LoginGoogle}
-              >
-                Login with Google
-              </button>
-            </div>
-
-            {status !== "unauthorized" && (
-              <p className="linktoForgot">
-                <Link
-                  to="/reset-password"
-                  className="linkto"
-                  style={{
-                    color: "#dcebee",
-                    fontWeight: 700,
-                    fontSize: 18,
-                  }}
-                >
-                  Forgot password ?
-                </Link>
-              </p>
-            )}
-            <p
-              className="loginQuestion"
-              style={{
-                color: "#caf042",
-                fontWeight: 700,
-                fontSize: 18,
-                marginTop: 5,
-              }}
-            >
-              Don't have an account ?{" "}
-              <Link to="/register" className="linkto">
-                SignUp
-              </Link>
-            </p>
-          </form>{" "}
-          {err && <p className="errorMessageLogin">{err.message}</p>}
+        <div className="features">
+          <h2>Why Choose Our App?</h2>
+          <ul className="features-list">
+            <li>
+              <strong>Adaptability:</strong> Effortlessly adjust to any project
+              scale or type.
+            </li>
+            <li>
+              <strong>Efficiency:</strong> Simplify data management, focus on
+              completing projects on time and within budget.
+            </li>
+            <li>
+              <strong>Real-Time Insights:</strong> Stay informed with up-to-date
+              data and analytics.
+            </li>
+            <li>
+              <strong>Security:</strong> Top-notch measures to keep your
+              information safe.
+            </li>
+          </ul>
         </div>
+        <div className="join">
+          <h2>Join Us Today!</h2>
+          {/* <p className="join-text">
+            Experience the power of adaptive data management!
+          </p> */}
+          <div className="register-container">
+            <form className="login-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <input type="email" name="email" ref={emailRef} />
+              </div>
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input type="password" name="password" ref={passwordRef} />
+              </div>
+              <div className="login-buttons">
+                <button type="submit" className="login-button">
+                  Login
+                </button>
+                <button
+                  type="button"
+                  className="login-button google"
+                  onClick={LoginGoogle}
+                >
+                  Login with Google
+                </button>
+              </div>
+
+              {status !== "unauthorized" && (
+                <p className="forgot-password">
+                  <Link to="/reset-password">Forgot password?</Link>
+                </p>
+              )}
+              <p className="signup">
+                Don't have an account? <Link to="/register">SignUp</Link>
+              </p>
+            </form>
+            {err && <p className="error-message">{err.message}</p>}
+          </div>
+        </div>
+        <p className="support">
+          Got questions? Contact us at{" "}
+          <a href="mailto:support@constructionapp.com">
+            support@constructionapp.com
+          </a>{" "}
+          or call (123) 456-7890.
+        </p>
       </div>
     </div>
   );

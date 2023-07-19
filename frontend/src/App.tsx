@@ -46,7 +46,6 @@ function App() {
         Laptop for an efficient experience
       </div>
       <div className="App">
-        <p className="dev">Developped by: taha.maatof@gmail.com</p>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Login />} />

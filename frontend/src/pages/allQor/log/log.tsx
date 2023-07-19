@@ -41,7 +41,7 @@ const Log = () => {
       checkboxSelection: true,
       minWidth: 270,
       cellRenderer: (params: any) => {
-        return `QW221101-SNCE-QA-QOR-${handleNumber(params.value)}`;
+        return `DM2023-OKY-AQ-QOR-${handleNumber(params.value)}`;
       },
     },
     {
