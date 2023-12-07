@@ -1,6 +1,8 @@
 # Data Management App
 ## An app for big construction sites projects
 
+### Made with MERN stack , React for frontend, Express.js for backend and Mongodb for database.
+
 - Full Storage and arrangement of the documentation.
 
   <img src="https://github.com/tahasama/proApp/assets/69104880/8cf290f2-279d-405e-80e1-d29ef4ff32b3" alt="Image 1" width="470" />
