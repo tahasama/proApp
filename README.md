@@ -18,7 +18,9 @@
 - Inspection reports (Laboratory, Topography, etc... ).
 - Data Management (Procedures, plans, and Updates ).
 
-   <img src="https://github.com/tahasama/proApp/assets/69104880/4a13d52d-34af-4c1b-a3d6-3edae6e8b87e" alt="Image 1" width="470" />
-   <img src="https://github.com/tahasama/proApp/assets/69104880/48e79373-a2f5-4464-9dff-a63bff7e07a2" alt="Image 1" width="470" />
+<p>
+   <img src="https://github.com/tahasama/proApp/assets/69104880/4a13d52d-34af-4c1b-a3d6-3edae6e8b87e" alt="Image 1" width="400" />
+   <img src="https://github.com/tahasama/proApp/assets/69104880/48e79373-a2f5-4464-9dff-a63bff7e07a2" alt="Image 1" width="400" />
+</p>
   
 
