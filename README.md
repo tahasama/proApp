@@ -11,10 +11,10 @@
 
 - Tracking of quantities of the used materiel.
 - The advancement of the projects and its pace.
-
+<p>
    <img src="https://github.com/tahasama/proApp/assets/69104880/1973b4a3-bad6-4b9e-b643-f878ab4a8b50" alt="Image 1" width="400" />
    <img src="https://github.com/tahasama/proApp/assets/69104880/41a2d54a-72a2-4c75-932f-fc0a3a990f90" alt="Image 1" width="400" />
-  
+</p>
 - Inspection reports (Laboratory, Topography, etc... ).
 - Data Management (Procedures, plans, and Updates ).
 
