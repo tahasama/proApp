@@ -1,7 +1,7 @@
 # Data Management App
-## An app for big construction sites projects
+### An app for big construction sites projects
 
-### Made with MERN stack , React for frontend, Express.js for backend and Mongodb for database.
+Made with MERN stack , React for frontend, Express.js for backend and Mongodb for database.
 
 - Full Storage and arrangement of the documentation.
 <p>
