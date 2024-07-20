@@ -72,104 +72,40 @@ const LocationDetails = () => {
         <NavBar />
       </div>
 
-      <h6 className="locationName">{itp}: </h6>
+      {/* Tabs */}
+      <Tabs
+        orientation="horizontal"
+        variant="fullWidth"
+        value={value}
+        onChange={handleChange}
+        aria-label="Vertical tabs example"
+        sx={{
+          width: "100%",
+          backgroundColor: "#f0f8ff",
+          mt: 7.5,
+          // display: "flex",
+        }}
+      >
+        <Tab label="Inspection" />
+        <Tab label="Concrete" />
+        <Tab label="Reinforcement" />
+      </Tabs>
+
       {status === "manager" && (
-        <div style={{ position: "absolute", bottom: 100, left: 3, zIndex: 99 }}>
+        <div style={{ position: "fixed", bottom: 20, right: 20, zIndex: 99 }}>
           <ModalC />
-          <ModalD />
         </div>
       )}
 
-      <Button
-        variant="contained"
-        size="large"
-        color="inherit"
-        className="getItp1"
-        style={{ top: status !== "manager" ? 130 : 50 }}
-      >
-        <a
-          style={{
-            textDecoration: "none",
-            color: "gray",
-            fontWeight: "bold",
-          }}
-          href={`${individualitp.length > 0 ? individualitp[0].ItpUrl : ""}`}
-          target="_blank"
-          rel="noreferrer"
-        >
-          ITP
-        </a>
-      </Button>
-
-      <div className="restOfPage">
-        <Box
-          sx={{
-            flexGrow: 1,
-            bgcolor: "background.paper",
-            display: "flex",
-            height: 0,
-            width: 0,
-          }}
-        >
-          <Tabs
-            orientation="vertical"
-            variant="scrollable"
-            value={value}
-            onChange={handleChange}
-            aria-label="Vertical tabs example"
-            sx={{ borderRight: 1, borderColor: "divider", display: "flex" }}
-          >
-            <Tab
-              label="ITN"
-              {...a11yProps(0)}
-              style={{
-                position: "fixed",
-                marginTop: 170,
-                boxShadow: "7px 5px 5px grey",
-                width: 150,
-                backgroundColor: "#EBEDEF",
-              }}
-            />
-            <Tab
-              label="Concrete"
-              {...a11yProps(1)}
-              style={{
-                position: "fixed",
-                marginTop: 230,
-                boxShadow: "7px 5px 5px grey",
-                width: 150,
-                backgroundColor: "#EBEDEF",
-              }}
-            />
-            <Tab
-              label="Reinforcement"
-              {...a11yProps(2)}
-              style={{
-                position: "fixed",
-                marginTop: 290,
-                boxShadow: "7px 5px 5px grey",
-                width: 150,
-                backgroundColor: "#EBEDEF",
-              }}
-            />
-          </Tabs>
-          <TabPanel value={value} index={0}>
-            <div style={{ marginLeft: 150, marginTop: 60 }}>
-              <LocationsItn />
-            </div>
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            <div style={{ marginLeft: 200 }}>
-              <ConcreteOfLocation />
-            </div>
-          </TabPanel>
-          <TabPanel value={value} index={2}>
-            <div style={{ marginLeft: 100 }}>
-              <ReinforcementOfLocation />
-            </div>
-          </TabPanel>
+      {/* Main Content */}
+      <Box sx={{ p: 3, mt: 0 }}>
+        <Box>
+          {/* Render content based on selected tab */}
+          {value === 0 && <LocationsItn />}
+          {value === 1 && <ConcreteOfLocation />}
+          {value === 2 && <ReinforcementOfLocation />}
         </Box>
-      </div>
+      </Box>
     </div>
   );
 };

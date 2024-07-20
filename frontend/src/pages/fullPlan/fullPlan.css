@@ -1,74 +1,57 @@
-.fullPage{
+.fullPage {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
+  /* background-color: #0fa; */
 }
 
 .masterPlan {
-  /* background-color: blueviolet; */
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
-    position: relative;
-    
-  /* height: ; */
-  background-image: url('../../images/plan.png');
-  background-size: cover;
-  background-position: center;
-  height: 640px;
-  width: 1180px;
-  /* top: 55.7%; */
-  left: 10%;
-  top: 40px;
-
-  /* background-color: #ff0101; */
 
 
-}
-.fullPlan {
-  position: absolute;
-  /* align-items: center; */
-  /* top: 0px; */
-  height: 720px;
-  width: 1283px;
-  
-}
-.secondaryClarifierP24 {
-  cursor: pointer;
-  /* top: 365px;
-  left: 540px; */
-  opacity: 1;
-  height: 122px;
-  width: 122px;
-  /* background-color: rgb(0, 255, 106); */
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-
-  margin: 0;
-  border-radius: 50%;
-  position: absolute;
-  top: 55.7%;
-  left: 36.7%;
-  transform: translate(-50%, -50%);
 
   /* background-color: red; */
+  width: 100%;
+  height: 100%;  
+  /* width: 85%;
+  height: 85%; */
+  position: relative;
+  box-sizing: border-box;
+
+
+
 }
+
+.secondaryClarifierP24 {
+  cursor: pointer;
+  width: 9.4%;
+  height: 17.5%;
+  position: absolute;
+  bottom: 12.8%;
+  left: 19%;
+  border-radius: 100%;
+  background-color: rgb(152, 0, 203);
+  opacity: .3;
+
+}
+
+
 .secondaryClarifierP24:hover {
-  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
-  opacity: 0.7;
+  box-shadow: 0 0 20px rgb(152, 0, 203), 0 0 20px rgb(152, 0, 203), 0 0 70px rgb(152, 0, 203);
+  opacity: 0.3;
 }
 
 .name-secondaryClarifierP24 {
   position: absolute;
-  right: 620px;
-  bottom: 350px;
+  bottom: 11.8%;
+  left: 17.6%;
   opacity: 0;
   transition: 1.2s opacity;
-  font-size: 20px;
+  color: crimson;
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  background-color: rgba(225, 243, 243, 0.6);
-  padding: 5px;
-
-  
+   
 }
 
 .secondaryClarifierP24:hover + .name-secondaryClarifierP24 {
@@ -77,34 +60,32 @@
 
 .secondaryClarifierP25 {
   cursor: pointer;
-  opacity: 1;
-  height: 122px;
-  width: 122px;
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  margin: 0;
-  border-radius: 50%;
+  width: 9.4%;
+  height: 17.5%;
   position: absolute;
-  top: 81.8%;
-  left: 36.7%;
-  transform: translate(-50%, -50%);
+  bottom: 12.8%;
+  left: 33.4%;
+  border-radius: 100%;
+  background-color: rgb(152, 0, 203);
+
+  opacity: .3;
 }
 .secondaryClarifierP25:hover {
-  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
-  opacity: 0.7;
+  box-shadow: 0 0 20px rgb(152, 0, 203), 0 0 20px rgb(152, 0, 203), 0 0 70px rgb(152, 0, 203);
+  opacity: 0.3;
 }
 
 .name-secondaryClarifierP25 {
   position: absolute;
-  right: 610px;
-  bottom: 200px;
+  bottom: 11.8%;
+  left: 32.8%;
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
-  font-size: 22px;
-  background-color: rgba(225, 243, 243, 0.6);
-
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  padding: 5px;
+ 
 }
 
 .secondaryClarifierP25:hover + .name-secondaryClarifierP25 {
@@ -113,34 +94,33 @@
 
 .secondaryClarifierP32 {
   cursor: pointer;
-  opacity: 1;
-  height: 122px;
-  width: 122px;
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  margin: 0;
-  border-radius: 50%;
+  width: 9.4%;
+  height: 17.5%;
   position: absolute;
-  top: 81.8%;
-  left: 20.8%;
-  transform: translate(-50%, -50%);
+  bottom: 36.5%;
+  left: 33.4%;
+  border-radius: 100%;
+    background-color: rgb(152, 0, 203);
+
+  opacity: .3;
+
 }
 .secondaryClarifierP32:hover {
-  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
-  opacity: 0.7;
+  box-shadow: 0 0 20px rgb(152, 0, 203), 0 0 20px rgb(152, 0, 203), 0 0 70px rgb(152, 0, 203);
+  opacity: 0.3;
 }
 
 .name-secondaryClarifierP32 {
   position: absolute;
-  right: 830px;
-  bottom: 200px;
+  bottom: 34.8%;
+  left: 32.8%;
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
-  font-size: 20px;
-  background-color: rgba(225, 243, 243, 0.6);
-
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  padding: 5px;
+ 
 }
 
 .secondaryClarifierP32:hover + .name-secondaryClarifierP32 {
@@ -149,34 +129,32 @@
 
 .PrimaryClarifierP7 {
   cursor: pointer;
-  opacity: 1;
-  height: 80px;
-  width: 80px;
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  margin: 0;
-  border-radius: 50%;
+  width: 7%;
+  height: 12%;
   position: absolute;
-  top: 56.4%;
-  left: 82.3%;
-  transform: translate(-50%, -50%);
+  bottom: 38.5%;
+  right: 17.5%;
+  border-radius: 100%;
+    background-color: rgb(152, 0, 203);
+
+  opacity: .3;
 }
 .PrimaryClarifierP7:hover {
-  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
-  opacity: 0.7;
+  box-shadow: 0 0 20px rgb(152, 0, 203), 0 0 20px rgb(152, 0, 203), 0 0 70px rgb(152, 0, 203);
+  opacity: 0.3;
 }
 
 .name-PrimaryClarifierP7 {
   position: absolute;
-  right: 130px;
-  bottom: 340px;
+  bottom: 39.5%;
+  right: 16.5%;
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
-  font-size: 20px;
-  background-color: rgba(225, 243, 243, 0.6);
-
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  padding: 5px;
+ 
 }
 
 .PrimaryClarifierP7:hover + .name-PrimaryClarifierP7 {
@@ -185,34 +163,32 @@
 
 .PrimaryClarifierP8 {
   cursor: pointer;
-  opacity: 1;
-  height: 80px;
-  width: 80px;
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  margin: 0;
-  border-radius: 50%;
+  width: 7%;
+  height: 12%;
   position: absolute;
-  top: 70.8%;
-  left: 82.2%;
-  transform: translate(-50%, -50%);
+  bottom: 25.5%;
+  right: 17.5%;
+  border-radius: 100%;
+  background-color: rgb(152, 0, 203);
+
+  opacity: .3;
 }
 .PrimaryClarifierP8:hover {
-  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
-  opacity: 0.7;
+  box-shadow: 0 0 20px rgb(152, 0, 203), 0 0 20px rgb(152, 0, 203), 0 0 70px rgb(152, 0, 203);
+  opacity: 0.3;
 }
 
 .name-PrimaryClarifierP8 {
   position: absolute;
-  right: 130px;
-  bottom: 240px;
+  bottom: 25.5%;
+  right: 16.5%;
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
-  font-size: 20px;
-  background-color: rgba(225, 243, 243, 0.6);
-
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  padding: 5px;
+ 
 }
 
 .PrimaryClarifierP8:hover + .name-PrimaryClarifierP8 {
@@ -221,34 +197,32 @@
 
 .PrimaryClarifierP9 {
   cursor: pointer;
-  opacity: 1;
-  height: 80px;
-  width: 80px;
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  margin: 0;
-  border-radius: 50%;
+  width: 7%;
+  height: 12%;
   position: absolute;
-  top: 85.7%;
-  left: 82.2%;
-  transform: translate(-50%, -50%);
+  bottom: 12.5%;
+  right: 17.5%;
+  border-radius: 100%;
+  background-color: rgb(152, 0, 203);
+
+  opacity: .3;
 }
 .PrimaryClarifierP9:hover {
-  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
-  opacity: 0.7;
+  box-shadow: 0 0 20px rgb(152, 0, 203), 0 0 20px rgb(152, 0, 203), 0 0 70px rgb(152, 0, 203);
+  opacity: 0.3;
 }
 
 .name-PrimaryClarifierP9 {
   position: absolute;
-  right: 130px;
-  bottom: 140px;
+  bottom: 11.5%;
+  right: 16.5%;
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
-  font-size: 20px;
-  background-color: rgba(225, 243, 243, 0.6);
-
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  padding: 5px;
+ 
 }
 
 .PrimaryClarifierP9:hover + .name-PrimaryClarifierP9 {
@@ -257,34 +231,31 @@
 
 .aerationTank {
   cursor: pointer;
-  opacity: 1;
-  height: 245px;
-  width: 245px;
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  margin: 0;
-  /* border-radius: 50%; */
+  width: 19.5%;
+  height: 34%;
   position: absolute;
-  top: 71%;
-  left: 57.2%;
-  transform: translate(-50%, -50%);
+  bottom: 13%;
+  right: 33%;
+  border-radius: 5%;
+  background-color: #00d9ff;
+  opacity: .3;
 }
 .aerationTank:hover {
-  opacity: 0.7;
-  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
+  box-shadow: 0 0 20px rgb(152, 0, 203), 0 0 20px rgb(152, 0, 203), 0 0 70px rgb(152, 0, 203);
+  opacity: 0.3;
 }
 
 .name-aerationTank {
   position: absolute;
-  right: 570px;
-  bottom: 340px;
+  bottom: 13%;
+  right: 33%;
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
-  font-size: 20px;
-  background-color: rgba(225, 243, 243, 0.6);
-
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  padding: 5px;
+ 
 }
 
 .aerationTank:hover + .name-aerationTank {
@@ -293,33 +264,32 @@
 
 .mainBuilding {
   cursor: pointer;
-  opacity: 1;
-  height: 134px;
-  width: 94px;
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  margin: 0;
+  width: 8%;
+  height: 18%;
   position: absolute;
-  top: 74.8%;
-  left: 8.2%;
-  transform: translate(-50%, -50%);
+  bottom: 18.4%;
+  left: 8.5%;
+  border-radius: 5%;
+    background-color: rgb(152, 0, 203);
+
+  opacity: .3;
 }
 .mainBuilding:hover {
-  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
-  opacity: 0.7;
+  box-shadow: 0 0 20px rgb(152, 0, 203), 0 0 20px rgb(152, 0, 203), 0 0 70px rgb(152, 0, 203);
+  opacity: 0.3;
 }
 
 .name-mainBuilding {
   position: absolute;
-  left: 260px;
-  bottom: 220px;
+  bottom: 18.2%;
+  left: 6.5%;
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
-  font-size: 20px;
-  background-color: rgba(225, 243, 243, 0.6);
-
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  padding: 5px;
+ 
 }
 
 .mainBuilding:hover + .name-mainBuilding {
@@ -328,33 +298,31 @@
 
 .workShop {
   cursor: pointer;
-  opacity: 1;
-  height: 40px;
-  width: 34px;
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  margin: 0;
+  width: 3%;
+  height: 6%;
   position: absolute;
-  top: 62%;
-  left: 6%;
-  transform: translate(-50%, -50%);
+  bottom: 36%;
+  left: 8.5%;
+  border-radius: 5%;
+  background-color: #00d9ff;
+  opacity: .5;
 }
 .workShop:hover {
-  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
-  opacity: 0.7;
+  box-shadow: 0 0 20px rgb(152, 0, 203), 0 0 20px rgb(152, 0, 203), 0 0 70px rgb(152, 0, 203);
+  opacity: 0.3;
 }
 
 .name-workShop {
   position: absolute;
-  left: 240px;
-  bottom: 250px;
+  bottom: 36%;
+  left: 9.5%;
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
-  font-size: 20px;
-  background-color: rgba(225, 243, 243, 0.6);
-
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  padding: 5px;
+ 
 }
 
 .workShop:hover + .name-workShop {
@@ -363,33 +331,32 @@
 
 .chlorinationTank {
   cursor: pointer;
-  opacity: 1;
-  height: 110px;
-  width: 80px;
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  margin: 0;
+  width: 7%;
+  height: 15%;
   position: absolute;
-  top: 52%;
-  left: 8%;
-  transform: translate(-50%, -50%);
+  bottom: 42%;
+  left: 8.5%;
+  border-radius: 5%;
+    background-color: rgb(152, 0, 203);
+
+  opacity: .3;
 }
 .chlorinationTank:hover {
-  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
-  opacity: 0.7;
+  box-shadow: 0 0 20px rgb(152, 0, 203), 0 0 20px rgb(152, 0, 203), 0 0 70px rgb(152, 0, 203);
+  opacity: 0.3;
 }
 
 .name-chlorinationTank {
   position: absolute;
-  left: 270px;
-  bottom: 360px;
+  bottom: 57%;
+  left: 6.5%;
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
-  font-size: 20px;
-  background-color: rgba(225, 243, 243, 0.6);
-
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  padding: 5px;
+ 
 }
 
 .chlorinationTank:hover + .name-chlorinationTank {
@@ -398,33 +365,31 @@
 
 .pumpingStation2 {
   cursor: pointer;
-  opacity: 1;
-  height: 30px;
-  width: 40px;
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  margin: 0;
+  width: 3.5%;
+  height: 4.5%;
   position: absolute;
-  top: 66%;
-  left: 19%;
-  transform: translate(-50%, -50%);
+  bottom: 33.5%;
+  left: 20%;
+  border-radius: 5%;
+  background-color: rgb(152, 0, 203);
+  opacity: .3;
 }
 .pumpingStation2:hover {
-  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
-  opacity: 0.7;
+  box-shadow: 0 0 20px rgb(152, 0, 203), 0 0 20px rgb(152, 0, 203), 0 0 70px rgb(152, 0, 203);
+  opacity: 0.3;
 }
 
 .name-pumpingStation2 {
   position: absolute;
-  left: 430px;
-  bottom: 240px;
+  bottom: 29%;
+  left: 19%;
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
-  font-size: 20px;
-  background-color: rgba(225, 243, 243, 0.7);
-
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  padding: 0px;
+ 
 }
 
 .pumpingStation2:hover + .name-pumpingStation2 {
@@ -433,33 +398,31 @@
 
 .pumpingStation1 {
   cursor: pointer;
-  opacity: 1;
-  height: 30px;
-  width: 40px;
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  margin: 0;
+  width: 4%;
+  height: 5%;
   position: absolute;
-  top: 71.6%;
-  left: 71%;
-  transform: translate(-50%, -50%);
+  bottom: 28%;
+  right: 28.6%;
+  border-radius: 5%;
+  background-color: rgb(152, 0, 203);
+  opacity: .3;
 }
 .pumpingStation1:hover {
-  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
-  opacity: 0.7;
+  box-shadow: 0 0 20px rgb(152, 0, 203), 0 0 20px rgb(152, 0, 203), 0 0 70px rgb(152, 0, 203);
+  opacity: 0.3;
 }
 
 .name-pumpingStation1 {
   position: absolute;
-  right: 300px;
-  bottom: 230px;
+  bottom: 23.7%;
+  right: 23.2%;
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
-  font-size: 20px;
-  background-color: rgba(225, 243, 243, 0.7);
-
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  padding: 5px;
+ 
 }
 
 .pumpingStation1:hover + .name-pumpingStation1 {
@@ -468,33 +431,31 @@
 
 .sandFilter {
   cursor: pointer;
-  opacity: 1;
-  height: 67px;
-  width: 110px;
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  margin: 0;
+  width: 8%;
+  height: 10%;
   position: absolute;
-  top: 56%;
-  left: 21.6%;
-  transform: translate(-50%, -50%);
+  bottom: 40%;
+  left: 20%;
+  border-radius: 5%;
+  background-color: #00d9ff;
+  opacity: .3;
 }
 .sandFilter:hover {
-  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
-  opacity: 0.7;
+  box-shadow: 0 0 20px rgb(152, 0, 203), 0 0 20px rgb(152, 0, 203), 0 0 70px rgb(152, 0, 203);
+  opacity: 0.3;
 }
 
 .name-sandFilter {
   position: absolute;
-  left: 300px;
-  bottom: 350px;
+  bottom: 50.2%;
+  left: 19%;
   opacity: 0;
   transition: 1.2s opacity;
   color: crimson;
-  font-size: 20px;
-  background-color: rgba(225, 243, 243, 0.7);
-
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  padding: 5px;
+ 
 }
 
 .sandFilter:hover + .name-sandFilter {
@@ -503,32 +464,31 @@
 
 .electricalRoom1 {
   cursor: pointer;
-  opacity: 1;
-  height: 30px;
-  width: 60px;
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  margin: 0;
+  width: 6%;
+  height: 5%;
   position: absolute;
-
-  top: 49%;
-  left: 68.6%;
-  transform: translate(-50%, -50%);
+  bottom: 50%;
+  right: 29.5%;
+  border-radius: 5%;
+  background-color: #00d9ff;
+  opacity: .3;
 }
 .electricalRoom1:hover {
-  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
-  opacity: 0.7;
+  box-shadow: 0 0 20px rgb(152, 0, 203), 0 0 20px rgb(152, 0, 203), 0 0 70px rgb(152, 0, 203);
+  opacity: 0.3;
 }
 
 .name-electricalRoom1 {
   position: absolute;
-  right: 320px;
-  bottom: 390px;
+  bottom: 55%;
+  right: 27%;
   opacity: 0;
   transition: 1.2s opacity;
-  font-size: 20px;
+  color: crimson;
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  background-color: rgba(225, 243, 243, 0.6);
-  padding: 5px;
+ 
 }
 
 .electricalRoom1:hover + .name-electricalRoom1 {
@@ -537,31 +497,31 @@
 
 .electricalRoom2 {
   cursor: pointer;
-  opacity: 1;
-  height: 60px;
-  width: 30px;
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  margin: 0;
+  width: 3%;
+  height: 10%;
   position: absolute;
-  top: 50.5%;
-  left: 15.6%;
-  transform: translate(-50%, -50%);
+  bottom: 45.2%;
+  left: 16.7%;
+  border-radius: 5%;
+  background-color: rgb(152, 0, 203);
+  opacity: .3;
 }
 .electricalRoom2:hover {
-  box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
-  opacity: 0.7;
+  box-shadow: 0 0 20px rgb(152, 0, 203), 0 0 20px rgb(152, 0, 203), 0 0 70px rgb(152, 0, 203);
+  opacity: 0.3;
 }
 
 .name-electricalRoom2 {
   position: absolute;
-  left: 220px;
-  bottom: 390px;
+  bottom: 55.2%;
+  left: 15.7%;
   opacity: 0;
   transition: 1.2s opacity;
-  font-size: 20px;
+  color: crimson;
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  background-color: rgba(225, 243, 243, 0.6);
-  padding: 5px;
+ 
 }
 
 .electricalRoom2:hover + .name-electricalRoom2 {
@@ -570,31 +530,32 @@
 
 .blowersRoom {
   cursor: pointer;
-  opacity: 1;
-  height: 30px;
-  width: 50px;
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  margin: 0;
+  width: 5%;
+  height: 7%;
   position: absolute;
-  top: 49%;
-  left: 62.8%;
-  transform: translate(-50%, -50%);
+  bottom: 48.6%;
+  right: 35.8%;
+  border-radius: 5%;
+    background-color: rgb(152, 0, 203);
+
+  opacity: .3;
 }
 .blowersRoom:hover {
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
-  opacity: 0.7;
+  opacity: 0.3;
 }
 
 .name-blowersRoom {
   position: absolute;
-  right: 500px;
-  bottom: 400px;
+  bottom: 55.6%;
+  right: 35.1%;
   opacity: 0;
   transition: 1.2s opacity;
-  font-size: 20px;
+  color: crimson;
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  background-color: rgba(225, 243, 243, 0.6);
-  padding: 5px;
+ 
 }
 
 .blowersRoom:hover + .name-blowersRoom {
@@ -603,31 +564,31 @@
 
 .mainStation {
   cursor: pointer;
-  opacity: 1;
-  height: 65px;
-  width: 70px;
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  margin: 0;
+  width: 5.5%;
+  height: 9.5%;
   position: absolute;
-  top: 33.5%;
-  left: 7%;
-  transform: translate(-50%, -50%);
+  bottom: 62.6%;
+  left: 8.5%;
+  border-radius: 5%;
+  background-color: #00d9ff;
+  opacity: .3;
 }
 .mainStation:hover {
-  opacity: 0.7;
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
+  opacity: 0.3;
 }
 
 .name-mainStation {
   position: absolute;
-  left: 160px;
-  top: 180px;
+  bottom: 72.6%;
+  left: 6.5%;
   opacity: 0;
   transition: 1.2s opacity;
-  font-size: 20px;
+  color: crimson;
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  background-color: rgba(225, 243, 243, 0.6);
-  padding: 5px;
+ 
 }
 
 .mainStation:hover + .name-mainStation {
@@ -636,31 +597,31 @@
 
 .sludgeTreatmentBuilding {
   cursor: pointer;
-  opacity: 1;
-  height: 60px;
-  width: 70px;
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  margin: 0;
+  width: 5.5%;
+  height: 9.5%;
   position: absolute;
-  top: 33.5%;
-  left: 42%;
-  transform: translate(-50%, -50%);
+  bottom: 62.6%;
+  left: 39%;
+  border-radius: 5%;
+  background-color: #00d9ff;
+  opacity: .3;
 }
 .sludgeTreatmentBuilding:hover {
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
-  opacity: 0.7;
+  opacity: 0.3;
 }
 
 .name-sludgeTreatmentBuilding {
   position: absolute;
-  right: 600px;
-  top: 160px;
+  bottom: 72.6%;
+  left: 38.5%;
   opacity: 0;
   transition: 1.2s opacity;
-  font-size: 20px;
+  color: crimson;
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  background-color: rgba(225, 243, 243, 0.6);
-  padding: 5px;
+ 
 }
 
 .sludgeTreatmentBuilding:hover + .name-sludgeTreatmentBuilding {
@@ -679,8 +640,8 @@
   border-radius: 10%;
 }
 .digester:hover {
-  opacity: 0.7;
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
+  opacity: 0.3;
 }
 
 .name-digester {
@@ -691,8 +652,8 @@
   transition: 1.2s opacity;
   font-size: 20px;
   border-radius: 15px;
-  background-color: rgba(225, 243, 243, 0.6);
-  padding: 5px;
+  background-color: rgba(225, 243, 243, 0.85);
+ 
 }
 
 .digester:hover + .name-digester {
@@ -701,31 +662,31 @@
 
 .preliminaryTreatment {
   cursor: pointer;
-  opacity: 1;
-  height: 50px;
-  width: 30px;
-  box-shadow: 0 0 14px #049dff, 0 0 5px #049dff;
-  margin: 0;
+  width: 3.3%;
+  height: 9.3%;
   position: absolute;
-  top: 86.5%;
-  left: 72.8%;
-  transform: translate(-50%, -50%);
+  bottom: 12.3%;
+  right: 27.5%;
+  border-radius: 5%;
+  background-color: rgb(152, 0, 203);
+  opacity: .3;
 }
 .preliminaryTreatment:hover {
-  opacity: 0.7;
   box-shadow: 0 0 10px #0fa, 0 0 20px #0fa, 0 0 30px #0fa;
+  opacity: 0.3;
 }
 
 .name-preliminaryTreatment {
   position: absolute;
-  right: 350px;
-  bottom: 50px;
+  bottom: 8.3%;
+  right: 26.5%; 
   opacity: 0;
   transition: 1.2s opacity;
-  font-size: 20px;
+  color: crimson;
+  font-size: 1rem;
+  background-color: rgba(225, 243, 243, 0.85);
   border-radius: 15px;
-  background-color: rgba(225, 243, 243, 0.6);
-  padding: 5px;
+ 
 }
 
 .preliminaryTreatment:hover + .name-preliminaryTreatment {
@@ -757,8 +718,8 @@
   transition: 1.2s opacity;
   font-size: 20px;
   border-radius: 15px;
-  background-color: rgba(225, 243, 243, 0.6);
-  padding: 5px;
+  background-color: rgba(225, 243, 243, 0.85);
+ 
 }
 
 .generator:hover + .name-generator {
@@ -774,8 +735,8 @@
   transition: 1.2s opacity;
   font-size: 20px;
   border-radius: 15px;
-  background-color: rgba(225, 243, 243, 0.6);
-  padding: 5px;
+  background-color: rgba(225, 243, 243, 0.85);
+ 
 }
 
 .name-digester1
@@ -787,8 +748,8 @@
   transition: 1.2s opacity;
   font-size: 20px;
   border-radius: 15px;
-  background-color: rgba(225, 243, 243, 0.6);
-  padding: 5px;
+  background-color: rgba(225, 243, 243, 0.85);
+ 
 }
 .name-digester2
 {
@@ -799,8 +760,8 @@
   transition: 1.2s opacity;
   font-size: 20px;
   border-radius: 15px;
-  background-color: rgba(225, 243, 243, 0.6);
-  padding: 5px;
+  background-color: rgba(225, 243, 243, 0.85);
+ 
 }
 .name-other
 {
@@ -811,8 +772,8 @@
   transition: 1.2s opacity;
   font-size: 20px;
   border-radius: 15px;
-  background-color: rgba(225, 243, 243, 0.6);
-  padding: 5px;
+  background-color: rgba(225, 243, 243, 0.85);
+ 
 }
 
 .closingWall {
@@ -831,7 +792,7 @@
   width: 120px;
 }
 
-.line {
+/* .line {
   margin-top: 14px;
   width: 90px;
   background: rgb(106, 106, 204);
@@ -847,4 +808,4 @@
   border-left: 30px solid rgb(106, 106, 204);
   margin-left: 450px;
   margin-top: -25px;
-}
+} */

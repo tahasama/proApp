@@ -24,7 +24,7 @@ import {
   getAllConcretes,
 } from "../../../state/reducers/concreteSlice";
 import { labelsName, locations } from "../../../constants/constant";
-import { Button, Card } from "@mui/material";
+import { Box, Button, Card, Typography } from "@mui/material";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -44,14 +44,25 @@ const Stats = () => {
   const { all } = useAppSelector(concreteData);
 
   const optionsPie = {
+    responsive: true,
     plugins: {
       legend: {
         position: "bottom" as const,
+        labels: {
+          font: {
+            size: 17, // Set the desired font size
+          },
+          color: "#cfe0e3", // Set the desired font color
+        },
       },
       title: {
-        display: true,
-        text: "Distribution of Concrete (m³) (all types)",
-        font: { size: 16 },
+        display: false,
+        text: "Distribution of quality inspections",
+
+        font: {
+          size: 16,
+          weight: "bold",
+        },
       },
     },
   };
@@ -62,9 +73,25 @@ const Stats = () => {
         display: false,
       },
       title: {
-        display: true,
-        text: "Total Concrete Poured per month (m³)",
-        font: { size: 16 },
+        display: false,
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: "#2ac50f", // Set the color of the X-axis labels (months names)
+          font: {
+            size: 15, // Set the font size of the X-axis labels
+          },
+        },
+      },
+      y: {
+        ticks: {
+          color: "#2ac50f", // Set the color of the Y-axis tick marks
+          font: {
+            size: 15, // Set the font size of the X-axis labels
+          },
+        },
       },
     },
   };
@@ -355,55 +382,68 @@ const Stats = () => {
   };
 
   return (
-    <div>
-      <Card className="buttonn1" style={{ marginTop: 5, marginLeft: 130 }}>
-        <TipsAndUpdatesIcon color="warning" /> click on a location to show/hide
-        it on the chart
-      </Card>
-      <div
-        className="DoughnutDimension"
-        style={{ marginLeft: -40, marginRight: 0, padding: 0, width: "34%" }}
-      >
-        <Doughnut
-          options={optionsPie}
-          data={data}
-          style={{ marginTop: -84, backgroundColor: "rgb(210,215,230,0.9)" }}
-        />
-      </div>
-      <div></div>
-      <div
-        className="LineDimension"
-        style={{
-          margin: 0,
-          padding: 0,
-          width: "38%",
+    <Box
+      display="flex"
+      flexDirection={{ xs: "column", md: "row" }}
+      gap={4}
+      p={0}
+      sx={{
+        transform: { xs: "scale(1)", sm: "scale(.87)", lg: "scale(.73)" },
+        mt: { xs: 9, lg: -17 },
+      }}
+    >
+      <Box
+        p={2}
+        width={{ xs: "100%", md: "45%" }} // Set width to 33.33% for the first box (1/3 of the width)
+        sx={{
+          backgroundColor: "rgba(96, 48, 150, 0.35)",
+          borderRadius: 10,
         }}
       >
-        <Line
-          options={optionsLine}
-          data={data1}
-          style={{
-            width: 522,
-
-            marginTop: 0,
-
-            backgroundColor: "rgb(210,215,230,0.9)",
+        <Typography
+          variant="h6"
+          gutterBottom
+          color="primary.light"
+          mb={{ sx: 0, md: 10 }}
+          textAlign={{ sx: "left", md: "center" }}
+        >
+          Distribution of Concrete (m³) (all types)
+        </Typography>
+        <Doughnut data={data} options={optionsPie} />
+      </Box>
+      <Box
+        display="flex"
+        flexDirection="column"
+        gap={4}
+        width={{ xs: "100%", md: "55%" }} // Set width to 66.66% for the second box (2/3 of the width)
+        sx={{}}
+      >
+        <Box
+          p={2}
+          sx={{
+            backgroundColor: "rgba(96, 48, 150, 0.35)",
+            borderRadius: 10,
           }}
-        />
-      </div>
-      <div
-        className="BarDimension"
-        style={{
-          marginTop: -90,
-
-          padding: "0 30px",
-          width: 520,
-          marginLeft: -19,
-        }}
-      >
-        <StatsPerReview all={all} />
-      </div>
-    </div>
+        >
+          <Typography variant="h6" gutterBottom color="primary.light">
+            Total concrete poured per month (m³)
+          </Typography>
+          <Line data={data1} options={optionsLine} />
+        </Box>
+        <Box
+          p={2}
+          sx={{
+            backgroundColor: "rgba(96, 48, 150, 0.35)",
+            borderRadius: 10,
+          }}
+        >
+          <Typography variant="h6" gutterBottom color="primary.light">
+            concrete poured per month (m³) by type
+          </Typography>
+          <StatsPerReview all={all} />
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

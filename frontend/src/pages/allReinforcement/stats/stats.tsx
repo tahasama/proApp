@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Doughnut } from "react-chartjs-2";
 import { useAppDispatch, useAppSelector } from "../../../state/hooks";
 
-import { Button, Card } from "@mui/material";
+import { Box, Button, Card, Typography } from "@mui/material";
 
 import {
   Chart as ChartJS,
@@ -44,14 +44,25 @@ const Stats = () => {
   const { all } = useAppSelector(ReinforcementData);
 
   const optionsPie = {
+    responsive: true,
     plugins: {
       legend: {
         position: "bottom" as const,
+        labels: {
+          font: {
+            size: 17, // Set the desired font size
+          },
+          color: "#cfe0e3", // Set the desired font color
+        },
       },
       title: {
-        display: true,
-        text: "Distribution of Reinforcement usage (Kg)",
-        font: { size: 16 },
+        display: false,
+        text: "Distribution of quality inspections",
+
+        font: {
+          size: 16,
+          weight: "bold",
+        },
       },
     },
   };
@@ -62,9 +73,25 @@ const Stats = () => {
         display: false,
       },
       title: {
-        display: true,
-        text: "Total Reinforcement used per month (Kg)",
-        font: { size: 16 },
+        display: false,
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: "#2ac50f", // Set the color of the X-axis labels (months names)
+          font: {
+            size: 15, // Set the font size of the X-axis labels
+          },
+        },
+      },
+      y: {
+        ticks: {
+          color: "#2ac50f", // Set the color of the Y-axis tick marks
+          font: {
+            size: 15, // Set the font size of the X-axis labels
+          },
+        },
       },
     },
   };
@@ -334,63 +361,57 @@ const Stats = () => {
   };
 
   return (
-    <div
-      style={{
-        position: "relative",
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: 30,
-        width: "100%",
-        top: 80,
+    <Box
+      display="flex"
+      flexDirection={{ xs: "column", md: "row" }}
+      gap={4}
+      p={0}
+      sx={{
+        transform: { xs: "scale(1)", sm: "scale(.87)", lg: "scale(.73)" },
+        mt: { xs: 9, lg: -12 },
       }}
     >
-      <div
-        style={{
-          backgroundColor: "rgb(210,215,230,0.9)",
-          flex: 3,
+      <Box
+        p={2}
+        width={{ xs: "100%", md: "45%" }} // Set width to 33.33% for the first box (1/3 of the width)
+        sx={{
+          backgroundColor: "rgba(96, 48, 150, 0.35)",
+          borderRadius: 10,
         }}
       >
-        <Line
-          options={optionsLine}
-          data={data1}
-          style={{
-            width: 600,
-            //   height: "100%",
-            //   marginTop: -240,
-            //   marginLeft: -60,
-            //   backgroundColor: "rgb(210,215,230,0.9)",
-          }}
-        />
-      </div>
-      <div
-        style={{
-          backgroundColor: "rgb(210,215,230,0.9)",
-          flex: 2,
-        }}
+        <Typography
+          variant="h6"
+          gutterBottom
+          color="primary.light"
+          mb={{ sx: 0, md: 10 }}
+          textAlign={{ sx: "left", md: "center" }}
+        >
+          Distribution of Reinforcement (kg)
+        </Typography>
+        <Doughnut data={data} options={optionsPie} />
+      </Box>
+      <Box
+        display="flex"
+        flexDirection="column"
+        gap={4}
+        width={{ xs: "100%", md: "55%" }} // Set width to 66.66% for the second box (2/3 of the width)
+        sx={{}}
+        justifyContent={"center"}
       >
-        <Doughnut
-          options={optionsPie}
-          data={data}
-          style={{
-            width: 400,
-
-            //   height: "100%",
-            //   marginTop: -240,
-            //   marginLeft: -60,
-            //   backgroundColor: "rgb(210,215,230,0.9)",
+        <Box
+          p={2}
+          sx={{
+            backgroundColor: "rgba(96, 48, 150, 0.35)",
+            borderRadius: 10,
           }}
-        />
-      </div>
-      <Card
-        // className="buttonn1"
-        style={{ flex: 1 }}
-      >
-        <TipsAndUpdatesIcon color="warning" /> click on a location to show/hide
-        it on the chart
-      </Card>
-    </div>
+        >
+          <Typography variant="h6" gutterBottom color="primary.light">
+            Total reinforcement used per month (kg)
+          </Typography>
+          <Line data={data1} options={optionsLine} />
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

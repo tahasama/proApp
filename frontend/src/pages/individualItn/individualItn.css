@@ -106,15 +106,13 @@
   position: absolute;
   bottom: 188px;
   right: 100px;
-  width: 170px;
+  width: 176px;
   padding: 0 1px;
   cursor: pointer;
 }
 
 .stamp {
-  position: absolute;
-  top: 80px;
-  right: -65px;
+  height: fit-content;
   transform: rotate(-10deg);
   color: #555;
   font-size: 3rem;

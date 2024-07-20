@@ -15,6 +15,7 @@ import ModalNCR from "./modal/modalNCR";
 import Button from "@mui/material/Button";
 import { getAuthData } from "../../../state/reducers/authSlice";
 import { handleNumber } from "../../../constants/constant";
+import { Box } from "@mui/material";
 
 const Log = () => {
   const dispatch = useAppDispatch();
@@ -180,95 +181,91 @@ const Log = () => {
       : setFilter1("");
   };
   return (
-    <>
-      <div className="" style={{ marginTop: status === "authorized" ? 15 : 0 }}>
-        <h2
-          className="title1"
-          style={{ marginBottom: status === "authorized" ? 110 : 0 }}
-        >
-          NCR Data Records
-        </h2>
+    <Box style={{ marginTop: status === "authorized" ? 15 : 0 }}>
+      <h2
+        className="title1"
+        style={{ marginBottom: status === "authorized" ? 110 : 0 }}
+      >
+        NCR Data Records
+      </h2>
 
-        {status === "manager" && (
-          <div className="createDeleteB">
-            <ModalNCR />
-            <div>
-              <Button
-                variant="outlined"
-                color="error"
-                size="large"
-                className="deleteB"
-                onClick={handleDelete}
-                style={{ borderColor: "tomato", color: "tomato" }}
-              >
-                Delete selected
+      {status === "manager" && (
+        <Box
+          display={"flex"}
+          gap={1}
+          justifyContent={"space-between"}
+          marginY={2}
+        >
+          <ModalNCR />
+          <Button
+            variant="outlined"
+            color="error"
+            size="large"
+            className="deleteB"
+            onClick={handleDelete}
+            style={{ borderColor: "tomato", color: "tomato" }}
+          >
+            Delete selected
+          </Button>
+        </Box>
+      )}
+
+      <div
+        className="grid"
+        style={{
+          width: "100%",
+          height: 396,
+          marginTop: status === "authorized" ? 90 : 0,
+        }}
+      >
+        {all.flat().length >= 0 ? (
+          <>
+            <div style={containerStyle}>
+              <div style={gridStyle} className="ag-theme-alpine">
+                <AgGridReact
+                  rowData={all
+                    .flat()
+                    .filter((x: any) => x.typeR === "NCR")
+                    .reverse()}
+                  columnDefs={columnDefs}
+                  groupIncludeFooter={true}
+                  groupIncludeTotalFooter={true}
+                  defaultColDef={defaultColDef}
+                  animateRows={true}
+                  ref={gridRef}
+                  enableCellTextSelection={true}
+                  onSelectionChanged={(v: any) =>
+                    v.api.getSelectedRows().length === 0
+                      ? dispatch(UpdateSelectedBox(""))
+                      : dispatch(
+                          UpdateSelectedBox(v.api.getSelectedRows()[0]._id)
+                        )
+                  }
+                  onFilterChanged={handleFilterChange}
+                  getRowStyle={(params) => {
+                    if (params.data?.status === "Closed") {
+                      return { background: "rgb(0,255,0,0.15)" };
+                    } else if (params.data?.status === "Open") {
+                      return { background: "rgb(255,0,0,0.15)" };
+                    } else if (params.data?.status === "Pending") {
+                      return { background: "rgb(0,0,255,0.15)" };
+                    } else return { background: "white" };
+                  }}
+                ></AgGridReact>
+              </div>
+
+              <Button variant="contained" className="total1" color="secondary">
+                Total = {ww !== undefined && ww.length} NCR
               </Button>
-            </div>
+            </div>{" "}
+          </>
+        ) : (
+          <div>
+            <CircularProgress style={{ marginTop: 200 }} size={120} />
           </div>
         )}
-
-        <div
-          className="grid"
-          style={{
-            width: "98%",
-            height: 396,
-            margin: 10,
-            marginTop: status === "authorized" ? 90 : 0,
-          }}
-        >
-          {all.flat().length >= 0 ? (
-            <>
-              <div style={containerStyle}>
-                <div style={gridStyle} className="ag-theme-alpine">
-                  <AgGridReact
-                    rowData={all
-                      .flat()
-                      .filter((x: any) => x.typeR === "NCR")
-                      .reverse()}
-                    columnDefs={columnDefs}
-                    groupIncludeFooter={true}
-                    groupIncludeTotalFooter={true}
-                    defaultColDef={defaultColDef}
-                    animateRows={true}
-                    ref={gridRef}
-                    enableCellTextSelection={true}
-                    onSelectionChanged={(v: any) =>
-                      v.api.getSelectedRows().length === 0
-                        ? dispatch(UpdateSelectedBox(""))
-                        : dispatch(
-                            UpdateSelectedBox(v.api.getSelectedRows()[0]._id)
-                          )
-                    }
-                    onFilterChanged={handleFilterChange}
-                    getRowStyle={(params) => {
-                      if (params.data?.status === "Closed") {
-                        return { background: "rgb(0,255,0,0.15)" };
-                      } else if (params.data?.status === "Open") {
-                        return { background: "rgb(255,0,0,0.15)" };
-                      } else if (params.data?.status === "Pending") {
-                        return { background: "rgb(0,0,255,0.15)" };
-                      } else return { background: "white" };
-                    }}
-                  ></AgGridReact>
-                </div>
-
-                <Button
-                  variant="contained"
-                  className="total1"
-                  color="secondary"
-                >
-                  Total = {ww !== undefined && ww.length} NCR
-                </Button>
-              </div>{" "}
-            </>
-          ) : (
-            <div>
-              <CircularProgress style={{ marginTop: 200 }} size={120} />
-            </div>
-          )}
-        </div>
       </div>
-    </>
+    </Box>
   );
 };
 

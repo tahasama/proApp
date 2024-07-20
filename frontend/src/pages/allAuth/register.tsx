@@ -11,6 +11,7 @@ import {
 } from "../../state/reducers/authSlice";
 
 import "./register.css";
+import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
 
 const Register: React.FC = () => {
   const emailRef = useRef<any>(null);
@@ -52,6 +53,28 @@ const Register: React.FC = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    console.log(
+      "ddddddddddddd",
+      emailRef.current.value,
+      "kkkkkkkkkkk",
+      passwordRef.current.value
+    );
+    try {
+      dispatch(updateError(""));
+      dispatch(
+        loginUser({
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        })
+      );
+    } catch (err) {
+      dispatch(updateError("failed to login, please try again"));
+      navigate("/fullPlan");
+    }
+  };
+
+  const handleSubmitRegister = async (e: any) => {
+    e.preventDefault();
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       dispatch(updateError("Passwords do not match, please try again"));
@@ -82,79 +105,222 @@ const Register: React.FC = () => {
     dispatch(updateStatus("unauthorized"));
   };
   return (
-    <div className="ddd">
-      <div className="registerContainer">
-        <form className="registerForm" onSubmit={handleSubmit}>
-          <div className="labelInput">
-            <label
-              htmlFor="email"
-              className="formlabel"
-              style={{ fontWeight: 500, fontSize: 18 }}
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              className="formInput"
-              ref={emailRef}
-            />
-          </div>
-          <div className="labelInput">
-            <label
-              htmlFor="password"
-              className="formlabel"
-              style={{ fontWeight: 500, fontSize: 18 }}
-            >
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              className="formInput"
-              ref={passwordRef}
-            />
-          </div>
-          <div className="labelInput">
-            <label
-              htmlFor="passwordConfirmation"
-              className="formlabel"
-              style={{ fontWeight: 500, fontSize: 18 }}
-            >
-              Password Confirmation
-            </label>
-            <input
-              type="password"
-              name="passwordConfirmation"
-              className="formInput"
-              ref={passwordConfirmRef}
-            />
-          </div>
+    <Box
+      textAlign="center"
+      mt={4}
+      fontFamily="Roboto, Arial, sans-serif"
+      color="rgba(185, 240, 240, 0.75)"
+    >
+      <Box mx="auto" p={0} maxWidth="800px" width="90vw">
+        <Typography fontSize={{ xs: 24, md: 28 }} gutterBottom>
+          Streamline Your Construction Projects with Our Data Management App
+        </Typography>
 
-          <div className="loginButtons">
-            <button disabled={loading} type="submit" className="login-button">
-              Register
-            </button>
-            <button
-              type="button"
-              className="login-button"
-              style={{ backgroundColor: "red" }}
-              onClick={LoginGoogle}
-            >
-              Sign Up with Google
-            </button>
-          </div>
+        <Typography
+          variant="body1"
+          sx={{
+            height: "20px",
+            color: "red", // Set the text color to red
+            fontSize: "16px", // Adjust the font size
+            marginTop: "8px", // Add some top margin for spacing
+            // You can add more CSS properties here as needed
+          }}
+        >
+          {err && err.message}
+        </Typography>
 
-          <p className="question" style={{ fontWeight: 500, fontSize: 18 }}>
-            Already have an account?{" "}
-            <Link to="/" className="linkto">
-              Login
-            </Link>
-          </p>
-        </form>
-        {err && <p className="errorMessageRegister">{err.message}</p>}
-      </div>
-    </div>
+        <Box
+          component="div"
+          display="grid"
+          gridTemplateColumns={{ xs: "1fr", sm: "1fr 1fr" }}
+          gap={{ xs: 8, sm: 3 }}
+          mt={6}
+        >
+          <Box order={{ xs: 1, md: 2 }}>
+            <Paper
+              elevation={3}
+              sx={{
+                p: 3,
+                borderRadius: 10,
+                backgroundColor: "rgba(96, 48, 150, 0.35)",
+                height: "100%",
+              }}
+            >
+              <Typography variant="h5" color="primary.light" gutterBottom>
+                Join Us Today!
+              </Typography>
+              <form
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                }}
+                onSubmit={handleSubmitRegister}
+              >
+                <TextField
+                  fullWidth
+                  label="Email"
+                  variant="filled"
+                  type="email"
+                  size="small"
+                  sx={{ mt: 1 }}
+                  inputProps={{
+                    style: {
+                      border: "none",
+                      paddingTop: 24,
+                      paddingBottom: 16,
+                      backgroundColor: "#9fa8da",
+                    },
+                  }} // Remove the border inside the input
+                  inputRef={emailRef}
+                />
+                <TextField
+                  fullWidth
+                  label="Password"
+                  variant="filled"
+                  type="password"
+                  size="small"
+                  sx={{ mt: 1 }}
+                  inputProps={{
+                    style: {
+                      border: "none",
+                      paddingTop: 24,
+                      paddingBottom: 16,
+                      backgroundColor: "#9fa8da",
+                    },
+                  }} // Remove the border inside the input
+                  inputRef={passwordRef}
+                />
+
+                <TextField
+                  fullWidth
+                  label="Password Confirmation"
+                  variant="filled"
+                  type="password"
+                  size="small"
+                  sx={{ mt: 1 }}
+                  inputProps={{
+                    style: {
+                      border: "none",
+                      paddingTop: 24,
+                      paddingBottom: 16,
+                      backgroundColor: "#9fa8da",
+                    },
+                  }} // Remove the border inside the input
+                  inputRef={passwordConfirmRef}
+                />
+
+                <Button
+                  variant="contained"
+                  type="submit"
+                  color="primary"
+                  sx={{ mt: 1 }}
+                >
+                  Register
+                </Button>
+
+                <Typography sx={{ mt: 1 }} color={"#bdbdbd"}>
+                  Already have an account?{" "}
+                  <Link to="/" style={{ color: "white" }}>
+                    Home Page
+                  </Link>
+                </Typography>
+              </form>
+            </Paper>
+          </Box>
+          <Box order={{ xs: 2, md: 1 }}>
+            <Paper
+              elevation={3}
+              sx={{
+                p: 3,
+                borderRadius: 10,
+                backgroundColor: "rgba(96, 48, 150, 0.35)",
+                height: "100%",
+              }}
+            >
+              <Typography variant="h5" color="primary.light" gutterBottom>
+                Sign In!
+              </Typography>
+              <form
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "13px",
+                }}
+                onSubmit={handleSubmit}
+              >
+                <TextField
+                  fullWidth
+                  label="Email"
+                  variant="filled"
+                  type="email"
+                  size="small"
+                  sx={{ mt: 1 }}
+                  inputProps={{
+                    style: {
+                      border: "none",
+                      paddingTop: 24,
+                      paddingBottom: 16,
+                      backgroundColor: "#9fa8da",
+                    },
+                  }} // Remove the border inside the input
+                  inputRef={emailRef}
+                />
+                <TextField
+                  fullWidth
+                  label="Password"
+                  variant="filled"
+                  type="password"
+                  size="small"
+                  sx={{ mt: 1 }}
+                  inputProps={{
+                    style: {
+                      border: "none",
+                      paddingTop: 24,
+                      paddingBottom: 16,
+                      backgroundColor: "#9fa8da",
+                    },
+                  }} // Remove the border inside the input
+                  inputRef={passwordRef}
+                />
+
+                <Button
+                  variant="contained"
+                  type="submit"
+                  color="primary"
+                  sx={{ mt: 1 }}
+                >
+                  Login
+                </Button>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  sx={{ mt: 1 }}
+                  onClick={LoginGoogle}
+                >
+                  Login with Google
+                </Button>
+                <Typography sx={{ mt: 0.5 }}>
+                  <Link to="/reset-password" style={{ color: "#1589cf" }}>
+                    Forgot password?
+                  </Link>
+                </Typography>
+              </form>
+            </Paper>
+          </Box>
+        </Box>
+        <Typography mt={10}>
+          Got questions? Contact us at{" "}
+          <Link
+            to="mailto:support@constructionapp.com"
+            style={{ color: "#0ABAB5" }}
+          >
+            support@constructionapp.com
+          </Link>{" "}
+          or call (+212) XXX-0987.
+        </Typography>
+      </Box>
+    </Box>
   );
 };
 

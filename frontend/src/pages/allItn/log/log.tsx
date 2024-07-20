@@ -420,27 +420,33 @@ const Log = () => {
     <div className="log" style={{ marginTop: 30 }}>
       <h2
         className="title1"
-        style={{ marginBottom: status === "authorized" ? 110 : 0 }}
+        style={{
+          marginBottom: status === "authorized" ? 110 : 0,
+          textAlign: "center",
+        }}
       >
         INSPECTION TEST NOTIFICATIONS
       </h2>
 
       {status === "manager" && (
-        <div className="createDeleteB">
+        <Box
+          display={"flex"}
+          gap={1}
+          justifyContent={"space-between"}
+          marginY={2}
+        >
           <ModalM />
-          <div>
-            <Button
-              variant="outlined"
-              color="error"
-              size="large"
-              className="deleteB"
-              onClick={handleDelete}
-              style={{ borderColor: "tomato", color: "tomato" }}
-            >
-              Delete selected
-            </Button>
-          </div>
-        </div>
+
+          <Button
+            variant="outlined"
+            color="error"
+            size="large"
+            onClick={handleDelete}
+            style={{ borderColor: "tomato", color: "tomato" }}
+          >
+            Delete selected
+          </Button>
+        </Box>
       )}
 
       <div className="grid" style={{ width: "100%", height: 380 }}>

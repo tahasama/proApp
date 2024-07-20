@@ -59,8 +59,10 @@ export default function ModalC() {
       <Button
         variant="contained"
         size="large"
-        style={{ margin: 10 }}
+        style={{ margin: 10, borderRadius: 10 }}
         onClick={handleOpen}
+        color="error"
+        sx={{ paddingY: 2 }}
       >
         Create ITN
       </Button>

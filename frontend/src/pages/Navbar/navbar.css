@@ -1,18 +1,14 @@
-.MuiToolbar-root {
+/* .MuiToolbar-root {
   margin: -6px;
-}
+} */
 
-.navBar {
-  color: white;
-  text-decoration: none;
-  width: 100%;
-}
 
 .Winput {
-  background-color: rgb(83, 138, 221);
-  padding: 10px;
+  background-color: rgb(75, 126, 202);
+
   margin-left: 50px;
   border: none;
   outline: none;
   font-size: 14px;
+  color: rgb(218, 231, 243);
 }

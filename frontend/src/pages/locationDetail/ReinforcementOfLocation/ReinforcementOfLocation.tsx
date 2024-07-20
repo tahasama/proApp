@@ -20,6 +20,7 @@ import {
 } from "../../../state/reducers/reinforcementSlice";
 import Button from "@mui/material/Button";
 import { labelsName } from "../../../constants/constant";
+import { Box, useTheme } from "@mui/material";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -102,14 +103,58 @@ const ReinforcementOfLocation = () => {
     plugins: {
       legend: {
         position: "top" as const,
+        labels: {
+          font: {
+            size: 16, // Set the desired font size
+          },
+          color: "#cfe0e3", // Set the desired font color
+        },
+      },
+      title: {
+        display: false,
+        text: "Distribution of quality inspections",
+
+        font: {
+          size: 16,
+          weight: "bold",
+        },
+        color: "#cfe0e3", // Set the desired font color
       },
     },
   };
+
   const optionsLine = {
     responsive: true,
     plugins: {
       legend: {
-        position: "top" as const,
+        display: true,
+        labels: {
+          font: {
+            size: 16, // Set the desired font size
+          },
+          color: "#cfe0e3", // Set the desired font color
+        },
+      },
+      title: {
+        display: false,
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: "#2ac50f", // Set the color of the X-axis labels (months names)
+          font: {
+            size: 15, // Set the font size of the X-axis labels
+          },
+        },
+      },
+      y: {
+        ticks: {
+          color: "#2ac50f", // Set the color of the Y-axis tick marks
+          font: {
+            size: 15, // Set the font size of the X-axis labels
+          },
+        },
       },
     },
   };
@@ -208,74 +253,60 @@ const ReinforcementOfLocation = () => {
       },
     ],
   };
+  const theme = useTheme();
 
   return (
-    <div className="cover2">
-      <Button
-        variant="contained"
-        style={{
-          marginTop: 50,
-          marginLeft: 340,
-          padding: 15,
-          cursor: "auto",
-          width: 500,
-        }}
-      >
-        Total = &nbsp;
-        {all
-          .flat()
-          .filter((i: any) => {
-            return itp === "secondaryClarifierP24" ||
-              itp === "secondaryClarifierP25" ||
-              itp === "secondaryClarifierP32"
-              ? i.itp === "secondaryClarifier"
-              : itp === "PrimaryClarifierP7" ||
-                itp === "PrimaryClarifierP8" ||
-                itp === "PrimaryClarifierP9"
-              ? i.itp === "PrimaryClarifier"
-              : itp === i.itp;
-          })
-          .map((x: any) => x.quantity)
-          .reduce((a, b): any => a + b, 0)}
-        &nbsp; Kg
-      </Button>
-      <div
-        style={{
-          position: "relative",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
-          // padding: 10,
-          marginLeft: 140,
-          width: "1000px",
-          // height: "55vh",
-          top: "60px",
-          gap: 30,
-        }}
-      >
-        <div
+    <Box width="100%" p={2}>
+      <Box width={"100%"} display={"flex"} justifyContent={"center"}>
+        <Button
+          variant="contained"
           style={{
-            flex: 8,
-            backgroundColor: "rgb(250,250,250,0.8)",
-            margin: 5,
-            padding: "26px 0",
+            marginBottom: 2,
+            cursor: "auto",
+            fontSize: "1rem",
+            borderRadius: "8px",
           }}
+          sx={{ paddingX: 15, paddingY: 2 }}
         >
+          Total = &nbsp;
+          {all
+            .flat()
+            .filter((i: any) => {
+              return (
+                ((itp === "secondaryClarifierP24" ||
+                  itp === "secondaryClarifierP25" ||
+                  itp === "secondaryClarifierP32") &&
+                  i.itp === "secondaryClarifier") ||
+                ((itp === "PrimaryClarifierP7" ||
+                  itp === "PrimaryClarifierP8" ||
+                  itp === "PrimaryClarifierP9") &&
+                  i.itp === "PrimaryClarifier") ||
+                itp === i.itp
+              );
+            })
+            .map((x: any) => x.quantity)
+            .reduce((a, b) => a + b, 0)}
+          &nbsp; Kg
+        </Button>
+      </Box>
+
+      <Box
+        display="flex"
+        flexDirection={{ xs: "column", md: "row" }}
+        alignItems="center"
+        mt={4}
+      >
+        {/* Line Chart */}
+        <Box width="100%" maxWidth={{ xs: "100%", md: "58%" }} mb={2}>
           <Line options={optionsLine} data={data2} />
-        </div>
-        <div
-          style={{
-            flex: 4,
-            backgroundColor: "rgb(250,250,250,0.8)",
-            margin: 5,
-            padding: 25,
-          }}
-        >
+        </Box>
+
+        {/* Pie Chart */}
+        <Box width="100%" maxWidth={{ xs: "100%", md: "32%" }}>
           <Pie options={optionsPie} data={data} />
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

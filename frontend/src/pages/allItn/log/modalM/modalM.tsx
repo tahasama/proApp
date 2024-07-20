@@ -57,7 +57,7 @@ export default function ModalM() {
         variant="outlined"
         color="success"
         size="large"
-        style={{ borderColor: "#00d4ff", color: "#00d4ff" }}
+        style={{ borderColor: "#00d4ff", color: "#00d4ff", flex: 1 }}
         onClick={handleOpen}
       >
         Create ITN

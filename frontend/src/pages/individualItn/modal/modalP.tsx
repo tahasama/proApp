@@ -46,7 +46,6 @@ export default function ModalP() {
     <div>
       <Button
         onClick={handleOpen}
-        className="pos"
         variant="contained"
         color="success"
         startIcon={<BorderColorTwoToneIcon />}

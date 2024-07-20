@@ -78,22 +78,6 @@ const Log = () => {
       field: "quantity",
       headerName: "Quantity (m³)",
     },
-    // {
-    //   field: "relatedItn",
-    //   headerName: "Related ITN",
-    //   cellRenderer: (params: any) => {
-    //     return (
-    //       params.value !== undefined && (
-    //         <Link
-    //           style={{ color: "blue" }}
-    //           to={`/${params.value.itp}/${params.value._id}`}
-    //         >
-    //           QW211101-SNCE-QA-ITN- {handleNumber(params.value.num)}
-    //         </Link>
-    //       )
-    //     );
-    //   },
-    // },
   ]);
   const defaultColDef = useMemo(() => {
     return {
@@ -208,21 +192,24 @@ const Log = () => {
       </h2>
 
       {status === "manager" && (
-        <div className="createDeleteB">
+        <Box
+          display={"flex"}
+          gap={1}
+          justifyContent={"space-between"}
+          marginY={2}
+        >
           <ModalR />
-          <div>
-            <Button
-              variant="outlined"
-              color="error"
-              size="large"
-              className="deleteB"
-              onClick={handleDelete}
-              style={{ borderColor: "tomato", color: "tomato" }}
-            >
-              Delete selected
-            </Button>
-          </div>
-        </div>
+          <Button
+            variant="outlined"
+            color="error"
+            size="large"
+            className="deleteB"
+            onClick={handleDelete}
+            style={{ borderColor: "tomato", color: "tomato" }}
+          >
+            Delete selected
+          </Button>
+        </Box>
       )}
       <div
         className="grid"

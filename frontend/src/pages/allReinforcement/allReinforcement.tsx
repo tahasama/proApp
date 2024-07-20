@@ -54,7 +54,7 @@ const AllReinforcement = () => {
       <div className="navbar">
         <NavBar />
       </div>
-      <div style={{ marginTop: 37 }}>
+      <div style={{ marginTop: 68 }}>
         <Box sx={{ width: "100%" }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <Tabs

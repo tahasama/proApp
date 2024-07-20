@@ -33,6 +33,7 @@ import {
   labelsName,
   routines,
 } from "../../../constants/constant";
+import { Button, Chip, Typography } from "@mui/material";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -95,18 +96,54 @@ const LocationsItn = () => {
 
   const optionsPie = {
     responsive: true,
-    maintainAspectRatio: true,
     plugins: {
       legend: {
         position: "top" as const,
+        labels: {
+          font: {
+            size: 14, // Set the desired font size
+          },
+          color: "#cfe0e3", // Set the desired font color
+        },
+      },
+      title: {
+        display: false,
+        text: "Distribution of quality inspections",
+
+        font: {
+          size: 16,
+          weight: "bold",
+        },
       },
     },
   };
+
   const optionsLine = {
     responsive: true,
     plugins: {
       legend: {
-        position: "top" as const,
+        display: true,
+      },
+      title: {
+        display: false,
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: "#2ac50f", // Set the color of the X-axis labels (months names)
+          font: {
+            size: 15, // Set the font size of the X-axis labels
+          },
+        },
+      },
+      y: {
+        ticks: {
+          color: "#2ac50f", // Set the color of the Y-axis tick marks
+          font: {
+            size: 15, // Set the font size of the X-axis labels
+          },
+        },
       },
     },
   };
@@ -191,90 +228,130 @@ const LocationsItn = () => {
   };
 
   return (
-    <div className="cover">
-      <Grid container columnSpacing={{ xs: 1, sm: 2, md: 1 }}>
-        <Grid item xs={4}>
-          <Item style={{ height: "77vh" }}>
-            <p style={{ margin: 0, padding: 0 }}>Stats:</p>
-            <div>
-              <Pie
-                options={optionsPie}
-                data={data}
-                style={{ padding: 30, marginTop: -30 }}
-              />
-            </div>
-            <div>
-              <Line
-                options={optionsLine}
-                data={data2}
-                style={{ width: 340, marginTop: -20 }}
-              />
-            </div>
-          </Item>
-        </Grid>
-        <Grid item xs={4}>
-          <Item style={{ height: "77vh" }}>
-            {" "}
-            <span style={{ margin: 0, padding: 0 }}>Filter By: </span>
-            {routines.map((i: any) => (
-              <div key={i} onClick={() => setFilterBy(i)} className="filters">
-                {i}
-              </div>
+    <Grid
+      container
+      columnSpacing={{ xs: 1, md: 2, lg: 3 }}
+      rowSpacing={{ xs: 2.5, md: 0 }}
+      mt={30}
+    >
+      <Grid item xs={12} sm={6} md={4}>
+        <Paper
+          elevation={5}
+          style={{
+            backgroundColor: "transparent",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            padding: 2,
+          }}
+        >
+          <Typography variant="h6" component="p" color={"GrayText"}>
+            Stats:
+          </Typography>
+          <Box width={"73%"}>
+            <Pie options={optionsPie} data={data} />
+          </Box>
+          <Box width={"100%"}>
+            <Line options={optionsLine} data={data2} />
+          </Box>
+        </Paper>
+      </Grid>
+      <Grid item xs={12} sm={6} md={3}>
+        <Paper
+          elevation={5}
+          style={{ backgroundColor: "transparent", padding: 4 }}
+        >
+          <Typography variant="h6" component="p" color={"GrayText"}>
+            Filter By:
+          </Typography>
+          <ul style={{ listStyleType: "none", padding: 0 }}>
+            {routines.map((routine, index) => (
+              <li key={index}>
+                <Button
+                  variant="outlined"
+                  onClick={() => setFilterBy(routine)}
+                  sx={{
+                    my: 0.5,
+                    color: "skyblue",
+                    cursor: "pointer",
+                    width: "100%",
+                    "&:hover": {
+                      color: "blue",
+                      backgroundColor: "rgb(218, 252, 241)",
+                      transform: "translate(1px)",
+                    },
+                  }}
+                >
+                  {routine}
+                </Button>
+              </li>
             ))}
-          </Item>
-        </Grid>
-        <Grid item xs={4}>
-          <Item
-            className="example"
-            style={{
+          </ul>
+        </Paper>
+      </Grid>
+      <Grid item xs={12} md={5}>
+        <Paper
+          sx={{
+            height: "100%",
+            width: "100%",
+            // overflowX: "auto",
+            backgroundColor: "transparent",
+            display: "flex",
+            justifyContent: "center",
+            // alignItems: "center",
+            padding: 5,
+          }}
+          elevation={5}
+        >
+          <Timeline
+            position="alternate"
+            sx={{
+              fontFamily: "Arial, sans-serif",
               width: "100%",
-              maxHeight: "77vh",
+              mt: 5,
+              flexGrow: 0,
             }}
           >
-            <Timeline position="alternate">
-              {arr
-                .flat()
-                .reverse()
-                .map((itn: any) => (
-                  <TimelineItem key={itn._id}>
-                    <TimelineOppositeContent color="text.secondary">
-                      {new Date(itn.dateOfInspection).toLocaleDateString(
-                        navigator.language,
-                        {
-                          year: "numeric",
-                          month: "short",
-                          day: "numeric",
-                        }
-                      )}
-                    </TimelineOppositeContent>
-                    <TimelineSeparator>
-                      <TimelineDot />
-                      <TimelineConnector />
-                    </TimelineSeparator>
-                    <TimelineContent>
-                      <a
-                        href={"/" + itp + "/" + itn._id}
-                        className=""
-                        style={{
-                          cursor: "pointer",
-                          width: 4,
-                        }}
+            {arr
+              .flat()
+              .reverse()
+              .map((itn: any) => (
+                <TimelineItem key={itn._id}>
+                  <TimelineOppositeContent color="yellowgreen">
+                    {new Date(itn.dateOfInspection).toLocaleDateString(
+                      navigator.language,
+                      { year: "numeric", month: "short", day: "numeric" }
+                    )}
+                  </TimelineOppositeContent>
+                  <TimelineSeparator>
+                    <TimelineDot />
+                    <TimelineConnector />
+                  </TimelineSeparator>
+                  <TimelineContent>
+                    <a
+                      href={`/${itp}/${itn._id}`}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <Typography fontSize={{ xs: 14, sm: 17 }} color="white">
+                        DM2023-OKY-AQ-DOC-{handleNumber(itn.num)}
+                      </Typography>
+                      <Typography
+                        variant="h6"
+                        fontSize={{ xs: 12, sm: 15 }}
+                        color="skyblue"
                       >
-                        <h5
-                        // style={{ marginLeft: 4 }}
-                        >
-                          QW211101-SNCE-QA-ITN-{handleNumber(itn.num)}
-                        </h5>
-                        <h6 className=""> {itn.routine} </h6>{" "}
-                      </a>
-                    </TimelineContent>
-                  </TimelineItem>
-                ))}
-            </Timeline>
-          </Item>
-        </Grid>
+                        {itn.routine}
+                      </Typography>
+                    </a>
+                  </TimelineContent>
+                </TimelineItem>
+              ))}
+          </Timeline>
+        </Paper>
       </Grid>
-    </div>
+    </Grid>
   );
 };
 

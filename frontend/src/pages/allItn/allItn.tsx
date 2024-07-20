@@ -55,8 +55,8 @@ export default function AllItn() {
       <div className="navbar">
         <NavBar />
       </div>
-      <div style={{ marginTop: 37 }}>
-        <Box sx={{ width: "100vw" }}>
+      <div style={{ marginTop: 68 }}>
+        <Box sx={{ width: "100%" }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <Tabs
               value={value}
@@ -69,13 +69,9 @@ export default function AllItn() {
                 backgroundColor: "#CCCCFF",
               }}
             >
-              <Tab label="LOG" {...a11yProps(0)} style={{ zIndex: 99 }} />
-              <Tab label="STATS" {...a11yProps(1)} style={{ zIndex: 99 }} />
-              <Tab
-                label="DETAILED CHART"
-                {...a11yProps(2)}
-                style={{ zIndex: 99 }}
-              />
+              <Tab label="LOG" {...a11yProps(0)} />
+              <Tab label="STATS" {...a11yProps(1)} />
+              <Tab label="DETAILED CHART" {...a11yProps(2)} />
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
@@ -85,12 +81,7 @@ export default function AllItn() {
             <Stats />
           </TabPanel>{" "}
           <TabPanel value={value} index={2}>
-            <div
-              className="LineDimension2"
-              style={{ margin: 0, padding: 0, width: "70%", marginTop: 20 }}
-            >
-              <StatsPerMonth />
-            </div>
+            <StatsPerMonth />
           </TabPanel>
         </Box>
       </div>

@@ -54,7 +54,7 @@ export default function AllItn() {
       <div className="navbar">
         <NavBar />
       </div>
-      <div style={{ marginTop: 37 }}>
+      <div style={{ marginTop: 68 }}>
         <Box sx={{ width: "100%" }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <Tabs
@@ -68,8 +68,8 @@ export default function AllItn() {
                 backgroundColor: "#CCCCFF",
               }}
             >
-              <Tab label="LOG" {...a11yProps(0)} style={{ zIndex: 99 }} />
-              <Tab label="STATS" {...a11yProps(1)} style={{ zIndex: 99 }} />
+              <Tab label="LOG" {...a11yProps(0)} />
+              <Tab label="STATS" {...a11yProps(1)} />
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>

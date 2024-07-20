@@ -15,6 +15,7 @@ import ModalQOR from "./modal/modalQOR";
 import Button from "@mui/material/Button";
 import { getAuthData } from "../../../state/reducers/authSlice";
 import { handleNumber } from "../../../constants/constant";
+import { Box } from "@mui/material";
 
 const Log = () => {
   const dispatch = useAppDispatch();
@@ -188,29 +189,31 @@ const Log = () => {
         </h2>
 
         {status === "manager" && (
-          <div className="createDeleteB">
+          <Box
+            display={"flex"}
+            gap={1}
+            justifyContent={"space-between"}
+            marginY={2}
+          >
             <ModalQOR />
-            <div>
-              <Button
-                variant="outlined"
-                color="error"
-                size="large"
-                className="deleteB"
-                onClick={handleDelete}
-                style={{ borderColor: "tomato", color: "tomato" }}
-              >
-                Delete selected
-              </Button>
-            </div>
-          </div>
+            <Button
+              variant="outlined"
+              color="error"
+              size="large"
+              className="deleteB"
+              onClick={handleDelete}
+              style={{ borderColor: "tomato", color: "tomato" }}
+            >
+              Delete selected
+            </Button>
+          </Box>
         )}
 
         <div
           className="grid"
           style={{
-            width: "98%",
+            width: "%",
             height: 396,
-            margin: 10,
             marginTop: status === "authorized" ? 90 : 0,
           }}
         >

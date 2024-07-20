@@ -12,6 +12,7 @@ import { labelsName } from "../../../constants/constant";
 import { useAppSelector } from "../../../state/hooks";
 import { QorNcrData } from "../../../state/reducers/qorNcrSlice";
 import Button from "@mui/material/Button";
+import { Box, Typography } from "@mui/material";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(
@@ -26,37 +27,6 @@ ChartJS.register(
 
 const Stats = () => {
   const { all, ww, selectedBox } = useAppSelector(QorNcrData);
-
-  const optionsLine = {
-    responsive: true,
-    maintainAspectRatio: true,
-    plugins: {
-      legend: {
-        position: "left" as const,
-      },
-      title: {
-        display: true,
-        text: "QOR Status per month",
-        font: { size: 18 },
-      },
-    },
-  };
-
-  const optionsDoughnut = {
-    responsive: true,
-    maintainAspectRatio: true,
-
-    plugins: {
-      legend: {
-        position: "bottom" as const,
-      },
-      title: {
-        display: true,
-        text: "QOR Total per status",
-        font: { size: 18 },
-      },
-    },
-  };
 
   const labels: any = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
@@ -135,45 +105,111 @@ const Stats = () => {
     ],
   };
 
+  const optionsDoughnut = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "bottom" as const,
+        labels: {
+          font: {
+            size: 17, // Set the desired font size
+          },
+          color: "#cfe0e3", // Set the desired font color
+        },
+      },
+      title: {
+        display: false,
+        text: "Distribution of quality inspections",
+
+        font: {
+          size: 16,
+          weight: "bold",
+        },
+      },
+    },
+  };
+  const optionsLine = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: false,
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: "#2ac50f", // Set the color of the X-axis labels (months names)
+          font: {
+            size: 15, // Set the font size of the X-axis labels
+          },
+        },
+      },
+      y: {
+        ticks: {
+          color: "#2ac50f", // Set the color of the Y-axis tick marks
+          font: {
+            size: 15, // Set the font size of the X-axis labels
+          },
+        },
+      },
+    },
+  };
+
   return (
-    <>
-      <Button
-        variant="contained"
-        style={{
-          position: "relative",
-          marginTop: 80,
-          alignItems: "center",
-          padding: 15,
-          cursor: "auto",
-          width: 500,
-          fontSize: 18,
+    <Box
+      display="flex"
+      flexDirection={{ xs: "column", md: "row" }}
+      gap={4}
+      p={0}
+      sx={{
+        transform: { xs: "scale(1)", sm: "scale(.87)", lg: "scale(.73)" },
+        mt: { xs: 9, lg: 5 },
+      }}
+    >
+      <Box
+        p={2}
+        width={{ xs: "100%", md: "35%" }} // Set width to 33.33% for the first box (1/3 of the width)
+        sx={{
+          backgroundColor: "rgba(96, 48, 150, 0.35)",
+          borderRadius: 10,
         }}
       >
-        Total of QOR = {all.flat().filter((f: any) => f.typeR === "QOR").length}
-      </Button>
-      <div className="statsQor">
-        <Bar
-          options={optionsLine}
-          data={data}
-          style={{
-            marginTop: 50,
-            backgroundColor: "rgb(210,215,230,0.9)",
+        <Typography
+          variant="h6"
+          gutterBottom
+          color="primary.light"
+          mb={{ sx: 0, md: 10 }}
+          textAlign={{ sx: "left", md: "center" }}
+        >
+          QOR Total per status
+        </Typography>
+        <Doughnut data={data1} options={optionsDoughnut} />
+      </Box>
+      <Box
+        display="flex"
+        flexDirection="column"
+        gap={4}
+        width={{ xs: "100%", md: "65%" }} // Set width to 66.66% for the second box (2/3 of the width)
+        sx={{}}
+        justifyContent={"center"}
+      >
+        <Box
+          p={2}
+          sx={{
+            backgroundColor: "rgba(96, 48, 150, 0.35)",
+            borderRadius: 10,
           }}
-          className="statsQorLine"
-        />
-        <div className="statsQorDoughnut">
-          <Doughnut
-            options={optionsDoughnut}
-            data={data1}
-            style={{
-              marginTop: 50,
-              backgroundColor: "rgb(210,215,230,0.9)",
-              // width: "100%",
-            }}
-          />
-        </div>
-      </div>
-    </>
+        >
+          <Typography variant="h6" gutterBottom color="primary.light">
+            QOR Status per month
+          </Typography>
+          <Bar options={optionsLine} data={data} />
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { Button, Card } from "@mui/material";
+import { Box, Button, Card, Grid, Typography } from "@mui/material";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import { getAllItns, itnData } from "../../../../state";
 import { useAppDispatch, useAppSelector } from "../../../../state/hooks";
@@ -14,7 +14,7 @@ import {
   LineElement,
   Title,
 } from "chart.js";
-import { Bar, Line } from "react-chartjs-2";
+import { Bar, Bubble, Line, Pie, Radar, Scatter } from "react-chartjs-2";
 import "./statsPerMonth.css";
 import { labelsName, locations } from "../../../../constants/constant";
 
@@ -35,20 +35,6 @@ const StatsPerMonth = () => {
   useEffect(() => {
     dispatch(getAllItns());
   }, [all]);
-  const optionsLine = {
-    // responsive: true,
-    // maintainAspectRatio: true,
-    plugins: {
-      legend: {
-        position: "top" as const,
-      },
-      title: {
-        display: true,
-        text: "Inspection for every location",
-        font: { size: 18 },
-      },
-    },
-  };
 
   const labels: any = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
@@ -414,24 +400,24 @@ const StatsPerMonth = () => {
         backgroundColor: "#00ff00",
         tension: 0.3,
       },
-      {
-        label: "sandFilter",
-        // data: !q.includes("sandFilter") ? [0] : uu12,
-        data: uu12,
+      // {
+      //   label: "sandFilter",
+      //   // data: !q.includes("sandFilter") ? [0] : uu12,
+      //   data: uu12,
 
-        borderColor: "#ff33cc",
-        backgroundColor: "#ff33cc",
-        tension: 0.3,
-      },
-      {
-        label: "pre Treatment",
-        // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
-        data: uu13,
+      //   borderColor: "#ff33cc",
+      //   backgroundColor: "#ff33cc",
+      //   tension: 0.3,
+      // },
+      // {
+      //   label: "pre Treatment",
+      //   // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+      //   data: uu13,
 
-        borderColor: "#e0c3cc",
-        backgroundColor: "#e0c3cc",
-        tension: 0.3,
-      },
+      //   borderColor: "#e0c3cc",
+      //   backgroundColor: "#e0c3cc",
+      //   tension: 0.3,
+      // },
       {
         label: "C.Wall",
         // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
@@ -441,51 +427,51 @@ const StatsPerMonth = () => {
         backgroundColor: "#2fc3cc",
         tension: 0.3,
       },
-      {
-        label: "Blowers.R",
-        // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
-        data: uu15,
+      // {
+      //   label: "Blowers.R",
+      //   // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+      //   data: uu15,
 
-        borderColor: "#2d93cc",
-        backgroundColor: "#2d93cc",
-        tension: 0.3,
-      },
-      {
-        label: "M.Station",
-        // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
-        data: uu16,
+      //   borderColor: "#2d93cc",
+      //   backgroundColor: "#2d93cc",
+      //   tension: 0.3,
+      // },
+      // {
+      //   label: "M.Station",
+      //   // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+      //   data: uu16,
 
-        borderColor: "#8003cc",
-        backgroundColor: "#8003cc",
-        tension: 0.3,
-      },
-      {
-        label: "Electrical.R1",
-        // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
-        data: uu17,
+      //   borderColor: "#8003cc",
+      //   backgroundColor: "#8003cc",
+      //   tension: 0.3,
+      // },
+      // {
+      //   label: "Electrical.R1",
+      //   // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+      //   data: uu17,
 
-        borderColor: "#dd03cc",
-        backgroundColor: "#dd03cc",
-        tension: 0.3,
-      },
-      {
-        label: "Electrical.R2",
-        // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
-        data: uu18,
+      //   borderColor: "#dd03cc",
+      //   backgroundColor: "#dd03cc",
+      //   tension: 0.3,
+      // },
+      // {
+      //   label: "Electrical.R2",
+      //   // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+      //   data: uu18,
 
-        borderColor: "#a103cc",
-        backgroundColor: "#a103cc",
-        tension: 0.3,
-      },
-      {
-        label: "WaterPipe.Net",
-        // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
-        data: uu19,
+      //   borderColor: "#a103cc",
+      //   backgroundColor: "#a103cc",
+      //   tension: 0.3,
+      // },
+      // {
+      //   label: "WaterPipe.Net",
+      //   // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+      //   data: uu19,
 
-        borderColor: "#bd039c",
-        backgroundColor: "#bd039c",
-        tension: 0.3,
-      },
+      //   borderColor: "#bd039c",
+      //   backgroundColor: "#bd039c",
+      //   tension: 0.3,
+      // },
       {
         label: "Sludge.Treat",
         // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
@@ -495,24 +481,24 @@ const StatsPerMonth = () => {
         backgroundColor: "#ffffff",
         tension: 0.3,
       },
-      {
-        label: "Digester1",
-        // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
-        data: uu21,
+      // {
+      //   label: "Digester1",
+      //   // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+      //   data: uu21,
 
-        borderColor: "#A78fff",
-        backgroundColor: "#A78fff",
-        tension: 0.3,
-      },
-      {
-        label: "Digester2",
-        // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
-        data: uu22,
+      //   borderColor: "#A78fff",
+      //   backgroundColor: "#A78fff",
+      //   tension: 0.3,
+      // },
+      // {
+      //   label: "Digester2",
+      //   // data: !q.includes("preliminaryTreatment") ? [0] : uu13,
+      //   data: uu22,
 
-        borderColor: "#6AD7A0",
-        backgroundColor: "#6AD7A0",
-        tension: 0.3,
-      },
+      //   borderColor: "#6AD7A0",
+      //   backgroundColor: "#6AD7A0",
+      //   tension: 0.3,
+      // },
     ],
   };
 
@@ -521,95 +507,90 @@ const StatsPerMonth = () => {
   //   key ? setQ([...q, w]) : setQ(q.filter((t: any) => t !== w));
   // };
 
+  const optionsLine = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "right" as const,
+        display: true,
+        labels: {
+          color: "#cfe0e3", // Set the font color for the legend labels
+          top: 5,
+          font: {
+            size: 16, // Set the font size for the legend labels
+          },
+        },
+      },
+      title: {
+        display: false,
+        text: "Inspection for every location",
+
+        font: {
+          size: 24,
+          weight: "bold",
+        },
+      },
+    },
+    barThickness: 5.5,
+    scales: {
+      x: {
+        ticks: {
+          color: "#2ac50f", // Set the color of the X-axis labels (months names)
+          font: {
+            size: 15, // Set the font size of the X-axis labels
+          },
+        },
+      },
+      y: {
+        ticks: {
+          color: "#2ac50f", // Set the color of the Y-axis tick marks
+          font: {
+            size: 15, // Set the font size of the X-axis labels
+          },
+        },
+      },
+    },
+  };
+
   return (
-    <div className="statsPerMonth">
-      {/* <div className="statsPerMonthFilterButton">
-        <div>
-          {filters ? (
-            <Button variant="contained" onClick={() => setFilters(!filters)}>
-              Hide Filters
-            </Button>
-          ) : (
-            <Button variant="contained" onClick={() => setFilters(!filters)}>
-              Show Filters
-            </Button>
-          )}
-        </div>
-        <div
-          className="statsPerMonthFilter"
-          style={{
-            backgroundColor: "rgb(210,215,230,0.8)",
-            color: "#000033",
-          }}
+    <Box>
+      <Box mt={6}>
+        <Box
+          display={"flex"}
+          flexDirection={"row"}
+          justifyContent={"center"}
+          alignItems={"center"}
+          borderBottom="2px solid #BADA55" /* Yellow-green-gray border color */
+          borderRadius={8} /* Optional: Rounded corners for a nicer look */
+          paddingX={3} /* Optional: Add some padding for better spacing */
+          paddingY={1}
+          color={"#BADA55"}
+          width={"fit"}
         >
-          {filters && (
-            <FormGroup>
-              {locations.map((xgonna: any) => (
-                <FormControlLabel
-                  className="hayya"
-                  key={xgonna}
-                  control={
-                    <Checkbox
-                      name={xgonna}
-                      defaultChecked
-                      onChange={(e: any, key: any) => handleCheckBox(e, key)}
-                      style={{
-                        padding: 5,
-                        marginLeft: 10,
-                      }}
-                    />
-                  }
-                  label={xgonna}
-                />
-              ))}
-            </FormGroup>
-          )}
-        </div>
-      </div> */}
-      <Button
-        variant="contained"
-        className="buttonn"
-        color="error"
-        onClick={() => setLineBar(!lineBar)}
+          <TipsAndUpdatesIcon fontSize="large" />
+          <Typography variant="body1" style={{ marginLeft: "10px" }}>
+            Click on a location to show/hide it on the chart
+          </Typography>
+        </Box>
+      </Box>
+      <Box
+        width={"100%"}
+        sx={{
+          transform: { lg: "scale(.87)" },
+        }}
       >
-        to {lineBar ? "Line" : "Bar"} Chart
-      </Button>
-      <Card className="buttonn1">
-        <TipsAndUpdatesIcon color="warning" />
-        click on the button above to switch from Dohgnut Bar chart to Line chart
-        and vice versa
-      </Card>
-      <Card className="buttonn1" style={{ marginTop: 150 }}>
-        <TipsAndUpdatesIcon color="warning" /> click on a location to show/hide
-        it on the chart
-      </Card>
-      {lineBar ? (
-        <div className="statsPerMonthLine">
-          <Bar
-            options={optionsLine}
-            data={data}
-            style={{
-              //   marginTop: -20,
-              //   marginRight: 80,
-              backgroundColor: "rgb(210,215,230,0.9)",
-              //   width: "1400px",
-            }}
-          />
-        </div>
-      ) : (
-        <div className="statsPerMonthLine">
-          <Line
-            options={optionsLine}
-            data={data}
-            style={{
-              //   marginTop: -20,
-              backgroundColor: "rgb(210,215,230,0.9)",
-              //   width: "1400px",
-            }}
-          />
-        </div>
-      )}
-    </div>
+        <Typography
+          variant="h5"
+          gutterBottom
+          color="primary.light"
+          mb={{ sx: 0, md: 7 }}
+          textAlign={{ sx: "left", md: "left" }}
+        >
+          Inspection for every location :
+        </Typography>
+        <Line data={data} options={optionsLine} />
+      </Box>
+    </Box>
   );
 };
 

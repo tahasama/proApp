@@ -23,15 +23,30 @@ ChartJS.register(
 const StatsPerReview = (all: any) => {
   const optionsLine = {
     responsive: true,
-    maintainAspectRatio: true,
     plugins: {
       legend: {
-        position: "left" as const,
+        display: false,
       },
       title: {
-        display: true,
-        text: "Concrete Poured by types per month (m³)",
-        font: { size: 16 },
+        display: false,
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: "#2ac50f", // Set the color of the X-axis labels (months names)
+          font: {
+            size: 15, // Set the font size of the X-axis labels
+          },
+        },
+      },
+      y: {
+        ticks: {
+          color: "#2ac50f", // Set the color of the Y-axis tick marks
+          font: {
+            size: 15, // Set the font size of the X-axis labels
+          },
+        },
       },
     },
   };
@@ -117,17 +132,7 @@ const StatsPerReview = (all: any) => {
     ],
   };
 
-  return (
-    <div className="statsPerMonth">
-      <div className="statsPerMonthFilterButton"></div>
-      <Bar
-        options={optionsLine}
-        data={data}
-        style={{ marginTop: -20, backgroundColor: "rgb(210,215,230,0.9)" }}
-        className="statsPerMonthLine"
-      />
-    </div>
-  );
+  return <Bar options={optionsLine} data={data} />;
 };
 
 export default StatsPerReview;

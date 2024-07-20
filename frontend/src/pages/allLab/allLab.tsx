@@ -77,7 +77,7 @@ const AllLab = () => {
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
           {workbooks.map((w: any, index) => (
-            <Grid item xs={2} sm={4} md={4} key={index}>
+            <Grid item xs={1} sm={2} md={4} key={index}>
               <Button
                 style={{
                   color: "Background",

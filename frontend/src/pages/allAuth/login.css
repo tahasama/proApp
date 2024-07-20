@@ -1,41 +1,64 @@
 .landing-container {
   text-align: center;
-  margin-top: -50px;
+  margin-top: 20px;
   font-family: Arial, sans-serif;
   color: rgba(185, 240, 240, 0.75);
 }
 
+.flexy{
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
 .content {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
 }
 
 .title {
   font-size: 32px;
-  margin-bottom: 20px;
+  margin: 20px 0;
+  text-align: center;
 }
 
 .features h2 {
-  font-size: 24px;
+  font-size: 26px;
   color: #0066cc;
   margin-bottom: 10px;
 }
 
+.features-div {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-top: -40px;
+}
+
 .features ul {
   list-style-type: none;
-  padding: 0;
   text-align: left;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: rgba(96, 48, 150, 0.35);
+  box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.3);
+  padding: 28px ;
+  margin-top: 30px;
+
+
 }
 
 .features-list li {
   font-size: 18px;
   margin-bottom: 10px;
-  line-height: 1.2;
+  line-height: 1.6;
 }
 
 .join h2 {
-  font-size: 28px;
+  font-size: 26px;
   color: #0066cc;
   margin-bottom: 20px;
 }
@@ -115,8 +138,9 @@ input[type="password"] {
 }
 
 .support {
-  font-size: 14px;
+  font-size: 17px;
   color: #ddd6d6;
+  margin-top: 20px;
 }
 
 .support a {

@@ -20,6 +20,7 @@ import FolderIcon from "@mui/icons-material/Folder";
 // import GeotechnicalStudy from "../../../images/GeotechnicalStudy.pdf";
 // import Paq from "../../../images/Paq.pdf";
 import "./workbook.css";
+import { Box } from "@mui/material";
 
 const Workbook = () => {
   const { book } = useParams();
@@ -214,9 +215,10 @@ const Workbook = () => {
       <div className="navbar">
         <NavBar />
       </div>
-      <div
+      <Box
         className="title1"
         style={{ marginTop: status === "authorized" ? 25 : 10 }}
+        marginX={2}
       >
         <h2 className="title4" style={{ position: "relative", top: 24 }}>
           {book} Data Records
@@ -225,26 +227,29 @@ const Workbook = () => {
         {status === "manager" &&
           book !== "PAQ (quality assurance plan)" &&
           book !== "Geotechnical Study" && (
-            <div className="createDeleteB" style={{ top: -26 }}>
-              {" "}
-              <ModalLab />{" "}
-              <div>
-                <Button
-                  variant="outlined"
-                  color="error"
-                  size="large"
-                  className="deleteB"
-                  onClick={handleDelete}
-                  style={{
-                    borderColor: "tomato",
-                    color: "tomato",
-                    margin: "0 10px",
-                  }}
-                >
-                  Delete selected
-                </Button>
-              </div>
-            </div>
+            <Box
+              display={"flex"}
+              gap={1}
+              justifyContent={"space-between"}
+              marginTop={5}
+              marginBottom={2}
+            >
+              <ModalLab />
+
+              <Button
+                variant="outlined"
+                color="error"
+                size="large"
+                className="deleteB"
+                onClick={handleDelete}
+                style={{
+                  borderColor: "tomato",
+                  color: "tomato",
+                }}
+              >
+                Delete selected
+              </Button>
+            </Box>
           )}
 
         {book !== "Geotechnical Study" &&
@@ -252,9 +257,8 @@ const Workbook = () => {
           <div
             className="grid"
             style={{
-              width: "98%",
-              height: 420,
-              margin: 10,
+              width: "100%",
+              height: 380,
               marginTop: status === "authorized" ? 90 : 0,
             }}
           >
@@ -316,7 +320,7 @@ const Workbook = () => {
             </a> */}
           </div>
         )}
-      </div>
+      </Box>
     </div>
   );
 };

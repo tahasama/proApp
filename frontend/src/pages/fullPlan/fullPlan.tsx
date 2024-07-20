@@ -4,17 +4,30 @@ import { Link } from "react-router-dom";
 import "./fullPlan.css";
 import NavBar from "../Navbar/navbar";
 import { locations } from "../../constants/constant";
+import { Box, Chip } from "@mui/material";
 
 const FullPlan = () => {
   return (
-    <div>
+    <div className="fullPage">
       <div className="navbar">
-        <NavBar />
+        <NavBar />{" "}
       </div>
-      {/* <img src={plan} alt="" className="fullPlan" /> */}
+      {/* <p>Please rotate your screen for better experience</p> */}
 
-      <div className="masterPlan">
-        {locations.flat().map((i: any) => (
+      <Box
+        className="masterPlan"
+        sx={{
+          mt: { xs: 36, sm: 8, md: 6, lg: -1 },
+          transform: { xs: "rotate(-90deg) scale(1.6)", sm: "rotate(0deg)" },
+        }}
+      >
+        <img
+          src={plan}
+          alt=""
+          className="masterPlan"
+          style={{ transform: "scale(.9)" }}
+        />
+        {locations.map((i: any) => (
           <div key={i}>
             <Link to={`../${i}`} className={i}></Link>
             <div className={"name-" + i}>
@@ -26,14 +39,7 @@ const FullPlan = () => {
             </div>
           </div>
         ))}
-        <Link to={`../closingWall`} className="closingWall">
-          <p className="wallText">closingWall</p>
-          <div className="arrow">
-            <div className="line"></div>
-            <div className="point"></div>
-          </div>
-        </Link>
-      </div>
+      </Box>
     </div>
   );
 };
